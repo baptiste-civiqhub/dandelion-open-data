@@ -1,0 +1,34 @@
+---
+description: App Router — server vs client components, routing par locale, pages fines, middleware
+globs: app/**/*.tsx,app/**/*.ts,middleware.ts,constant/path.ts,i18n/navigation.ts
+alwaysApply: false
+---
+
+# App Router et routing
+
+## Server vs client components
+
+- Server Component par défaut : pas de hook React, pas d'event handler.
+- `'use client'` en tête dès qu'on utilise un hook (`useState`, `useQuery`, `useTranslations` côté client…), un handler, une ref ou une API navigateur.
+- Les composants qui consomment des données (`useQuery`) sont client ; la page qui les compose peut rester serveur.
+
+## Arborescence
+
+- Toutes les pages vivent sous `app/[locale]/` (next-intl, `localePrefix: 'never'` : l'URL ne porte pas la langue). `app/[locale]/layout.tsx` est le layout racine (html/body, NextIntlClientProvider, NextTopLoader, Toaster, Providers) : modification structurelle, validation humaine.
+- `app/[locale]/[...slug]/page.tsx` renvoie le not-found localisé.
+- Layout partagé par plusieurs pages : route group `app/[locale]/(<nom>)/layout.tsx`.
+- `app/api/*` : route handlers (non traversés par le middleware). `app/api/health` = sonde de déploiement.
+
+## Pages
+
+- Une page est **fine** : `await params` (pattern Next 15 : `params: Promise<{ locale: string; ... }>`), `setRequestLocale(locale)`, puis rendu d'un écran `features/<domaine>/components/<domaine>-screen.tsx`.
+- Metadata via `generateMetadata` + `getTranslations({ locale, namespace })`.
+
+## Navigation
+
+- Liens internes : `Link` de `@/i18n/navigation` + constante de `constant/path.ts`. Jamais de chemin en dur.
+- Hooks de navigation : `useRouter`, `usePathname` de `@/i18n/navigation` ; `useParams`, `useSearchParams` de `next/navigation`. Jamais `next/router`.
+
+## Middleware
+
+`middleware.ts` enchaîne next-intl, le rafraîchissement de session Supabase (uniquement si un cookie `sb-` existe) et `X-Robots-Tag: noindex` hors production. Ne pas y ajouter de logique métier ; toute modification demande validation humaine.

@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "title": "Open Data Hémicycle",
+    "description": "Explore open data about parliamentary life."
+  },
+  "home": {
+    "eyebrow": "Open Data Hackathon",
+    "title": "Open Data Hémicycle",
+    "subtitle": "Next.js + Supabase starter, ready to deploy on Vercel. Plug in your datasets and build.",
+    "stackTitle": "Stack",
+    "stackDescription": "Next.js 15 · React 19 · strict TypeScript · Tailwind 4 · TanStack Query · next-intl",
+    "dataTitle": "Data",
+    "dataDescription": "Supabase (Postgres + RLS), eu-central-1 region.",
+    "healthLink": "Open the health probe"
+  },
+  "status": {
+    "label": "Supabase",
+    "loading": "Checking…",
+    "up": "Connected",
+    "down": "Unreachable",
+    "unconfigured": "Not configured",
+    "error": "Probe unavailable"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page does not exist or has moved.",
+    "backHome": "Back to home"
+  }
+}

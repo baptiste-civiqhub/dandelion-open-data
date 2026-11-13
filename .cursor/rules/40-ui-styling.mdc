@@ -1,0 +1,33 @@
+---
+description: UI — Tailwind 4, tokens sémantiques, cn(), shadcn/Radix, accessibilité, dataviz
+globs: components/**/*.tsx,features/**/*.tsx,app/**/*.tsx,app/globals.css
+alwaysApply: false
+---
+
+# UI et styling
+
+## Styling
+
+- Tailwind first. Pas de CSS module. Classes conditionnelles via `cn(...)` (`lib/utils.ts`), jamais de concaténation manuelle.
+- **Tokens sémantiques uniquement**, définis dans `app/globals.css` (convention shadcn new-york) : `bg-background`, `text-foreground`, `bg-card`, `text-muted-foreground`, `bg-muted`, `bg-primary` / `text-primary-foreground`, `bg-secondary`, `bg-accent`, `text-destructive`, `bg-success`, `bg-warning`, `border-border`, `ring-ring`, `rounded-sm|md|lg|xl`, séries de graphiques `--chart-1..5` (`fill-chart-1`, `stroke-chart-2`…). Jamais de `#hex`, `rgb()`, `oklch()` ni de palette brute (`bg-blue-500`) dans un composant : ces noms de tokens existent dans l'application de référence, une couleur littérale ne se porte pas.
+- Nouveau token nécessaire : l'ajouter dans `:root` **et** `.dark` puis dans `@theme inline`, et le signaler dans la PR.
+- Animations : `tw-animate-css` pour les entrées/sorties Radix (data-attributes), `motion` pour les animations impératives.
+
+## Composants
+
+- `components/ui/` : primitives shadcn (new-york, neutral, Lucide). En ajouter avec `pnpm dlx shadcn@latest add <x>`, puis aligner la version Radix sur `docs/stack.md`.
+- `asChild` : **un seul enfant** (Slot Radix → `React.Children.only`). Deux enfants = page blanche invisible pour lint, typecheck et tests.
+- `components/shared/` : composants transverses de l'app ; vérifier l'existant avant d'en créer.
+- `features/<domaine>/components/` : composants riches ; la logique de calcul va dans `features/<domaine>/lib/` (pure, testée).
+- Icônes : `lucide-react`.
+- Un composant par fichier, export nommé, props typées.
+- Quatre états pour tout composant de données : chargement (`Skeleton`), erreur, vide, rempli.
+
+## Dataviz
+
+Calculs (échelles, agrégats, layouts — ex. positions des sièges d'un hémicycle) en TS pur dans `lib/` ou `features/<domaine>/lib/` avec tests ; rendu en SVG React avec les tokens `chart-*` et `currentColor`. Une librairie de graphiques est une dépendance hors catalogue (voir `docs/stack.md`).
+
+## Accessibilité
+
+- Radix gère focus, aria et escape : ne pas le contourner.
+- Bouton sans texte → `aria-label` (clé i18n). Image → `alt` (vide si décorative). Graphique SVG → `role='img'` + `aria-label`, et un équivalent textuel (tableau ou résumé) pour les données clés.

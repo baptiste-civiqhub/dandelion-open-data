@@ -1,0 +1,19 @@
+# Fichiers d'environnement — jamais lus par l'agent.
+# .env.example n'est PAS exclu : c'est le gabarit sans valeur réelle.
+.env
+.env.*
+!.env.example
+
+# Sorties de build et dépendances (bruit pour l'agent)
+.next/
+out/
+build/
+node_modules/
+coverage/
+playwright-report/
+test-results/
+
+# Divers sensibles ou temporaires
+*.pem
+*.log
+.vercel/

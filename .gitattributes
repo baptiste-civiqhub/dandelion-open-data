@@ -1,0 +1,8 @@
+# Scripts et fichiers lus par la CI en LF sur toutes les plateformes : avec core.autocrlf=true
+# sous Windows, vitest échoue à charger un .mjs en CRLF alors que la CI Linux est verte.
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.woff2 binary
