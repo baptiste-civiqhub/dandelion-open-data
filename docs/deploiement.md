@@ -2,12 +2,12 @@
 
 ## Cibles
 
-| Élément      | Valeur                                                                                    |
-| ------------ | ----------------------------------------------------------------------------------------- |
-| Repo GitHub  | `open-data-hemicycle` (remote `origin`), branche de prod `main`                           |
-| Supabase     | projet `mloaychfjhajdjfktcjp`, région `eu-central-1` (Francfort)                          |
-| URL Supabase | `https://mloaychfjhajdjfktcjp.supabase.co`                                                |
-| Vercel       | framework Next.js, racine du repo, région des fonctions `fra1` (Francfort, `vercel.json`) |
+| Élément      | Valeur                                                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Repo GitHub  | `dandelion-open-data` (privé ; l'ancien nom `open-data-hemicycle` redirige), branche de prod `main`                               |
+| Supabase     | projet `mloaychfjhajdjfktcjp`, région `eu-central-1` (Francfort)                                                                  |
+| URL Supabase | `https://mloaychfjhajdjfktcjp.supabase.co`                                                                                        |
+| Vercel       | projet `open-data-hemicycle` (déjà relié au repo), framework Next.js, racine du repo, région des fonctions `fra1` (`vercel.json`) |
 
 ## Variables d'environnement
 
@@ -23,7 +23,7 @@ L'intégration Supabase ↔ Vercel synchronise aussi `SUPABASE_URL`, `SUPABASE_P
 
 ## Mise en place (une fois)
 
-1. **Créer le projet Vercel** : vercel.com → _Add New… → Project_ → importer `open-data-hemicycle` depuis GitHub. Next.js et pnpm sont détectés ; ne rien changer aux commandes (`vercel.json` les fixe).
+1. **Accès à l'équipe Vercel** : le projet `open-data-hemicycle` existe déjà et le repo y est relié. Vercel **bloque** tout déploiement dont l'auteur Git n'est pas membre de l'équipe (check « Git author … must have access to the project on Vercel »). Chaque développeur demande l'accès via le lien de ce check, le propriétaire de l'équipe l'accepte. Le plan Hobby n'accepte pas d'autres membres : l'équipe doit passer en Pro (essai gratuit disponible). Next.js et pnpm sont détectés ; ne rien changer aux commandes (`vercel.json` les fixe).
 2. **Relier Supabase** :
    - _recommandé_ : intégration Supabase depuis le Vercel Marketplace (ou Supabase Dashboard → Integrations → Vercel), choisir le projet Vercel `open-data-hemicycle` et le projet Supabase `mloaychfjhajdjfktcjp` : les variables ci-dessus sont créées dans les trois environnements ;
    - _sinon_ : saisir à la main `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY` dans Project Settings → Environment Variables.
