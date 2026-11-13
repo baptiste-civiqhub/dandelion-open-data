@@ -51,6 +51,10 @@ Cette stack est **identique** à celle de l'application de référence de l'équ
 
 Les deux premiers paquets ne doivent jamais être importés hors de `services/supabase/` et des `apis/*/request.ts` : c'est la frontière qui disparaît au portage.
 
+**Police** : Inter (charte de marque), chargée par `next/font/google` (`fonts/inter.ts`) et exposée par le seul token `--font-sans`. La référence charge une autre police ; comme les composants n'utilisent que `font-sans`, ils se portent sans changement.
+
+**Design system** : tokens générés par `scripts/build-tokens.mjs` depuis `design-system/tokens/source/brand.json`, même pipeline (`@theme static`, namespaces natifs Tailwind 4) que la référence. Voir `design-system/README.md`.
+
 ## Catalogue « à la demande » (présent dans la référence, non installé ici)
 
 Si tu en as besoin, installe **exactement** cette version : `pnpm add --save-exact <paquet>@<version>`.

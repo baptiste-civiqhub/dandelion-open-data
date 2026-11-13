@@ -5,14 +5,17 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const badgeVariants = cva(
-  'inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [&>svg]:pointer-events-none [&>svg]:size-3',
+  'inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 [&>svg]:pointer-events-none [&>svg]:size-3',
   {
     variants: {
       variant: {
         default: 'border-transparent bg-primary text-primary-foreground',
         secondary: 'border-transparent bg-secondary text-secondary-foreground',
         destructive: 'border-transparent bg-destructive text-destructive-foreground',
-        success: 'border-transparent bg-success text-primary-foreground',
+        // feedback-success (3,4:1 sur blanc) ne porte jamais de petit texte : fond soft + texte foreground.
+        success: 'border-transparent bg-feedback-success-soft text-foreground',
+        warning: 'border-transparent bg-feedback-warning-soft text-foreground',
+        info: 'border-transparent bg-feedback-info-soft text-foreground',
         outline: 'text-foreground'
       }
     },

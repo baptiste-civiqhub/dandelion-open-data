@@ -22,6 +22,9 @@ yarn.lock
 # Fichiers générés (jamais édités à la main)
 types/supabase.ts
 next-env.d.ts
+design-system/tokens/generated.css
+design-system/tokens/generated.ts
+design-system/tokens/palette.generated.md
 
 # Contexte agents (Markdown libre)
 .claude/

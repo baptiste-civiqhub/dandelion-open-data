@@ -1,23 +1,23 @@
 import { createClient } from '@supabase/supabase-js'
 
-import { ENVS } from '@/configs/env'
+import { ENVS, SUPABASE_PROJECT_URL } from '@/configs/env'
 import type { Database } from '@/types/supabase'
 
 /**
- * Client Supabase avec la clé secrète : contourne la RLS. Serveur uniquement (Route Handlers,
- * Server Actions, scripts d'ingestion). Ne jamais l'importer depuis un fichier `'use client'`.
+ * Supabase client with the secret key: bypasses RLS. Server only (Route Handlers, Server Actions,
+ * ingestion scripts). Never import it from a `'use client'` file.
  */
 export function getSupabaseAdminClient() {
   if (typeof window !== 'undefined') {
-    throw new Error('getSupabaseAdminClient() est réservé au serveur.')
+    throw new Error('getSupabaseAdminClient() is server-only.')
   }
 
   const secretKey = ENVS.SUPABASE_SECRET_KEY
   if (!secretKey) {
-    throw new Error('SUPABASE_SECRET_KEY manquante : la définir dans .env.local et dans Vercel.')
+    throw new Error('SUPABASE_SECRET_KEY is missing: set it in .env.local and in the Vercel project.')
   }
 
-  return createClient<Database>(ENVS.NEXT_PUBLIC_SUPABASE_URL, secretKey, {
+  return createClient<Database>(ENVS.NEXT_PUBLIC_SUPABASE_URL ?? SUPABASE_PROJECT_URL, secretKey, {
     auth: { persistSession: false, autoRefreshToken: false }
   })
 }

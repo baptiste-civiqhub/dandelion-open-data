@@ -29,8 +29,8 @@ L'intégration Supabase ↔ Vercel synchronise aussi `SUPABASE_URL`, `SUPABASE_P
    - _sinon_ : saisir à la main `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY` dans Project Settings → Environment Variables.
 3. Ajouter `ENABLE_EXPERIMENTAL_COREPACK=1` (Production + Preview).
 4. **Redéployer** (Deployments → … → Redeploy) pour que le build prenne les variables.
-5. **Vérifier** : `https://<domaine-vercel>/api/health` doit renvoyer `"status": "ok"` et `"supabase": "up"`. `"down"` = clé ou URL invalide ; `"unconfigured"` = variable manquante.
-6. _Si Supabase Auth est utilisé plus tard_ : Supabase → Authentication → URL Configuration → ajouter le domaine de prod et `https://*-<équipe>.vercel.app/**` aux Redirect URLs.
+
+> Le build ne dépend **pas** de ces variables : l'URL Supabase a une valeur par défaut (projet public) et la clé publishable est optionnelle. Sans clé, le site se déploie et `/api/health` répond `"supabase": "unconfigured"` ; toute lecture Supabase lève une erreur explicite tant que la clé n'est pas définie. 5. **Vérifier** : `https://<domaine-vercel>/api/health` doit renvoyer `"status": "ok"` et `"supabase": "up"`. `"down"` = clé ou URL invalide ; `"unconfigured"` = variable manquante. 6. _Si Supabase Auth est utilisé plus tard_ : Supabase → Authentication → URL Configuration → ajouter le domaine de prod et `https://*-<équipe>.vercel.app/**` aux Redirect URLs.
 
 ## En local
 

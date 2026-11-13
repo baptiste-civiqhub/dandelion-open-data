@@ -5,7 +5,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import NextTopLoader from 'nextjs-toploader'
 
 import { Toaster } from '@/components/ui/sonner'
-import { ManropeFont } from '@/fonts/manrope'
+import { ASSET_PATHS } from '@/constant/path'
+import { InterFont } from '@/fonts/inter'
 import { routing } from '@/i18n/routing'
 
 import { Providers } from '../providers'
@@ -27,6 +28,9 @@ export async function generateMetadata({ params }: LayoutParams): Promise<Metada
       template: `%s | ${t('title')}`
     },
     description: t('description'),
+    icons: {
+      icon: [{ url: ASSET_PATHS.BRAND_MARK, type: 'image/svg+xml' }]
+    },
     openGraph: {
       title: t('title'),
       description: t('description'),
@@ -44,10 +48,10 @@ export default async function RootLayout({ children, params }: LayoutParams & { 
   setRequestLocale(locale)
 
   return (
-    <html className={ManropeFont.variable} lang={locale}>
+    <html className={InterFont.variable} lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <NextTopLoader color='var(--primary)' showSpinner={false} />
+          <NextTopLoader color='var(--color-brand)' showSpinner={false} />
           <Toaster />
           <Providers>{children}</Providers>
         </NextIntlClientProvider>

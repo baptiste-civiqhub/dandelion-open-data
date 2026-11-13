@@ -2,17 +2,19 @@ import { createServerClient } from '@supabase/ssr'
 import { createClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 
-import { ENVS } from '@/configs/env'
 import type { Database } from '@/types/supabase'
 
+import { getSupabasePublicConfig } from './config'
+
 /**
- * Client Supabase lié à la session de l'utilisateur (Server Components, Route Handlers, Server Actions).
- * Lire les cookies rend la route dynamique : pour des données publiques, préférer `getSupabasePublicClient`.
+ * Supabase client bound to the user session (Server Components, Route Handlers, Server Actions).
+ * Reading cookies makes the route dynamic: for public data, prefer `getSupabasePublicClient`.
  */
 export async function createSupabaseServerClient() {
+  const { url, key } = getSupabasePublicConfig()
   const cookieStore = await cookies()
 
-  return createServerClient<Database>(ENVS.NEXT_PUBLIC_SUPABASE_URL, ENVS.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, {
+  return createServerClient<Database>(url, key, {
     cookies: {
       getAll() {
         return cookieStore.getAll()
@@ -21,7 +23,7 @@ export async function createSupabaseServerClient() {
         try {
           cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
         } catch {
-          // Appelé depuis un Server Component (cookies en lecture seule) : middleware.ts rafraîchit la session.
+          // Called from a Server Component (read-only cookies): middleware.ts refreshes the session.
         }
       }
     }
@@ -29,11 +31,13 @@ export async function createSupabaseServerClient() {
 }
 
 /**
- * Client Supabase anonyme, sans cookie : lectures publiques (open data) cachables et compatibles
- * avec le rendu statique / ISR. Soumis à la RLS comme n'importe quel visiteur.
+ * Anonymous Supabase client without cookies: cacheable public reads (open data), compatible with
+ * static rendering / ISR. Subject to RLS like any visitor.
  */
 export function getSupabasePublicClient() {
-  return createClient<Database>(ENVS.NEXT_PUBLIC_SUPABASE_URL, ENVS.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, {
+  const { url, key } = getSupabasePublicConfig()
+
+  return createClient<Database>(url, key, {
     auth: { persistSession: false, autoRefreshToken: false }
   })
 }

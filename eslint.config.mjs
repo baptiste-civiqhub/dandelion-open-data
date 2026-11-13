@@ -11,8 +11,8 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   {
-    // Types générés par Supabase : jamais édités à la main, jamais lintés.
-    ignores: ['types/supabase.ts']
+    // Fichiers générés (types Supabase, tokens du design system) : jamais édités à la main, jamais lintés.
+    ignores: ['types/supabase.ts', 'design-system/tokens/generated.ts']
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
