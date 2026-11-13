@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "title": "Open Data Hémicycle",
+    "title": "Dandelion Open Data",
     "description": "Explorer les données ouvertes de la vie parlementaire."
   },
   "home": {
     "eyebrow": "Hackathon Open Data",
-    "title": "Open Data Hémicycle",
+    "title": "Dandelion Open Data",
     "subtitle": "Socle Next.js + Supabase prêt à déployer sur Vercel. Branchez vos jeux de données et construisez.",
     "stackTitle": "Stack",
     "stackDescription": "Next.js 15 · React 19 · TypeScript strict · Tailwind 4 · TanStack Query · next-intl",
