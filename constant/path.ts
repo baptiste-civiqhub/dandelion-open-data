@@ -6,3 +6,8 @@ export const PUBLIC_PATHS = {
 export const API_PATHS = {
   HEALTH: '/api/health'
 } as const
+
+export const ASSET_PATHS = {
+  /** Icône du site, générée depuis la géométrie du pictogramme (app/brand/mark.svg/route.ts). */
+  BRAND_MARK: '/brand/mark.svg'
+} as const

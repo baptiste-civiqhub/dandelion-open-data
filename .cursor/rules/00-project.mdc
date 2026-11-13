@@ -24,11 +24,11 @@ La stack est **identique, versions exactes comprises**, à celle de l'applicatio
 - Server Components par défaut ; `'use client'` dès qu'il y a hook, handler ou API navigateur.
 - Données via TanStack Query (`apis/<ressource>/queries.ts` / `mutation.ts`). Jamais `useEffect` + `fetch`, jamais de données serveur dans Zustand, jamais `supabase.from()` dans un composant.
 - HTTP via `request<T>()` de `services/axios.ts` ; jamais `axios.get` direct.
-- Aucun texte en dur dans le JSX : `useTranslations` + clés dans `i18n/messages/fr.json` ET `en.json`.
-- Styling Tailwind 4, `cn()` de `lib/utils.ts`, tokens sémantiques (`bg-background`, `text-muted-foreground`, `bg-primary`…), jamais de couleur littérale.
+- Interface en anglais. Aucun texte en dur dans le JSX : `useTranslations` + clés dans `i18n/messages/en.json` (référence) ET `fr.json`.
+- Design system obligatoire (`design-system/README.md`, règle `40-ui-styling.mdc`) : uniquement des utilitaires de tokens sémantiques via `cn()`, aucune valeur visuelle brute (`pnpm lint:ds`), composants factorisés (registre `design-system/components.md`, variantes `cva`, deux occurrences = un composant partagé).
 - Chemins via `constant/path.ts` ; variables d'env via `ENVS` de `configs/env.ts`.
 - Prettier du repo (sans `;`, quotes simples y compris JSX, largeur 120, plugin Tailwind) : `pnpm format`.
-- Avant de rendre la main : `pnpm check` (lint + typecheck + tests) vert.
+- Avant de rendre la main : `pnpm check` (lint, lint:ds, tokens:check, typecheck, tests) vert.
 
 ## Frontières
 

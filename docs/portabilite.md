@@ -40,8 +40,8 @@ Ce qui est développé pendant le hackathon doit être **transposable tel quel**
 
 2. **Données côté client via TanStack Query**, comme dans la référence (dont la plupart des écrans sont des composants client). Une page peut être un Server Component pour la mise en page, mais les données d'une feature passent par `useQuery` / `useInfiniteQuery`, pas par un `await supabase...` dans la page.
 3. **Algorithmes purs** : entrées et sorties typées, pas d'I/O, pas de `Date.now()` ni d'aléatoire implicites (les passer en paramètre), pas d'import de framework — la règle ESLint `@typescript-eslint/no-restricted-imports` le bloque dans `lib/` et `features/*/lib/`. Chaque fonction exportée a un test.
-4. **Tokens sémantiques uniquement** (`bg-background`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `bg-card`, `border-border`, `bg-muted`, `text-destructive`, `rounded-lg`…). Ces noms existent des deux côtés ; une couleur littérale devrait être réécrite au portage.
-5. **Textes en clés i18n** dans un namespace propre à la feature (`useTranslations('deputies')`), en fr **et** en.
+4. **Tokens sémantiques uniquement** (`pnpm lint:ds` le garantit). Les tokens shadcn (`background`, `foreground`, `muted-foreground`, `primary`, `card`, `border`, `ring`, `destructive`…) et les échelles (espacement, rayon, typographie, élévation) ont **les mêmes noms et les mêmes valeurs d'échelle** que la référence : un composant qui ne consomme qu'eux se porte tel quel. Les tokens propres à la marque (`cta-*`, `stance-*`, `feedback-*`, `brand-*`, `content-*`, `editorial-*`, `chart-*`, `surface-raised`, `foreground-secondary`, `subtle-foreground`) doivent être ajoutés à la source de tokens de la référence au portage : les lister dans la PR (`design-system/tokens/palette.generated.md` donne leurs valeurs).
+5. **Textes en clés i18n** dans un namespace propre à la feature (`useTranslations('deputies')`), en en (référence de l'interface) **et** fr.
 6. **Clés de requête dans `QueryKeysEnum`**, préfixées par le verbe (`GET_DEPUTIES`, `GET_DEPUTY_DETAIL`), paramètres à la suite : `queryKey: [QueryKeysEnum.GET_DEPUTIES, params]`.
 7. **Erreurs normalisées** : la couche données rejette une `NormalizedApiError` `{ status, code, detail, raw }` — même forme que la référence — et l'UI affiche `getApiErrorMessage(err, t('...'))`.
 8. **Un composant = un fichier, export nommé, props typées**, `cn()` pour fusionner les classes, `asChild` avec un seul enfant.
@@ -51,7 +51,8 @@ Ce qui est développé pendant le hackathon doit être **transposable tel quel**
 
 - [ ] `pnpm check` vert.
 - [ ] Aucun import de `@supabase/*` ou `@/services/supabase/*` hors de `services/` et `apis/*/request.ts` : `git grep -n "@supabase\|services/supabase" -- apis features lib components hooks store`.
-- [ ] Aucune couleur littérale : `git grep -nE "#[0-9a-fA-F]{3,8}\b|bg-(red|blue|green|gray|slate)-[0-9]" -- features components`.
-- [ ] Toutes les chaînes visibles sont des clés i18n présentes en fr et en.
+- [ ] Aucune valeur visuelle brute : `pnpm lint:ds` vert.
+- [ ] Tokens propres à la marque consommés par le module listés (à ajouter côté référence).
+- [ ] Toutes les chaînes visibles sont des clés i18n présentes en en et fr.
 - [ ] Les fonctions de `lib/` / `features/*/lib/` ont leurs tests.
 - [ ] Les dépendances ajoutées sont listées dans la PR avec leur version exacte.

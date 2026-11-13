@@ -1,12 +1,14 @@
 import { createBrowserClient } from '@supabase/ssr'
 
-import { ENVS } from '@/configs/env'
 import type { Database } from '@/types/supabase'
 
+import { getSupabasePublicConfig } from './config'
+
 /**
- * Client Supabase côté navigateur (composants `'use client'`, fonctions `apis/<ressource>/request.ts`).
- * `createBrowserClient` est déjà un singleton dans le navigateur : l'appeler à chaque requête ne coûte rien.
+ * Browser-side Supabase client (`'use client'` components, `apis/<resource>/request.ts` functions).
+ * `createBrowserClient` is already a singleton in the browser: calling it on every request costs nothing.
  */
 export function getSupabaseBrowserClient() {
-  return createBrowserClient<Database>(ENVS.NEXT_PUBLIC_SUPABASE_URL, ENVS.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY)
+  const { url, key } = getSupabasePublicConfig()
+  return createBrowserClient<Database>(url, key)
 }

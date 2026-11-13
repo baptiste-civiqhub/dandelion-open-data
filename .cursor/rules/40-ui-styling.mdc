@@ -1,33 +1,55 @@
 ---
-description: UI — Tailwind 4, tokens sémantiques, cn(), shadcn/Radix, accessibilité, dataviz
-globs: components/**/*.tsx,features/**/*.tsx,app/**/*.tsx,app/globals.css
+description: Design system — tokens de marque, couches de composants, factorisation obligatoire, marque Dandelion, accessibilité
+globs: components/**/*.tsx,features/**/*.tsx,app/**/*.tsx,app/globals.css,design-system/**,lib/brand/**
 alwaysApply: false
 ---
 
-# UI et styling
+# Design system et UI
 
-## Styling
+Références : `design-system/README.md` (règles), `design-system/BRAND.md` (marque), `design-system/components.md` (registre), `design-system/tokens/palette.generated.md` (toutes les valeurs). Procédure : skill `creer-un-composant-ds`.
 
-- Tailwind first. Pas de CSS module. Classes conditionnelles via `cn(...)` (`lib/utils.ts`), jamais de concaténation manuelle.
-- **Tokens sémantiques uniquement**, définis dans `app/globals.css` (convention shadcn new-york) : `bg-background`, `text-foreground`, `bg-card`, `text-muted-foreground`, `bg-muted`, `bg-primary` / `text-primary-foreground`, `bg-secondary`, `bg-accent`, `text-destructive`, `bg-success`, `bg-warning`, `border-border`, `ring-ring`, `rounded-sm|md|lg|xl`, séries de graphiques `--chart-1..5` (`fill-chart-1`, `stroke-chart-2`…). Jamais de `#hex`, `rgb()`, `oklch()` ni de palette brute (`bg-blue-500`) dans un composant : ces noms de tokens existent dans l'application de référence, une couleur littérale ne se porte pas.
-- Nouveau token nécessaire : l'ajouter dans `:root` **et** `.dark` puis dans `@theme inline`, et le signaler dans la PR.
-- Animations : `tw-animate-css` pour les entrées/sorties Radix (data-attributes), `motion` pour les animations impératives.
+## Tokens : une seule source
 
-## Composants
+- Source : `design-system/tokens/source/brand.json` → `pnpm tokens:build` → `design-system/tokens/generated.{css,ts}` + `palette.generated.md` (jamais édités à la main).
+- Trois couches : **palette** (153 primitives `--palette-*`, aucune utilité, jamais consommées) → **tokens sémantiques** (`--color-*`, seuls consommables) → composants.
+- La palette Tailwind par défaut est désactivée : `bg-blue-500`, `text-gray-600` ne produisent rien.
+- `pnpm lint:ds` refuse `#hex`, `rgb()`/`hsl()`/`oklch()`, `var(--palette-…)` et les valeurs arbitraires (`p-[13px]`, `bg-[#fff]`, `rounded-[7px]`…) dans `app/`, `components/`, `features/`, `hooks/`.
+- Token manquant → ajouté à `brand.json` (référence `{palette.…}`, jamais de valeur brute) + `pnpm tokens:build`, signalé dans la PR.
 
-- `components/ui/` : primitives shadcn (new-york, neutral, Lucide). En ajouter avec `pnpm dlx shadcn@latest add <x>`, puis aligner la version Radix sur `docs/stack.md`.
-- `asChild` : **un seul enfant** (Slot Radix → `React.Children.only`). Deux enfants = page blanche invisible pour lint, typecheck et tests.
-- `components/shared/` : composants transverses de l'app ; vérifier l'existant avant d'en créer.
-- `features/<domaine>/components/` : composants riches ; la logique de calcul va dans `features/<domaine>/lib/` (pure, testée).
-- Icônes : `lucide-react`.
-- Un composant par fichier, export nommé, props typées.
-- Quatre états pour tout composant de données : chargement (`Skeleton`), erreur, vide, rempli.
+## Familles réservées
 
-## Dataviz
+- `cta`, `cta-hover`, `cta-pressed`, `cta-disabled`, `cta-surface`, `cta-foreground` : actions transactionnelles uniquement (variante `default` de `Button`).
+- `stance-l2 … stance-lm2` (+ `-soft`) : position individuelle sur une échelle de Likert à 5 niveaux, rien d'autre (pas de consensus agrégé, pas de décoration).
+- `feedback-success|warning|danger|info` (+ `-soft`) : états système. `feedback-*` plein ne colore jamais du petit texte : fond `-soft` + texte `foreground`.
+- `brand`, `brand-soft`, `brand-foreground`, `brand-gradient-from|to` : identité (picto, icône d'app, barre de chargement). Jamais pour du texte courant.
+- `chart-1 … chart-5` : séries de données catégorielles.
+- Texte : `foreground` > `foreground-secondary` > `muted-foreground` ; `subtle-foreground` (2,85:1) pour l'accessoire uniquement.
 
-Calculs (échelles, agrégats, layouts — ex. positions des sièges d'un hémicycle) en TS pur dans `lib/` ou `features/<domaine>/lib/` avec tests ; rendu en SVG React avec les tokens `chart-*` et `currentColor`. Une librairie de graphiques est une dépendance hors catalogue (voir `docs/stack.md`).
+## Couches et factorisation
+
+| Couche | Dossier | Règle |
+| --- | --- | --- |
+| Primitives | `components/ui/` | shadcn / Radix re-thémés, sans métier |
+| Marque | `components/brand/` | `DandelionMark`, `BrandLockup` |
+| Patterns | `components/shared/` | compositions réutilisables, données et libellés en props |
+| Features | `features/<domaine>/components/` | métier, données via `apis/` |
+
+- Chercher dans `design-system/components.md` avant de créer ; étendre par **variante `cva`** plutôt que dupliquer.
+- **Deux occurrences d'une même structure = un composant** extrait dans `components/shared/`, dans la même PR.
+- Un composant DS : pas d'appel de données, pas de texte en dur, export nommé, props typées, `className` en dernier via `cn()`, `data-slot` sur la racine, `asChild` à **un seul enfant**.
+- Toute création ou variante → ligne dans `design-system/components.md`.
+- Calculs de rendu (géométrie, échelles de dataviz, agrégats) → fonction pure testée dans `lib/` ou `features/<domaine>/lib/`.
+
+## Marque
+
+- Picto uniquement via `<DandelionMark />` (couleur `text-*`, taille `size-*`) ou `renderDandelionSvg` : jamais redessiné, recoloré hors tokens, déformé ou pivoté. Géométrie : `lib/brand/dandelion-geometry.ts` (5 bandes à 36°, cercle extérieur, centre décalé).
+- Police unique : Inter (`font-sans`). Échelle `text-xs` … `text-5xl`.
+- Pas de noir pur (`foreground` = #141414), pas de couleur décorative, jamais d'information portée par la seule couleur.
 
 ## Accessibilité
 
-- Radix gère focus, aria et escape : ne pas le contourner.
-- Bouton sans texte → `aria-label` (clé i18n). Image → `alt` (vide si décorative). Graphique SVG → `role='img'` + `aria-label`, et un équivalent textuel (tableau ou résumé) pour les données clés.
+- WCAG AA minimum (vérifié par `design-system/tokens/tokens.test.ts` pour les paires critiques).
+- Focus visible : `focus-visible:ring-3 focus-visible:ring-ring/50`.
+- Bouton non textuel → `aria-label` (clé i18n). Image → `alt`. Graphique SVG → `role='img'` + `aria-label` + équivalent textuel des données clés.
+- Composant de données : états chargement (`Skeleton`), vide, erreur, rempli.
+- Animations derrière `motion-safe:` uniquement (`design-system/motion.css`).

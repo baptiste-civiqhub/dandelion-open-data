@@ -12,7 +12,7 @@ description: Écrire un test vitest co-localisé (*.test.ts) pour de la logique 
 - Aucun réseau, aucune variable d'environnement, aucun client Supabase : on teste la logique pure. Si une fonction a besoin de données, elle les reçoit en paramètre.
 - Fixtures : petit builder `makeXxx(overrides: Partial<Xxx> = {})` qui remplit les champs obligatoires et n'expose que ceux lus par la fonction.
 - Structure : `describe('<fonction>') > it('<comportement attendu, en anglais>')`. Couvrir : cas nominal, vide, bornes, données incohérentes de l'open data (null, doublons, valeurs hors plage).
-- Exemples dans le repo : `lib/utils.test.ts`, `app/api/health/payload.test.ts`, `features/home/lib/supabase-status-presentation.test.ts`.
+- Exemples dans le repo : `lib/utils.test.ts`, `app/api/health/payload.test.ts`, `lib/color/contrast.test.ts`, `lib/brand/dandelion-geometry.test.ts`, `design-system/tokens/tokens.test.ts`.
 
 Commandes : `pnpm test` (une passe), `pnpm test:watch`, `pnpm test <chemin>` ou `pnpm test -t "<nom>"`.
 

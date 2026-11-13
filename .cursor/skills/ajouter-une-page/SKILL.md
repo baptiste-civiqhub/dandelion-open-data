@@ -29,6 +29,6 @@ description: Ajouter une route (page) à l'App Router sous app/[locale]/ avec me
    ```
    Segment dynamique : `params: Promise<{ locale: string; deputyId: string }>`, puis `await params` (pattern Next 15).
 3. **Écran** : `features/<domaine>/components/<domaine>-screen.tsx`. Server Component si purement statique ; sinon `'use client'` et données via les hooks de `apis/<ressource>/`.
-4. **Textes** : namespace `<domaine>` ajouté dans `i18n/messages/fr.json` **et** `en.json` (le test `i18n/messages/messages.test.ts` échoue sinon).
+4. **Textes** (interface en anglais) : namespace `<domaine>` ajouté dans `i18n/messages/en.json` (référence) **et** `fr.json` (le test `i18n/messages/messages.test.ts` échoue sinon).
 5. **Layout partagé** entre plusieurs pages : route group `app/[locale]/(<nom>)/layout.tsx`. Le layout racine `app/[locale]/layout.tsx` ne se modifie qu'avec validation humaine.
 6. **Vérifier** : `pnpm check`, puis la page dans `pnpm dev` (http://localhost:3000/<segment>, sans préfixe de langue).

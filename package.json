@@ -17,7 +17,10 @@
     "test:smoke": "playwright test -c playwright.config.mjs",
     "supabase:login": "supabase login",
     "supabase:types": "supabase gen types typescript --project-id mloaychfjhajdjfktcjp --schema public > types/supabase.ts",
-    "check": "pnpm lint && pnpm typecheck && pnpm test"
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
+    "lint:ds": "node scripts/lint-raw-values.mjs",
+    "check": "pnpm lint && pnpm lint:ds && pnpm tokens:check && pnpm typecheck && pnpm test"
   },
   "dependencies": {
     "@hookform/resolvers": "5.0.1",
