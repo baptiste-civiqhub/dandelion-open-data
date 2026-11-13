@@ -48,3 +48,4 @@ __pycache__/
 .claude/worktrees/
 .claude/settings.local.json
 .cursor/mcp.local.json
+.cursor/settings.json
