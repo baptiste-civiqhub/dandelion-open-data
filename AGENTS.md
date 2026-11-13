@@ -1,4 +1,4 @@
-# Open Data Hémicycle — guide agent
+# Dandelion Open Data — guide agent
 
 Frontend web du hackathon Open Data (samedi 14 novembre 2026). Application **Next.js 15 (App Router) + React 19 + TypeScript 5 strict**, données dans **Supabase** (Postgres + RLS), déployée sur **Vercel**.
 
