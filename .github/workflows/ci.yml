@@ -1,0 +1,31 @@
+# Portes de PR : lint + typecheck + tests unitaires. Le build et le déploiement sont faits par Vercel
+# (preview par PR, production sur main) : pas de secret ici, la validation d'env est désactivée.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Source gates (lint + typecheck + tests)
+    runs-on: ubuntu-latest
+    env:
+      SKIP_ENV_VALIDATION: '1'
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test

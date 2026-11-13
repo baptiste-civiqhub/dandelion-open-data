@@ -1,0 +1,48 @@
+---
+description: Données — couche apis/<ressource>, TanStack Query, QueryKeysEnum, clients Supabase, RLS et migrations
+globs: apis/**/*.ts,services/**/*.ts,types/queryKeyEnum.ts,types/supabase.ts,types/api-error.ts,utils/error.ts
+alwaysApply: false
+---
+
+# Données (Supabase + TanStack Query)
+
+## Règle d'or
+
+Toute donnée passe par TanStack Query via `apis/<ressource>/`. Supabase n'est appelé que depuis `apis/*/request.ts` (et `services/supabase/`). C'est la frontière qui sera remplacée par l'API REST de la référence au portage.
+
+## Structure d'une ressource (`apis/<ressource>/`)
+
+- `types.ts` — types de domaine camelCase, champs utiles seulement, aucun import de `@/types/supabase`.
+- `request.ts` — fonctions async :
+  ```ts
+  export const getDeputies = async (): Promise<Deputy[]> => {
+    const rows = unwrap(await getSupabaseBrowserClient().from('deputies').select('id, full_name').order('full_name'))
+    return rows.map((row) => ({ id: row.id, fullName: row.full_name }))
+  }
+  ```
+  `select` explicite (jamais `*`), toujours `unwrap` (rejette une `NormalizedApiError`), toujours un mapping vers le type de domaine. API REST externe (open data) : `request<T>({ url, method, params })` de `services/axios.ts`.
+- `queries.ts` — `useQuery({ queryKey: [QueryKeysEnum.GET_X, ...params], queryFn, enabled, staleTime, ...options })`. Le QueryClient global a `staleTime: 0`, `retry: false` : le cache est opt-in par requête (données open data quasi statiques → `staleTime` de quelques minutes).
+- `mutation.ts` — `useMutation` + invalidation de **toutes** les requêtes touchées (`queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.GET_X] })`) ou patch local (`setQueriesData`).
+- `index.ts` — ré-exporte les quatre fichiers.
+
+Listes paginées : `useInfiniteQuery` + `.range(from, to)` côté Supabase, `getNextPageParam` sur la taille de page, aplatir avec `data?.pages.flatMap(...)`, déclencher `fetchNextPage` via `react-intersection-observer`.
+
+## Clients Supabase (`services/supabase/`)
+
+| Fonction | Où | Clé |
+| --- | --- | --- |
+| `getSupabaseBrowserClient()` | composants client, `apis/*/request.ts` | publishable |
+| `getSupabasePublicClient()` | serveur, lectures publiques cachables (SSG/ISR) | publishable |
+| `createSupabaseServerClient()` | serveur avec session utilisateur (route dynamique) | publishable + cookies |
+| `getSupabaseAdminClient()` | serveur uniquement : ingestion, route handlers | **secrète, contourne la RLS** |
+
+## Schéma, RLS, migrations (MCP `supabase`)
+
+- RLS activée sur toute table exposée ; lecture open data = policy `select` pour `anon, authenticated`.
+- Tout changement de schéma = `apply_migration` (nom snake_case explicite), jamais un `ALTER` via `execute_sql`.
+- Après migration : `generate_typescript_types` → `types/supabase.ts` (généré, jamais édité), `pnpm typecheck`, puis `get_advisors`.
+- Validation humaine avant `drop`, `truncate`, suppression de masse, policy d'écriture publique, désactivation de RLS.
+
+## Erreurs
+
+`NormalizedApiError` (`types/api-error.ts`) : brancher sur `status` / `code`. Affichage : `toast.error(getApiErrorMessage(err, t('<clé de repli>')))`.

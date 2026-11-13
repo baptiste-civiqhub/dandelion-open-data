@@ -1,0 +1,16 @@
+---
+description: Déploiement Vercel, variables d'environnement, intégration Supabase, MCP
+globs: vercel.json,next.config.ts,configs/env.ts,.env.example,.github/workflows/**,.mcp.json,.cursor/mcp.json
+alwaysApply: false
+---
+
+# Déploiement (Vercel + Supabase)
+
+Runbook complet : `docs/deploiement.md`.
+
+- Vercel : preview par PR, production sur `main`, région `fra1` (`vercel.json`), même ville que Supabase `eu-central-1`. Pas de `output: 'standalone'`.
+- Variables : `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (publique), `SUPABASE_SECRET_KEY` (serveur uniquement), `ENABLE_EXPERIMENTAL_COREPACK=1` (pnpm exact). `NEXT_PUBLIC_ENVIRONMENT` est déduite de `NEXT_PUBLIC_VERCEL_ENV`.
+- Nouvelle variable : `configs/env.ts` (schéma zod + `runtimeEnv`) + `.env.example` + Vercel (Production, Preview, Development). Jamais de secret en `NEXT_PUBLIC_`.
+- Vérifier un déploiement : `GET /api/health` → `"supabase": "up"`. Logs : MCP `vercel` (`get_runtime_logs`, logs de build).
+- CI GitHub (`.github/workflows/ci.yml`) : lint + typecheck + tests, sans secret (`SKIP_ENV_VALIDATION=1`). Le build est fait par Vercel.
+- MCP : `supabase` (limité au projet `mloaychfjhajdjfktcjp`, lecture/écriture) et `vercel`, déclarés dans `.cursor/mcp.json`, authentification OAuth au premier usage.

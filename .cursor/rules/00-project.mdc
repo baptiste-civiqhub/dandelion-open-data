@@ -1,0 +1,38 @@
+---
+description: Contexte du projet, contrainte de portabilité, conventions transverses et frontières de l'agent
+alwaysApply: true
+---
+
+# Open Data Hémicycle — socle
+
+## Contexte
+
+Frontend du hackathon Open Data (14 novembre 2026) : Next.js 15 App Router + React 19 + TypeScript 5 strict, données Supabase (projet `mloaychfjhajdjfktcjp`, eu-central-1), déployé sur Vercel (région `fra1`). Guide complet : `AGENTS.md`.
+
+## Contrainte n°1 : portabilité
+
+La stack est **identique, versions exactes comprises**, à celle de l'application de référence de l'équipe. Tout module, hook, composant ou algorithme écrit ici doit pouvoir y être transposé tel quel. Contrat détaillé : `docs/portabilite.md`. En résumé :
+
+- Supabase n'apparaît que dans `services/supabase/` et `apis/*/request.ts` ; `request.ts` mappe les lignes vers des types de domaine (`apis/*/types.ts`).
+- Logique pure (calculs, algorithmes, sélecteurs) dans `lib/` ou `features/<domaine>/lib/`, sans import de framework (ESLint le bloque), avec tests.
+- Tokens sémantiques Tailwind uniquement, textes en clés i18n, clés de requête dans `QueryKeysEnum`.
+
+## Conventions transverses
+
+- pnpm 10.32.1 exclusivement. Versions épinglées exactes : ne jamais monter une dépendance du socle ; ajouter une dépendance = catalogue de `docs/stack.md` + `pnpm add --save-exact`.
+- TypeScript strict : pas de `any` ; `unknown` puis narrowing.
+- Server Components par défaut ; `'use client'` dès qu'il y a hook, handler ou API navigateur.
+- Données via TanStack Query (`apis/<ressource>/queries.ts` / `mutation.ts`). Jamais `useEffect` + `fetch`, jamais de données serveur dans Zustand, jamais `supabase.from()` dans un composant.
+- HTTP via `request<T>()` de `services/axios.ts` ; jamais `axios.get` direct.
+- Aucun texte en dur dans le JSX : `useTranslations` + clés dans `i18n/messages/fr.json` ET `en.json`.
+- Styling Tailwind 4, `cn()` de `lib/utils.ts`, tokens sémantiques (`bg-background`, `text-muted-foreground`, `bg-primary`…), jamais de couleur littérale.
+- Chemins via `constant/path.ts` ; variables d'env via `ENVS` de `configs/env.ts`.
+- Prettier du repo (sans `;`, quotes simples y compris JSX, largeur 120, plugin Tailwind) : `pnpm format`.
+- Avant de rendre la main : `pnpm check` (lint + typecheck + tests) vert.
+
+## Frontières
+
+- Ne jamais lire, logger ni committer un secret (`.env`, `.env.local`, `.env.*.local`). `.env.example` est le gabarit. Jamais de secret derrière `NEXT_PUBLIC_*` ; la clé secrète Supabase est `SUPABASE_SECRET_KEY`, serveur uniquement.
+- L'agent produit des commits / une PR ; il ne force-push jamais et ne merge jamais. Conventional Commits.
+- Demander validation humaine avant : migration destructive, changement de policy RLS ou désactivation de RLS, dépendance hors catalogue, modification de `middleware.ts`, `app/[locale]/layout.tsx` ou `configs/env.ts`.
+- Si install, lint, tests ou build sont cassés avant toute modification : s'arrêter et le signaler.

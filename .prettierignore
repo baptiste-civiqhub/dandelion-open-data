@@ -1,0 +1,28 @@
+# Dépendances et sorties de build
+node_modules/
+.pnpm-store/
+.next/
+out/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+.vercel/
+
+# Environnement
+.env
+.env.*
+
+# Lockfiles
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Fichiers générés (jamais édités à la main)
+types/supabase.ts
+next-env.d.ts
+
+# Contexte agents (Markdown libre)
+.claude/
+.cursor/

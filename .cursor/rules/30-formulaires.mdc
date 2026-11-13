@@ -1,0 +1,13 @@
+---
+description: Formulaires — React Hook Form + Zod, schémas partagés, soumission par mutation
+globs: form/**/*.ts,features/**/hooks/use*Form.ts,features/**/components/*form*.tsx
+alwaysApply: false
+---
+
+# Formulaires (RHF + Zod)
+
+- Toujours `useForm({ resolver: zodResolver(schema) })` (`@hookform/resolvers/zod`). Jamais de validation manuelle.
+- Schéma Zod co-localisé dans le hook de la feature (`features/<domaine>/hooks/use<X>Form.ts`) ou partagé dans `form/schema.ts`. Messages d'erreur = **clés i18n** (`'invalid_email'`), traduites à l'affichage.
+- Primitives de formulaire shadcn (`form`, `input`, `label`, `select`…) : à ajouter dans `components/ui/` au besoin, en vérifiant la version Radix (voir `docs/stack.md`).
+- Soumission via un `useMutation` de `apis/` : succès = `toast.success(t('...'))` (+ redirection éventuelle), échec = `toast.error(getApiErrorMessage(err, t('...')))`. Erreur ciblée sur un champ : `setError('champ', { type: 'manual', message })`.
+- Ne jamais avaler une erreur sans retour utilisateur.

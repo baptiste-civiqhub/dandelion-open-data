@@ -1,12 +1,50 @@
+# OS / éditeurs
 .DS_Store
+.idea/
+.vscode/
+
+# Environnement — seules les valeurs d'exemple sont versionnées
 .env
 .env.*
 !.env.example
+
+# Dépendances (pnpm uniquement : un lockfile npm/yarn ferait choisir le mauvais gestionnaire à Vercel)
 node_modules/
+package-lock.json
+yarn.lock
+/.pnp
+.pnp.*
+
+# Next.js / build
+/.next/
+/out/
+/build
 dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel (lien local créé par `vercel link`)
+.vercel
+
+# Tests
+/coverage
+playwright-report/
+test-results/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.pem
+
+# Python (scripts de données éventuels)
 __pycache__/
 .venv/
 *.pyc
-.idea/
-.vscode/
-.cursor/
+
+# Agents : le contexte partagé (.claude/, .cursor/) est versionné,
+# seuls les fichiers locaux et les worktrees éphémères sont ignorés.
+.claude/worktrees/
+.claude/settings.local.json
+.cursor/mcp.local.json

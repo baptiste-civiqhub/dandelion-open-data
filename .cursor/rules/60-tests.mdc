@@ -1,0 +1,25 @@
+---
+description: Tests — vitest co-localisés pour la logique pure, smoke Playwright
+globs: **/*.test.ts,vitest.config.ts,test/e2e/**,playwright.config.mjs,lib/**/*.ts,features/**/lib/**/*.ts
+alwaysApply: false
+---
+
+# Tests
+
+## Vitest
+
+- `pnpm test` (une passe), `pnpm test:watch`, `pnpm test <chemin>`, `pnpm test -t "<nom>"`.
+- Environnement `node`, `globals: false` : importer `describe`, `it`, `expect` depuis `vitest`. Motif collecté : `**/*.test.ts` uniquement, co-localisé à côté du module.
+- Aucun réseau, aucune variable d'env, aucun client Supabase : on teste de la logique pure qui reçoit ses données en paramètre.
+- Fixtures : builder `makeXxx(overrides: Partial<Xxx> = {})`. Structure `describe('<fonction>') > it('<comportement>')`.
+- Toute fonction exportée de `lib/` ou `features/*/lib/` a son test (cas nominal, vide, bornes, données open data incohérentes).
+
+## Playwright
+
+- `pnpm test:smoke` (`test/e2e/*.spec.mjs`, 1440 × 1024, démarre `pnpm dev`). Sur Windows : `PLAYWRIGHT_CHANNEL=msedge`.
+- Un smoke vérifie rendu + absence d'erreur console, pas les pixels.
+
+## Pour l'agent
+
+- `pnpm test` avant et après la modification ; seule une spec qui passait avant et échoue après est une régression.
+- Ne jamais supprimer, `skip` ou vider un test pour faire passer la suite.

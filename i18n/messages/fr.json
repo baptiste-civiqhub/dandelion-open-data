@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "title": "Open Data Hémicycle",
+    "description": "Explorer les données ouvertes de la vie parlementaire."
+  },
+  "home": {
+    "eyebrow": "Hackathon Open Data",
+    "title": "Open Data Hémicycle",
+    "subtitle": "Socle Next.js + Supabase prêt à déployer sur Vercel. Branchez vos jeux de données et construisez.",
+    "stackTitle": "Stack",
+    "stackDescription": "Next.js 15 · React 19 · TypeScript strict · Tailwind 4 · TanStack Query · next-intl",
+    "dataTitle": "Données",
+    "dataDescription": "Supabase (Postgres + RLS), région eu-central-1.",
+    "healthLink": "Voir la sonde de santé"
+  },
+  "status": {
+    "label": "Supabase",
+    "loading": "Vérification…",
+    "up": "Connecté",
+    "down": "Injoignable",
+    "unconfigured": "Non configuré",
+    "error": "Sonde indisponible"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Cette page n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  }
+}

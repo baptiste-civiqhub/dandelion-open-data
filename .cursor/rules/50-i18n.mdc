@@ -1,0 +1,14 @@
+---
+description: i18n next-intl — catalogues fr/en, useTranslations, locale sans préfixe d'URL
+globs: i18n/**/*.ts,i18n/messages/**/*.json,features/**/*.tsx,app/**/*.tsx
+alwaysApply: false
+---
+
+# i18n (next-intl 4)
+
+- Aucune chaîne utilisateur en dur : `const t = useTranslations('namespace')` (composants, serveur ou client) ou `await getTranslations({ locale, namespace })` (metadata, fonctions async serveur).
+- Catalogues : `i18n/messages/fr.json` (langue par défaut) et `en.json`. Toute clé s'ajoute **dans les deux** : `i18n/messages/messages.test.ts` vérifie la parité.
+- Un namespace par feature (`deputies`, `votes`…) : c'est l'unité qu'on fusionne dans les catalogues de la référence au portage.
+- Messages d'erreur des schémas Zod = clés i18n.
+- Configuration : `i18n/routing.ts` (`locales: ['fr', 'en']`, `defaultLocale: 'fr'`, `localePrefix: 'never'`), `i18n/request.ts`, `i18n/navigation.ts` (wrappers `Link`, `redirect`, `useRouter`, `usePathname`). La langue est détectée par cookie / `Accept-Language`.
+- Pages et layouts : `setRequestLocale(locale)` après `await params` pour garder le rendu statique.
