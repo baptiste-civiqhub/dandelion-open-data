@@ -4,16 +4,17 @@ DANDELION affiche un texte de loi sous forme d'arbre : le texte, ses articles, l
 
 Le backend est une base Supabase et rien d'autre : huit tables dans le schéma `public`, lues directement par le front-end à travers l'API REST de Supabase. Il n'y a pas de serveur applicatif, et le modèle ne compte ni vue ni fonction.
 
-> **État au 14 novembre 2026.** La migration `20261114132027_dandelion_init` est appliquée au projet `mloaychfjhajdjfktcjp`. La recette (douze contrôles) et l'essai à blanc sont passés, le jeu d'essai est retiré : les huit tables existent, vides, sauf `sorts` qui porte ses huit lignes. Aucune donnée réelle n'est encore chargée.
+> **État au 14 novembre 2026.** La migration `20261114132027_dandelion_init` est appliquée au projet `mloaychfjhajdjfktcjp`. La recette (douze contrôles) et l'essai à blanc sont passés, le jeu d'essai est retiré : les huit tables existent. Un premier texte réel est chargé, le jeu `plffg-2026` (projet de loi de finances de fin de gestion pour 2026) : 10 articles, 9 alinéas, 217 amendements. Aucun tag n'est encore posé.
 
-Le même projet héberge aussi une zone d'atterrissage de l'import : le schéma `raw` et quelques fonctions `raw_*` et `fetch_raw_*` dans `public`, posés par neuf migrations antérieures. Ce document ne les décrit pas ; le front-end lit les huit tables, pas `raw`.
+Le même projet héberge aussi une zone d'atterrissage de l'import : le schéma `raw` et quelques fonctions `raw_*` et `fetch_raw_*` dans `public`, posés par neuf migrations antérieures. Le front-end lit les huit tables, pas `raw` ; le passage de l'un à l'autre est décrit dans [`import.md`](import.md).
 
-| Document                                 | Contenu                                                                 |
-| ---------------------------------------- | ----------------------------------------------------------------------- |
-| [`schema.md`](schema.md)                 | Les huit tables, le diagramme, le dictionnaire des colonnes, les règles |
-| [`api.md`](api.md)                       | Les requêtes que le front-end et les scripts doivent employer           |
-| [`recette.sql`](recette.sql)             | Douze contrôles du schéma, à relancer après toute migration             |
-| [`essai-a-blanc.sql`](essai-a-blanc.sql) | Un jeu fictif pour éprouver lectures, contraintes et nettoyage          |
+| Document                                 | Contenu                                                                    |
+| ---------------------------------------- | -------------------------------------------------------------------------- |
+| [`schema.md`](schema.md)                 | Les huit tables, le diagramme, le dictionnaire des colonnes, les règles    |
+| [`api.md`](api.md)                       | Les requêtes que le front-end et les scripts doivent employer              |
+| [`recette.sql`](recette.sql)             | Douze contrôles du schéma, à relancer après toute migration                |
+| [`essai-a-blanc.sql`](essai-a-blanc.sql) | Un jeu fictif pour éprouver lectures, contraintes et nettoyage             |
+| [`import.md`](import.md)                 | Charger un texte de `raw` vers les huit tables : fonction, règles, limites |
 
 ## Se connecter depuis le front-end
 
