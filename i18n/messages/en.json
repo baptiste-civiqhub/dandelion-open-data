@@ -13,6 +13,35 @@
     "backHome": "Back to home"
   },
   "pfasExperiment": {
+    "graph": {
+      "title": "Explore amendment connections",
+      "intro": "Select a node to read its proposal and prepare a comparison.",
+      "filter": "Location in the bill",
+      "allArticles": "All locations",
+      "articleLegend": "Location in the bill",
+      "amendmentLegend": "Amendment",
+      "parentLegend": "Sourced sub-amendment",
+      "visibleCount": "{count, plural, one {# visible amendment} other {# visible amendments}}",
+      "amendment": "Amendment no. {number}",
+      "parent": "Sub-amendment of no. {number}",
+      "remove": "Remove from comparison",
+      "add": "Add to comparison",
+      "choose": "Open an amendment",
+      "help": "Click a number to see its proposal, recorded outcome and official source.",
+      "selection": "{count} of 2 amendments selected",
+      "compare": "See comparison",
+      "meaning": "Links represent locations in the bill and documented sub-amendments. Distances do not measure political similarity or legal effects.",
+      "loading": "Loading graph…",
+      "error": "The graph could not be displayed. The list and comparison remain available below.",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "reset": "Fit graph",
+      "pause": "Pause animation",
+      "resume": "Resume animation",
+      "canvas": "Graph of PFAS amendments and their locations",
+      "inspect": "Open amendment {label}",
+      "filterNode": "Show {label}"
+    },
     "meta": {
       "title": "PFAS amendments — experiment",
       "description": "Explore, compare and cite amendments to the PFAS bill from a dated public Senate snapshot."

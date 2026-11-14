@@ -13,6 +13,7 @@ import { Link } from '@/i18n/navigation'
 
 import { AmendmentComparison } from './amendment-comparison'
 import { AmendmentDetail } from './amendment-detail'
+import { AmendmentGraph } from './amendment-graph'
 import { AmendmentTree } from './amendment-tree'
 import { SnapshotNotice } from './snapshot-notice'
 
@@ -36,7 +37,7 @@ export function PfasScreen() {
     )
 
   return (
-    <main className='bg-background min-h-dvh px-4 py-8 sm:px-6'>
+    <main lang='fr' className='bg-background min-h-dvh px-4 py-8 sm:px-6'>
       <div className='mx-auto flex max-w-7xl flex-col gap-6'>
         <header className='flex flex-col gap-2'>
           <Link
@@ -73,6 +74,13 @@ export function PfasScreen() {
         {data && (
           <>
             <SnapshotNotice provenance={data.provenance} rows={data.counts.rows} />
+            <AmendmentGraph
+              amendments={amendments}
+              focusedId={focusedId}
+              selectedIds={selectedIds}
+              onFocus={setFocusedId}
+              onToggleSelect={toggleSelect}
+            />
             <div className='grid gap-6 lg:grid-cols-5'>
               <section aria-labelledby='pfas-explorer-title' className='flex min-w-0 flex-col gap-3 lg:col-span-2'>
                 <div className='flex flex-col gap-1'>

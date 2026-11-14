@@ -2,6 +2,8 @@
 
 Route locale : `/experiments/pfas` (prototype de branche, isolé ; la page d'accueil n'est pas modifiée).
 
+L'interface expérimentale est en français, conformément à la demande du 14 novembre. Elle réutilise la stack et le design system de l'équipe. Le graphe initial est un rendu React/SVG sans dépendance supplémentaire ; il n'exécute pas Séléné, dont le package publié 0.0.1 reste une ébauche.
+
 ## Problème utilisateur
 
 Un·e journaliste ou une association environnementale prépare une note sourcée sur un article d'une proposition de loi : retrouver les amendements pertinents, comparer leurs dispositifs et vérifier le sort de chacun, puis citer les sources officielles.
@@ -51,7 +53,8 @@ Vérification indépendante le 14 novembre 2026 : la page officielle `Amdt_32.ht
 
 - `apis/pfas-amendments/` : types de domaine (`PfasAmendment`, `PfasProvenance`…), `getPfasSnapshot()` via `request()`, `useGetPfasSnapshot()` (TanStack Query, `QueryKeysEnum.GET_PFAS_AMENDMENTS`). Pour lire Supabase plus tard, seul `request.ts` change.
 - `features/pfas-amendments/lib/` (pur, testé) : `outcome`, `ordering` (articles 1er < 1er bis < 1er ter < 2, ajouts avant/après, numéros stables), `hierarchy` (texte → emplacement → amendement → sous-amendement sourcé, parents manquants et cycles gérés), `lexical-diff` (LCS sur jetons, ponctuation/négations/montants/dates conservés, option typographique), `source-url`, `markdown-note` (échappement du texte source).
-- `features/pfas-amendments/components/` : écran, arbre accessible (listes, boutons `aria-expanded`/`aria-pressed`, cases à cocher étiquetées), détail, comparaison, bandeau de provenance. Primitives existantes `Card`, `Badge`, `Button`, `Skeleton` ; aucun nouveau composant partagé.
+- `features/pfas-amendments/components/` : graphe interactif SVG (filtre, zoom, déplacement, clavier, sélection liée à la comparaison), arbre accessible (listes, boutons `aria-expanded`/`aria-pressed`, cases à cocher étiquetées), détail, comparaison, bandeau de provenance. Primitives existantes `Card`, `Badge`, `Button`, `Skeleton` ; aucun nouveau composant partagé.
+- `graph.ts` : 41 nœuds (32 amendements, 8 emplacements, 1 texte), 40 liens explicites. Le filtre Article 1er conserve 17 amendements et leur emplacement. La disposition radiale est déterministe ; les distances ne portent aucune interprétation politique ou causale.
 - Portage : tokens propres à la marque utilisés à ajouter à la référence : `editorial-yellow`, `feedback-info-soft`, `feedback-danger-soft`, `foreground-secondary` (variantes `success`/`warning`/`info` de `Badge`).
 
 ## Lancer et vérifier
@@ -70,11 +73,11 @@ La revue a aussi corrigé deux cas : comparaison trop longue signalée comme ind
 
 ## Script de démonstration
 
-1. Ouvrir `/experiments/pfas` : bandeau « Dated public Senate snapshot », Article 1er déplié (17 amendements).
-2. Cliquer « No. 32 » : détail, sort `Rejeté`, encadré « Sub-amendment of amendment no. 14 » avec preuve et méthode ; « View amendment no. 14 ».
-3. Cocher 26 et 27 : textes complets côte à côte, tous deux `Retiré` ; seul « utilisant des fluoropolymères » est propre au 27. Comparer 26 et 28 : portées différentes (« textiles de construction » vs « fluoropolymères »).
-4. Cocher 3 et 13 puis « Ignore typographic variants » : les écarts restants disparaissent (apostrophes, points de suspension).
-5. « Export Markdown note » : fichier `.md` téléchargé localement avec numéros, sorts, liens, horodatage, hash, textes et limites.
+1. Ouvrir `/experiments/pfas` : bandeau « Instantané public daté du Sénat », graphe de 32 amendements.
+2. Cliquer le nœud 32 : le panneau indique son sort `Rejeté` et « Sous-amendement du n° 14 » ; le lien en pointillé relie les deux nœuds. La preuve détaillée reste disponible dans la fiche sous le graphe.
+3. Filtrer « Article 1er », ouvrir 26 puis « Ajouter à la comparaison », faire de même avec 27, puis « Voir la comparaison ». Textes complets côte à côte, tous deux `Retiré` ; seul « utilisant des fluoropolymères » est propre au 27.
+4. Dans la liste, sélectionner 3 et 13 puis « Ignorer les variantes typographiques » : les écarts restants disparaissent (apostrophes, points de suspension).
+5. « Exporter une note Markdown » : fichier `.md` téléchargé localement avec numéros, sorts, liens, horodatage, hash, textes et limites.
 
 ## Limites
 

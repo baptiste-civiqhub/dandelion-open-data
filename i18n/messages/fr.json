@@ -13,6 +13,35 @@
     "backHome": "Retour à l'accueil"
   },
   "pfasExperiment": {
+    "graph": {
+      "title": "Explorer les liens entre amendements",
+      "intro": "Choisissez un nœud pour lire sa proposition et préparer une comparaison.",
+      "filter": "Emplacement dans le texte",
+      "allArticles": "Tous les emplacements",
+      "articleLegend": "Emplacement dans le texte",
+      "amendmentLegend": "Amendement",
+      "parentLegend": "Sous-amendement sourcé",
+      "visibleCount": "{count, plural, one {# amendement visible} other {# amendements visibles}}",
+      "amendment": "Amendement n° {number}",
+      "parent": "Sous-amendement du n° {number}",
+      "remove": "Retirer de la comparaison",
+      "add": "Ajouter à la comparaison",
+      "choose": "Ouvrir un amendement",
+      "help": "Cliquez sur un numéro. Le panneau affiche le dispositif, le sort enregistré et la source officielle.",
+      "selection": "{count} sur 2 amendements sélectionnés",
+      "compare": "Voir la comparaison",
+      "meaning": "Les liens représentent l’emplacement dans le texte et les sous-amendements attestés. La distance entre les nœuds ne mesure ni une proximité politique ni un effet juridique.",
+      "loading": "Chargement du graphe…",
+      "error": "Le graphe n’a pas pu être affiché. La liste et la comparaison restent disponibles ci-dessous.",
+      "zoomIn": "Agrandir le graphe",
+      "zoomOut": "Réduire le graphe",
+      "reset": "Recentrer le graphe",
+      "pause": "Mettre l’animation en pause",
+      "resume": "Reprendre l’animation",
+      "canvas": "Graphe des amendements PFAS et de leurs emplacements",
+      "inspect": "Ouvrir l’amendement {label}",
+      "filterNode": "Afficher {label}"
+    },
     "meta": {
       "title": "Amendements PFAS — expérimentation",
       "description": "Explorer, comparer et citer les amendements de la proposition de loi PFAS à partir d'un instantané public daté du Sénat."

@@ -1,6 +1,6 @@
 # Vidéo Dandelion / Séléné — scénario de travail
 
-Statut : scénario proposé pour une vidéo de 75 secondes. La capture automatique montre le prototype réel ; elle constitue une matière de montage, pas une vidéo finale. Voix française et sous-titres proposés pour le hackathon, interface anglaise du dépôt et extraits officiels français conservés.
+Statut : scénario proposé pour une vidéo de 75 secondes. La capture automatique montre le prototype réel ; elle constitue une matière de montage, pas une vidéo finale. Voix française et sous-titres proposés pour le hackathon, interface expérimentale et extraits officiels en français.
 
 ## Une promesse
 
@@ -39,6 +39,6 @@ Le binaire vidéo de Playwright peut être installé une fois avec `pnpm exec pl
 
 1. Figer le commit et la sélection d'amendements ; refaire une capture si l'interface change.
 2. Vérifier les 26/27 et 32/14 sur les sources. Afficher « Sénat, 2024 » pendant la démo ; la date de récupération de l'export n'est pas celle du débat.
-3. Si le graphe Séléné est intégré, remplacer le plan de l'arborescence par son interaction réelle.
+3. Le script capture désormais le graphe React/SVG, sa sélection et la comparaison liées. Ne pas le présenter comme un calcul de Séléné ; refaire la capture si le moteur graphique change.
 4. Reprendre uniquement les chiffres issus de [l'évaluation](pfas-evaluation.md). Ne pas présenter les tests automatiques comme une étude de gain de temps.
 5. Vérifier lisibilité à 1080p, synchronisation des sous-titres, niveau de voix et durée imposée par l'événement avant l'export final.
