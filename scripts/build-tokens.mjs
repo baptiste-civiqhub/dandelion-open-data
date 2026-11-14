@@ -41,6 +41,7 @@ const PALETTE_FAMILIES = [
   ['accent-yellow', 'Accent — Yellow'],
   ['accent-green', 'Accent — Green'],
   ['accent-red', 'Accent — Red'],
+  ['world', 'World (monde 3D)'],
   ['blue', 'Primitives — Blue'],
   ['neutral', 'Primitives — Neutral'],
   ['semantic', 'Semantic'],
