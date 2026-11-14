@@ -1,5 +1,8 @@
 'use client'
 
+import { Link } from '@/i18n/navigation'
+import { PUBLIC_PATHS } from '@/constant/path'
+import { Button } from '@/components/ui/button'
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import type { AmendementSummary } from '@/apis/amendements/types'
@@ -78,6 +81,9 @@ export function LiveAreaFlower({
             </select>
           </label>
           <p className='text-muted-foreground text-xs'>{t('stageNote')}</p>
+          <Button variant='outline' asChild>
+            <Link href={PUBLIC_PATHS.AREA_SUNBURST(area.slug)}>{t('sunburst')}</Link>
+          </Button>
         </>
       }
       rightExtra={

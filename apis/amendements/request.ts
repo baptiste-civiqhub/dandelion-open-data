@@ -1,9 +1,10 @@
+import type { NormalizedApiError } from '@/types/api-error'
 import { getSupabaseBrowserClient } from '@/services/supabase/client'
 import type { Database } from '@/types/supabase'
 import { unwrap } from '@/services/supabase/unwrap'
 
 import { safeDocumentUrl } from '@/features/dataviz/lib/area-flower'
-import type { AmendementDetail, AmendementSummary } from './types'
+import type { AmendementDetail, AmendementSummary, SunburstAmendementDetail } from './types'
 
 const PAGE_SIZE = 1000
 
@@ -17,7 +18,7 @@ export const getAmendementsByTexte = async (texteId: string): Promise<Amendement
       await supabase
         .from('amendements')
         .select(
-          'id, numero_long, article_id, alinea_id, amendement_parent_id, division_avant_apres, rang, sort, document_uri, date_depot, type_auteur'
+          'id, numero_long, article_id, alinea_id, amendement_parent_id, division_avant_apres, rang, sort, document_uri, date_depot, type_auteur, groupe_politique_ref, discussion_commune, discussion_identique, tag_list_id'
         )
         .eq('texte_id', texteId)
         .order('rang')
@@ -36,7 +37,11 @@ export const getAmendementsByTexte = async (texteId: string): Promise<Amendement
         dateDepot: row.date_depot,
         typeAuteur: row.type_auteur,
         sourceUrl: safeDocumentUrl(row.document_uri),
-        sort: row.sort
+        sort: row.sort,
+        groupePolitiqueRef: row.groupe_politique_ref,
+        discussionCommune: row.discussion_commune,
+        discussionIdentique: row.discussion_identique,
+        tagListId: row.tag_list_id
       })
     }
     if (rows.length < PAGE_SIZE) break
@@ -77,5 +82,39 @@ export const getAmendementDetail = async (texteId: string, id: string): Promise<
     signataires: row.signataires_affichable,
     sort: row.sort,
     sourceUrl: safeDocumentUrl(row.document_uri)
+  }
+}
+
+export const AMENDEMENT_NOT_FOUND = 'AMENDEMENT_NOT_FOUND'
+
+/** Fiche d'un amendement (contrat R7) : textes longs et emplacement lisible. */
+export const getSunburstAmendementDetail = async (amendementId: string): Promise<SunburstAmendementDetail> => {
+  const rows = unwrap(
+    await getSupabaseBrowserClient()
+      .from('amendements')
+      .select(
+        'id, numero_long, sort, signataires_affichable, groupe_politique_ref, dispositif, expose_sommaire, document_uri, division_avant_apres, article:articles(designation), alinea:alineas(numero)'
+      )
+      .eq('id', amendementId)
+      .limit(1)
+  )
+  const row = rows[0]
+  if (!row) {
+    const notFound: NormalizedApiError = { status: 404, code: AMENDEMENT_NOT_FOUND, raw: null }
+    throw notFound
+  }
+
+  return {
+    id: row.id,
+    numeroLong: row.numero_long,
+    sort: row.sort,
+    signataires: row.signataires_affichable,
+    groupePolitiqueRef: row.groupe_politique_ref,
+    dispositif: row.dispositif,
+    exposeSommaire: row.expose_sommaire,
+    documentUri: safeDocumentUrl(row.document_uri),
+    articleDesignation: row.article?.designation ?? null,
+    alineaNumero: row.alinea?.numero ?? null,
+    divisionAvantApres: row.division_avant_apres
   }
 }

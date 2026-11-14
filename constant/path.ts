@@ -13,6 +13,7 @@ export const PUBLIC_PATHS = {
   /** Catalogue des zones (recherche via SEARCH_PARAMS.QUERY). Aussi ouvert en fenêtre par le menu « Area ». */
   AREAS: '/area',
   /** Page de dataviz d'une zone (features/dataviz). `areaId` : le slug de la zone, ou son identifiant. */
+  AREA_SUNBURST: (areaId: string) => `/area/${encodeURIComponent(areaId)}?vue=pissenlit`,
   AREA_DETAIL: (areaId: string) => `/area/${encodeURIComponent(areaId)}`
 } as const
 

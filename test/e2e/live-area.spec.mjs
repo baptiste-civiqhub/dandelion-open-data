@@ -100,7 +100,8 @@ async function mockApi(page, scenario = {}) {
           await route.fulfill({ status: 503, json: { code: 'DOWN', message: 'Fixture outage' } })
           return
         }
-        data = records.find((a) => a.id === id) ?? null
+        const record = records.find((a) => a.id === id) ?? null
+        data = url.searchParams.has('limit') ? (record ? [record] : []) : record
       } else
         data = textId === 't2' ? [] : records.map(({ dispositif, expose_sommaire, signataires_affichable, ...r }) => r)
     }
@@ -163,7 +164,7 @@ test('Atlas and catalogue share navigation, archived corpora remain reachable', 
 test('empty zones display no invented graph or texts', async ({ page }) => {
   await mockApi(page, { empty: true })
   await page.goto('/area/fixture')
-  await expect(page.getByText(/Aucun texte chargé dans cette zone/)).toBeVisible()
+  await expect(page.getByText(/Cette zone n’a pas encore de texte/)).toBeVisible()
   await expect(page.getByTestId('flower-frame')).toHaveCount(0)
 })
 
@@ -204,4 +205,34 @@ test('observed deposits are dated, sourced, separate from actual changes and exp
   await expect(page.getByRole('img', { name: 'Suzan AI' })).toBeVisible()
   await expect(page.getByText(/Avec le soutien de Suzan AI/)).toContainText('ISO/IEC 27001:2022')
   await expect(page.getByText(/aucune certification obtenue/)).toBeVisible()
+})
+
+test('team sunburst and guided comparison remain connected in French', async ({ page }) => {
+  const errors = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  await mockApi(page)
+  await page.goto('/area/fixture')
+  await page.getByRole('link', { name: 'Pissenlit détaillé', exact: true }).click()
+  await expect(page).toHaveURL(/vue=pissenlit/)
+  await expect(page.getByText('Jeu et texte', { exact: true })).toBeVisible()
+  await expect(page.getByText('Répartition', { exact: true })).toBeVisible()
+  await expect(page.locator('canvas[data-slot="stage-canvas"]')).toBeVisible()
+  await page.screenshot({ path: 'test-results/sunburst-integrated-fixture.png' })
+  await page.getByRole('link', { name: 'Comparer avec le guide', exact: true }).click()
+  await expect(page.getByTestId('flower-guide')).toBeVisible()
+  await page.getByTestId('flower-guide').getByRole('textbox').fill('Compare CF1 et CF2')
+  await page.getByTestId('flower-guide').getByRole('button', { name: 'Appliquer' }).click()
+  await expect(page.getByTestId('live-records').locator('mark')).toHaveText(['2026', '2030'])
+  expect(errors).toEqual([])
+})
+
+test('sunburst deep link loads the selected real-shaped detail and its safe source', async ({ page }) => {
+  const details = await mockApi(page)
+  await page.goto('/area/fixture?vue=pissenlit&sel=am.a1')
+  await expect(page.getByText('Interdire les produits en 2026.', { exact: true })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Texte officiel', exact: true })).toHaveAttribute(
+    'href',
+    records[0].document_uri
+  )
+  expect(details).toEqual([{ id: 'a1', textId: undefined }])
 })

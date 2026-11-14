@@ -33,3 +33,11 @@ Le français est la langue initiale. Le sélecteur de langue de l'équipe est co
 Les résultats définitifs et la preview sont à lire dans la description de la branche/PR de secours remise par Codex.
 
 En production locale, lancer `pnpm start --hostname localhost --port 3103` et tester `http://localhost:3103`. Une écoute sur 127.0.0.1 provoque ici une boucle de réécriture Next.js/next-intl vers localhost, reproduite indépendamment du sélecteur de langue.
+
+## Actualisation avec develop a6a4867
+
+Le Sunburst détaillé de Yanis et le déplacement du sélecteur de langue à droite de la recherche sont intégrés. Le menu conserve « Données » en français. Une zone conserve la vue guidée par défaut ; « Pissenlit détaillé » ouvre `?vue=pissenlit`, et « Comparer avec le guide » revient à la vue d’enquête. Les deux vues utilisent les mêmes résumés et sources, avec des requêtes de détail distinctes pour conserver leurs contrats.
+
+La nouvelle vue respecte les alinéas, filtres de sort, sélection, profondeur et état dans l’URL. Les archives PFAS/municipal et Cosmograph restent accessibles. Aucune migration exécutée. La clé publique Supabase manque toujours localement ; les tests API interceptent des fixtures synthétiques, qui ne figurent pas dans la vidéo ni dans le corpus produit.
+
+Validation après actualisation : 367 tests unitaires ; 38 parcours navigateur sur build de production et 9 scénarios API distincts réussis (fixtures interceptées). Lint, typage, tokens, format et build réussis. Les libellés de navigation ont nécessité le redémarrage du serveur de développement pour recharger les catalogues de traduction. Aucun test sur la base réelle faute de clé publique.

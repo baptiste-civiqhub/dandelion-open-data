@@ -13,6 +13,10 @@ export type AmendementSummary = {
   typeAuteur?: string | null
   sourceUrl?: string | null
   sort: string
+  groupePolitiqueRef?: string | null
+  discussionCommune?: string | null
+  discussionIdentique?: string | null
+  tagListId?: string
 }
 
 export type AmendementDetail = {
@@ -25,4 +29,19 @@ export type AmendementDetail = {
   signataires: string | null
   sort: string
   sourceUrl: string | null
+}
+
+export type SunburstAmendementDetail = {
+  id: string
+  numeroLong: string
+  sort: string
+  signataires: string | null
+  groupePolitiqueRef: string | null
+  /** Textes longs, tels que servis par la source (balisage HTML possible). */
+  dispositif: string | null
+  exposeSommaire: string | null
+  documentUri: string | null
+  articleDesignation: string | null
+  alineaNumero: number | null
+  divisionAvantApres: string
 }
