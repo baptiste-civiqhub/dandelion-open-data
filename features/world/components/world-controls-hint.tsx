@@ -5,13 +5,13 @@ import { Widget } from '@/components/shared/widget'
 import { Kbd } from '@/components/ui/kbd'
 import { cn } from '@/lib/utils'
 
-const CONTROLS = ['drive', 'vehicle', 'open'] as const
+const CONTROLS = ['drive', 'vehicle', 'look', 'open'] as const
 
 const kbd = (chunks: ReactNode) => <Kbd>{chunks}</Kbd>
 
 /**
- * Pense-bête des commandes du monde, en bas de la colonne centrale. Masqué sur écran tactile : le monde ne se
- * pilote qu'au clavier.
+ * Pense-bête des commandes du monde, en bas de la colonne centrale. Masqué sur écran tactile : le monde se pilote
+ * au clavier et à la souris.
  */
 export function WorldControlsHint({ className }: { className?: string }) {
   const t = useTranslations('world.controls')

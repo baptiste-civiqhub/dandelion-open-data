@@ -42,6 +42,7 @@
     "controls": {
       "drive": "<kbd>Arrows</kbd> or <kbd>WASD</kbd> to drive",
       "vehicle": "<kbd>V</kbd> car or horse",
+      "look": "<kbd>Drag</kbd> look around, <kbd>Scroll</kbd> zoom",
       "open": "<kbd>Enter</kbd> open the area"
     }
   },
