@@ -1,6 +1,6 @@
 # features/world — monde WebGL de la landing
 
-Socle d'architecture pour le jeu de navigation de la landing (un véhicule parcourt les zones d'une carte ; chaque zone mène à une dataviz). **Rien n'est dessiné aujourd'hui** : ce dossier fixe les points d'entrée et les contrats, l'implémentation du monde se fait ici sans toucher au reste de l'interface.
+Monde navigable de la landing : le jardin du Luxembourg, un pissenlit par zone aux positions de l'atlas (zone avec données : aigrette haute et anneau plein ; zone de démonstration : fleur jaune basse et anneau en pointillés). Le joueur conduit une voiture ou monte à cheval (touche **V** ; flèches, ZQSD ou WASD, Maj = turbo, Espace = frein) ; Entrée dans une zone fait plonger la caméra sur la fleur, puis ouvre `/area/{slug}`. Couleurs : tokens `world-*` (`design-system/tokens/source/world.json`).
 
 ```
 features/world/
@@ -8,8 +8,13 @@ features/world/
 │   ├── world-screen.tsx    # écran de la landing : <Stage canvas={<WorldCanvas />} />, sans widget latéral
 │   └── world-canvas.tsx    # client : StageCanvas + branchement routeur (onEnterZone → page de dataviz)
 ├── scene/
-│   └── create-world-scene.ts   # ⇦ POINT D'ENTRÉE DU MONDE (fabrique de scène, contrat StageSceneFactory)
-└── lib/                    # (à créer) logique pure du monde : carte, zones, collisions, trajectoires + tests
+│   ├── create-world-scene.ts   # ⇦ POINT D'ENTRÉE DU MONDE : moteur, lumières, caméra, clavier, boucle, focus, plongée, dispose
+│   ├── build-garden.ts         # décor + animateur (eau, voiliers, feuilles, promeneurs, pigeons, graines)
+│   ├── build-zones.ts          # une clairière + un pissenlit + une plaque par zone ; anneau de focus
+│   ├── build-vehicles.ts       # voiture et cheval
+│   ├── world-kit.ts            # matériaux par token, instances, dalles, textures canvas
+│   └── world-palette.ts        # lecture des tokens --color-world-* et --color-* au montage
+└── lib/                    # logique pure testée : world-zones, garden-layout, vehicle, dive, seeded-random, world-colors
 ```
 
 ## Contrat à respecter

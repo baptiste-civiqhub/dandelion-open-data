@@ -1,12 +1,12 @@
 import { defineRouting } from 'next-intl/routing'
 
 export const routing = defineRouting({
-  // User override for the hackathon integration: the visible interface is French. `en` stays a maintained
-  // catalogue (same keys, checked by tests).
+  // French is the default; both catalogues are kept at parity.
   locales: ['en', 'fr'],
   defaultLocale: 'fr',
-  // No Accept-Language detection: every visitor gets French, whatever the browser language.
-  localeDetection: false,
+  // On so the NEXT_LOCALE cookie from the language switch is read. Accept-Language is overwritten
+  // in middleware.ts: the interface defaults to French until the visitor chooses another language.
+  localeDetection: true,
   // The [locale] segment is structural: URLs never carry a language prefix.
   localePrefix: 'never'
 })

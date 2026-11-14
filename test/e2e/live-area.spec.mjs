@@ -22,6 +22,8 @@ const records = [
     texte_id: 't1',
     uid: 'A1',
     numero_long: 'CF1',
+    date_depot: '2026-11-10',
+    type_auteur: 'Gouvernement',
     article_id: 'ar1',
     alinea_id: null,
     amendement_parent_id: null,
@@ -38,6 +40,8 @@ const records = [
     texte_id: 't1',
     uid: 'A2',
     numero_long: 'CF2',
+    date_depot: '2026-11-11',
+    type_auteur: 'Député',
     article_id: 'ar1',
     alinea_id: null,
     amendement_parent_id: null,
@@ -51,6 +55,33 @@ const records = [
   }
 ]
 const sorts = [{ code: 'retire', label: 'Retiré', display_order: 1, color_token: '--sort-non-vote' }]
+
+test('world renders in French and enters an API area before comparing its amendments', async ({ page }) => {
+  const errors = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await mockApi(page)
+  await page.goto('/')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fr')
+  await expect(page.getByText('voiture ou cheval', { exact: false })).toBeVisible({ timeout: 30_000 })
+  await expect(page.getByTestId('home-catalog')).toHaveCount(0)
+  await page.screenshot({ path: 'test-results/world-integrated-fr.png', fullPage: true })
+  await page.keyboard.press('v')
+  await page.keyboard.press('v')
+  // Existing team hook: position the vehicle near the central test area; navigation still uses the real scene.
+  await page.locator('canvas[data-slot="stage-canvas"]').evaluate((canvas) => {
+    canvas.dispatchEvent(new CustomEvent('world:teleport', { detail: { x: 0, z: 5, heading: 0 } }))
+  })
+  await expect(page.getByText('Entrée pour ouvrir', { exact: true })).toBeVisible()
+  await page.keyboard.press('Enter')
+  await expect(page).toHaveURL(/\/area\/fixture$/)
+  await expect(page.getByTestId('flower-counts')).toContainText('pour 2 amendements')
+  await page.getByTestId('flower-guide').getByRole('textbox').fill('Compare CF1 et CF2')
+  await page.getByTestId('flower-guide').getByRole('button', { name: 'Appliquer' }).click()
+  await expect(page.getByTestId('live-records').locator('mark')).toHaveText(['2026', '2030'])
+  expect(errors).toEqual([])
+})
+
 async function mockApi(page, scenario = {}) {
   const details = []
   await page.route(`${base}**`, async (route) => {
@@ -69,7 +100,8 @@ async function mockApi(page, scenario = {}) {
           await route.fulfill({ status: 503, json: { code: 'DOWN', message: 'Fixture outage' } })
           return
         }
-        data = records.find((a) => a.id === id) ?? null
+        const record = records.find((a) => a.id === id) ?? null
+        data = url.searchParams.has('limit') ? (record ? [record] : []) : record
       } else
         data = textId === 't2' ? [] : records.map(({ dispositif, expose_sommaire, signataires_affichable, ...r }) => r)
     }
@@ -132,7 +164,7 @@ test('Atlas and catalogue share navigation, archived corpora remain reachable', 
 test('empty zones display no invented graph or texts', async ({ page }) => {
   await mockApi(page, { empty: true })
   await page.goto('/area/fixture')
-  await expect(page.getByText(/Aucun texte chargé dans cette zone/)).toBeVisible()
+  await expect(page.getByText(/Cette zone n’a pas encore de texte/)).toBeVisible()
   await expect(page.getByTestId('flower-frame')).toHaveCount(0)
 })
 
@@ -152,4 +184,55 @@ test('mobile: two inspected records can be selected manually without horizontal 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   await page.screenshot({ path: 'test-results/live-api-mobile.png', fullPage: true })
   expect(errors).toEqual([])
+})
+
+test('observed deposits are dated, sourced, separate from actual changes and expose no prediction score', async ({
+  page
+}) => {
+  await mockApi(page)
+  await page.goto('/area/fixture')
+  const widget = page.getByTestId('observed-changes')
+  await expect(widget).toContainText('sans qualification « avant examen »')
+  await widget
+    .locator('summary')
+    .filter({ hasText: /^Article 1 ·/ })
+    .click()
+  await expect(widget).toContainText('Dont 1 du Gouvernement')
+  await expect(widget.getByRole('link').first()).toContainText('dépôt du 2026-11-10')
+  await expect(widget).toContainText('Après Article 1 · 1 dépôt')
+  await expect(widget).toContainText('pas une modification effective')
+  await page.goto('/about')
+  await expect(page.getByRole('img', { name: 'Suzan AI' })).toBeVisible()
+  await expect(page.getByText(/Avec le soutien de Suzan AI/)).toContainText('ISO/IEC 27001:2022')
+  await expect(page.getByText(/aucune certification obtenue/)).toBeVisible()
+})
+
+test('team sunburst and guided comparison remain connected in French', async ({ page }) => {
+  const errors = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  await mockApi(page)
+  await page.goto('/area/fixture')
+  await page.getByRole('link', { name: 'Pissenlit détaillé', exact: true }).click()
+  await expect(page).toHaveURL(/vue=pissenlit/)
+  await expect(page.getByText('Jeu et texte', { exact: true })).toBeVisible()
+  await expect(page.getByText('Répartition', { exact: true })).toBeVisible()
+  await expect(page.locator('canvas[data-slot="stage-canvas"]')).toBeVisible()
+  await page.screenshot({ path: 'test-results/sunburst-integrated-fixture.png' })
+  await page.getByRole('link', { name: 'Comparer avec le guide', exact: true }).click()
+  await expect(page.getByTestId('flower-guide')).toBeVisible()
+  await page.getByTestId('flower-guide').getByRole('textbox').fill('Compare CF1 et CF2')
+  await page.getByTestId('flower-guide').getByRole('button', { name: 'Appliquer' }).click()
+  await expect(page.getByTestId('live-records').locator('mark')).toHaveText(['2026', '2030'])
+  expect(errors).toEqual([])
+})
+
+test('sunburst deep link loads the selected real-shaped detail and its safe source', async ({ page }) => {
+  const details = await mockApi(page)
+  await page.goto('/area/fixture?vue=pissenlit&sel=am.a1')
+  await expect(page.getByText('Interdire les produits en 2026.', { exact: true })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Texte officiel', exact: true })).toHaveAttribute(
+    'href',
+    records[0].document_uri
+  )
+  expect(details).toEqual([{ id: 'a1', textId: undefined }])
 })

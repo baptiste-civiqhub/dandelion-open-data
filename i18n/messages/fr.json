@@ -17,7 +17,7 @@
     "catalog": {
       "title": "Explorer les jeux de données",
       "description": "Deux corpus distincts, chacun dans la fleur radiale.",
-      "worldPlaceholder": "Le monde 3D en arrière-plan est un espace réservé : il ne contient encore aucune donnée."
+      "worldPlaceholder": "La scène 3D est en cours de chargement ou indisponible sur cet appareil. Les corpus restent accessibles ci-dessus."
     }
   },
   "notFound": {
@@ -349,13 +349,25 @@
   },
   "world": {
     "canvasLabel": "Carte explorable des zones",
-    "enterHint": "Entrée pour ouvrir"
+    "enterHint": "Entrée pour ouvrir",
+    "controls": {
+      "drive": "<kbd>Flèches</kbd> ou <kbd>ZQSD</kbd> pour conduire",
+      "vehicle": "<kbd>V</kbd> voiture ou cheval",
+      "open": "<kbd>Entrée</kbd> ouvrir la zone"
+    }
   },
   "about": {
     "metaTitle": "À propos",
     "title": "À propos de Dandelion",
     "intro": "Dandelion transforme la donnée publique ouverte en un espace à explorer.",
-    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Toutes les zones sont aussi listées dans Area."
+    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Toutes les zones sont aussi listées dans le catalogue des zones.",
+    "governance": {
+      "title": "Gouvernance et sécurité",
+      "link": "Site officiel de Suzan AI",
+      "description": "Avec le soutien de Suzan AI, nous préparons la revue de gouvernance, conformité et sécurité de Dandelion : RGPD, AI Act et ISO/IEC 27001:2022.",
+      "status": "Préparation de revue ; aucune certification obtenue à ce jour.",
+      "scope": "Les sources, licences, données traitées et limites du prototype font partie du périmètre à examiner."
+    }
   },
   "datasets": {
     "metaTitle": "Jeux de données",
@@ -366,14 +378,24 @@
   },
   "dataviz": {
     "metaTitle": "Zone {areaId}",
-    "canvasLabel": "Amendements de {name} : un point par amendement, empilés par article et colorés par sort",
+    "canvasLabel": "Amendements de {name} en pissenlit : les articles dans l'anneau intérieur, puis les alinéas, les amendements et les sous-amendements, colorés par sort. Les mêmes chiffres figurent dans les panneaux latéraux.",
     "dataset": {
       "eyebrow": "Jeu de données",
       "notConnected": "La source de données de ce jeu n’est pas encore connectée."
     },
     "view": {
       "title": "Vue",
-      "description": "Les filtres et la légende apparaîtront ici."
+      "description": "Les filtres et la légende apparaîtront ici.",
+      "position": "Position",
+      "up": "Remonter",
+      "rings": "{count} anneaux",
+      "fewerRings": "Moins d'anneaux",
+      "moreRings": "Plus d'anneaux",
+      "filterActive": "Filtre actif",
+      "noMatch": "Aucun amendement ne correspond",
+      "clear": "Effacer",
+      "loadError": "Ce texte n'a pas pu être chargé.",
+      "retry": "Réessayer"
     },
     "area": {
       "eyebrow": "Zone",
@@ -381,7 +403,7 @@
       "articles": "Articles et leur nombre d’amendements",
       "stats": "{articles, plural, one {# article} other {# articles}} · {amendments, plural, =0 {aucun amendement} one {# amendement} other {# amendements}}",
       "withoutArticle": "Hors des articles",
-      "noText": "Aucun texte chargé dans cette zone. Les zones de démonstration ne contiennent pas de données législatives.",
+      "noText": "Cette zone n’a pas encore de texte.",
       "contentError": "Les articles et les amendements n’ont pas pu être chargés.",
       "notFoundTitle": "Zone introuvable",
       "notFound": "Aucune zone ne correspond à cette adresse.",
@@ -394,7 +416,59 @@
       "description": "Ce qu’est devenu chaque amendement.",
       "empty": "Aucun amendement à compter pour l’instant.",
       "error": "Les sorts n’ont pas pu être chargés."
-    }
+    },
+    "sunburst": {
+      "whole": "Article entier",
+      "other": "Autres emplacements",
+      "alinea": "Al. {numero}",
+      "before": "Avant {article}",
+      "after": "Après {article}",
+      "count": "{count, plural, =0 {aucun amendement} one {# amendement} other {# amendements}}",
+      "noAmendment": "Aucun amendement déposé",
+      "up": "Cliquer pour remonter"
+    },
+    "texte": {
+      "title": "Jeu et texte",
+      "stage": "Étape : {stage}",
+      "source": "Source : {source}",
+      "license": "Licence : {license}",
+      "imported": "Importé le {date}",
+      "texts": "Textes de la zone"
+    },
+    "legend": {
+      "title": "Sorts",
+      "scopeText": "Texte entier",
+      "scopeNode": "Dans {name}",
+      "preview": "Aperçu",
+      "hint": "Décochez un sort pour atténuer ses amendements.",
+      "error": "Les sorts n'ont pas pu être chargés."
+    },
+    "repartition": {
+      "title": "Répartition",
+      "filtered": "avec le filtre actif",
+      "empty": "Rien à répartir ici.",
+      "segment": "{label} : {count} ({percent})"
+    },
+    "fiche": {
+      "title": "Fiche",
+      "preview": "Aperçu",
+      "amendment": "Amendement {numero}",
+      "outcome": "Sort",
+      "location": "Emplacement",
+      "author": "Auteur",
+      "group": "Groupe",
+      "dispositif": "Dispositif",
+      "expose": "Exposé sommaire",
+      "official": "Texte officiel",
+      "open": "Ouvrir dans le pissenlit",
+      "clearSelection": "Lever la sélection",
+      "detailError": "La fiche de cet amendement n'a pas pu être chargée.",
+      "articles": "{count, plural, one {# article} other {# articles}}",
+      "alineas": "{count, plural, one {# alinéa} other {# alinéas}}",
+      "subAmendments": "{count, plural, one {# sous-amendement} other {# sous-amendements}}",
+      "hint": "Survolez un secteur pour un aperçu, cliquez pour l'épingler."
+    },
+    "guidedMode": "Comparer avec le guide"
   },
   "texte": {
     "metaTitle": "Texte et amendements",
@@ -643,6 +717,33 @@
     "expose": "Exposé sommaire",
     "selectCompare": "Ajouter à la comparaison",
     "chooseSecond": "Ouvrez un second amendement et ajoutez-le à la comparaison.",
-    "clear": "Fermer les fiches et vider la comparaison"
+    "clear": "Fermer les fiches et vider la comparaison",
+    "sunburst": "Pissenlit détaillé"
+  },
+  "localeSwitch": {
+    "label": "Langue",
+    "en": "EN",
+    "fr": "FR"
+  },
+  "observedChanges": {
+    "title": "Dépôts observés par article",
+    "description": "Repérer les dispositions visées par des propositions déposées.",
+    "cutoffUnknown": "Date d’examen et séparation des étapes non vérifiées : comptage du corpus chargé, sans qualification « avant examen ».",
+    "asOf": "Lecture du corpus : {date}.",
+    "unassigned": "{count} amendement(s) sans rattachement à un article affiché.",
+    "summary": "{article} · {count} dépôt(s) daté(s)",
+    "government": "Dont {count} du Gouvernement (auteur déclaré).",
+    "coverage": "{loaded} chargé(s) · {unknown} date(s) absente(s) ou invalide(s) · {excluded} hors périmètre temporel.",
+    "missingAuthor": "{count} auteur(s) non renseigné(s).",
+    "missingSources": "{count} lien(s) source absent(s).",
+    "zero": "Aucun dépôt daté compté ici. Cela ne prédit pas la suite du texte.",
+    "record": "n° {numero} · dépôt du {date}",
+    "governmentLabel": "Gouvernement",
+    "limit": "Un dépôt est une proposition, pas une modification effective. Aucun score ni probabilité de changement.",
+    "placement": {
+      "AVANT": "Avant {article}",
+      "APRES": "Après {article}",
+      "AUTRE": "Rattachement non précisé · {article}"
+    }
   }
 }
