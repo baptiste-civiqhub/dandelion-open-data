@@ -1,7 +1,8 @@
 import type { Group } from 'three'
 
 import type { VehicleKind, VehicleState } from '../lib/vehicle'
-import { addMesh, canvasTexture, lambert, type WorldKit } from './world-kit'
+import { buildCar } from './build-car'
+import { addMesh, lambert, type WorldKit } from './world-kit'
 
 export type VehicleRig = {
   setKind: (kind: VehicleKind) => void
@@ -9,89 +10,10 @@ export type VehicleRig = {
   pose: (state: VehicleState, dt: number) => void
 }
 
-/** Petite voiture de maquette et cheval, au choix (touche V). */
+/** Deux-chevaux tricolore (build-car.ts) et cheval, au choix (touche V). */
 export function buildVehicles(kit: WorldKit): VehicleRig {
   const { THREE } = kit
-  const car = new THREE.Group()
-  const body = new THREE.Group()
-  car.add(body)
-  const paint = lambert(kit, 'primary')
-  const dark = lambert(kit, 'car-dark')
-  addMesh(kit, new kit.RoundedBox(2.3, 0.8, 4.2, 3, 0.28), paint, 0, 1.0, 0, true, body)
-  addMesh(kit, new kit.RoundedBox(2.0, 0.85, 2.2, 3, 0.25), paint, 0, 1.75, 0.35, true, body)
-  addMesh(kit, new kit.RoundedBox(2.06, 0.5, 1.9, 2, 0.15), lambert(kit, 'car-glass'), 0, 1.82, 0.35, false, body)
-  addMesh(kit, new kit.RoundedBox(1.9, 0.12, 1.8, 2, 0.05), dark, 0, 2.25, 0.35, true, body)
-  for (const x of [-0.7, 0, 0.7]) addMesh(kit, new THREE.BoxGeometry(0.08, 0.16, 1.9), dark, x, 2.36, 0.35, true, body)
-  addMesh(kit, new kit.RoundedBox(2.4, 0.35, 0.5, 2, 0.12), dark, 0, 0.75, -2.15, true, body)
-  addMesh(kit, new kit.RoundedBox(2.4, 0.35, 0.5, 2, 0.12), dark, 0, 0.75, 2.15, true, body)
-  for (const x of [-0.75, 0.75]) {
-    addMesh(
-      kit,
-      new kit.RoundedBox(0.5, 0.22, 0.1, 2, 0.05),
-      new THREE.MeshBasicMaterial({ color: kit.color('car-light') }),
-      x,
-      1.08,
-      -2.12,
-      false,
-      body
-    )
-    addMesh(
-      kit,
-      new kit.RoundedBox(0.45, 0.2, 0.1, 2, 0.05),
-      new THREE.MeshBasicMaterial({ color: kit.color('car-tail') }),
-      x,
-      1.08,
-      2.12,
-      false,
-      body
-    )
-  }
-  const decal = new THREE.Mesh(
-    new THREE.PlaneGeometry(1.1, 1.1),
-    new THREE.MeshBasicMaterial({
-      map: canvasTexture(kit, 256, 256, (c) => {
-        c.strokeStyle = kit.color('car-dark')
-        c.fillStyle = kit.color('car-dark')
-        c.lineWidth = 8
-        c.lineCap = 'round'
-        for (let i = 0; i < 16; i++) {
-          const a = (i / 16) * Math.PI * 2
-          c.beginPath()
-          c.moveTo(128, 128)
-          c.lineTo(128 + Math.cos(a) * 90, 128 + Math.sin(a) * 90)
-          c.stroke()
-        }
-        c.beginPath()
-        c.arc(128, 128, 22, 0, 7)
-        c.fill()
-      }),
-      transparent: true,
-      opacity: 0.75
-    })
-  )
-  decal.rotation.x = -Math.PI / 2
-  decal.position.set(0, 1.41, -1.3)
-  body.add(decal)
-  const tire = new THREE.CylinderGeometry(0.58, 0.58, 0.5, 18)
-  tire.rotateZ(Math.PI / 2)
-  const rim = new THREE.CylinderGeometry(0.3, 0.3, 0.52, 12)
-  rim.rotateZ(Math.PI / 2)
-  const wheels: { pivot: Group; spin: Group; front: boolean }[] = []
-  for (const [x, z, front] of [
-    [-1.15, -1.35, true],
-    [1.15, -1.35, true],
-    [-1.15, 1.45, false],
-    [1.15, 1.45, false]
-  ] as const) {
-    const pivot = new THREE.Group()
-    pivot.position.set(x, 0.58, z)
-    const spin = new THREE.Group()
-    pivot.add(spin)
-    addMesh(kit, tire, dark, 0, 0, 0, true, spin)
-    addMesh(kit, rim, lambert(kit, 'brand'), 0, 0, 0, true, spin)
-    car.add(pivot)
-    wheels.push({ pivot, spin, front })
-  }
+  const { car, pose: poseCar } = buildCar(kit)
   kit.scene.add(car)
 
   const horse = new THREE.Group()
@@ -146,12 +68,7 @@ export function buildVehicles(kit: WorldKit): VehicleRig {
         hBody.position.y = Math.abs(Math.sin(state.gait)) * 0.14 * amp
         hBody.rotation.set(state.pitch * 0.5 + Math.sin(state.gait * 2) * 0.02 * amp, 0, state.roll * 0.6)
       } else {
-        body.rotation.set(state.pitch, 0, state.roll)
-        body.position.y = Math.abs(Math.sin(state.distance * 1.7)) * Math.min(Math.abs(state.speed) / 17, 1) * 0.05
-        for (const w of wheels) {
-          w.spin.rotation.x -= (state.speed * dt) / 0.58
-          if (w.front) w.pivot.rotation.y = state.steer * 0.7
-        }
+        poseCar(state, dt)
       }
     }
   }

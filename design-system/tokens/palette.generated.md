@@ -147,6 +147,10 @@ Source de vérité : `design-system/tokens/source/brand.json`. Règles d’usage
 | `world-car-glass` | `bg-world-car-glass` · `text-world-car-glass` · `border-world-car-glass` | `world-car-glass` | `#BFD0EA` | — |
 | `world-car-light` | `bg-world-car-light` · `text-world-car-light` · `border-world-car-light` | `world-car-light` | `#FFF6DC` | — |
 | `world-car-tail` | `bg-world-car-tail` · `text-world-car-tail` · `border-world-car-tail` | `world-car-tail` | `#FF4B5C` | — |
+| `world-car-blue` | `bg-world-car-blue` · `text-world-car-blue` · `border-world-car-blue` | `blue-600` | `#3A5CC3` | — |
+| `world-car-white` | `bg-world-car-white` · `text-world-car-white` · `border-world-car-white` | `neutral-white` | `#FFFFFF` | `#101928` |
+| `world-car-red` | `bg-world-car-red` · `text-world-car-red` · `border-world-car-red` | `accent-red-600` | `#F02515` | — |
+| `world-car-chrome` | `bg-world-car-chrome` · `text-world-car-chrome` · `border-world-car-chrome` | `neutral-500` | `#B0B0B0` | — |
 | `world-horse` | `bg-world-horse` · `text-world-horse` · `border-world-horse` | `world-horse` | `#F3F1EC` | — |
 | `world-horse-dark` | `bg-world-horse-dark` · `text-world-horse-dark` · `border-world-horse-dark` | `world-horse-dark` | `#7C7F8C` | — |
 | `world-horse-mane` | `bg-world-horse-mane` · `text-world-horse-mane` · `border-world-horse-mane` | `world-horse-mane` | `#C9C4BB` | — |
