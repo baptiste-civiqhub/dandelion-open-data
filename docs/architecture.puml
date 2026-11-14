@@ -1,0 +1,85 @@
+@startuml DandelionArchitecture
+title Dandelion - system architecture (integration cdb9802)
+top to bottom direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam defaultFontName SansSerif
+
+package "Public parliamentary sources" {
+  component "Senate and National Assembly\ndocuments" as Official
+  component "Hemicycle data API" as HMC
+}
+
+package "Operator workflows - separate from browsing" {
+  component "Extraction scripts\nand import functions" as Import
+  database "Supabase raw staging" as Raw
+  component "Normalize legislative entities" as Normalize
+  component "Article classification job" as Tagger
+}
+
+package "Data stores" {
+  database "Supabase PostgreSQL\nNormalized tables and tag provenance" as DB
+  database "Registered public snapshots\nand evidence manifests" as Archive
+}
+
+package "Featherless - external inference" {
+  component "Classifier endpoint\nThematic labels" as Classify
+  component "Chat completions\nAction planning" as Chat
+}
+
+package "Next.js server - Vercel or local" {
+  component "Registered snapshot loaders\nand evidence routes" as Load
+  component "POST /api/dataviz/plan\nBounded candidate retrieval" as Plan
+  component "Strict plan schema\nand identifier validation" as Validate
+}
+
+package "Browser - French by default" {
+  component "Typed API layer\nand TanStack Query" as Query
+  component "3D world / Atlas\nArea catalogue" as Discovery
+  component "Live area\nGuided flower or detailed Sunburst" as Live
+  component "Archived flower\nPFAS comparison" as Snap
+  component "Cosmograph experiment" as Graph
+  component "Question control\nand host action adapter" as Assist
+  component "Record details, outcomes\nand official links" as Evidence
+  component "Observed filing activity\nby article" as Observed
+}
+
+Official --> HMC : source data redistributed
+HMC --> Import
+Import --> Raw
+Raw --> Normalize
+Normalize --> DB
+HMC --> Archive : verified archived exports
+Official --> Archive : public records and provenance
+DB --> Tagger : article content
+Tagger --> Classify : classification request
+Classify --> Tagger : topic scores
+Tagger --> DB : derived tags and model provenance
+DB --> Query : REST reads under RLS
+Query --> Discovery
+Query --> Live : summaries then details
+Query --> Observed : loaded amendment records
+Discovery --> Live : select an area
+Archive --> Load
+Load --> Snap
+Load --> Graph
+Archive --> Plan : supported snapshot context
+Assist --> Plan : question and dataset ID
+Plan --> Chat : bounded prompt / server credential
+Chat --> Validate : JSON plan or abstention
+Validate --> Assist : typed result and record facts
+Assist --> Snap : validated supported actions
+Snap --> Evidence
+Graph --> Evidence
+Live --> Evidence
+Evidence --> Official : open source
+
+legend bottom
+  Architecture describes implemented components, not proof of live deployment.
+  Snapshot demo verified; live Supabase coverage still to validate.
+  Classification code integrated; batch execution not verified during integration.
+  Model-assisted actions are limited to supported snapshot hosts.
+  No model control of the 3D vehicle; no deployed forecast engine.
+endlegend
+@enduml

@@ -1,0 +1,50 @@
+sequenceDiagram
+  autonumber
+  actor User
+  participant UI as Supported visualization
+  participant Route as Next.js plan route
+  participant Data as Registered snapshot
+  participant Model as Featherless chat API
+  participant Validator as Schema and ID validator
+  participant Adapter as Host action adapter
+
+  User->>UI: Ask a question in French and request model guidance
+  UI->>Route: POST question and datasetId
+  Route->>Route: Validate strict input and 600-character limit
+  alt No provider key configured
+    Route-->>UI: mode = unconfigured
+    UI-->>User: Manual and deterministic guidance remain available
+  else Provider configured and request valid
+    Route->>Data: Load supported snapshot and retrieve candidates
+    Data-->>Route: Known IDs and short excerpts
+    Route->>Model: Bounded system prompt and user question
+    alt Provider timeout or error
+      Route-->>UI: Typed provider error
+      UI-->>User: Explain failure and retain manual controls
+    else Model responds
+      Model-->>Route: JSON response
+      Route->>Validator: Check size, schema and allowed identifiers
+      alt Explicit abstention
+        Validator-->>Route: abstain
+        Route-->>UI: Typed abstention
+        UI-->>User: No supported evidence action for this request
+      else Invalid response
+        Validator-->>Route: invalid
+        Route-->>UI: invalid-response
+        Note over UI,Adapter: No model action is executed
+      else Valid plan
+        Validator-->>Route: Validated actions
+        Route->>Data: Resolve facts for selected records
+        Data-->>Route: Amendment number, outcome and source URL
+        Route-->>UI: Plan and record-derived facts
+        UI->>Adapter: Validate complete plan against host capabilities
+        alt Host supports the complete plan
+          Adapter->>UI: Apply focus, comparison or other supported actions
+          UI-->>User: Show selected evidence and official links
+        else Unsupported host action
+          Adapter-->>UI: Reject plan before execution
+        end
+      end
+    end
+  end
+  Note over Model,UI: The model plans actions; application records supply facts.

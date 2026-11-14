@@ -59,8 +59,8 @@ const TAU = Math.PI * 2
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v))
 
-/** Le plan peint au sol (sert aussi de vue d'avion). */
-const PLAN = { x0: -126, x1: 126, z0: -142, z1: 160 }
+/** Le plan peint au sol : même cadre que la vue de dessus de l'atlas (`GARDEN.plan`). */
+const PLAN = G.plan
 
 /**
  * Construit tout le décor du jardin du Luxembourg autour des zones et rend l'animateur des éléments vivants : jets

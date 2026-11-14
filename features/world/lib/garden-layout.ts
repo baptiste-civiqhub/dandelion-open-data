@@ -40,6 +40,8 @@ export const GARDEN = {
   cafe: { x: 82, z: 104 },
   grille: { x: 120, z0: -136, z1: 156 },
   bounds: { x0: -116, x1: 116, z0: -133, z1: 152 },
+  /** Cadre du plan peint au sol, et de la vue de dessus de l'atlas. */
+  plan: { x0: -126, x1: 126, z0: -142, z1: 160 },
   start: { x: 0, z: 50, heading: 0 }
 } as const
 

@@ -1,0 +1,59 @@
+@startuml DandelionAssistantSequence
+title Dandelion - question to validated evidence action
+autonumber
+skinparam shadowing false
+actor User
+participant "Supported visualization" as UI
+participant "Next.js plan route" as Route
+database "Registered snapshot" as Data
+participant "Featherless chat API" as Model
+participant "Schema and ID validator" as Validator
+participant "Host action adapter" as Adapter
+
+User -> UI : Ask in French and request model guidance
+UI -> Route : POST question and datasetId
+Route -> Route : Validate strict input and 600-character limit
+alt No provider key configured
+  Route --> UI : mode = unconfigured
+  UI --> User : Manual and deterministic guidance remain available
+else Provider configured and request valid
+  Route -> Data : Load snapshot and retrieve candidates
+  Data --> Route : Known IDs and short excerpts
+  Route -> Model : Bounded prompt and user question
+  alt Provider timeout or error
+    Route --> UI : Typed provider error
+    UI --> User : Explain failure and retain manual controls
+  else Model responds
+    Model --> Route : JSON response
+    Route -> Validator : Check size, schema and allowed identifiers
+    alt Explicit abstention
+      Validator --> Route : abstain
+      Route --> UI : Typed abstention
+      UI --> User : No supported evidence action for this request
+    else Invalid response
+      Validator --> Route : invalid
+      Route --> UI : invalid-response
+      note over UI, Adapter : No model action is executed
+    else Valid plan
+      Validator --> Route : Validated actions
+      Route -> Data : Resolve facts for selected records
+      Data --> Route : Number, outcome and source URL
+      Route --> UI : Plan and record-derived facts
+      UI -> Adapter : Validate whole plan against host capabilities
+      alt Host supports the complete plan
+        Adapter -> UI : Apply supported actions
+        UI --> User : Selected evidence and official links
+      else Unsupported host action
+        Adapter --> UI : Reject plan before execution
+      end
+    end
+  end
+end
+
+note over Model, UI
+  The model plans actions.
+  Application records supply facts.
+  Validation does not guarantee semantic relevance
+  or rollback after a host callback fails.
+end note
+@enduml
