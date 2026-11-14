@@ -644,5 +644,10 @@
     "selectCompare": "Ajouter à la comparaison",
     "chooseSecond": "Ouvrez un second amendement et ajoutez-le à la comparaison.",
     "clear": "Fermer les fiches et vider la comparaison"
+  },
+  "localeSwitch": {
+    "label": "Langue",
+    "en": "EN",
+    "fr": "FR"
   }
 }

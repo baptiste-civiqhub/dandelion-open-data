@@ -644,5 +644,10 @@
     "description": "Every dataset you can explore on the map.",
     "empty": "No dataset is available yet.",
     "noMatch": "No dataset matches “{query}”."
+  },
+  "localeSwitch": {
+    "label": "Language",
+    "en": "EN",
+    "fr": "FR"
   }
 }
