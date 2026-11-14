@@ -35,6 +35,7 @@ test('uses real Cosmograph labels and points to inspect, filter and compare in F
 
   // Click the rendered point under its label, not a DOM proxy for onFocus.
   await page.waitForTimeout(1000)
+  await canvas.scrollIntoViewIfNeeded()
   const box = await canvas.getByText('14', { exact: true }).first().boundingBox()
   if (!box) throw new Error('Rendered point label missing')
   await inspector.getByRole('button', { name: 'Ajouter à la comparaison' }).click()

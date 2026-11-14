@@ -7,7 +7,8 @@ export const PUBLIC_PATHS = {
 
 export const API_PATHS = {
   HEALTH: '/api/health',
-  PFAS_AMENDMENTS: '/api/pfas'
+  PFAS_AMENDMENTS: '/api/pfas',
+  PFAS_EVIDENCE: '/api/pfas/evidence'
 } as const
 
 export const ASSET_PATHS = {

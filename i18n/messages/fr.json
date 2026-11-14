@@ -153,6 +153,106 @@
       "limitation2": "Les sorts sont recopiés tels qu'enregistrés dans l'export du Sénat ; aucun vote n'est déduit quand aucun sort n'est enregistré.",
       "limitation3": "Le corpus est un instantané daté d'une étape au Sénat (2023-2024). Consultez les pages officielles pour les étapes ultérieures.",
       "limitation4": "Les textes officiels sont cités en français, sans traduction."
+    },
+    "evidence": {
+      "title": "Trois questions pour vérifier",
+      "scope": "Explorez les changements proposés sur les PFAS, leur sort et leurs sources. Corpus : 32 amendements du Sénat en 2024, avec des repères jusqu’à la loi publiée en 2025.",
+      "questionsLabel": "Questions guidées",
+      "active": "Question affichée",
+      "wording": {
+        "question": "Quelles différences entre ces deux amendements ?",
+        "hint": "N° 26 et 27 : une exception textile",
+        "result": "Les amendements n° 26 et 27 portent deux formulations à comparer. Sorts enregistrés :",
+        "caution": "Ce sont deux amendements distincts déposés sur le même article. Leur comparaison ne reconstitue pas une succession de versions ni un effet juridique.",
+        "action": "Aller à la comparaison"
+      },
+      "parent": {
+        "question": "À quel amendement le n° 32 se rattache-t-il ?",
+        "hint": "Sous-amendement n° 32",
+        "result": "Le n° {child} est un sous-amendement de l'amendement n° {parent}. Ce rattachement figure dans l'instantané officiel ; il n'est pas déduit.",
+        "evidence": "Preuve enregistrée : {evidence}",
+        "method": "Méthode : {method}",
+        "action": "Aller au détail du n° {child}"
+      },
+      "trail": {
+        "question": "Où se situent ces amendements dans le parcours de la loi ?",
+        "hint": "Documents du dossier et croisements",
+        "title": "Parcours documentaire",
+        "loading": "Chargement du contexte documentaire…",
+        "error": "Le contexte documentaire n'est pas disponible ou est invalide. Le graphe, la liste et la comparaison restent utilisables.",
+        "retry": "Réessayer",
+        "empty": "Aucun document vérifié n'est disponible pour ce parcours.",
+        "documents": "Documents",
+        "joins": "Croisements",
+        "facts": "Repères",
+        "undated": "Non daté",
+        "method": "Méthode",
+        "evidence": "Preuve",
+        "limitation": "Limite",
+        "noJoins": "Aucun croisement enregistré.",
+        "caution": "Ces documents situent les propositions dans le dossier. Ils n'établissent aucun lien de cause entre un amendement et la loi, et ne décrivent pas le droit consolidé actuel."
+      },
+      "relation": {
+        "official-reference": "Lien de document officiel",
+        "source-url-match": "Correspondance exacte d'URL source",
+        "context": "Référence contextuelle sélectionnée"
+      },
+      "unavailable": {
+        "missing": "Question indisponible : l'amendement n° {numbers} est absent de l'instantané.",
+        "ambiguous": "Question indisponible : plusieurs enregistrements portent le n° {numbers}.",
+        "parent-mismatch": "Question indisponible : la relation de parenté enregistrée ne correspond pas à la référence attendue ({numbers}). Aucun rattachement n'est deviné."
+      },
+      "sources": {
+        "title": "Sources et croisements",
+        "summary": "Provenance, méthode d'acquisition, dates, identifiants et limites",
+        "load": "Afficher les sources",
+        "retrievedAt": "Récupéré le (UTC) : {date}",
+        "scope": "Périmètre : {scope}",
+        "kind": {
+          "official": "Producteur officiel",
+          "api": "API"
+        },
+        "licence": "Licence",
+        "officialNote": "« Officiel » désigne le producteur de la source, pas une validation de l'explication affichée.",
+        "id": "Identifiant : {id}"
+      },
+      "hemicycle": {
+        "title": "Contexte Hémicycle",
+        "verified-snapshot": "Instantané Hémicycle vérifié et archivé : ce n'est pas un import en direct.",
+        "not-integrated": "Hémicycle non intégré : aucune donnée Hémicycle n'est utilisée dans ce parcours.",
+        "rows": "{rows} lignes, dont {matched} rapprochées",
+        "dataset": "Jeu de données : {dataset}"
+      },
+      "export": {
+        "button": "Exporter le parcours en Markdown",
+        "local": "Fichier généré dans votre navigateur, rien n'est envoyé."
+      },
+      "note": {
+        "title": "Parcours documentaire PFAS — note sourcée",
+        "generatedAt": "Généré le",
+        "scope": "Périmètre",
+        "retrievedAt": "Récupéré le (UTC)",
+        "documents": "Documents",
+        "joins": "Croisements",
+        "facts": "Repères",
+        "sources": "Sources",
+        "hemicycle": "Hémicycle",
+        "rows": "{rows} lignes, dont {matched} rapprochées",
+        "method": "Méthode",
+        "evidence": "Preuve",
+        "limitation": "Limite",
+        "undated": "Non daté",
+        "licence": "Licence",
+        "none": "Aucun",
+        "amendment": "Amendement n° {number}",
+        "limitations": "Limites",
+        "limitationItems": {
+          "causality": "Les croisements situent les documents ; ils n'établissent aucun lien de cause entre un amendement et la loi.",
+          "law": "Ce parcours ne décrit pas le droit consolidé actuel.",
+          "official": "« Officiel » désigne le producteur de la source, pas une validation d'une explication.",
+          "snapshot": "Données issues d'instantanés datés, sans import en direct."
+        }
+      }
     }
   }
 }

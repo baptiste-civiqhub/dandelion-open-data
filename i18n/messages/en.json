@@ -153,6 +153,106 @@
       "limitation2": "Outcomes are copied as recorded in the Senate export; no vote is inferred when none is recorded.",
       "limitation3": "The corpus is a dated snapshot of a 2023-2024 Senate stage. Check the official pages for later stages.",
       "limitation4": "Official texts are quoted in French without translation."
+    },
+    "evidence": {
+      "title": "Three questions to check",
+      "scope": "Answers built from the dated Senate snapshot (2024) and a verified documentary context. They state neither the legal effect of a proposal nor the current law.",
+      "questionsLabel": "Guided questions",
+      "active": "Shown question",
+      "wording": {
+        "question": "What differs between these two amendments?",
+        "hint": "Amendments no. 26 and 27",
+        "result": "Amendments no. 26 and 27 are selected and compared below. Recorded outcomes:",
+        "caution": "These are two distinct proposals filed on the same article, not successive versions. A wording difference says nothing about legal effect.",
+        "action": "Go to the comparison"
+      },
+      "parent": {
+        "question": "Which amendment is no. 32 attached to?",
+        "hint": "Sub-amendment no. 32",
+        "result": "No. {child} is a sub-amendment of amendment no. {parent}. This link is recorded in the official snapshot; it is not inferred.",
+        "evidence": "Recorded evidence: {evidence}",
+        "method": "Method: {method}",
+        "action": "Go to the detail of no. {child}"
+      },
+      "trail": {
+        "question": "Where do these amendments fit in the legislative dossier?",
+        "hint": "File documents and joins",
+        "title": "Document trail",
+        "loading": "Loading documentary context…",
+        "error": "The documentary context is unavailable or invalid. The graph, list and comparison remain usable.",
+        "retry": "Retry",
+        "empty": "No verified document is available for this trail.",
+        "documents": "Documents",
+        "joins": "Joins",
+        "facts": "Key points",
+        "undated": "Undated",
+        "method": "Method",
+        "evidence": "Evidence",
+        "limitation": "Limitation",
+        "noJoins": "No join recorded.",
+        "caution": "These documents place the proposals in the file. They establish no causal link between an amendment and the law, and do not describe current consolidated law."
+      },
+      "relation": {
+        "official-reference": "Official document link",
+        "source-url-match": "Exact source URL match",
+        "context": "Curated contextual reference"
+      },
+      "unavailable": {
+        "missing": "Question unavailable: amendment no. {numbers} is missing from the snapshot.",
+        "ambiguous": "Question unavailable: several records share no. {numbers}.",
+        "parent-mismatch": "Question unavailable: the recorded parent relation does not match the expected reference ({numbers}). No link is guessed."
+      },
+      "sources": {
+        "title": "Sources and joins",
+        "summary": "Provenance, acquisition method, dates, identifiers and limitations",
+        "load": "Show sources",
+        "retrievedAt": "Retrieved (UTC): {date}",
+        "scope": "Scope: {scope}",
+        "kind": {
+          "official": "Official producer",
+          "api": "API"
+        },
+        "licence": "Licence",
+        "officialNote": "“Official” describes the source producer, not a validation of the displayed explanation.",
+        "id": "Identifier: {id}"
+      },
+      "hemicycle": {
+        "title": "Hémicycle context",
+        "verified-snapshot": "Verified, archived Hémicycle snapshot: this is not a live import.",
+        "not-integrated": "Hémicycle not integrated: no Hémicycle data is used in this trail.",
+        "rows": "{rows} rows, {matched} matched",
+        "dataset": "Dataset: {dataset}"
+      },
+      "export": {
+        "button": "Export the trail as Markdown",
+        "local": "File generated in your browser; nothing is sent."
+      },
+      "note": {
+        "title": "PFAS document trail — sourced note",
+        "generatedAt": "Generated at",
+        "scope": "Scope",
+        "retrievedAt": "Retrieved (UTC)",
+        "documents": "Documents",
+        "joins": "Joins",
+        "facts": "Key points",
+        "sources": "Sources",
+        "hemicycle": "Hémicycle",
+        "rows": "{rows} rows, {matched} matched",
+        "method": "Method",
+        "evidence": "Evidence",
+        "limitation": "Limitation",
+        "undated": "Undated",
+        "licence": "Licence",
+        "none": "None",
+        "amendment": "Amendment no. {number}",
+        "limitations": "Limitations",
+        "limitationItems": {
+          "causality": "Joins place documents; they establish no causal link between an amendment and the law.",
+          "law": "This trail does not describe current consolidated law.",
+          "official": "“Official” describes the source producer, not a validation of an explanation.",
+          "snapshot": "Data from dated snapshots, no live import."
+        }
+      }
     }
   }
 }

@@ -1,0 +1,145 @@
+{
+  "jeu": "senat_dossiers",
+  "source": {
+    "nom": "Sénat, portail data.senat.fr",
+    "url": "https://data.senat.fr",
+    "licence": "Licence du portail data.senat.fr",
+    "licence_url": "https://data.senat.fr/licence/"
+  },
+  "sources_amont": [
+    {
+      "nom": "Assemblée nationale",
+      "url": "https://data.assemblee-nationale.fr",
+      "licence": "Licence Ouverte (Etalab)",
+      "licence_url": "https://data.assemblee-nationale.fr/licence-ouverte-open-licence"
+    }
+  ],
+  "consulte_le": "2026-11-14T11:20:20.604Z",
+  "derniere_ingestion_hemicycle": "2026-11-14T05:18:46.877471+00:00",
+  "colonne_mise_a_jour": "maj_le",
+  "nombre": 1,
+  "lignes": [
+    {
+      "signet": "ppl23-514",
+      "loicod": "73906",
+      "nature": "ppl",
+      "type_libelle": "proposition de loi",
+      "titre": "Proposition de loi visant à protéger la population des risques liés aux substances perfluoroalkylées et polyfluoroalkylées",
+      "titre_court": "Substances per- et polyfluoroalkylées",
+      "etat": "promulgué",
+      "origine": "an",
+      "auteur_libelle": "M. Nicolas THIERRY",
+      "auteur_type": "député",
+      "auteur_matricule": null,
+      "nb_auteurs": 22,
+      "date_depot": "2024-02-20",
+      "date_derniere_etape": "2025-02-20",
+      "derniere_etape": "Deuxième lecture — adoptée définitivement par l'Assemblée nationale",
+      "procedure_acceleree": false,
+      "date_loi": "2025-02-27",
+      "numero_loi": "2025-188",
+      "url_jo": "http://www.legifrance.gouv.fr/UnTexteDeJorf.do?numjo=TECX2409828L",
+      "url": "https://www.senat.fr/dossier-legislatif/ppl23-514.html",
+      "url_an": "http://www.assemblee-nationale.fr/16/dossiers/proteger_population_risques_pfas.asp",
+      "dossier_an_uid": "DLR5L16N49455",
+      "etapes": [
+        {
+          "textes": [
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/16/textes/l16b2229_proposition-loi#",
+              "date": "2024-02-20",
+              "numero": "2229",
+              "texcod": "152377",
+              "libelle": "déposée à l'Assemblée Nationale"
+            },
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/16/textes/l16b2408_texte-adopte-commission#",
+              "date": "2024-03-27",
+              "numero": "2408",
+              "texcod": "152744",
+              "libelle": "de la commission (AN)"
+            },
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/16/textes/l16t0276_texte-adopte-seance",
+              "date": "2024-04-04",
+              "numero": "276",
+              "texcod": "152742",
+              "libelle": "adoptée par l'Assemblée nationale"
+            }
+          ],
+          "lecture": "Première lecture",
+          "assemblee": "Assemblée nationale",
+          "commission": null
+        },
+        {
+          "textes": [
+            {
+              "url": "https://www.senat.fr/leg/ppl23-514.html",
+              "date": "2024-04-04",
+              "numero": "514",
+              "texcod": "152743",
+              "libelle": "transmise au Sénat"
+            },
+            {
+              "url": "https://www.senat.fr/leg/ppl23-620.html",
+              "date": "2024-05-22",
+              "numero": "620",
+              "texcod": "153083",
+              "libelle": "de la commission"
+            },
+            {
+              "url": "https://www.senat.fr/leg/tas23-140.html",
+              "date": "2024-05-30",
+              "numero": "140",
+              "texcod": "153183",
+              "libelle": "modifiée par le Sénat"
+            }
+          ],
+          "lecture": "Première lecture",
+          "assemblee": "Sénat",
+          "commission": "commission de l'aménagement du territoire et du développement durable"
+        },
+        {
+          "textes": [
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/16/textes/l16b2710_proposition-loi",
+              "date": "2024-05-30",
+              "numero": "2710",
+              "texcod": "153158",
+              "libelle": "transmise à l'Assemblée nationale"
+            },
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b0161_proposition-loi",
+              "date": "2024-07-23",
+              "numero": "161",
+              "texcod": "153729",
+              "libelle": "transmise à l'Assemblée nationale"
+            },
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b0929_texte-adopte-commission#",
+              "date": "2025-02-12",
+              "numero": "929",
+              "texcod": "155380",
+              "libelle": "de la commission (AN)"
+            },
+            {
+              "url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0057_texte-adopte-seance",
+              "date": "2025-02-20",
+              "numero": "57",
+              "texcod": "155376",
+              "libelle": "adoptée définitivement par l'Assemblée nationale"
+            }
+          ],
+          "lecture": "Deuxième lecture",
+          "assemblee": "Assemblée nationale",
+          "commission": null
+        }
+      ],
+      "nb_amendements": 72,
+      "maj_le": "2026-10-01T20:53:50.911699+00:00"
+    }
+  ],
+  "tronque": false,
+  "decalage_suivant": null,
+  "pagination": null
+}

@@ -1,0 +1,19 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "senat_amendements",
+    "filtres": [
+      {
+        "colonne": "texte_id",
+        "op": "eq",
+        "valeur": "106132"
+      }
+    ],
+    "limite": 100
+  },
+  "retrievedAtUtc": "2026-11-14T11:20:21.186151+00:00",
+  "sha256": "10f48a6a697bec9b5f1f4bfbb77ecfb9e1731cff9efa3a4c1977917bad7305d1",
+  "bytes": 73553,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}

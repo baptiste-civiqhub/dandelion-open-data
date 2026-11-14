@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "retrievedAtUtc": "2026-11-14T11:21:36.894399+00:00",
+  "scope": "PFAS — séance du Sénat sur le texte 620 (2023-2024), avec repères documentaires jusqu’à la loi initiale de 2025. Instantané vérifié, sans droit consolidé ni mesure d’impact.",
+  "sources": [
+    {
+      "id": "s-csv",
+      "title": "Export officiel des amendements au texte 620",
+      "url": "https://www.senat.fr/amendements/2023-2024/620/jeu_complet_2023-2024_620.csv",
+      "publisher": "Sénat",
+      "kind": "official",
+      "retrievedAtUtc": "2026-11-13T21:43:06.239210+00:00",
+      "publishedAt": null,
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "32 lignes importées ; URL absente pour le n° 19. Instantané conservé dans le dépôt."
+    },
+    {
+      "id": "s-hmc-amend",
+      "title": "Hémicycle — senat_amendements, texte_id 106132",
+      "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+      "publisher": "Hémicycle, données du Sénat",
+      "kind": "api",
+      "retrievedAtUtc": "2026-11-14T11:20:21.186151+00:00",
+      "publishedAt": null,
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "Instantané obtenu par POST avec filtres exacts. Requête, réponse sans compte ni crédits et empreinte conservées dans data/pfas/evidence/. Données du Sénat redistribuées : ne constitue pas une source indépendante."
+    },
+    {
+      "id": "s-hmc-text",
+      "title": "Hémicycle — senat_textes, n° 620 session 2023",
+      "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+      "publisher": "Hémicycle, données du Sénat",
+      "kind": "api",
+      "retrievedAtUtc": "2026-11-14T11:20:11.412846+00:00",
+      "publishedAt": null,
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "Instantané obtenu par POST avec filtres exacts. Requête, réponse sans compte ni crédits et empreinte conservées dans data/pfas/evidence/. Données du Sénat redistribuées : ne constitue pas une source indépendante."
+    },
+    {
+      "id": "s-hmc-dossier",
+      "title": "Hémicycle — senat_dossiers, ppl23-514",
+      "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+      "publisher": "Hémicycle, données du Sénat",
+      "kind": "api",
+      "retrievedAtUtc": "2026-11-14T11:20:20.668366+00:00",
+      "publishedAt": null,
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "Instantané obtenu par POST avec filtres exacts. Requête, réponse sans compte ni crédits et empreinte conservées dans data/pfas/evidence/. Données du Sénat redistribuées : ne constitue pas une source indépendante."
+    },
+    {
+      "id": "s-text",
+      "title": "Texte de commission n° 620",
+      "url": "https://www.senat.fr/leg/ppl23-620.html",
+      "publisher": "Sénat",
+      "kind": "official",
+      "retrievedAtUtc": "2026-11-14T11:21:36.894399+00:00",
+      "publishedAt": "2024-05-22",
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "Texte historique examiné, pas le droit actuellement consolidé."
+    },
+    {
+      "id": "s-dossier",
+      "title": "Dossier législatif PFAS",
+      "url": "https://www.senat.fr/dossier-legislatif/ppl23-514.html",
+      "publisher": "Sénat",
+      "kind": "official",
+      "retrievedAtUtc": "2026-11-14T11:21:36.894399+00:00",
+      "publishedAt": null,
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "Page officielle consultée le 14 novembre 2026 ; ses références désignent les documents, pas la causalité de chaque amendement."
+    },
+    {
+      "id": "s-law",
+      "title": "Loi n° 2025-188 du 27 février 2025 — version initiale",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051260902",
+      "publisher": "Légifrance / Journal officiel",
+      "kind": "official",
+      "retrievedAtUtc": "2026-11-14T11:21:36.894399+00:00",
+      "publishedAt": "2025-02-28",
+      "licenceUrl": "https://www.legifrance.gouv.fr/contenu/pied-de-page/open-data-et-api",
+      "note": "JORF du 28 février 2025, NOR TECX2409828L. Version initiale uniquement ; les décrets et modifications ultérieures ne sont pas intégrés."
+    },
+    {
+      "id": "s-clear",
+      "title": "PFAS : la loi en clair",
+      "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/proposition-de-loi-visant-a-proteger-la-population-des-risques-lies-aux-substances-perfluoroalkylees-et-polyfluoroalkylees.html",
+      "publisher": "Sénat",
+      "kind": "official",
+      "retrievedAtUtc": "2026-11-14T11:21:36.894399+00:00",
+      "publishedAt": null,
+      "licenceUrl": "https://data.senat.fr/licence/",
+      "note": "Présentation institutionnelle utilisée comme contexte. Ne remplace pas le texte juridique."
+    }
+  ],
+  "documents": [
+    {
+      "id": "corpus",
+      "title": "32 amendements au texte 620",
+      "kind": "Corpus de séance — Sénat",
+      "date": "2024-05-30",
+      "url": "https://www.senat.fr/amendements/2023-2024/620/accueil.html",
+      "sourceId": "s-csv"
+    },
+    {
+      "id": "hmc-amend",
+      "title": "32 enregistrements Hémicycle du texte 106132",
+      "kind": "Instantané API — senat_amendements",
+      "date": "2026-11-14",
+      "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+      "sourceId": "s-hmc-amend"
+    },
+    {
+      "id": "text620",
+      "title": "Texte de commission n° 620 (2023-2024)",
+      "kind": "Texte examiné",
+      "date": "2024-05-22",
+      "url": "https://www.senat.fr/leg/ppl23-620.html",
+      "sourceId": "s-text"
+    },
+    {
+      "id": "hmc-text",
+      "title": "Identifiant Hémicycle 106132 → dossier ppl23-514",
+      "kind": "Instantané API — senat_textes",
+      "date": "2026-11-14",
+      "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+      "sourceId": "s-hmc-text"
+    },
+    {
+      "id": "dossier",
+      "title": "Le parcours parlementaire du dossier PFAS",
+      "kind": "Dossier législatif",
+      "date": null,
+      "url": "https://www.senat.fr/dossier-legislatif/ppl23-514.html",
+      "sourceId": "s-dossier"
+    },
+    {
+      "id": "adopted",
+      "title": "Texte n° 140 modifié par le Sénat",
+      "kind": "Texte adopté en première lecture",
+      "date": "2024-05-30",
+      "url": "https://www.senat.fr/leg/tas23-140.html",
+      "sourceId": "s-dossier"
+    },
+    {
+      "id": "law",
+      "title": "Loi n° 2025-188 — version publiée initialement",
+      "kind": "Loi promulguée, version initiale",
+      "date": "2025-02-27",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051260902",
+      "sourceId": "s-law"
+    }
+  ],
+  "joins": [
+    {
+      "id": "j-url",
+      "fromId": "hmc-amend",
+      "toId": "corpus",
+      "relation": "source-url-match",
+      "method": "Égalité stricte de senat_amendements.url et amendments.sourceUrl, sans normalisation ni rapprochement flou.",
+      "evidence": "31 URL concordent sur 32 lignes ; les numéros et les sorts des 31 lignes concordent également. Le n° 19 reste non rapproché car son URL manque dans le CSV.",
+      "sourceIds": ["s-hmc-amend", "s-csv"]
+    },
+    {
+      "id": "j-textid",
+      "fromId": "hmc-amend",
+      "toId": "hmc-text",
+      "relation": "official-reference",
+      "method": "Clé étrangère exacte : senat_amendements.texte_id = senat_textes.id.",
+      "evidence": "Les 32 enregistrements portent texte_id=106132 ; senat_textes.id=106132, numero=620 et session_annee=2023.",
+      "sourceIds": ["s-hmc-amend", "s-hmc-text"]
+    },
+    {
+      "id": "j-signet",
+      "fromId": "hmc-text",
+      "toId": "dossier",
+      "relation": "official-reference",
+      "method": "Égalité de senat_textes.dossier_signet et senat_dossiers.signet ; URL officielle fournie par le dossier.",
+      "evidence": "ppl23-514 → https://www.senat.fr/dossier-legislatif/ppl23-514.html.",
+      "sourceIds": ["s-hmc-text", "s-hmc-dossier"]
+    },
+    {
+      "id": "j-ref620",
+      "fromId": "dossier",
+      "toId": "text620",
+      "relation": "official-reference",
+      "method": "Référence explicite du dossier, retrouvée dans senat_dossiers.etapes[].textes[].url.",
+      "evidence": "Le dossier référence le texte de commission n° 620 déposé le 22 mai 2024. Il référence aussi les amendements de séance sur ce texte.",
+      "sourceIds": ["s-dossier", "s-hmc-dossier", "s-text"]
+    },
+    {
+      "id": "j-adopted",
+      "fromId": "dossier",
+      "toId": "adopted",
+      "relation": "official-reference",
+      "method": "Référence explicite du dossier au texte adopté n° 140.",
+      "evidence": "Le dossier indique une adoption avec modifications par le Sénat le 30 mai 2024. Cela ne dit pas quels amendements ont causé chaque passage final.",
+      "sourceIds": ["s-dossier", "s-hmc-dossier"]
+    },
+    {
+      "id": "j-law",
+      "fromId": "dossier",
+      "toId": "law",
+      "relation": "official-reference",
+      "method": "Numéro de loi et date du dossier, puis référence au Journal officiel ; vérification du NOR TECX2409828L sur Légifrance.",
+      "evidence": "Loi 2025-188 du 27 février 2025 ; publication au JORF du 28 février. Le lien ancien de l’API utilise le même NOR.",
+      "sourceIds": ["s-dossier", "s-hmc-dossier", "s-law"]
+    }
+  ],
+  "facts": [
+    {
+      "id": "f-quality",
+      "title": "31 liens directs vérifiés, une lacune visible",
+      "text": "Hémicycle apporte ici des identifiants de texte et de dossier, ainsi que le parent du sous-amendement. Pour le n° 19, le CSV ne donne pas d’URL ; Hémicycle indique une irrecevabilité dans un champ distinct du sort.",
+      "sourceIds": ["s-hmc-amend", "s-hmc-text", "s-hmc-dossier", "s-csv"],
+      "limitation": "Même producteur d’origine, le Sénat : ce rapprochement vérifie la cohérence entre formats, pas une corroboration indépendante."
+    },
+    {
+      "id": "f-parent",
+      "title": "Le lien 32 → 14 est explicite",
+      "text": "Le parent_id 1269153 du sous-amendement 32 désigne l’amendement 14. Cela correspond au lien officiel déjà vérifié dans notre corpus.",
+      "sourceIds": ["s-hmc-amend", "s-csv"],
+      "limitation": "Lien documentaire entre propositions. Les deux sorts enregistrés sont Rejeté ; ce lien ne prouve aucun effet de la loi."
+    },
+    {
+      "id": "f-law",
+      "title": "Une proposition ne devient pas automatiquement la loi",
+      "text": "Le texte 620 est une étape de commission. Le dossier donne accès au texte adopté par le Sénat puis à la loi publiée. Les amendements 26 et 27 étudiés ici sont retirés.",
+      "sourceIds": ["s-text", "s-dossier", "s-law", "s-csv"],
+      "limitation": "Pas de reconstruction de la navette, de consolidation juridique ou d’attribution automatique d’un passage final à un amendement."
+    },
+    {
+      "id": "f-cookware",
+      "title": "Et les ustensiles de cuisine ?",
+      "text": "La présentation officielle du Sénat situe le retrait de leur interdiction lors de l’examen à l’Assemblée nationale. Ce changement précède le corpus sénatorial montré ici.",
+      "sourceIds": ["s-clear"],
+      "limitation": "Contexte historique uniquement. Les amendements de l’Assemblée concernés ne sont pas importés ; les nos 26 et 27 du Sénat ne sont pas présentés comme la cause de ce retrait."
+    }
+  ],
+  "hemicycle": {
+    "status": "verified-snapshot",
+    "retrievedAtUtc": "2026-11-14T11:20:21.186151+00:00",
+    "dataset": "senat_amendements + senat_textes + senat_dossiers",
+    "rows": 32,
+    "matchedRows": 31,
+    "sourceId": "s-hmc-amend",
+    "note": "Import réel de trois jeux Hémicycle le 14 novembre 2026, conservé localement. 31 correspondances d’URL exactes / 32 ; pas d’appel API à chaque visite. Requêtes et audit détaillés dans data/pfas/evidence/."
+  }
+}

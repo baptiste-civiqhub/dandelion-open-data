@@ -1,0 +1,19 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "senat_dossiers",
+    "filtres": [
+      {
+        "colonne": "signet",
+        "op": "eq",
+        "valeur": "ppl23-514"
+      }
+    ],
+    "limite": 5
+  },
+  "retrievedAtUtc": "2026-11-14T11:20:20.668366+00:00",
+  "sha256": "2b34286a04c3fafd38ef5d26bce335a792d0409420f6be77aede82a9c376a7e9",
+  "bytes": 5308,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}

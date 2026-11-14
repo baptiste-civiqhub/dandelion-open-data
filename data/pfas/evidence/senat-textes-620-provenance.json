@@ -1,0 +1,24 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "senat_textes",
+    "filtres": [
+      {
+        "colonne": "numero",
+        "op": "eq",
+        "valeur": 620
+      },
+      {
+        "colonne": "session_annee",
+        "op": "eq",
+        "valeur": 2023
+      }
+    ],
+    "limite": 5
+  },
+  "retrievedAtUtc": "2026-11-14T11:20:11.412846+00:00",
+  "sha256": "0618ac2cfa68cbfa4cc476716581742266e4b7151ea81fbe9d5ad7bb1ca74594",
+  "bytes": 1241,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}
