@@ -15,7 +15,9 @@ export const SEARCH_PARAMS = {
 } as const
 
 export const API_PATHS = {
-  HEALTH: '/api/health'
+  HEALTH: '/api/health',
+  /** Analyse sémantique d'amendements par inférence (Featherless, côté serveur). */
+  AMENDEMENT_ANALYSIS: '/api/amendements/analysis'
 } as const
 
 export const ASSET_PATHS = {
