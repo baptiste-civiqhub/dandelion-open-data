@@ -3,6 +3,9 @@
     "title": "Dandelion",
     "description": "Semer la donnée publique, faire éclore le débat."
   },
+  "common": {
+    "loading": "Chargement…"
+  },
   "home": {
     "title": "Dandelion",
     "baseline": "Semer la donnée publique, faire éclore le débat."
@@ -11,5 +14,46 @@
     "title": "Page introuvable",
     "description": "Cette page n'existe pas ou a été déplacée.",
     "backHome": "Retour à l'accueil"
+  },
+  "shell": {
+    "brandName": "Dandelion",
+    "homeLink": "Dandelion, retour à la carte",
+    "nav": {
+      "label": "Principale",
+      "about": "Atlas",
+      "datasets": "Area"
+    },
+    "search": {
+      "label": "Rechercher un jeu de données",
+      "placeholder": "Rechercher un jeu de données…"
+    }
+  },
+  "world": {
+    "canvasLabel": "Carte explorable des jeux de données"
+  },
+  "about": {
+    "metaTitle": "À propos",
+    "title": "À propos de Dandelion",
+    "intro": "Dandelion transforme la donnée publique ouverte en un espace à explorer.",
+    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Tous les jeux de données sont aussi listés dans Area."
+  },
+  "datasets": {
+    "metaTitle": "Jeux de données",
+    "title": "Jeux de données",
+    "description": "Tous les jeux de données à explorer sur la carte.",
+    "empty": "Aucun jeu de données disponible pour l’instant.",
+    "noMatch": "Aucun jeu de données ne correspond à « {query} »."
+  },
+  "dataviz": {
+    "metaTitle": "{datasetId}",
+    "canvasLabel": "Visualisation du jeu de données {datasetId}",
+    "dataset": {
+      "eyebrow": "Jeu de données",
+      "notConnected": "La source de données de ce jeu n’est pas encore connectée."
+    },
+    "view": {
+      "title": "Vue",
+      "description": "Les filtres et la légende apparaîtront ici."
+    }
   }
 }
