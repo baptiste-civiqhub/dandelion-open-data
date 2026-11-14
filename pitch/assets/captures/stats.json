@@ -1,0 +1,127 @@
+{
+  "areas": [
+    {
+      "path": "/area/budget-fiscalite-pouvoir-achat",
+      "texts": [
+        {
+          "title": "Projet de loi de finances de fin de gestion pour 2026",
+          "amendements": 217
+        },
+        {
+          "title": "Déblocage exceptionnel de la participation et de l’intéressement en 2026",
+          "amendements": 93
+        },
+        {
+          "title": "Faire assumer à chacun les conséquences de ses actes en permettant la saisie des amendes non payées sur les minimas sociaux",
+          "amendements": 66
+        },
+        {
+          "title": "Prendre des mesures d’urgence contre la vie chère en outre-mer dans le secteur des services",
+          "amendements": 23
+        }
+      ]
+    },
+    {
+      "path": "/area/droits-personnes-famille-memoire",
+      "texts": [
+        {
+          "title": "Garantir le droit d’accès aux origines personnelles",
+          "amendements": 46
+        },
+        {
+          "title": "Simplifier la sortie de l'indivision successorale",
+          "amendements": 16
+        },
+        {
+          "title": "portant reconnaissance par la Nation et réparation des préjudices subis par les personnes condamnées pour homosexualité entre 1942 et 1982",
+          "amendements": 17
+        },
+        {
+          "title": "visant à reconnaître le préjudice subi par les personnes condamnées sur le fondement de la législation pénalisant l'avortement et par les femmes avant la loi n° 75-17 du 17 janvier 1975 relative à l'interruption volontaire de la grossesse",
+          "amendements": 2
+        },
+        {
+          "title": "Assurer le droit de chaque enfant à disposer d’un avocat dans le cadre d’une mesure d’assistance éducative et de protection de l’enfance",
+          "amendements": 15
+        }
+      ]
+    },
+    {
+      "path": "/area/logement-foncier",
+      "texts": [
+        {
+          "title": "Permettre aux maires de loger les habitants en mobilisant les logements vacants",
+          "amendements": 132
+        },
+        {
+          "title": "Rétablir le droit commun de la prescription acquisitive dans les collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy",
+          "amendements": 3
+        },
+        {
+          "title": "Interdire le maintien dans l’hébergement d’urgence aux immigrés illégaux",
+          "amendements": 32
+        },
+        {
+          "title": "Retrouver la confiance et l’équilibre dans les rapports locatifs",
+          "amendements": 50
+        }
+      ]
+    },
+    {
+      "path": "/area/sante-alimentation-environnement",
+      "texts": [
+        {
+          "title": "Pour l’égalité d’accès aux soins des ressortissants ultramarins en hexagone",
+          "amendements": 4
+        },
+        {
+          "title": "Protéger l’alimentation des Français et des Françaises des contaminations au cadmium",
+          "amendements": 10
+        },
+        {
+          "title": "Pour une génération sans sucre",
+          "amendements": 49
+        },
+        {
+          "title": "Protéger l'eau potable",
+          "amendements": 36
+        },
+        {
+          "title": "Accélérer la prévention cardio-neuro-vasculaire et anticiper un risque sanitaire et social majeur",
+          "amendements": 37
+        },
+        {
+          "title": "Mettre en place un programme de soutien à l’innovation thérapeutique contre les cancers, les maladies rares et les maladies orphelines de l’enfant",
+          "amendements": 24
+        },
+        {
+          "title": "Reconnaître une politique nationale d’adaptation au changement climatique et à adapter les mécanismes d’assurance",
+          "amendements": 42
+        }
+      ]
+    },
+    {
+      "path": "/area/securite-regulation-grands-projets",
+      "texts": [
+        {
+          "title": "Améliorer la protection des personnes ciblées par les réseaux de criminalité organisée",
+          "amendements": 23
+        },
+        {
+          "title": "relative à la sécurisation des marchés publics numériques",
+          "amendements": 16
+        },
+        {
+          "title": "relatif à l’organisation des jeux Olympiques et Paralympiques de 2030",
+          "amendements": 329
+        },
+        {
+          "title": "Empêcher la constitution de monopoles économiques dans les secteurs des médias",
+          "amendements": 26
+        }
+      ]
+    }
+  ],
+  "texts": 24,
+  "amendements": 1308
+}
