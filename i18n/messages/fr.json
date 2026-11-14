@@ -32,7 +32,8 @@
     }
   },
   "world": {
-    "canvasLabel": "Carte explorable des zones"
+    "canvasLabel": "Carte explorable des zones",
+    "enterHint": "Entrée pour ouvrir"
   },
   "about": {
     "metaTitle": "À propos",

@@ -32,7 +32,8 @@
     }
   },
   "world": {
-    "canvasLabel": "Explorable map of the areas"
+    "canvasLabel": "Explorable map of the areas",
+    "enterHint": "Press Enter to open"
   },
   "about": {
     "metaTitle": "About",

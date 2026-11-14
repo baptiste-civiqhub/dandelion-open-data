@@ -9,7 +9,7 @@ import { Link, usePathname } from '@/i18n/navigation'
 import { isActivePath } from '@/lib/navigation/is-active-path'
 import { cn } from '@/lib/utils'
 
-import { ATLAS_SIZE, layoutAtlas, shortenAtlasLabel } from '../lib/atlas-layout'
+import { ATLAS_SIZE, layoutAtlas, orderAtlasAreas, shortenAtlasLabel } from '../lib/atlas-layout'
 
 type AtlasMapProps = {
   areas: Area[]
@@ -29,11 +29,7 @@ const RINGS = [16, 32, 46]
 export function AtlasMap({ areas, onNavigate, className }: AtlasMapProps) {
   const t = useTranslations('atlas')
   const pathname = usePathname()
-  // Les zones qui ont des données d'abord : la spirale part du centre.
-  const ordered = useMemo(
-    () => [...areas].sort((a, b) => b.texteCount - a.texteCount || a.slug.localeCompare(b.slug)),
-    [areas]
-  )
+  const ordered = useMemo(() => orderAtlasAreas(areas), [areas])
   const placements = useMemo(() => layoutAtlas(ordered.map((area) => area.id)), [ordered])
 
   return (

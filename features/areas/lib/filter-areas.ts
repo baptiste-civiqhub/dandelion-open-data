@@ -8,7 +8,12 @@ export type AreaFilter = {
 
 /** Texte comparable : sans accent, en minuscules, espaces réduits (« Sécurité  sociale » → « securite sociale »). */
 export function normalizeSearchText(value: string): string {
-  return value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/\s+/g, ' ').trim()
+  return value
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 /**

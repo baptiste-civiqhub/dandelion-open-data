@@ -20,9 +20,17 @@ const START_ANGLE = -Math.PI / 2
 const round = (value: number) => Math.round(value * 100) / 100
 
 /**
+ * Ordre canonique des zones sur la carte, partagé par l'atlas 2D et le monde 3D : les zones qui ont des données
+ * d'abord (elles occupent le centre de la spirale), puis par slug. Le même ordre donne les mêmes positions partout.
+ */
+export function orderAtlasAreas<T extends { slug: string; texteCount: number }>(areas: readonly T[]): T[] {
+  return [...areas].sort((a, b) => b.texteCount - a.texteCount || a.slug.localeCompare(b.slug))
+}
+
+/**
  * Place les zones sur une spirale à angle d'or (la disposition des graines d'une fleur de pissenlit), vue de
  * dessus : répartition régulière, sans chevauchement, quel que soit le nombre de zones. Déterministe : la position
- * ne dépend que du rang dans la liste, à trier de façon stable par l'appelant. Une zone seule occupe le centre.
+ * ne dépend que du rang dans la liste (`orderAtlasAreas`). Une zone seule occupe le centre.
  */
 export function layoutAtlas(ids: readonly string[], options: AtlasLayoutOptions = {}): AtlasPlacement[] {
   const size = options.size ?? ATLAS_SIZE
