@@ -78,8 +78,92 @@ Source de vérité : `design-system/tokens/source/brand.json`. Règles d’usage
 | `chart-3` | `bg-chart-3` · `text-chart-3` · `border-chart-3` | `accent-raspberry-500` | `#FD5074` | — |
 | `chart-4` | `bg-chart-4` · `text-chart-4` · `border-chart-4` | `accent-olive-800` | `#A09218` | — |
 | `chart-5` | `bg-chart-5` · `text-chart-5` · `border-chart-5` | `accent-mauve-800` | `#B87090` | — |
+| `world-sky` | `bg-world-sky` · `text-world-sky` · `border-world-sky` | `world-sky` | `#EEF2F8` | — |
+| `world-sky-top` | `bg-world-sky-top` · `text-world-sky-top` · `border-world-sky-top` | `world-sky-top` | `#D4E0F2` | — |
+| `world-sun` | `bg-world-sun` · `text-world-sun` · `border-world-sun` | `world-sun` | `#FFF7EC` | — |
+| `world-hemi-ground` | `bg-world-hemi-ground` · `text-world-hemi-ground` · `border-world-hemi-ground` | `world-hemi-ground` | `#D6DCE8` | — |
+| `world-ground` | `bg-world-ground` · `text-world-ground` · `border-world-ground` | `world-ground` | `#F3F4F7` | — |
+| `world-sand` | `bg-world-sand` · `text-world-sand` · `border-world-sand` | `world-sand` | `#EDE6D8` | — |
+| `world-gravel` | `bg-world-gravel` · `text-world-gravel` · `border-world-gravel` | `world-gravel` | `#F3EEE4` | — |
+| `world-lawn` | `bg-world-lawn` · `text-world-lawn` · `border-world-lawn` | `world-lawn` | `#CFE2C6` | — |
+| `world-water` | `bg-world-water` · `text-world-water` · `border-world-water` | `world-water` | `#AFC9EC` | — |
+| `world-water-deep` | `bg-world-water-deep` · `text-world-water-deep` · `border-world-water-deep` | `world-water-deep` | `#8FB0D8` | — |
+| `world-stone` | `bg-world-stone` · `text-world-stone` · `border-world-stone` | `world-stone` | `#FFFFFF` | — |
+| `world-stone-cool` | `bg-world-stone-cool` · `text-world-stone-cool` · `border-world-stone-cool` | `world-stone-cool` | `#F2F3F6` | — |
+| `world-stone-warm` | `bg-world-stone-warm` · `text-world-stone-warm` · `border-world-stone-warm` | `world-stone-warm` | `#F4F2EE` | — |
+| `world-metal` | `bg-world-metal` · `text-world-metal` · `border-world-metal` | `world-metal` | `#34405C` | — |
+| `world-gold` | `bg-world-gold` · `text-world-gold` · `border-world-gold` | `world-gold` | `#D9B44A` | — |
+| `world-chair` | `bg-world-chair` · `text-world-chair` · `border-world-chair` | `world-chair` | `#5E8C6A` | — |
+| `world-trunk` | `bg-world-trunk` · `text-world-trunk` · `border-world-trunk` | `world-trunk` | `#D8D3CB` | — |
+| `world-post` | `bg-world-post` · `text-world-post` · `border-world-post` | `world-post` | `#AEB6C6` | — |
+| `world-crown-green-1` | `bg-world-crown-green-1` · `text-world-crown-green-1` · `border-world-crown-green-1` | `world-crown-green-1` | `#BFD8B8` | — |
+| `world-crown-green-2` | `bg-world-crown-green-2` · `text-world-crown-green-2` · `border-world-crown-green-2` | `world-crown-green-2` | `#A9C9A4` | — |
+| `world-crown-green-3` | `bg-world-crown-green-3` · `text-world-crown-green-3` · `border-world-crown-green-3` | `world-crown-green-3` | `#D3E5CC` | — |
+| `world-crown-green-4` | `bg-world-crown-green-4` · `text-world-crown-green-4` · `border-world-crown-green-4` | `world-crown-green-4` | `#9CBF97` | — |
+| `world-crown-autumn-1` | `bg-world-crown-autumn-1` · `text-world-crown-autumn-1` · `border-world-crown-autumn-1` | `world-crown-autumn-1` | `#EBCB7E` | — |
+| `world-crown-autumn-2` | `bg-world-crown-autumn-2` · `text-world-crown-autumn-2` · `border-world-crown-autumn-2` | `world-crown-autumn-2` | `#E7AE73` | — |
+| `world-crown-autumn-3` | `bg-world-crown-autumn-3` · `text-world-crown-autumn-3` · `border-world-crown-autumn-3` | `world-crown-autumn-3` | `#DE9468` | — |
+| `world-crown-autumn-4` | `bg-world-crown-autumn-4` · `text-world-crown-autumn-4` · `border-world-crown-autumn-4` | `world-crown-autumn-4` | `#F2DDA0` | — |
+| `world-crown-autumn-5` | `bg-world-crown-autumn-5` · `text-world-crown-autumn-5` · `border-world-crown-autumn-5` | `world-crown-autumn-5` | `#CBD696` | — |
+| `world-crown-autumn-6` | `bg-world-crown-autumn-6` · `text-world-crown-autumn-6` · `border-world-crown-autumn-6` | `world-crown-autumn-6` | `#E9B95C` | — |
+| `world-leaf-1` | `bg-world-leaf-1` · `text-world-leaf-1` · `border-world-leaf-1` | `world-leaf-1` | `#E9B949` | — |
+| `world-leaf-2` | `bg-world-leaf-2` · `text-world-leaf-2` · `border-world-leaf-2` | `world-leaf-2` | `#E39A4F` | — |
+| `world-leaf-3` | `bg-world-leaf-3` · `text-world-leaf-3` · `border-world-leaf-3` | `world-leaf-3` | `#D3743F` | — |
+| `world-leaf-4` | `bg-world-leaf-4` · `text-world-leaf-4` · `border-world-leaf-4` | `world-leaf-4` | `#F0D27A` | — |
+| `world-leaf-5` | `bg-world-leaf-5` · `text-world-leaf-5` · `border-world-leaf-5` | `world-leaf-5` | `#C98B3A` | — |
+| `world-leaf-6` | `bg-world-leaf-6` · `text-world-leaf-6` · `border-world-leaf-6` | `world-leaf-6` | `#BFC56A` | — |
+| `world-clipped-1` | `bg-world-clipped-1` · `text-world-clipped-1` · `border-world-clipped-1` | `world-clipped-1` | `#BCD3A0` | — |
+| `world-clipped-2` | `bg-world-clipped-2` · `text-world-clipped-2` · `border-world-clipped-2` | `world-clipped-2` | `#E2D394` | — |
+| `world-orange-crown` | `bg-world-orange-crown` · `text-world-orange-crown` · `border-world-orange-crown` | `world-orange-crown` | `#7FA875` | — |
+| `world-fruit` | `bg-world-fruit` · `text-world-fruit` · `border-world-fruit` | `world-fruit` | `#F28C28` | — |
+| `world-flower-1` | `bg-world-flower-1` · `text-world-flower-1` · `border-world-flower-1` | `world-flower-1` | `#E8697F` | — |
+| `world-flower-2` | `bg-world-flower-2` · `text-world-flower-2` · `border-world-flower-2` | `world-flower-2` | `#F2A65E` | — |
+| `world-flower-3` | `bg-world-flower-3` · `text-world-flower-3` · `border-world-flower-3` | `world-flower-3` | `#F7CF5A` | — |
+| `world-flower-4` | `bg-world-flower-4` · `text-world-flower-4` · `border-world-flower-4` | `world-flower-4` | `#B97AB0` | — |
+| `world-flower-5` | `bg-world-flower-5` · `text-world-flower-5` · `border-world-flower-5` | `world-flower-5` | `#D9364A` | — |
+| `world-flower-6` | `bg-world-flower-6` · `text-world-flower-6` · `border-world-flower-6` | `world-flower-6` | `#F4B3C8` | — |
+| `world-coat-1` | `bg-world-coat-1` · `text-world-coat-1` · `border-world-coat-1` | `world-coat-1` | `#2B3A67` | — |
+| `world-coat-2` | `bg-world-coat-2` · `text-world-coat-2` · `border-world-coat-2` | `world-coat-2` | `#C9584F` | — |
+| `world-coat-3` | `bg-world-coat-3` · `text-world-coat-3` · `border-world-coat-3` | `world-coat-3` | `#C9B79C` | — |
+| `world-coat-4` | `bg-world-coat-4` · `text-world-coat-4` · `border-world-coat-4` | `world-coat-4` | `#5A6274` | — |
+| `world-coat-5` | `bg-world-coat-5` · `text-world-coat-5` · `border-world-coat-5` | `world-coat-5` | `#FFFFFF` | — |
+| `world-coat-6` | `bg-world-coat-6` · `text-world-coat-6` · `border-world-coat-6` | `world-coat-6` | `#8A5A44` | — |
+| `world-coat-7` | `bg-world-coat-7` · `text-world-coat-7` · `border-world-coat-7` | `world-coat-7` | `#4F6F52` | — |
+| `world-coat-8` | `bg-world-coat-8` · `text-world-coat-8` · `border-world-coat-8` | `world-coat-8` | `#D8C9B4` | — |
+| `world-coat-9` | `bg-world-coat-9` · `text-world-coat-9` · `border-world-coat-9` | `world-coat-9` | `#1F2430` | — |
+| `world-coat-10` | `bg-world-coat-10` · `text-world-coat-10` · `border-world-coat-10` | `world-coat-10` | `#6A7FBF` | — |
+| `world-skin-1` | `bg-world-skin-1` · `text-world-skin-1` · `border-world-skin-1` | `world-skin-1` | `#F2DFCC` | — |
+| `world-skin-2` | `bg-world-skin-2` · `text-world-skin-2` · `border-world-skin-2` | `world-skin-2` | `#E3C2A2` | — |
+| `world-skin-3` | `bg-world-skin-3` · `text-world-skin-3` · `border-world-skin-3` | `world-skin-3` | `#C69B78` | — |
+| `world-skin-4` | `bg-world-skin-4` · `text-world-skin-4` · `border-world-skin-4` | `world-skin-4` | `#8F6248` | — |
+| `world-skin-5` | `bg-world-skin-5` · `text-world-skin-5` · `border-world-skin-5` | `world-skin-5` | `#6B4632` | — |
+| `world-legs` | `bg-world-legs` · `text-world-legs` · `border-world-legs` | `world-legs` | `#2E3446` | — |
+| `world-roof` | `bg-world-roof` · `text-world-roof` · `border-world-roof` | `world-roof` | `#C9D0DC` | — |
+| `world-roof-green` | `bg-world-roof-green` · `text-world-roof-green` · `border-world-roof-green` | `world-roof-green` | `#5E7F72` | — |
+| `world-window` | `bg-world-window` · `text-world-window` · `border-world-window` | `world-window` | `#D6E0F1` | — |
+| `world-lamp-glass` | `bg-world-lamp-glass` · `text-world-lamp-glass` · `border-world-lamp-glass` | `world-lamp-glass` | `#FFE2A0` | — |
+| `world-lamp-glow` | `bg-world-lamp-glow` · `text-world-lamp-glow` · `border-world-lamp-glow` | `world-lamp-glow` | `#FFD98A` | — |
+| `world-car-dark` | `bg-world-car-dark` · `text-world-car-dark` · `border-world-car-dark` | `world-car-dark` | `#2B2236` | — |
+| `world-car-glass` | `bg-world-car-glass` · `text-world-car-glass` · `border-world-car-glass` | `world-car-glass` | `#BFD0EA` | — |
+| `world-car-light` | `bg-world-car-light` · `text-world-car-light` · `border-world-car-light` | `world-car-light` | `#FFF6DC` | — |
+| `world-car-tail` | `bg-world-car-tail` · `text-world-car-tail` · `border-world-car-tail` | `world-car-tail` | `#FF4B5C` | — |
+| `world-horse` | `bg-world-horse` · `text-world-horse` · `border-world-horse` | `world-horse` | `#F3F1EC` | — |
+| `world-horse-dark` | `bg-world-horse-dark` · `text-world-horse-dark` · `border-world-horse-dark` | `world-horse-dark` | `#7C7F8C` | — |
+| `world-horse-mane` | `bg-world-horse-mane` · `text-world-horse-mane` · `border-world-horse-mane` | `world-horse-mane` | `#C9C4BB` | — |
+| `world-pigeon` | `bg-world-pigeon` · `text-world-pigeon` · `border-world-pigeon` | `world-pigeon` | `#9097A6` | — |
+| `world-pigeon-head` | `bg-world-pigeon-head` · `text-world-pigeon-head` · `border-world-pigeon-head` | `world-pigeon-head` | `#6B7385` | — |
+| `world-dog-1` | `bg-world-dog-1` · `text-world-dog-1` · `border-world-dog-1` | `world-dog-1` | `#7A5230` | — |
+| `world-dog-2` | `bg-world-dog-2` · `text-world-dog-2` · `border-world-dog-2` | `world-dog-2` | `#E8DCC8` | — |
+| `world-dog-3` | `bg-world-dog-3` · `text-world-dog-3` · `border-world-dog-3` | `world-dog-3` | `#2A2A2A` | — |
+| `world-dog-4` | `bg-world-dog-4` · `text-world-dog-4` · `border-world-dog-4` | `world-dog-4` | `#C8964E` | — |
+| `world-seed` | `bg-world-seed` · `text-world-seed` · `border-world-seed` | `world-seed` | `#B8C1D3` | — |
+| `world-stem` | `bg-world-stem` · `text-world-stem` · `border-world-stem` | `world-stem` | `#9DBF8C` | — |
+| `world-puff-core` | `bg-world-puff-core` · `text-world-puff-core` · `border-world-puff-core` | `world-puff-core` | `#E9E2D2` | — |
+| `world-petal-core` | `bg-world-petal-core` · `text-world-petal-core` · `border-world-petal-core` | `world-petal-core` | `#E9A93A` | — |
+| `world-boat-hull` | `bg-world-boat-hull` · `text-world-boat-hull` · `border-world-boat-hull` | `world-boat-hull` | `#2B3A67` | — |
+| `world-mast` | `bg-world-mast` · `text-world-mast` · `border-world-mast` | `world-mast` | `#8A6A4A` | — |
 
-## Palette (153 primitives, jamais consommées directement)
+## Palette (237 primitives, jamais consommées directement)
 
 Variables CSS `--palette-<nom>`, sans utilitaire Tailwind. Une primitive ne sert qu’à définir un token sémantique.
 
@@ -320,3 +404,92 @@ Variables CSS `--palette-<nom>`, sans utilitaire Tailwind. Une primitive ne sert
 | `accent-blue-sky-700` | `#3D81C4` | — |
 | `accent-blue-sky-800` | `#336EA5` | — |
 | `accent-blue-sky-900` | `#285786` | — |
+
+### World (monde 3D)
+
+| Primitive | Valeur | Mode sombre |
+| --- | --- | --- |
+| `world-sky` | `#EEF2F8` | — |
+| `world-sky-top` | `#D4E0F2` | — |
+| `world-sun` | `#FFF7EC` | — |
+| `world-hemi-ground` | `#D6DCE8` | — |
+| `world-ground` | `#F3F4F7` | — |
+| `world-sand` | `#EDE6D8` | — |
+| `world-gravel` | `#F3EEE4` | — |
+| `world-lawn` | `#CFE2C6` | — |
+| `world-water` | `#AFC9EC` | — |
+| `world-water-deep` | `#8FB0D8` | — |
+| `world-stone` | `#FFFFFF` | — |
+| `world-stone-cool` | `#F2F3F6` | — |
+| `world-stone-warm` | `#F4F2EE` | — |
+| `world-metal` | `#34405C` | — |
+| `world-gold` | `#D9B44A` | — |
+| `world-chair` | `#5E8C6A` | — |
+| `world-trunk` | `#D8D3CB` | — |
+| `world-post` | `#AEB6C6` | — |
+| `world-crown-green-1` | `#BFD8B8` | — |
+| `world-crown-green-2` | `#A9C9A4` | — |
+| `world-crown-green-3` | `#D3E5CC` | — |
+| `world-crown-green-4` | `#9CBF97` | — |
+| `world-crown-autumn-1` | `#EBCB7E` | — |
+| `world-crown-autumn-2` | `#E7AE73` | — |
+| `world-crown-autumn-3` | `#DE9468` | — |
+| `world-crown-autumn-4` | `#F2DDA0` | — |
+| `world-crown-autumn-5` | `#CBD696` | — |
+| `world-crown-autumn-6` | `#E9B95C` | — |
+| `world-leaf-1` | `#E9B949` | — |
+| `world-leaf-2` | `#E39A4F` | — |
+| `world-leaf-3` | `#D3743F` | — |
+| `world-leaf-4` | `#F0D27A` | — |
+| `world-leaf-5` | `#C98B3A` | — |
+| `world-leaf-6` | `#BFC56A` | — |
+| `world-clipped-1` | `#BCD3A0` | — |
+| `world-clipped-2` | `#E2D394` | — |
+| `world-orange-crown` | `#7FA875` | — |
+| `world-fruit` | `#F28C28` | — |
+| `world-flower-1` | `#E8697F` | — |
+| `world-flower-2` | `#F2A65E` | — |
+| `world-flower-3` | `#F7CF5A` | — |
+| `world-flower-4` | `#B97AB0` | — |
+| `world-flower-5` | `#D9364A` | — |
+| `world-flower-6` | `#F4B3C8` | — |
+| `world-coat-1` | `#2B3A67` | — |
+| `world-coat-2` | `#C9584F` | — |
+| `world-coat-3` | `#C9B79C` | — |
+| `world-coat-4` | `#5A6274` | — |
+| `world-coat-5` | `#FFFFFF` | — |
+| `world-coat-6` | `#8A5A44` | — |
+| `world-coat-7` | `#4F6F52` | — |
+| `world-coat-8` | `#D8C9B4` | — |
+| `world-coat-9` | `#1F2430` | — |
+| `world-coat-10` | `#6A7FBF` | — |
+| `world-skin-1` | `#F2DFCC` | — |
+| `world-skin-2` | `#E3C2A2` | — |
+| `world-skin-3` | `#C69B78` | — |
+| `world-skin-4` | `#8F6248` | — |
+| `world-skin-5` | `#6B4632` | — |
+| `world-legs` | `#2E3446` | — |
+| `world-roof` | `#C9D0DC` | — |
+| `world-roof-green` | `#5E7F72` | — |
+| `world-window` | `#D6E0F1` | — |
+| `world-lamp-glass` | `#FFE2A0` | — |
+| `world-lamp-glow` | `#FFD98A` | — |
+| `world-car-dark` | `#2B2236` | — |
+| `world-car-glass` | `#BFD0EA` | — |
+| `world-car-light` | `#FFF6DC` | — |
+| `world-car-tail` | `#FF4B5C` | — |
+| `world-horse` | `#F3F1EC` | — |
+| `world-horse-dark` | `#7C7F8C` | — |
+| `world-horse-mane` | `#C9C4BB` | — |
+| `world-pigeon` | `#9097A6` | — |
+| `world-pigeon-head` | `#6B7385` | — |
+| `world-dog-1` | `#7A5230` | — |
+| `world-dog-2` | `#E8DCC8` | — |
+| `world-dog-3` | `#2A2A2A` | — |
+| `world-dog-4` | `#C8964E` | — |
+| `world-seed` | `#B8C1D3` | — |
+| `world-stem` | `#9DBF8C` | — |
+| `world-puff-core` | `#E9E2D2` | — |
+| `world-petal-core` | `#E9A93A` | — |
+| `world-boat-hull` | `#2B3A67` | — |
+| `world-mast` | `#8A6A4A` | — |
