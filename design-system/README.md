@@ -1,6 +1,6 @@
 # Design system — foundations et règles de factorisation
 
-Ce dossier est la **source unique** de l'apparence de l'application. Un agent qui écrit de l'interface lit ce fichier avant de coder, puis [`BRAND.md`](BRAND.md) (marque) et [`components.md`](components.md) (registre des composants).
+Ce dossier est la **source unique** de l'apparence de l'application. Un agent qui écrit de l'interface lit ce fichier avant de coder, puis [`BRAND.md`](BRAND.md) (marque), [`MOTION.md`](MOTION.md) (mouvement) et [`components.md`](components.md) (registre des composants).
 
 > Règle d'or : **aucune valeur visuelle ne s'écrit dans un composant**. Couleur, espacement, rayon, taille de texte, ombre, animation : tout vient d'un token. Un besoin non couvert = un nouveau token ici, jamais une valeur en dur là-bas.
 
@@ -51,15 +51,15 @@ Principes de marque qui s'appliquent partout : sobre et institutionnel, **WCAG A
 
 ## 3. Échelles
 
-| Échelle         | Valeurs                                                                                        | Utilitaires                   |
-| --------------- | ---------------------------------------------------------------------------------------------- | ----------------------------- |
-| Espacement      | 0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64 px (`spacing-0` … `spacing-16`)                        | `p-4`, `gap-2`, `mt-8`…       |
-| Rayon           | `sm` 4 · `md` 8 · `lg` 12 · `xl` 16 · `2xl` 16 · `sheet` 18 · `full`                           | `rounded-lg`…                 |
-| Taille de texte | `xs` 12 · `sm` 14 · `md` 16 · `lg` 18 · `xl` 20 · `2xl` 24 · `3xl` 30 · `4xl` 36 · `5xl` 48 px | `text-sm`…                    |
-| Graisse         | `regular` 400 · `medium` 500 · `semibold` 600 · `bold` 700                                     | `font-medium`…                |
-| Interligne      | `tight` 1.25 · `normal` 1.5 · `relaxed` 1.625                                                  | `leading-normal`…             |
-| Élévation       | `sm` · `md` · `lg` · `xl` · `sheet`                                                            | `shadow-md`…                  |
-| Mouvement       | `fade-up` ([`motion.css`](motion.css))                                                         | `motion-safe:animate-fade-up` |
+| Échelle         | Valeurs                                                                                                                            | Utilitaires                                                          |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Espacement      | 0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64 px (`spacing-0` … `spacing-16`)                                                            | `p-4`, `gap-2`, `mt-8`…                                              |
+| Rayon           | `sm` 4 · `md` 8 · `lg` 12 · `xl` 16 · `2xl` 16 · `sheet` 18 · `full`                                                               | `rounded-lg`…                                                        |
+| Taille de texte | `xs` 12 · `sm` 14 · `md` 16 · `lg` 18 · `xl` 20 · `2xl` 24 · `3xl` 30 · `4xl` 36 · `5xl` 48 px                                     | `text-sm`…                                                           |
+| Graisse         | `regular` 400 · `medium` 500 · `semibold` 600 · `bold` 700                                                                         | `font-medium`…                                                       |
+| Interligne      | `tight` 1.25 · `normal` 1.5 · `relaxed` 1.625                                                                                      | `leading-normal`…                                                    |
+| Élévation       | `sm` · `md` · `lg` · `xl` · `sheet`                                                                                                | `shadow-md`…                                                         |
+| Mouvement       | `fade-up`, `dandelion-bloom`, `dandelion-breathe`, `dandelion-follow` ([`motion.css`](motion.css), guide [`MOTION.md`](MOTION.md)) | `motion-safe:animate-fade-up`, variantes `motion` de `DandelionMark` |
 
 Police : **Inter** (variable, auto-hébergée par `next/font`), exposée par le token `font-sans`. Aucune autre police dans l'interface.
 
@@ -92,6 +92,10 @@ Règles :
 9. **Logique de rendu pure à part** : calculs (géométrie, échelles de dataviz, sélecteurs de présentation) dans `lib/` ou `features/<domaine>/lib/`, testés (voir `lib/brand/dandelion-geometry.ts`).
 
 Procédure détaillée : skill `creer-un-composant-ds` (`.claude/skills/` et `.cursor/skills/`).
+
+## 5 bis. Mise en page de l'interface (Stage)
+
+Toute page de l'interface se compose avec `Stage` (canvas plein écran + colonnes 3 · 6 · 3 de widgets flottants) sous le header rémanent `SiteHeader`. Header et widgets partagent une seule matière, `floatingSurface` (`components/shared/floating-surface.ts`) : ne jamais recréer un fond translucide flouté à la main. Architecture, anatomie et contrat des scènes WebGL : [`docs/webui.md`](../docs/webui.md).
 
 ## 6. Langue de l'interface
 

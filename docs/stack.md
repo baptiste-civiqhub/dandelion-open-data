@@ -79,6 +79,12 @@ Tout autre paquet (ex. dataviz) est autorisé s'il est indispensable, mais :
 2. sinon, des modules ciblés et sans framework (ex. `d3-scale`, `d3-shape`, `d3-array`) plutôt qu'une librairie de charts complète ;
 3. installer avec `--save-exact` et **le signaler dans la PR** (section « Nouvelle dépendance ») : il faudra l'ajouter à la référence au portage.
 
+Adoptées (à ajouter à la référence au portage) :
+
+| Besoin                          | Paquet                     | Version | Règle d'usage                                                                                             |
+| ------------------------------- | -------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| Rendu 3D (monde, dataviz WebGL) | three · @types/three (dev) | 0.187.0 | importé dynamiquement, uniquement dans `features/*/scene/` (contrat `StageSceneFactory`, `docs/webui.md`) |
+
 ## shadcn/ui
 
 `components.json` : style `new-york`, base `neutral`, CSS variables, icônes Lucide, alias `@/components/ui`. Pour ajouter une primitive (`pnpm dlx shadcn@latest add <composant>`), vérifier ensuite dans `package.json` que la dépendance Radix ajoutée correspond à la version du tableau ci-dessus (la CLI peut tirer une version plus récente, ou le paquet agrégé `radix-ui`) ; sinon corriger avec `pnpm add --save-exact @radix-ui/react-<x>@<version>` et adapter l'import.
