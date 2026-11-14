@@ -11,5 +11,112 @@
     "title": "Page introuvable",
     "description": "Cette page n'existe pas ou a été déplacée.",
     "backHome": "Retour à l'accueil"
+  },
+  "pfasExperiment": {
+    "meta": {
+      "title": "Amendements PFAS — expérimentation",
+      "description": "Explorer, comparer et citer les amendements de la proposition de loi PFAS à partir d'un instantané public daté du Sénat."
+    },
+    "header": {
+      "back": "Retour à l'accueil",
+      "eyebrow": "PFAS · Sénat, 2024",
+      "title": "Proposition de loi PFAS : explorer et comparer les amendements",
+      "intro": "Retrouvez les amendements d'un article, comparez leurs dispositifs réels, vérifiez le sort enregistré et ouvrez la source officielle. Les extraits officiels sont affichés en français, tels que publiés."
+    },
+    "loading": "Chargement de l'instantané",
+    "error": "L'instantané local n'a pas pu être chargé.",
+    "retry": "Réessayer",
+    "snapshot": {
+      "badge": "Instantané public daté du Sénat",
+      "title": "Export du Sénat récupéré le {date}",
+      "warning": "Copie figée de données publiques du Sénat sur le texte n° 620 (2023-2024). Ce n'est ni le droit en vigueur, ni le texte promulgué, ni un import Hemicycle en direct.",
+      "retrievedAt": "Récupéré (UTC) :",
+      "rows": "Lignes de l'export :",
+      "sha256": "SHA-256 :",
+      "import": "Import :",
+      "referenceText": "Texte de la proposition (Sénat)",
+      "referencePage": "Page des amendements (Sénat)",
+      "dataset": "Jeu de données source (CSV)",
+      "licence": "Licence",
+      "details": "Provenance des sources"
+    },
+    "explorer": {
+      "title": "Structure du texte",
+      "treeLabel": "Amendements regroupés par emplacement dans le texte",
+      "summary": "{groups, plural, one {# emplacement} other {# emplacements}} · {count, plural, one {# amendement} other {# amendements}}",
+      "selectionCount": "{count} sur 2 sélectionnés pour la comparaison",
+      "clearSelection": "Vider la sélection",
+      "help": "La case à cocher sélectionne un amendement pour la comparaison, le bouton de l'amendement affiche son détail. Un sous-amendement n'apparaît sous son parent que si le lien est sourcé.",
+      "groupCount": "{count, plural, one {# amendement} other {# amendements}}",
+      "additionalAfter": "Article nouveau après {article}",
+      "additionalBefore": "Article nouveau avant {article}",
+      "amendmentNumber": "N° {number}",
+      "compare": "Sélectionner l'amendement {number} pour la comparaison",
+      "subAmendmentOf": "Sous-amendement du n° {number}",
+      "missingParent": "Parent absent de l'instantané",
+      "paragraph": "Alinéa {value}"
+    },
+    "amendment": {
+      "number": "Amendement n° {number}",
+      "nature": "Nature",
+      "subdivision": "Emplacement",
+      "paragraph": "Alinéa",
+      "author": "Auteur",
+      "filedOn": "Déposé le",
+      "outcome": "Sort officiel (tel qu'enregistré)",
+      "outcomeRecordedAt": "Sort enregistré le",
+      "noOutcome": "Aucun sort enregistré",
+      "source": "Source officielle",
+      "openSource": "Page officielle du n° {number}",
+      "noSource": "Aucun lien Sénat valide dans l'export",
+      "proposalText": "Dispositif (officiel, en français)",
+      "explanatoryText": "Objet (officiel, en français)",
+      "empty": "Vide dans l'export",
+      "notRecorded": "Non renseigné",
+      "placeholder": "Choisissez un amendement dans la structure pour voir son sort, sa source et son texte.",
+      "parentTitle": "Sous-amendement de l'amendement n° {number}",
+      "parentEvidence": "Preuve",
+      "parentMethod": "Méthode",
+      "parentCheck": "Vérification sur la page officielle",
+      "viewParent": "Voir l'amendement n° {number}"
+    },
+    "comparison": {
+      "title": "Comparaison lexicale",
+      "empty": "Sélectionnez deux amendements pour comparer leurs dispositifs côte à côte.",
+      "one": "Sélectionnez un amendement de plus pour comparer.",
+      "disclaimer": "Différences mot à mot entre les deux dispositifs. Une différence lexicale n'est pas une affirmation sur l'effet juridique, la portée ou l'équivalence.",
+      "legend": "Légende",
+      "legendShared": "Texte simple : mots présents dans les deux dispositifs, dans le même ordre.",
+      "legendSample": "Surligné et souligné",
+      "legendUnique": "mots présents uniquement dans ce dispositif (annoncés aux lecteurs d'écran).",
+      "ignoreTypography": "Ignorer les variantes typographiques (apostrophes courbes, points de suspension)",
+      "uniqueCount": "{count, plural, =0 {Aucun mot propre à ce dispositif} one {# élément propre à ce dispositif} other {# éléments propres à ce dispositif}}",
+      "tooLong": "Textes trop longs pour une comparaison dans le navigateur ; les textes complets sont affichés sans surlignage.",
+      "explanatoryTitle": "Objets des amendements",
+      "explanatoryHint": "Affichés séparément : ils exposent l'intention des auteurs et ne sont pas comparés.",
+      "uniqueStart": "[uniquement dans ce dispositif :]",
+      "uniqueEnd": "[fin]"
+    },
+    "export": {
+      "button": "Exporter une note Markdown",
+      "local": "Générée dans votre navigateur. Rien n'est envoyé.",
+      "preview": "Note exportée"
+    },
+    "note": {
+      "title": "Amendements PFAS {numbers} : comparaison sourcée",
+      "snapshotWarning": "Instantané public daté du Sénat, ni droit en vigueur ni import en direct. Note générée",
+      "corpus": "Corpus",
+      "dataset": "Jeu de données",
+      "id": "Identifiant",
+      "onlyIn": "Uniquement dans le n° {number} :",
+      "noUniqueWords": "aucun mot propre",
+      "typographyIgnored": "Variantes typographiques ignorées",
+      "typographyKept": "Variantes typographiques comptées comme différences",
+      "limitations": "Limites",
+      "limitation1": "Cette comparaison est uniquement lexicale. Elle ne simule aucun effet juridique ou environnemental et n'évalue ni l'équivalence juridique ni la portée.",
+      "limitation2": "Les sorts sont recopiés tels qu'enregistrés dans l'export du Sénat ; aucun vote n'est déduit quand aucun sort n'est enregistré.",
+      "limitation3": "Le corpus est un instantané daté d'une étape au Sénat (2023-2024). Consultez les pages officielles pour les étapes ultérieures.",
+      "limitation4": "Les textes officiels sont cités en français, sans traduction."
+    }
   }
 }

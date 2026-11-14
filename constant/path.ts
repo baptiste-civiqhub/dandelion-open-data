@@ -1,10 +1,12 @@
 // Source unique des chemins internes : jamais de chaîne de route en dur dans un composant.
 export const PUBLIC_PATHS = {
-  HOME: '/'
+  HOME: '/',
+  PFAS_EXPERIMENT: '/experiments/pfas'
 } as const
 
 export const API_PATHS = {
-  HEALTH: '/api/health'
+  HEALTH: '/api/health',
+  PFAS_AMENDMENTS: '/api/pfas'
 } as const
 
 export const ASSET_PATHS = {

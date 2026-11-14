@@ -1,0 +1,21 @@
+{
+  "note": "Relations parent/enfant non portées par une colonne de l'export CSV. Chaque relation est saisie à la main, cite sa preuve et est revérifiée par scripts/import-pfas.py. Aucune relation n'est déduite par proximité.",
+  "relations": [
+    {
+      "childNumber": "32",
+      "parentNumber": "14",
+      "relation": "sub-amendment",
+      "sourceUrl": "https://www.senat.fr/amendements/2023-2024/620/Amdt_32.html",
+      "evidence": "Colonne Nature = « S/Amt » et premier paragraphe du Dispositif = « Amendement n° 14, alinéa 3 ».",
+      "method": "Lecture manuelle du Dispositif de la ligne 32 de l'export ; l'import vérifie que la ligne est un S/Amt et que son Dispositif commence par « Amendement n° 14 ».",
+      "officialPageCheck": "Vérifié sur la page officielle du Sénat le 14 novembre 2026 : le titre indique « SOUS-AMENDEMENT à l’amendement n° 14 de Mme SOUYRIS » ; le marqueur HTML numero_amdt_pere vaut 14.",
+      "pageVerification": {
+        "retrievedAtUtc": "2026-11-14T00:09:16.014822+00:00",
+        "file": "data/pfas/evidence/amendment-32.html",
+        "sha256": "89f57e9e9fe8e30845d99be46476029924ca4fea12a6d9d9db944e6bba5e6f8d",
+        "bytes": 3965,
+        "parentMarker": "numero_amdt_pere=14"
+      }
+    }
+  ]
+}
