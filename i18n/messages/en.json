@@ -33,7 +33,12 @@
   },
   "world": {
     "canvasLabel": "Explorable map of the areas",
-    "enterHint": "Press Enter to open"
+    "enterHint": "Press Enter to open",
+    "controls": {
+      "drive": "<kbd>Arrows</kbd> or <kbd>WASD</kbd> to drive",
+      "vehicle": "<kbd>V</kbd> car or horse",
+      "open": "<kbd>Enter</kbd> open the area"
+    }
   },
   "about": {
     "metaTitle": "About",

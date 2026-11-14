@@ -33,7 +33,12 @@
   },
   "world": {
     "canvasLabel": "Carte explorable des zones",
-    "enterHint": "Entrée pour ouvrir"
+    "enterHint": "Entrée pour ouvrir",
+    "controls": {
+      "drive": "<kbd>Flèches</kbd> ou <kbd>ZQSD</kbd> pour conduire",
+      "vehicle": "<kbd>V</kbd> voiture ou cheval",
+      "open": "<kbd>Entrée</kbd> ouvrir la zone"
+    }
   },
   "about": {
     "metaTitle": "À propos",

@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils'
 
 import { worldZonesFromAreas, type WorldZone } from '../lib/world-zones'
 import { WorldCanvas } from './world-canvas'
+import { WorldControlsHint } from './world-controls-hint'
 
 const NO_ZONES: readonly WorldZone[] = []
 
@@ -48,6 +49,7 @@ export function WorldScreen() {
         baseline={t('baseline')}
         className={cn('motion-safe:animate-fade-up pointer-events-none', ready && 'sr-only')}
       />
+      {ready && !focused ? <WorldControlsHint /> : null}
       <div aria-live='polite' className='flex justify-center'>
         {focused ? (
           <Widget className='flex-row items-center gap-3 rounded-full px-5 py-3'>

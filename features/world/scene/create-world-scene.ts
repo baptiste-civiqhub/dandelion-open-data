@@ -370,6 +370,9 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
         })
         for (const t of textures) t.dispose()
         for (const m of materials) m.dispose()
+        // Le contexte WebGL survit à la scène (même canvas quand `zones` change) : sans remise à zéro, UNPACK_FLIP_Y
+        // laissé par les textures canvas fait avertir le renderer suivant à son initialisation (texImage3D).
+        renderer.resetState()
         renderer.dispose()
       }
     }
