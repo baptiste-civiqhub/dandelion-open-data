@@ -11,13 +11,15 @@
 
 ## Variables d'environnement
 
-| Variable                               | Portée                                               | Environnements Vercel                       | Source                                                                          |
-| -------------------------------------- | ---------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SUPABASE_URL`             | navigateur + serveur                                 | Production, Preview, Development            | intégration Supabase, ou à la main                                              |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | navigateur + serveur (publique, protégée par la RLS) | Production, Preview, Development            | intégration Supabase, ou Dashboard → Project Settings → API Keys                |
-| `SUPABASE_SECRET_KEY`                  | **serveur uniquement** (contourne la RLS)            | Production, Preview (Development si besoin) | intégration Supabase, ou Dashboard → API Keys (_secret_)                        |
-| `ENABLE_EXPERIMENTAL_COREPACK` = `1`   | build                                                | Production, Preview                         | à la main : fait utiliser à Vercel exactement `pnpm@10.32.1` (`packageManager`) |
-| `NEXT_PUBLIC_ENVIRONMENT`              | —                                                    | non nécessaire sur Vercel                   | déduite de `NEXT_PUBLIC_VERCEL_ENV`                                             |
+| Variable                               | Portée                                               | Environnements Vercel                       | Source                                                                              |
+| -------------------------------------- | ---------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`             | navigateur + serveur                                 | Production, Preview, Development            | intégration Supabase, ou à la main                                                  |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | navigateur + serveur (publique, protégée par la RLS) | Production, Preview, Development            | intégration Supabase, ou Dashboard → Project Settings → API Keys                    |
+| `SUPABASE_SECRET_KEY`                  | **serveur uniquement** (contourne la RLS)            | Production, Preview (Development si besoin) | intégration Supabase, ou Dashboard → API Keys (_secret_)                            |
+| `FEATHERLESS_API_KEY_1`                | **serveur uniquement** (analyse IA des amendements)  | Production, Preview (Development si besoin) | à la main : clé Featherless ; absente → `/api/amendements/analysis` en mode dégradé |
+| `FEATHERLESS_CHAT_MODEL`               | serveur                                              | facultative                                 | à la main ; vide → `zai-org/GLM-5.2`                                                |
+| `ENABLE_EXPERIMENTAL_COREPACK` = `1`   | build                                                | Production, Preview                         | à la main : fait utiliser à Vercel exactement `pnpm@10.32.1` (`packageManager`)     |
+| `NEXT_PUBLIC_ENVIRONMENT`              | —                                                    | non nécessaire sur Vercel                   | déduite de `NEXT_PUBLIC_VERCEL_ENV`                                                 |
 
 L'intégration Supabase ↔ Vercel synchronise aussi `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_JWT_SECRET` et `POSTGRES_*` : inutilisées par l'app pour l'instant, sans danger (aucune n'est en `NEXT_PUBLIC_`).
 

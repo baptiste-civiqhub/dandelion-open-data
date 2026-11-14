@@ -21,6 +21,8 @@ import { createHoverStore, createViewStore, SunburstStoresContext, useViewUrlSyn
 import { chartCssVariable, chartTokenForSort } from '../lib/sort-colors'
 import { buildSunburstTree, type SunburstLabels } from '../lib/sunburst-tree'
 import { DEFAULT_VIEW, parseView, VIEW_PARAMS } from '../lib/view-url'
+import { AnalysisWidget } from './analysis-widget'
+import { ComparisonWidget } from './comparison-widget'
 import { FicheWidget } from './fiche-widget'
 import { RepartitionWidget } from './repartition-widget'
 import { SortLegendWidget } from './sort-legend-widget'
@@ -143,6 +145,8 @@ export function DatavizScreen({ areaId }: { areaId: string }) {
             <>
               <FicheWidget sortsByCode={sortsByCode} />
               <RepartitionWidget sorts={sorts ?? []} />
+              <AnalysisWidget />
+              <ComparisonWidget amendements={amendements ?? []} />
             </>
           ) : undefined
         }

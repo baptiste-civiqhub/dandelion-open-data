@@ -163,6 +163,68 @@
       "alineas": "{count, plural, one {# alinéa} other {# alinéas}}",
       "subAmendments": "{count, plural, one {# sous-amendement} other {# sous-amendements}}",
       "hint": "Survolez un secteur pour un aperçu, cliquez pour l'épingler."
+    },
+    "analysis": {
+      "title": "Lecture par IA",
+      "hint": "Sélectionnez un amendement dans le pissenlit pour obtenir une lecture de son texte par IA.",
+      "description": "Amendement {numero} : une lecture en clair de son texte, à la demande.",
+      "run": "Analyser avec l’IA",
+      "pending": "Lecture des textes… cela peut prendre jusqu’à 30 secondes.",
+      "error": "L’analyse n’a pas pu être demandée.",
+      "retry": "Réessayer",
+      "inferenceBadge": "Inférence IA",
+      "inferenceNotice": "Produit par {model} à partir des textes des amendements à {time}. Peut être inexact ; ce n’est pas une source officielle.",
+      "degradedBadge": "IA indisponible",
+      "degraded": {
+        "unconfigured": "Aucun fournisseur d’IA n’est configuré sur ce serveur : seules les données officielles sont affichées.",
+        "timeout": "Le fournisseur d’IA a mis trop de temps à répondre.",
+        "providerError": "Le fournisseur d’IA n’a pas pu répondre.",
+        "invalidResponse": "La réponse de l’IA était inutilisable et a été écartée.",
+        "abstained": "L’IA a refusé d’analyser ces textes."
+      },
+      "intent": {
+        "delete": "Supprime une disposition",
+        "rewrite": "Réécrit une disposition",
+        "insert": "Ajoute une disposition",
+        "clarify": "Précise une disposition",
+        "report": "Demande un rapport",
+        "other": "Autre modification"
+      },
+      "keyPoints": "Points clés",
+      "themes": "Thèmes"
+    },
+    "comparison": {
+      "title": "Comparer",
+      "description": "L’amendement {numero} face à un amendement lié ou choisi, à la demande.",
+      "related": "Liés dans les données officielles",
+      "noRelated": "Aucun amendement n’est lié à celui-ci dans les données officielles.",
+      "relation": {
+        "parent": "Parent",
+        "identical": "Identique",
+        "subAmendement": "Sous-amendement",
+        "jointDiscussion": "Discussion commune"
+      },
+      "amendment": "N° {numero}",
+      "compare": "Comparer",
+      "compareWith": "Comparer avec l’amendement {numero}",
+      "numberLabel": "Un autre amendement de ce texte",
+      "numberPlaceholder": "Numéro d’amendement",
+      "notFound": "Aucun autre amendement numéroté « {numero} » dans ce texte.",
+      "pair": "Amendement {first} face au {second}",
+      "verdict": {
+        "identical": "Même modification",
+        "convergent": "Même objectif",
+        "complementary": "Complémentaires",
+        "divergent": "Divergents",
+        "unrelated": "Sans rapport"
+      },
+      "similarities": "En commun",
+      "differences": "Différences",
+      "computed": "Calculé à partir des textes, sans IA",
+      "overlapDispositif": "Les dispositifs partagent {percent} de leurs mots distincts.",
+      "overlapExpose": "Les exposés sommaires partagent {percent} de leurs mots distincts.",
+      "identicalDispositif": "Les dispositifs sont identiques mot pour mot.",
+      "identicalExpose": "Les exposés sommaires sont identiques mot pour mot."
     }
   }
 }
