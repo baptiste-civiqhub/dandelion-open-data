@@ -146,7 +146,7 @@ Règles :
 - **accessibilité** : `label` traduit sur le canvas, et l'information essentielle disponible dans les widgets (le canvas n'est pas lisible par un lecteur d'écran) ;
 - **pas de DOM créé par la scène** : un HUD ou une infobulle est un composant React posé dans le `Stage`.
 
-État actuel : `createWorldScene` et `createDatavizScene` sont des **socles** (contexte WebGL2 + viewport, rien n'est dessiné). Le monde de la landing est détaillé dans [`features/world/README.md`](../features/world/README.md).
+État actuel : `createWorldScene` dessine le monde 3D de la landing (jardin du Luxembourg, three.js chargé à la demande) ; `createDatavizScene` reste un **socle** (contexte WebGL2 + viewport, rien n'est dessiné). Le monde de la landing est détaillé dans [`features/world/README.md`](../features/world/README.md).
 
 ## 6. Pages de dataviz : où brancher les données
 

@@ -79,6 +79,7 @@ export function DatavizScreen({ areaId }: { areaId: string }) {
         articles={articles}
         amendments={amendements}
         sorts={sorts}
+        observedAt={new Date(amendementsQuery.dataUpdatedAt).toISOString()}
         onTexte={setSelectedTexte}
       />
     )

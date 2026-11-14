@@ -17,7 +17,7 @@ export const getAmendementsByTexte = async (texteId: string): Promise<Amendement
       await supabase
         .from('amendements')
         .select(
-          'id, numero_long, article_id, alinea_id, amendement_parent_id, division_avant_apres, rang, sort, document_uri'
+          'id, numero_long, article_id, alinea_id, amendement_parent_id, division_avant_apres, rang, sort, document_uri, date_depot, type_auteur'
         )
         .eq('texte_id', texteId)
         .order('rang')
@@ -33,6 +33,8 @@ export const getAmendementsByTexte = async (texteId: string): Promise<Amendement
         parentId: row.amendement_parent_id,
         divisionAvantApres: row.division_avant_apres,
         rang: row.rang,
+        dateDepot: row.date_depot,
+        typeAuteur: row.type_auteur,
         sourceUrl: safeDocumentUrl(row.document_uri),
         sort: row.sort
       })

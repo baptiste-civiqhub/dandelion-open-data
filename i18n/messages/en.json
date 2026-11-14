@@ -17,7 +17,7 @@
     "catalog": {
       "title": "Explore the datasets",
       "description": "Two distinct corpora, each in the radial flower.",
-      "worldPlaceholder": "The 3D world in the background is a placeholder: it holds no data yet."
+      "worldPlaceholder": "The 3D scene is loading or unavailable on this device. The datasets remain accessible above."
     }
   },
   "notFound": {
@@ -349,13 +349,25 @@
   },
   "world": {
     "canvasLabel": "Explorable map of the areas",
-    "enterHint": "Press Enter to open"
+    "enterHint": "Press Enter to open",
+    "controls": {
+      "drive": "<kbd>Arrows</kbd> or <kbd>WASD</kbd> to drive",
+      "vehicle": "<kbd>V</kbd> car or horse",
+      "open": "<kbd>Enter</kbd> open the area"
+    }
   },
   "about": {
     "metaTitle": "About",
     "title": "About Dandelion",
     "intro": "Dandelion turns public open data into a space you can explore.",
-    "howItWorks": "Travel across the map, enter an area, and the data behind it unfolds as an interactive visualisation. Every area is also listed under Area."
+    "howItWorks": "Travel across the map, enter an area, and the data behind it unfolds as an interactive visualisation. Every area is also listed under Area.",
+    "governance": {
+      "title": "Governance and security",
+      "link": "Suzan AI official website",
+      "description": "With support from Suzan AI, we are preparing Dandelion’s governance, compliance and security review: GDPR, AI Act and ISO/IEC 27001:2022.",
+      "status": "Review preparation; no certification obtained to date.",
+      "scope": "Sources, licences, processed data and prototype limitations are part of the proposed review scope."
+    }
   },
   "atlas": {
     "title": "Atlas",
@@ -649,5 +661,26 @@
     "label": "Language",
     "en": "EN",
     "fr": "FR"
+  },
+  "observedChanges": {
+    "title": "Observed deposits by article",
+    "description": "Identify provisions targeted by submitted proposals.",
+    "cutoffUnknown": "Examination date and stage boundaries are unverified: counts cover loaded records, not a verified pre-examination window.",
+    "asOf": "Corpus read on {date}.",
+    "unassigned": "{count} amendment(s) without a displayed article link.",
+    "summary": "{article} · {count} dated deposit(s)",
+    "government": "Including {count} declared Government deposit(s).",
+    "coverage": "{loaded} loaded · {unknown} missing or invalid date(s) · {excluded} outside time scope.",
+    "missingAuthor": "{count} unspecified author type(s).",
+    "missingSources": "{count} missing source link(s).",
+    "zero": "No dated deposit counted here. This does not predict what follows.",
+    "record": "No. {numero} · deposited {date}",
+    "governmentLabel": "Government",
+    "limit": "A deposit is a proposal, not an enacted change. No change score or probability.",
+    "placement": {
+      "AVANT": "Before {article}",
+      "APRES": "After {article}",
+      "AUTRE": "Unspecified placement · {article}"
+    }
   }
 }

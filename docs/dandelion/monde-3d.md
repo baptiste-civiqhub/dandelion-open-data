@@ -14,16 +14,16 @@ Le monde est la porte d'entrée sensible ; l'atlas et le catalogue sont la porte
 
 ## 2. Ce qui existe déjà sur `develop`
 
-| Élément                                            | Où                                           | État                                            |
-| -------------------------------------------------- | -------------------------------------------- | ----------------------------------------------- |
-| Header flottant, menus « Atlas » et « Area »       | `features/shell/components/`                 | fait                                            |
-| Fenêtre Atlas : carte 2D des zones                 | `features/atlas/`                            | fait, positions par `layoutAtlas`               |
-| Fenêtre et page Area : recherche, filtres par tags | `features/areas/`, route `/area`             | fait                                            |
-| Page de zone `/area/{slug}`                        | `features/dataviz/`, route `/area/[areaId]`  | fait, graphique provisoire en points            |
-| Données des zones                                  | `apis/areas` (`useGetAreas`)                 | fait, lit `datasets`, `textes`, `tag_links`     |
-| Landing `/`                                        | `features/world/components/world-screen.tsx` | **titre de marque centré, monde vide**          |
-| Scène du monde                                     | `features/world/scene/create-world-scene.ts` | **socle : contexte WebGL2, rien n'est dessiné** |
-| Positions 3D des zones                             | `features/world/lib/world-zones.ts`          | fait et testé                                   |
+| Élément                                            | Où                                           | État                                                                            |
+| -------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------- |
+| Header flottant, menus « Atlas » et « Area »       | `features/shell/components/`                 | fait                                                                            |
+| Fenêtre Atlas : carte 2D des zones                 | `features/atlas/`                            | fait, positions par `layoutAtlas`                                               |
+| Fenêtre et page Area : recherche, filtres par tags | `features/areas/`, route `/area`             | fait                                                                            |
+| Page de zone `/area/{slug}`                        | `features/dataviz/`, route `/area/[areaId]`  | fait, graphique provisoire en points                                            |
+| Données des zones                                  | `apis/areas` (`useGetAreas`)                 | fait, lit `datasets`, `textes`, `tag_links`                                     |
+| Landing `/`                                        | `features/world/components/world-screen.tsx` | fait : monde 3D, titre en `sr-only` après `onReady`                             |
+| Scène du monde                                     | `features/world/scene/create-world-scene.ts` | fait : jardin du Luxembourg, un pissenlit par zone, plongée vers `/area/{slug}` |
+| Positions 3D des zones                             | `features/world/lib/world-zones.ts`          | fait et testé                                                                   |
 
 Zones disponibles aujourd'hui (table `datasets`, `slug` = identifiant d'URL) :
 

@@ -17,7 +17,7 @@
     "catalog": {
       "title": "Explorer les jeux de données",
       "description": "Deux corpus distincts, chacun dans la fleur radiale.",
-      "worldPlaceholder": "Le monde 3D en arrière-plan est un espace réservé : il ne contient encore aucune donnée."
+      "worldPlaceholder": "La scène 3D est en cours de chargement ou indisponible sur cet appareil. Les corpus restent accessibles ci-dessus."
     }
   },
   "notFound": {
@@ -349,13 +349,25 @@
   },
   "world": {
     "canvasLabel": "Carte explorable des zones",
-    "enterHint": "Entrée pour ouvrir"
+    "enterHint": "Entrée pour ouvrir",
+    "controls": {
+      "drive": "<kbd>Flèches</kbd> ou <kbd>ZQSD</kbd> pour conduire",
+      "vehicle": "<kbd>V</kbd> voiture ou cheval",
+      "open": "<kbd>Entrée</kbd> ouvrir la zone"
+    }
   },
   "about": {
     "metaTitle": "À propos",
     "title": "À propos de Dandelion",
     "intro": "Dandelion transforme la donnée publique ouverte en un espace à explorer.",
-    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Toutes les zones sont aussi listées dans Area."
+    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Toutes les zones sont aussi listées dans Area.",
+    "governance": {
+      "title": "Gouvernance et sécurité",
+      "link": "Site officiel de Suzan AI",
+      "description": "Avec le soutien de Suzan AI, nous préparons la revue de gouvernance, conformité et sécurité de Dandelion : RGPD, AI Act et ISO/IEC 27001:2022.",
+      "status": "Préparation de revue ; aucune certification obtenue à ce jour.",
+      "scope": "Les sources, licences, données traitées et limites du prototype font partie du périmètre à examiner."
+    }
   },
   "datasets": {
     "metaTitle": "Jeux de données",
@@ -649,5 +661,26 @@
     "label": "Langue",
     "en": "EN",
     "fr": "FR"
+  },
+  "observedChanges": {
+    "title": "Dépôts observés par article",
+    "description": "Repérer les dispositions visées par des propositions déposées.",
+    "cutoffUnknown": "Date d’examen et séparation des étapes non vérifiées : comptage du corpus chargé, sans qualification « avant examen ».",
+    "asOf": "Lecture du corpus : {date}.",
+    "unassigned": "{count} amendement(s) sans rattachement à un article affiché.",
+    "summary": "{article} · {count} dépôt(s) daté(s)",
+    "government": "Dont {count} du Gouvernement (auteur déclaré).",
+    "coverage": "{loaded} chargé(s) · {unknown} date(s) absente(s) ou invalide(s) · {excluded} hors périmètre temporel.",
+    "missingAuthor": "{count} auteur(s) non renseigné(s).",
+    "missingSources": "{count} lien(s) source absent(s).",
+    "zero": "Aucun dépôt daté compté ici. Cela ne prédit pas la suite du texte.",
+    "record": "n° {numero} · dépôt du {date}",
+    "governmentLabel": "Gouvernement",
+    "limit": "Un dépôt est une proposition, pas une modification effective. Aucun score ni probabilité de changement.",
+    "placement": {
+      "AVANT": "Avant {article}",
+      "APRES": "Après {article}",
+      "AUTRE": "Rattachement non précisé · {article}"
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { defineRouting } from 'next-intl/routing'
 
 export const routing = defineRouting({
-  // The interface is in English. `fr` stays as a maintained secondary catalogue (same keys, checked by tests).
+  // French is the default; both catalogues are kept at parity.
   locales: ['en', 'fr'],
   defaultLocale: 'fr',
   // On so the NEXT_LOCALE cookie from the language switch is read. Accept-Language is overwritten

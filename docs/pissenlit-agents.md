@@ -6,15 +6,15 @@ Premier jet seulement : une fleur radiale pour **un** texte de loi réel, de tai
 
 ## Décisions figées
 
-| Sujet | Décision |
-| --- | --- |
-| Données | Un snapshot Hémicycle, enregistré dans le repo. Ensuite la page et les tests tournent sans réseau. |
-| Texte | Les agents choisissent un texte réel d’environ 150 à 400 amendements. Ils notent lequel. Au-delà de 500, ils en prennent un autre. |
-| Jet | Fleur au repos, fisheye qui ouvre un pétale, graine « reste », fiche d’un amendement, tests de la coupe, vérification dans le navigateur. |
-| Temps | Pas de curseur `date_depot` dans ce jet. |
-| Git | Branche `feat/pissenlit-texte` depuis `main`, commit, `git push -u origin HEAD`. Pas de pull request, pas de force-push, pas de push sur `main`. Seul l’orchestrateur commit, une fois le jet vert. |
+| Sujet       | Décision                                                                                                                                                                                                                                                                                                           |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Données     | Un snapshot Hémicycle, enregistré dans le repo. Ensuite la page et les tests tournent sans réseau.                                                                                                                                                                                                                 |
+| Texte       | Les agents choisissent un texte réel d’environ 150 à 400 amendements. Ils notent lequel. Au-delà de 500, ils en prennent un autre.                                                                                                                                                                                 |
+| Jet         | Fleur au repos, fisheye qui ouvre un pétale, graine « reste », fiche d’un amendement, tests de la coupe, vérification dans le navigateur.                                                                                                                                                                          |
+| Temps       | Pas de curseur `date_depot` dans ce jet.                                                                                                                                                                                                                                                                           |
+| Git         | Branche `feat/pissenlit-texte` depuis `main`, commit, `git push -u origin HEAD`. Pas de pull request, pas de force-push, pas de push sur `main`. Seul l’orchestrateur commit, une fois le jet vert.                                                                                                                |
 | Dépendances | Aucune dépendance nouvelle. Courbes SVG écrites en TypeScript. Échappatoire unique, sans redemander : `d3-hierarchy@3.1.3` seulement, si le layout radial est faux après une tentative en TypeScript pur. `pnpm add --save-exact`. sigma, graphology, ForceAtlas2, d3-zoom et tout autre paquet restent interdits. |
-| Remote | `origin` = `https://github.com/baptiste-civiqhub/dandelion-open-data`. |
+| Remote      | `origin` = `https://github.com/baptiste-civiqhub/dandelion-open-data`.                                                                                                                                                                                                                                             |
 
 ## Permissions
 
@@ -87,14 +87,7 @@ export type TexteSnapshot = {
   amendments: Amendment[]
 }
 
-export type NodeKind =
-  | 'texte'
-  | 'article'
-  | 'intention'
-  | 'discussion'
-  | 'doublon'
-  | 'amendement'
-  | 'reste'
+export type NodeKind = 'texte' | 'article' | 'intention' | 'discussion' | 'doublon' | 'amendement' | 'reste'
 
 export type DandelionNode = {
   id: string
@@ -172,12 +165,12 @@ Tige SVG, dans le composant : quadratique du parent vers l’enfant. Pas de libr
 
 ### Fichiers
 
-| Fichier | Propriétaire |
-| --- | --- |
-| `docs/pissenlit-plan.md`, `apis/texte/types.ts` | Planificateur |
-| `features/texte/fixtures/texte-amendements.json`, `apis/texte/request.ts`, `queries.ts`, `index.ts`, clé dans `types/queryKeyEnum.ts`, paragraphe « texte choisi » du plan | Données |
-| `features/texte/lib/**` | Algorithmes |
-| `features/texte/components/**`, `app/[locale]/texte/page.tsx`, `constant/path.ts`, `i18n/messages/fr.json`, `i18n/messages/en.json`, lien sur l’écran d’accueil | Interface |
+| Fichier                                                                                                                                                                    | Propriétaire  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `docs/pissenlit-plan.md`, `apis/texte/types.ts`                                                                                                                            | Planificateur |
+| `features/texte/fixtures/texte-amendements.json`, `apis/texte/request.ts`, `queries.ts`, `index.ts`, clé dans `types/queryKeyEnum.ts`, paragraphe « texte choisi » du plan | Données       |
+| `features/texte/lib/**`                                                                                                                                                    | Algorithmes   |
+| `features/texte/components/**`, `app/[locale]/texte/page.tsx`, `constant/path.ts`, `i18n/messages/fr.json`, `i18n/messages/en.json`, lien sur l’écran d’accueil            | Interface     |
 
 `request.ts` importe la fixture et renvoie un `TexteSnapshot`. Pas d’appel Supabase, pas de `fetch`. `useQuery` avec `QueryKeysEnum.GET_TEXTE_AMENDEMENTS` et un `staleTime` long. La page est fine : `PUBLIC_PATHS.TEXTE = '/texte'`, metadata traduites, écran dans `features/texte/components/`. Namespace i18n `texte`, clés en français et en anglais. Aucune chaîne visible en dur. Couleurs par les tokens sémantiques et `--chart-1` … `--chart-5` lus depuis le DOM pour les cinq intentions. Pas de couleur en dur dans le JSX.
 

@@ -9,7 +9,8 @@ test('home renders its title without console errors', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
   await expect(page.locator('[data-slot="stage"]')).toBeVisible()
-  await expect(page.getByTestId('home-catalog').getByRole('link')).toHaveCount(2)
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fr')
+  await expect(page.locator('canvas[data-slot="stage-canvas"]')).toBeVisible()
   expect(errors.filter((message) => !/WebGL|GPU stall/i.test(message))).toEqual([])
 })
 

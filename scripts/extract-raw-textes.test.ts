@@ -57,9 +57,7 @@ describe('isCorpusSettled', () => {
 
 describe('articleFiltres', () => {
   it('asks one text by equality', () => {
-    expect(articleFiltres('PRJLANR5L17B3434')).toEqual([
-      { colonne: 'texte_uid', op: 'eq', valeur: 'PRJLANR5L17B3434' }
-    ])
+    expect(articleFiltres('PRJLANR5L17B3434')).toEqual([{ colonne: 'texte_uid', op: 'eq', valeur: 'PRJLANR5L17B3434' }])
   })
 })
 

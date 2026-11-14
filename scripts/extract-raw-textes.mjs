@@ -78,7 +78,8 @@ const classify = (error) => {
   if (body.includes('402') || message.includes('402')) return 'credits'
   if (body.includes('429') || message.includes('429')) return 'rate'
   if ((error.status ?? 0) >= 500) return 'server'
-  if (message === 'fetch failed' || /ECONNRESET|ETIMEDOUT|UND_ERR|TimeoutError|aborted|network/i.test(message)) return 'server'
+  if (message === 'fetch failed' || /ECONNRESET|ETIMEDOUT|UND_ERR|TimeoutError|aborted|network/i.test(message))
+    return 'server'
   return 'fatal'
 }
 

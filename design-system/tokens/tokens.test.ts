@@ -26,7 +26,7 @@ describe('design-system token source', () => {
   })
 
   it('keeps the full brand palette (153 references)', () => {
-    expect(Object.keys(source.palette)).toHaveLength(153)
+    expect(Object.keys(source.palette).filter((key) => !key.startsWith('world-'))).toHaveLength(153)
   })
 
   it('only holds valid colour literals in the palette', () => {

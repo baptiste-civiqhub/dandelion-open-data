@@ -11,6 +11,8 @@ import { areaToFlowerDataset } from '../lib/area-flower'
 import { summarizeOutcomes } from '../lib/outcome-summary'
 import { chartCssVariable, chartTokenForSort } from '../lib/sort-colors'
 import { OutcomeLegendWidget } from './outcome-legend-widget'
+import { buildObservedChanges } from '../lib/observed-changes'
+import { ObservedChangesWidget } from './observed-changes-widget'
 import { LiveAmendmentRecords } from './live-amendment-records'
 
 export function LiveAreaFlower({
@@ -19,7 +21,8 @@ export function LiveAreaFlower({
   articles,
   amendments,
   sorts,
-  onTexte
+  onTexte,
+  observedAt
 }: {
   area: AreaDetail
   texte: AreaTexte
@@ -27,6 +30,7 @@ export function LiveAreaFlower({
   amendments: AmendementSummary[]
   sorts: Sort[]
   onTexte: (id: string) => void
+  observedAt: string
 }) {
   const t = useTranslations('liveArea')
   const dataset = useMemo(
@@ -45,6 +49,12 @@ export function LiveAreaFlower({
     [amendments, sorts]
   )
   const outcomes = useMemo(() => summarizeOutcomes(sorts, amendments), [sorts, amendments])
+  const signals = useMemo(
+    () => buildObservedChanges(articles, amendments, { texteUid: texte.uid, asOf: observedAt }),
+    [articles, amendments, texte.uid, observedAt]
+  )
+  const articleIds = new Set(articles.map((a) => a.id))
+  const unassigned = amendments.filter((a) => !a.articleId || !articleIds.has(a.articleId)).length
   return (
     <FlowerExplorer
       dataset={dataset}
@@ -70,7 +80,12 @@ export function LiveAreaFlower({
           <p className='text-muted-foreground text-xs'>{t('stageNote')}</p>
         </>
       }
-      rightExtra={<OutcomeLegendWidget status='ready' outcomes={outcomes} />}
+      rightExtra={
+        <>
+          <ObservedChangesWidget signals={signals} unassigned={unassigned} />
+          <OutcomeLegendWidget status='ready' outcomes={outcomes} />
+        </>
+      }
       renderRecords={(state) => <LiveAmendmentRecords texteId={texte.id} state={state} sortLabels={labels} />}
     />
   )

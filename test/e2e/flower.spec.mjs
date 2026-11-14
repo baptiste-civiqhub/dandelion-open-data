@@ -29,14 +29,21 @@ async function openFlower(page, path) {
 const amendmentNode = (page, numero) =>
   page.getByTestId('flower-frame').getByRole('button', { name: `Amendement ${numero}`, exact: true })
 
-test('home keeps the placeholder world honest and links both distinct datasets', async ({ page }) => {
+test('home without WebGL keeps both archived datasets accessible', async ({ page }) => {
+  await page.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext
+    HTMLCanvasElement.prototype.getContext = function (kind, ...args) {
+      if (String(kind).startsWith('webgl')) return null
+      return getContext.call(this, kind, ...args)
+    }
+  })
   const errors = trackErrors(page)
   await page.goto('/')
   await expect(page.getByRole('heading', { level: 1, name: 'Dandelion' })).toBeVisible()
   const catalog = page.getByTestId('home-catalog')
   await expect(catalog).toContainText('32 amendements')
   await expect(catalog).toContainText('392 amendements')
-  await expect(page.getByTestId('home-world-placeholder')).toContainText('espace réservé')
+  await expect(page.getByTestId('home-world-placeholder')).toContainText('indisponible')
   await catalog.getByRole('link', { name: 'Ouvrir la fleur' }).first().click()
   await expect(page).toHaveURL(new RegExp(`${PFAS}$`))
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('PFAS : texte 620 du Sénat')

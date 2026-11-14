@@ -9,6 +9,8 @@ export type AmendementSummary = {
   divisionAvantApres: string
   rang: number | null
   /** Code de sort : clé de la légende (`apis/sorts`). */
+  dateDepot?: string | null
+  typeAuteur?: string | null
   sourceUrl?: string | null
   sort: string
 }
