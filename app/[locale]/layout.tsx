@@ -6,7 +6,6 @@ import NextTopLoader from 'nextjs-toploader'
 
 import { Toaster } from '@/components/ui/sonner'
 import { ASSET_PATHS } from '@/constant/path'
-import { LocaleSwitch } from '@/features/locale/components/locale-switch'
 import { InterFont } from '@/fonts/inter'
 import { routing } from '@/i18n/routing'
 
@@ -52,7 +51,6 @@ export default async function RootLayout({ children, params }: LayoutParams & { 
     <html className={InterFont.variable} lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <LocaleSwitch />
           <NextTopLoader color='var(--color-brand)' showSpinner={false} />
           <Toaster />
           <Providers>{children}</Providers>

@@ -400,6 +400,10 @@
   --color-world-car-glass: var(--palette-world-car-glass);
   --color-world-car-light: var(--palette-world-car-light);
   --color-world-car-tail: var(--palette-world-car-tail);
+  --color-world-car-blue: var(--palette-blue-600);
+  --color-world-car-white: var(--palette-neutral-white);
+  --color-world-car-red: var(--palette-accent-red-600);
+  --color-world-car-chrome: var(--palette-neutral-500);
   --color-world-horse: var(--palette-world-horse);
   --color-world-horse-dark: var(--palette-world-horse-dark);
   --color-world-horse-mane: var(--palette-world-horse-mane);

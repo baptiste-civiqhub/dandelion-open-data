@@ -4,15 +4,16 @@ import { InteractiveDandelionMark } from '@/components/brand/interactive-dandeli
 import { FloatingHeader, FloatingHeaderSection } from '@/components/shared/floating-header'
 import { SearchField } from '@/components/shared/search-field'
 import { PUBLIC_PATHS } from '@/constant/path'
+import { LocaleSwitch } from '@/features/locale/components/locale-switch'
 import { Link } from '@/i18n/navigation'
 
 import { SiteMenus } from './site-menus'
 
 /**
  * Header du site, rémanent sur toutes les pages du route group `(stage)` : marque (picto interactif + nom) et menus
- * à gauche, recherche de zones à droite. Les menus « Atlas » et « Area » ouvrent une fenêtre overlay (`SiteMenus`).
- * Ajouter un lien de page : un chemin dans `constant/path.ts`, une clé `shell.nav.*` (en + fr), un `<HeaderNavLink>`
- * dans `SiteMenus`.
+ * à gauche, recherche de zones puis sélecteur de langue à droite. Les menus « Atlas » et « Area » ouvrent une fenêtre
+ * overlay (`SiteMenus`). Ajouter un lien de page : un chemin dans `constant/path.ts`, une clé `shell.nav.*` (en + fr),
+ * un `<HeaderNavLink>` dans `SiteMenus`.
  */
 export function SiteHeader() {
   const t = useTranslations('shell')
@@ -32,11 +33,12 @@ export function SiteHeader() {
       </FloatingHeaderSection>
       <FloatingHeaderSection align='end'>
         <SearchField
-          className='sm:max-w-64'
+          className='min-w-0 flex-1 sm:max-w-64'
           action={PUBLIC_PATHS.AREAS}
           label={t('search.label')}
           placeholder={t('search.placeholder')}
         />
+        <LocaleSwitch />
       </FloatingHeaderSection>
     </FloatingHeader>
   )
