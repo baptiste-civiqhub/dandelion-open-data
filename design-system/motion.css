@@ -1,7 +1,18 @@
 /* Motion foundations. Always consumed behind `motion-safe:` (prefers-reduced-motion respected).
-   A new animation is added here, never as an arbitrary value in a component. */
+   A new animation is added here, never as an arbitrary value in a component. Guide: design-system/MOTION.md.
+
+   Split of responsibilities for the Dandelion mark:
+   - time (durations, curves, keyframes, stagger) lives here;
+   - space (petal axes, drift and hover amplitudes) lives in lib/brand/dandelion-motion.ts and reaches each petal
+     as `--dm-*` custom properties (`--dm-order`, `--dm-drift-x|y` for the loader, `--dm-hover-x|y` for the hover). */
 @theme {
   --animate-fade-up: fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  /* Loader « Bloom »: one 1800 ms breath travels clockwise through the five petals, each petal drifting outward
+     like a seed about to leave, then settling back. Cycle and stagger must stay in step: stagger = cycle / 5. */
+  --animate-dandelion-bloom: dandelion-bloom 1800ms cubic-bezier(0.45, 0, 0.55, 1) infinite both;
+  /* Reduced-motion fallback of the loader: no displacement, a slow opacity breath of the whole mark. */
+  --animate-dandelion-breathe: dandelion-breathe 2400ms cubic-bezier(0.45, 0, 0.55, 1) infinite both;
 
   @keyframes fade-up {
     from {
@@ -13,4 +24,41 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes dandelion-bloom {
+    0%,
+    60%,
+    100% {
+      opacity: 0.28;
+      translate: 0 0;
+    }
+    24% {
+      opacity: 1;
+      translate: var(--dm-drift-x, 0) var(--dm-drift-y, 0);
+    }
+  }
+
+  @keyframes dandelion-breathe {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+}
+
+/* Negative delay: every petal starts mid-cycle, so the wave is already moving on the first frame.
+   Petal n peaks n × 360 ms after petal 0 (360 ms = 1800 ms / 5 petals). */
+@utility dandelion-stagger {
+  animation-delay: calc((var(--dm-order, 0) - 5) * 360ms);
+}
+
+/* Hover « Lean »: petals glide toward the offset written by useDandelionPointer, and glide back on leave.
+   The long ease-out turns raw pointer updates into a soft, slightly delayed follow. */
+@utility dandelion-follow {
+  translate: var(--dm-hover-x, 0) var(--dm-hover-y, 0);
+  transition: translate 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: translate;
 }
