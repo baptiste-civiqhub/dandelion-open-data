@@ -1,0 +1,11 @@
+revoke all on function public.raw_begin_extract(text) from public, anon, authenticated;
+revoke all on function public.raw_finish_extract(uuid) from public, anon, authenticated;
+revoke all on function public.raw_pull_amendements(uuid, integer) from public, anon, authenticated;
+revoke all on function public.raw_store_hemicycle_key(text) from public, anon, authenticated;
+grant execute on function public.raw_begin_extract(text) to service_role;
+grant execute on function public.raw_finish_extract(uuid) to service_role;
+grant execute on function public.raw_pull_amendements(uuid, integer) to service_role;
+grant execute on function public.raw_store_hemicycle_key(text) to service_role;
+revoke all on function raw.hemicycle_interroger(text, jsonb) from public, anon, authenticated;
+revoke all on function raw.hemicycle_key() from public, anon, authenticated;
+revoke all on function raw.upsert_payloads(text, uuid, text, jsonb) from public, anon, authenticated;;

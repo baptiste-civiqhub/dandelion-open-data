@@ -9,16 +9,17 @@ export const isFlowerDatasetId = (value: string): value is FlowerDatasetId =>
 
 export type FlowerProvenance = {
   publisher: string
-  sourceUrl: string
+  sourceUrl: string | null
   licence: string
   /** `hemicycle-team` : instantané Hémicycle enregistré par l'équipe ; `senat-csv` : export public daté du Sénat. */
-  origin: 'hemicycle-team' | 'senat-csv'
+  origin: 'hemicycle-team' | 'senat-csv' | 'hemicycle-supabase'
   retrievedAtUtc: string | null
   sha256: string | null
 }
 
 export type FlowerDataset = {
-  id: FlowerDatasetId
+  id: string
+  detailsOnDemand?: boolean
   snapshot: TexteSnapshot
   /** URL officielle par identifiant d'amendement ; `null` = absente de la source, jamais reconstruite. */
   sourceUrls: Record<string, string | null>

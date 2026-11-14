@@ -1,45 +1,107 @@
+'use client'
+
+import { useMemo, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
+import { useGetAmendementsByTexte } from '@/apis/amendements'
+import { AREA_NOT_FOUND, useGetAreaDetail } from '@/apis/areas'
+import { useGetArticlesByTexte } from '@/apis/articles'
+import { useGetSorts } from '@/apis/sorts'
 import { Stage } from '@/components/shared/stage'
-import { Widget, WidgetContent, WidgetDescription, WidgetHeader, WidgetTitle } from '@/components/shared/widget'
+import { isNormalizedApiError } from '@/types/api-error'
 
-import { FlowerDatasetScreen } from '@/features/texte/components/flower-dataset-screen'
-import { isFlowerDatasetId } from '@/features/texte/lib/datasets'
-
+import { groupAmendementsByArticle, type AmendementColumn } from '../lib/dot-chart'
+import { summarizeOutcomes } from '../lib/outcome-summary'
+import { chartTokenForSort } from '../lib/sort-colors'
+import { AreaSummaryWidget } from './area-summary-widget'
 import { DatavizCanvas } from './dataviz-canvas'
+import { LiveAreaFlower } from './live-area-flower'
+import { OutcomeLegendWidget } from './outcome-legend-widget'
+
+const NO_COLUMNS: readonly AmendementColumn[] = []
 
 /**
- * Gabarit d'une page de dataviz : le graphique occupe le canvas de fond, la colonne gauche décrit le jeu de données,
- * la colonne droite porte les réglages de la vue (filtres, légende). Colonne centrale vide : on voit et on manipule
- * le graphique. Les widgets afficheront les quatre états (chargement, vide, erreur, rempli) une fois `apis/datasets/`
- * branché ; aujourd'hui ils montrent l'état « source non connectée ».
+ * Page d'une zone (`/area/{areaId}`) : le graphique occupe le canvas de fond, la colonne gauche décrit la zone et
+ * ses articles, la colonne droite porte la légende des sorts. Colonne centrale vide : on voit le graphique.
+ * Une zone peut contenir plusieurs textes ; cette première version dessine le premier.
  */
-export function DatavizScreen({ datasetId }: { datasetId: string }) {
+export function DatavizScreen({ areaId }: { areaId: string }) {
   const t = useTranslations('dataviz')
-  if (isFlowerDatasetId(datasetId)) return <FlowerDatasetScreen datasetId={datasetId} />
+  const areaQuery = useGetAreaDetail(areaId)
+  const [selectedTexte, setSelectedTexte] = useState<string | null>(null)
+  const texte = areaQuery.data?.textes.find((item) => item.id === selectedTexte) ?? areaQuery.data?.textes[0]
+  const texteId = texte?.id
+  const articlesQuery = useGetArticlesByTexte(texteId)
+  const amendementsQuery = useGetAmendementsByTexte(texteId)
+  const sortsQuery = useGetSorts()
+
+  const articles = articlesQuery.data
+  const amendements = amendementsQuery.data
+  const sorts = sortsQuery.data
+
+  const columns = useMemo(
+    () => (articles && amendements ? groupAmendementsByArticle(articles, amendements) : NO_COLUMNS),
+    [articles, amendements]
+  )
+  const chartTokenBySort = useMemo(
+    () => Object.fromEntries((sorts ?? []).map((sort) => [sort.code, chartTokenForSort(sort.colorToken)])),
+    [sorts]
+  )
+  const outcomes = useMemo(() => summarizeOutcomes(sorts ?? [], amendements ?? []), [sorts, amendements])
+
+  const areaStatus = areaQuery.isPending
+    ? 'pending'
+    : areaQuery.isError
+      ? isNormalizedApiError(areaQuery.error) && areaQuery.error.code === AREA_NOT_FOUND
+        ? 'notFound'
+        : 'error'
+      : 'ready'
+  const contentStatus = !texteId
+    ? 'idle'
+    : articlesQuery.isError || amendementsQuery.isError
+      ? 'error'
+      : articlesQuery.isPending || amendementsQuery.isPending
+        ? 'pending'
+        : 'ready'
+  const legendStatus =
+    sortsQuery.isError || contentStatus === 'error'
+      ? 'error'
+      : sortsQuery.isPending || areaStatus === 'pending' || contentStatus === 'pending'
+        ? 'pending'
+        : 'ready'
+
+  if (areaQuery.data && texte && articles && amendements && sorts && contentStatus === 'ready')
+    return (
+      <LiveAreaFlower
+        key={texte.id}
+        area={areaQuery.data}
+        texte={texte}
+        articles={articles}
+        amendments={amendements}
+        sorts={sorts}
+        onTexte={setSelectedTexte}
+      />
+    )
 
   return (
     <Stage
-      canvas={<DatavizCanvas datasetId={datasetId} label={t('canvasLabel', { datasetId })} />}
+      canvas={
+        <DatavizCanvas
+          label={t('canvasLabel', { name: areaQuery.data?.name ?? areaId })}
+          columns={columns}
+          chartTokenBySort={chartTokenBySort}
+        />
+      }
       left={
-        <Widget aria-labelledby='dataviz-dataset-title'>
-          <WidgetHeader>
-            <WidgetTitle id='dataviz-dataset-title'>{datasetId}</WidgetTitle>
-            <WidgetDescription>{t('dataset.eyebrow')}</WidgetDescription>
-          </WidgetHeader>
-          <WidgetContent>
-            <p className='text-muted-foreground'>{t('dataset.notConnected')}</p>
-          </WidgetContent>
-        </Widget>
+        <AreaSummaryWidget
+          status={areaStatus}
+          area={areaQuery.data}
+          articles={articles}
+          columns={columns}
+          contentStatus={contentStatus}
+        />
       }
-      right={
-        <Widget aria-labelledby='dataviz-view-title'>
-          <WidgetHeader>
-            <WidgetTitle id='dataviz-view-title'>{t('view.title')}</WidgetTitle>
-            <WidgetDescription>{t('view.description')}</WidgetDescription>
-          </WidgetHeader>
-        </Widget>
-      }
+      right={areaStatus === 'ready' ? <OutcomeLegendWidget status={legendStatus} outcomes={outcomes} /> : undefined}
     />
   )
 }

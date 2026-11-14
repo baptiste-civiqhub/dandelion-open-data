@@ -8,7 +8,7 @@ import { Link, usePathname } from '@/i18n/navigation'
 import { isActivePath } from '@/lib/navigation/is-active-path'
 import { cn } from '@/lib/utils'
 
-/** Liste de liens du header. `label` nomme le repère de navigation pour les lecteurs d'écran (déjà traduit). */
+/** Liste d'entrées du header. `label` nomme le repère de navigation pour les lecteurs d'écran (déjà traduit). */
 export function HeaderNav({ label, className, children, ...props }: ComponentProps<'nav'> & { label: string }) {
   return (
     <nav aria-label={label} data-slot='header-nav' className={className} {...props}>
@@ -17,7 +17,7 @@ export function HeaderNav({ label, className, children, ...props }: ComponentPro
   )
 }
 
-const linkVariants = cva(
+const itemVariants = cva(
   'focus-visible:ring-ring/50 inline-flex h-9 items-center rounded-full px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none focus-visible:ring-3',
   {
     variants: {
@@ -45,7 +45,29 @@ export function HeaderNavLink({ href, className, ...props }: HeaderNavLinkProps)
         href={href}
         aria-current={active ? 'page' : undefined}
         data-slot='header-nav-link'
-        className={cn(linkVariants({ active }), className)}
+        className={cn(itemVariants({ active }), className)}
+        {...props}
+      />
+    </li>
+  )
+}
+
+/**
+ * Bouton du header, même apparence qu'un lien : ouvre une fenêtre au lieu de naviguer. À poser dans un
+ * `OverlayWindowTrigger asChild`, qui lui donne `aria-expanded` et `data-state` ; l'état ouvert reprend le fond du
+ * lien actif.
+ */
+export function HeaderNavButton({ className, type = 'button', ...props }: ComponentProps<'button'>) {
+  return (
+    <li>
+      <button
+        type={type}
+        data-slot='header-nav-button'
+        className={cn(
+          itemVariants({ active: false }),
+          'data-[state=open]:bg-secondary data-[state=open]:text-foreground cursor-pointer',
+          className
+        )}
         {...props}
       />
     </li>

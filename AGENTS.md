@@ -6,7 +6,7 @@ Frontend web du hackathon Open Data (samedi 14 novembre 2026). Application **Nex
 
 Références : [`docs/stack.md`](docs/stack.md) (versions exactes, catalogue de dépendances autorisées) · [`docs/portabilite.md`](docs/portabilite.md) (contrat de portage) · [`docs/deploiement.md`](docs/deploiement.md) (Vercel + Supabase + MCP) · [`design-system/README.md`](design-system/README.md) (tokens, factorisation des composants) · [`design-system/BRAND.md`](design-system/BRAND.md) (marque) · [`design-system/MOTION.md`](design-system/MOTION.md) (mouvement, picto animé) · [`design-system/components.md`](design-system/components.md) (registre des composants) · [`docs/webui.md`](docs/webui.md) (architecture de l'interface : header, Stage, widgets, scènes WebGL).
 
-> **Langue** : les échanges et la documentation peuvent être en français, mais **l'interface est en anglais** (tout texte visible = clé i18n, valeur de référence dans `i18n/messages/en.json`).
+> **Langue** : les échanges et la documentation peuvent être en français, mais **l'interface est en français**, à la demande explicite de Wilfred pour cette branche d’intégration (tout texte visible = clé i18n, catalogues `fr.json` et `en.json` maintenus à parité).
 
 ## Gestionnaire de paquets
 
@@ -84,7 +84,7 @@ docs/                   # stack, portabilité, déploiement
 2. **`request.ts` mappe les lignes Supabase vers les types de domaine de `types.ts`** (camelCase, champs utiles seulement). Aucun type `Database[...]` ne sort de `request.ts` : c'est ce qui permet de remplacer Supabase par l'API REST de la référence en ne réécrivant qu'un fichier.
 3. **Logique pure dans `lib/` ou `features/<domaine>/lib/`**, sans import de React, Next, next-intl, Supabase ni `services/` (règle ESLint). `import type` depuis `apis/*/types` autorisé. Chaque fonction pure a son `*.test.ts` co-localisé.
 4. **Server Components par défaut** ; `'use client'` en tête dès qu'il y a hook, handler ou API navigateur.
-5. **Interface en anglais, aucun texte en dur dans le JSX** : `useTranslations('namespace')` (ou `getTranslations` côté serveur), clé ajoutée dans `i18n/messages/en.json` (référence) **et** `fr.json` (un test vérifie la parité).
+5. **Interface en français, aucun texte en dur dans le JSX** : `useTranslations('namespace')` (ou `getTranslations` côté serveur), clé ajoutée dans `i18n/messages/en.json` (référence) **et** `fr.json` (un test vérifie la parité).
 6. **Design system obligatoire** : uniquement des utilitaires de tokens sémantiques (`bg-background`, `text-muted-foreground`, `bg-cta`, `border`, `rounded-lg`, `p-4`, `text-sm`…), classes fusionnées par `cn()`. Jamais de `#hex`, `rgb()`, `bg-[…]`, `p-[13px]`, `var(--palette-…)` ni `style={{…}}` visuel : `pnpm lint:ds` les refuse. Voir la section Design system ci-dessous.
 7. **Variables d'environnement via `configs/env.ts`** uniquement (`ENVS.X`), jamais `process.env.X` dans un composant. Toute nouvelle variable : déclarée dans `configs/env.ts` + documentée dans `.env.example` + ajoutée sur Vercel.
 8. **Chemins internes via `constant/path.ts`**, liens via `Link` de `@/i18n/navigation`.

@@ -1,17 +1,36 @@
 import type { StageSceneFactory } from '@/lib/stage/stage-scene'
 
+import type { WorldZone } from '../lib/world-zones'
+
+/**
+ * Contrat entre le monde 3D et l'application (features/world/README.md). Le monde ne connaît ni le routeur, ni les
+ * URL, ni le DOM de l'interface : il reçoit des zones et rend trois événements. `WorldScreen` fait le reste.
+ */
 export type WorldSceneOptions = {
+  /** Zones à poser au sol, positions comprises (`worldZonesFromAreas`). Liste vide pendant le chargement. */
+  zones: readonly WorldZone[]
   /**
-   * Pont entre le monde et l'application : le véhicule est entré dans la zone d'un jeu de données.
-   * `WorldCanvas` y branche la navigation vers `PUBLIC_PATHS.DATASET_DETAIL(datasetId)`.
+   * Le monde dessine sa première image : l'interface retire alors le titre de marque centré (il reste pour les
+   * lecteurs d'écran). Appelé une fois. Jamais appelé si WebGL est indisponible : la landing garde son titre.
    */
-  onEnterZone: (datasetId: string) => void
+  onReady: () => void
+  /**
+   * Le personnage entre dans une zone (`slug`) ou en sort (`null`). L'interface affiche alors « Entrée pour ouvrir ».
+   * N'appeler que lors d'un changement.
+   */
+  onZoneFocus: (slug: string | null) => void
+  /**
+   * L'utilisateur a pressé Entrée dans une zone et la transition (zoom sur la zone) est terminée : l'application
+   * navigue vers `/area/{slug}`. Avec `reducedMotion`, appeler sans transition.
+   */
+  onEnterZone: (slug: string) => void
 }
 
 /**
- * Point d'entrée du monde WebGL de la landing (features/world/README.md). SOCLE UNIQUEMENT : la scène obtient un
- * contexte WebGL2 et tient son viewport à jour, rien n'est dessiné. Le jeu de navigation (carte, zones, véhicule,
- * caméra) s'implémente ici, en chargeant son moteur à la demande dans la fabrique.
+ * Point d'entrée du monde WebGL de la landing. SOCLE : contexte WebGL2 et viewport tenus à jour, rien n'est
+ * dessiné et aucun événement n'est émis, donc la landing garde son titre de marque. Le monde (sol, zones,
+ * personnage, caméra, clavier, transition) s'implémente ici, en chargeant son moteur à la demande
+ * (`await import('three')`).
  */
 export function createWorldScene(options: WorldSceneOptions): StageSceneFactory {
   void options
