@@ -6,14 +6,16 @@ import { useTranslations } from 'next-intl'
 import type { Intention, LayoutNode } from '@/apis/texte/types'
 import { LABEL_ARC_PX } from '@/features/texte/lib/constants'
 
+import { isIntention, useNodeLabel } from './use-node-label'
+
 const TAU = Math.PI * 2
 
 const INTENTION_FILL: Record<Intention, string> = {
-  supprimer: 'var(--chart-1)',
-  reecrire: 'var(--chart-2)',
-  ajouter: 'var(--chart-3)',
-  modifier: 'var(--chart-4)',
-  autre: 'var(--chart-5)'
+  supprimer: 'var(--color-chart-1)',
+  reecrire: 'var(--color-chart-2)',
+  ajouter: 'var(--color-chart-3)',
+  modifier: 'var(--color-chart-4)',
+  autre: 'var(--color-chart-5)'
 }
 
 type DandelionFlowerProps = {
@@ -25,14 +27,22 @@ type DandelionFlowerProps = {
   onHover: (id: string | null) => void
   onSelect: (id: string) => void
   onBackground: () => void
+  /** Zoom explicite (1 = vue ajustée) et décalage qui centre le nœud focal. */
+  scale?: number
+  offset?: { x: number; y: number }
 }
 
+// Arrondi : motion interpole l'attribut `d` et ne sait pas lire la notation exponentielle (ex. 6e-14).
+const fixed = (value: number) => Math.round(value * 1000) / 1000
+
 const pointAt = (radius: number, angle: number) => ({
-  x: radius * Math.cos(angle),
-  y: radius * Math.sin(angle)
+  x: fixed(radius * Math.cos(angle)),
+  y: fixed(radius * Math.sin(angle))
 })
 
-const sectorPath = (inner: number, outer: number, angle0: number, angle1: number): string => {
+const sectorPath = (innerRadius: number, outerRadius: number, angle0: number, angle1: number): string => {
+  const inner = fixed(innerRadius)
+  const outer = fixed(outerRadius)
   const span = angle1 - angle0
   if (outer <= 0 || span <= 1e-4) return ''
   if (span >= TAU - 1e-3) {
@@ -54,22 +64,22 @@ const stemPath = (parent: LayoutNode, child: LayoutNode) => {
   const mid = (child.angle0 + child.angle1) / 2
   const controlRadius = (parent.radius + child.radius) / 2
   const control = pointAt(controlRadius, mid)
-  return `M ${parent.x} ${parent.y} Q ${control.x} ${control.y} ${child.x} ${child.y}`
+  return `M ${fixed(parent.x)} ${fixed(parent.y)} Q ${fixed(control.x)} ${fixed(control.y)} ${fixed(child.x)} ${fixed(child.y)}`
 }
-
-const isIntention = (label: string): label is Intention => label in INTENTION_FILL
 
 export function DandelionFlower({
   nodes,
   width,
   height,
-  outerRadiusPx,
   focusId,
   onHover,
   onSelect,
-  onBackground
+  onBackground,
+  scale = 1,
+  offset = { x: 0, y: 0 }
 }: DandelionFlowerProps) {
   const t = useTranslations('texte')
+  const labelFor = useNodeLabel()
   const byId = new Map(nodes.map((node) => [node.id, node]))
   const lineage = new Set<string>()
   let cursor = focusId
@@ -84,15 +94,7 @@ export function DandelionFlower({
       if (current.kind === 'intention' && isIntention(current.label)) return INTENTION_FILL[current.label]
       current = current.parentId ? byId.get(current.parentId) : undefined
     }
-    return 'var(--muted)'
-  }
-
-  const labelFor = (node: LayoutNode): string => {
-    if (node.kind === 'intention' && isIntention(node.label)) return t(`intentions.${node.label}`)
-    if (node.kind === 'reste') return t('reste')
-    if (node.kind === 'discussion' && node.label === '') return t('sansDiscussion')
-    if (node.kind === 'doublon' && node.label === '') return t('sansDoublon')
-    return node.label
+    return 'var(--color-muted)'
   }
 
   return (
@@ -105,7 +107,7 @@ export function DandelionFlower({
       onClick={onBackground}
       onPointerLeave={() => onHover(null)}
     >
-      <g transform={`translate(${width / 2} ${height / 2})`}>
+      <g transform={`translate(${width / 2 + offset.x} ${height / 2 + offset.y}) scale(${scale})`}>
         {nodes.map((node) => {
           const parent = node.parentId ? byId.get(node.parentId) : undefined
           if (!parent) return null
@@ -115,8 +117,9 @@ export function DandelionFlower({
               key={`${node.id}-stem`}
               d={stemPath(parent, node)}
               fill='none'
-              stroke='var(--muted-foreground)'
+              stroke='var(--color-muted-foreground)'
               strokeWidth={1}
+              vectorEffect='non-scaling-stroke'
               initial={false}
               animate={{ d: stemPath(parent, node), strokeOpacity: opacity }}
               transition={{ duration: 0.35 }}
@@ -129,21 +132,27 @@ export function DandelionFlower({
           const path = sectorPath(parent?.radius ?? 0, node.radius, node.angle0, node.angle1)
           if (!path) return null
           const opacity = !focusId || lineage.has(node.id) ? 1 : 0.3
-          const arcPx = (node.angle1 - node.angle0) * outerRadiusPx
           const label = labelFor(node)
+          const shortLabel = label.length > 22 ? `${label.slice(0, 21)}…` : label
           const mid = (node.angle0 + node.angle1) / 2
-          const labelPoint = pointAt(((parent?.radius ?? 0) + node.radius) / 2, mid)
+          const labelRadius = ((parent?.radius ?? 0) + node.radius) / 2
+          const labelPoint = pointAt(labelRadius, mid)
+          // L'espace disponible est celui de l'anneau du texte, pas celui du cercle extérieur.
+          const arcPx = (node.angle1 - node.angle0) * labelRadius * scale
+          const labelFits = arcPx >= Math.max(LABEL_ARC_PX, shortLabel.length * 7 * scale)
           return (
             <g key={node.id}>
               <motion.path
                 d={path}
                 fill={fillFor(node)}
-                stroke='var(--border)'
+                stroke='var(--color-border)'
                 strokeWidth={1}
+                vectorEffect='non-scaling-stroke'
                 className='cursor-pointer'
                 role='button'
                 tabIndex={0}
-                aria-label={label}
+                aria-label={node.kind === 'amendement' ? t('nodeAmendment', { label }) : label}
+                data-node-id={node.id}
                 aria-pressed={node.id === focusId}
                 initial={false}
                 animate={{ d: path, fillOpacity: opacity }}
@@ -159,7 +168,8 @@ export function DandelionFlower({
                   onSelect(node.id)
                 }}
               />
-              {arcPx >= LABEL_ARC_PX ? (
+              <title>{label}</title>
+              {labelFits ? (
                 <text
                   x={labelPoint.x}
                   y={labelPoint.y}
@@ -167,7 +177,7 @@ export function DandelionFlower({
                   dominantBaseline='middle'
                   className='fill-foreground pointer-events-none text-xs'
                 >
-                  {label.length > 22 ? `${label.slice(0, 21)}…` : label}
+                  {shortLabel}
                 </text>
               ) : null}
             </g>

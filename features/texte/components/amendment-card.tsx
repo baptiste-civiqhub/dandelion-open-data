@@ -12,16 +12,18 @@ const EXCERPT_LENGTH = 280
 type AmendmentCardProps = {
   amendment: Amendment
   onClose: () => void
+  /** `undefined` : ligne masquée (écran historique) ; `null` : lien absent de la source, signalé tel quel. */
+  sourceUrl?: string | null
 }
 
-export function AmendmentCard({ amendment, onClose }: AmendmentCardProps) {
+export function AmendmentCard({ amendment, onClose, sourceUrl }: AmendmentCardProps) {
   const t = useTranslations('texte')
   const intention = classifyIntention(amendment.dispositif)
   const excerpt = amendment.dispositif.slice(0, EXCERPT_LENGTH)
   const value = (text: string | null) => (text && text.length > 0 ? text : t('unknown'))
 
   return (
-    <Card className='w-full shrink-0 lg:w-96'>
+    <Card className='w-full shrink-0 lg:w-96' data-testid='flower-card'>
       <CardHeader>
         <CardTitle>{amendment.numero}</CardTitle>
         <CardDescription>{amendment.article}</CardDescription>
@@ -41,12 +43,26 @@ export function AmendmentCard({ amendment, onClose }: AmendmentCardProps) {
         </div>
         <div>
           <dt className='text-muted-foreground'>{t('sheet.dispositif')}</dt>
-          <dd>{excerpt.length > 0 ? excerpt : t('unknown')}</dd>
+          <dd lang='fr'>{excerpt.length > 0 ? excerpt : t('sheet.missingText')}</dd>
         </div>
         <div>
           <dt className='text-muted-foreground'>{t('sheet.sort')}</dt>
           <dd>{value(amendment.sort)}</dd>
         </div>
+        {sourceUrl !== undefined ? (
+          <div>
+            <dt className='text-muted-foreground'>{t('sheet.source')}</dt>
+            <dd>
+              {sourceUrl ? (
+                <a href={sourceUrl} target='_blank' rel='noopener noreferrer' className='text-primary underline'>
+                  {t('sheet.openSource')}
+                </a>
+              ) : (
+                t('sheet.noSource')
+              )}
+            </dd>
+          </div>
+        ) : null}
       </dl>
       <div className='px-6'>
         <Button type='button' variant='outline' onClick={onClose}>

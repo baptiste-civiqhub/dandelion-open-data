@@ -13,7 +13,12 @@
     "dataTitle": "Données",
     "dataDescription": "Supabase (Postgres + RLS), région eu-central-1.",
     "healthLink": "Voir la sonde de santé",
-    "texteLink": "Voir le texte"
+    "texteLink": "Voir le texte",
+    "catalog": {
+      "title": "Explorer les jeux de données",
+      "description": "Deux corpus distincts, chacun dans la fleur radiale.",
+      "worldPlaceholder": "Le monde 3D en arrière-plan est un espace réservé : il ne contient encore aucune donnée."
+    }
   },
   "notFound": {
     "title": "Page introuvable",
@@ -330,7 +335,7 @@
     "nav": {
       "label": "Principale",
       "about": "Atlas",
-      "datasets": "Area"
+      "datasets": "Données"
     },
     "search": {
       "label": "Rechercher un jeu de données",
@@ -344,7 +349,7 @@
     "metaTitle": "À propos",
     "title": "À propos de Dandelion",
     "intro": "Dandelion transforme la donnée publique ouverte en un espace à explorer.",
-    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Tous les jeux de données sont aussi listés dans Area."
+    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Tous les jeux de données sont aussi listés dans Données."
   },
   "datasets": {
     "metaTitle": "Jeux de données",
@@ -388,10 +393,168 @@
       "numero": "Numéro",
       "author": "Auteur",
       "group": "Groupe",
-      "intention": "Intention",
+      "intention": "Opération (classement lexical)",
       "dispositif": "Dispositif",
       "sort": "Sort",
-      "close": "Fermer"
+      "close": "Fermer",
+      "source": "Lien officiel",
+      "openSource": "Ouvrir la page officielle",
+      "noSource": "Absent de la source (aucun lien inventé)",
+      "missingText": "Texte absent de la source"
+    },
+    "nodeAmendment": "Amendement {label}"
+  },
+  "flower": {
+    "loading": "Chargement de la fleur…",
+    "error": "Le jeu de données n’a pas pu être chargé.",
+    "counts": "{visible} éléments affichés pour {total} amendements (budget : {budget} éléments au maximum)",
+    "lexicalNote": "Les secteurs « Supprimer », « Réécrire », « Ajouter », « Modifier » classent l’opération d’après les premiers mots du dispositif (classement lexical). Ce n’est pas une intention politique.",
+    "provenance": {
+      "hemicycle": "Instantané Hémicycle enregistré par l’équipe dans le dépôt : pas un import en direct.",
+      "senat": "Export public daté du Sénat, récupéré le {date} (SHA-256 {hash}…) : pas le droit en vigueur.",
+      "publisher": "Source : {publisher}.",
+      "source": "page de la source",
+      "licence": "licence"
+    },
+    "gaps": {
+      "title": "Données manquantes (affichées, jamais complétées)",
+      "text": "{count, plural, =0 {Aucun amendement} one {# amendement} other {# amendements}} sur {total} sans texte de dispositif.",
+      "url": "{count, plural, =0 {Aucun amendement} one {# amendement} other {# amendements}} sur {total} sans lien officiel individuel."
+    },
+    "nav": {
+      "title": "Navigation",
+      "keyboard": "Clavier : Tab pour parcourir les secteurs, Entrée pour ouvrir, + / − pour zoomer, 0 pour ajuster, Échap pour remonter.",
+      "breadcrumb": "Fil d’Ariane",
+      "global": "Vue globale",
+      "zoomGroup": "Zoom",
+      "zoomIn": "Zoom avant",
+      "zoomOut": "Zoom arrière",
+      "fit": "Ajuster la vue",
+      "zoomInShort": "Zoom",
+      "zoomOutShort": "Dézoom",
+      "fitShort": "Ajuster",
+      "scale": "Échelle {scale} %",
+      "search": "Trouver un amendement par numéro",
+      "searchPlaceholder": "ex. 26 ou CL36",
+      "noResult": "Aucun amendement ne porte ce numéro.",
+      "result": "n° {numero} · {article}"
+    },
+    "guide": {
+      "title": "Guide de la fleur",
+      "badge": "Déterministe, sans modèle",
+      "description": "Reconnaît des numéros exacts et quelques commandes de vue. Aucune réponse n’est générée : les faits viennent des enregistrements.",
+      "inputLabel": "Votre question",
+      "submit": "Appliquer",
+      "examples": {
+        "focus": "Montre l’amendement CL36",
+        "compare": "Compare CL36 et CL37",
+        "global": "Vue globale"
+      },
+      "intent": {
+        "focus": "Amendement mis en avant dans la fleur.",
+        "compare": "Deux amendements affichés côte à côte.",
+        "zoom": "Zoom appliqué.",
+        "reset": "Retour à la vue globale."
+      },
+      "record": "n° {numero} · {article} · sort : {sort}.",
+      "noSource": "Lien officiel absent de la source.",
+      "invalidPlan": "Plan refusé : un identifiant n’est pas enregistré dans cette vue.",
+      "abstain": {
+        "empty": "Posez une question.",
+        "too-long": "Question trop longue (600 caractères au maximum).",
+        "out-of-scope": "Hors périmètre : la fleur ne mesure ni effets, ni droit en vigueur, ni prédictions, ni intentions politiques.",
+        "unsupported": "Je ne sais pas traiter cette question. Essayez un numéro exact.",
+        "missing": "Aucun amendement ne porte exactement ce numéro.",
+        "ambiguous": "Plusieurs amendements portent ce numéro : précisez.",
+        "too-many": "Trop de numéros : une comparaison porte sur deux amendements.",
+        "too-few": "Une comparaison demande deux numéros."
+      }
+    },
+    "provider": {
+      "title": "Fournisseur de plans (optionnel)",
+      "badge": "Featherless · serveur",
+      "description": "Envoie la question au serveur, qui interroge un modèle seulement si une clé est configurée. Le plan est revalidé ici ; les faits affichés viennent des enregistrements.",
+      "inputLabel": "Question pour le fournisseur",
+      "submit": "Demander un plan",
+      "pending": "Demande en cours…",
+      "unconfigured": "Fournisseur non configuré (aucune clé sur ce serveur) : utilisez le guide déterministe et les commandes manuelles.",
+      "rejected": "Requête refusée (question vide, trop longue ou jeu inconnu).",
+      "clientRefused": "Plan refusé par cette vue : identifiant ou action non autorisés.",
+      "network": "Le serveur n’a pas répondu. Les commandes manuelles restent disponibles.",
+      "abstain": "Le modèle {model} s’abstient.",
+      "applied": "Plan du modèle {model} appliqué ({count} actions validées).",
+      "record": "n° {numero} · {article} · sort : {outcome}",
+      "noSource": "(lien officiel absent de la source)",
+      "error": {
+        "timeout": "Le fournisseur n’a pas répondu à temps.",
+        "provider-error": "Le fournisseur a renvoyé une erreur.",
+        "invalid-response": "Réponse du modèle rejetée : JSON invalide ou identifiant hors liste."
+      }
+    },
+    "tour": {
+      "title": "Parcours guidé",
+      "description": "Ne démarre que sur demande. Toute manipulation le met en pause.",
+      "reducedMotion": "Mouvement réduit : le parcours avance seulement avec « Étape suivante ».",
+      "start": "Démarrer le parcours",
+      "restart": "Recommencer",
+      "pause": "Pause",
+      "resume": "Reprendre",
+      "next": "Étape suivante",
+      "stop": "Arrêter",
+      "progress": "Étape {current} sur {total}",
+      "status": {
+        "idle": "Arrêté",
+        "playing": "En cours",
+        "paused": "En pause",
+        "done": "Terminé"
+      },
+      "steps": {
+        "overview": {
+          "title": "Vue d’ensemble",
+          "caption": "Tout le texte : chaque secteur regroupe des amendements, la taille suit leur nombre."
+        },
+        "article": {
+          "title": "Article 1er",
+          "caption": "L’article le plus amendé : c’est là que se trouvent les propositions 26 et 27."
+        },
+        "pair": {
+          "title": "Amendements 26 et 27",
+          "caption": "Deux propositions voisines sur les exceptions (textiles de construction, fluoropolymères)."
+        },
+        "comparison": {
+          "title": "Comparaison",
+          "caption": "Différence lexicale exacte et sort enregistré de chacune : toutes deux retirées."
+        },
+        "sources": {
+          "title": "Sources",
+          "caption": "Pages officielles du Sénat et parcours documentaire pour vérifier."
+        },
+        "global": {
+          "title": "Retour à la vue globale",
+          "caption": "La comparaison reste affichée pour votre note."
+        },
+        "heaviest": {
+          "title": "Article le plus amendé",
+          "caption": "La branche qui concentre le plus d’amendements."
+        },
+        "zoom": {
+          "title": "Zoom",
+          "caption": "Agrandissement de la branche sélectionnée."
+        }
+      }
+    },
+    "datasets": {
+      "open": "Ouvrir la fleur",
+      "pfas-senat-620": {
+        "eyebrow": "Exemple PFAS · Sénat 2023-2024",
+        "name": "PFAS : texte 620 du Sénat",
+        "summary": "{count} amendements (export public daté du Sénat), avec comparaison et sources officielles."
+      },
+      "police-municipale-an-2464": {
+        "eyebrow": "Corpus de l’équipe · Assemblée nationale",
+        "name": "Polices municipales : projet de loi n° 2464",
+        "summary": "{count} amendements (instantané Hémicycle de l’équipe). Liens individuels et certains textes absents de la source."
+      }
     }
   }
 }

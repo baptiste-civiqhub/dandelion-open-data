@@ -36,6 +36,8 @@ type StageProps = {
   children?: ReactNode
   /** Alignement vertical de la colonne centrale. */
   centerAlign?: VariantProps<typeof columnVariants>['align']
+  /** Élargit la lecture à droite (3 · 3 · 6) tout en gardant le graphe et ses commandes visibles. */
+  rightExpanded?: boolean
   className?: string
 }
 
@@ -45,7 +47,7 @@ type StageProps = {
  * (gauche, centre extensible, droite).
  * Le haut de la grille réserve la place du header flottant (`pt-24` = top-4 + h-14 + respiration).
  */
-export function Stage({ canvas, left, right, children, centerAlign, className }: StageProps) {
+export function Stage({ canvas, left, right, children, centerAlign, rightExpanded = false, className }: StageProps) {
   return (
     <div data-slot='stage' className={cn('bg-background relative isolate h-dvh overflow-hidden', className)}>
       {canvas ? (
@@ -62,11 +64,17 @@ export function Stage({ canvas, left, right, children, centerAlign, className }:
             {left}
           </aside>
         ) : null}
-        <div data-slot='stage-center' className={columnVariants({ side: 'center', align: centerAlign })}>
+        <div
+          data-slot='stage-center'
+          className={cn(columnVariants({ side: 'center', align: centerAlign }), rightExpanded && 'lg:col-span-3')}
+        >
           {children}
         </div>
         {right ? (
-          <aside data-slot='stage-right' className={columnVariants({ side: 'right' })}>
+          <aside
+            data-slot='stage-right'
+            className={cn(columnVariants({ side: 'right' }), rightExpanded && 'lg:col-span-6 lg:col-start-7')}
+          >
             {right}
           </aside>
         ) : null}

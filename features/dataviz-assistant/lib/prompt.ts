@@ -4,10 +4,17 @@ export type PromptInput = {
   entities: PromptEntity[]
   locations?: PromptEntity[]
   sourceText?: string
+  /** Actions optionnelles exécutables par l'hôte. Absent : comportement historique (open-location seul). */
+  capabilities?: ReadonlyArray<'open-location' | 'zoom' | 'reset-view'>
 }
 
 /** Prompt système public, destiné à un futur fournisseur côté serveur. Aucun appel n'est fait ici. */
-export function buildSystemPrompt({ entities, locations = [], sourceText }: PromptInput): string {
+export function buildSystemPrompt({
+  entities,
+  locations = [],
+  sourceText,
+  capabilities = ['open-location']
+}: PromptInput): string {
   const list = (items: PromptEntity[]) =>
     items.length
       ? items.map((item) => `- ${JSON.stringify(item.id)}: ${JSON.stringify(item.label)}`).join('\n')
@@ -18,7 +25,9 @@ export function buildSystemPrompt({ entities, locations = [], sourceText }: Prom
     '- {"type":"focus","id":ID}',
     '- {"type":"compare","ids":[ID,ID]} (deux identifiants distincts)',
     '- {"type":"show-evidence"}',
-    '- {"type":"open-location","id":LIEU}',
+    ...(capabilities.includes('open-location') ? ['- {"type":"open-location","id":LIEU}'] : []),
+    ...(capabilities.includes('zoom') ? ['- {"type":"zoom","direction":"in"|"out"|"fit"}'] : []),
+    ...(capabilities.includes('reset-view') ? ['- {"type":"reset-view"}'] : []),
     'Si la question sort de ce périmètre (effets économiques, droit en vigueur, prédiction, avis) ou si un identifiant manque, réponds exactement {"schemaVersion":1,"abstain":true}.',
     'N’invente aucun identifiant, aucune URL, aucun code ni sélecteur. N’ajoute aucun autre champ.',
     'Identifiants autorisés :',

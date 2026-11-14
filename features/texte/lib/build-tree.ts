@@ -61,17 +61,32 @@ export const buildTree = (snapshot: TexteSnapshot): DandelionNode => {
     }
   }
 
-  const amendmentNode = (amendment: Amendment): DandelionNode => {
-    const children = (childrenByParent.get(amendment.id) ?? []).map(amendmentNode)
-    return {
+  const amendmentNodes = new Map<string, DandelionNode>()
+  for (const amendment of byId.values()) {
+    amendmentNodes.set(amendment.id, {
       id: `amendement:${amendment.id}`,
       kind: 'amendement',
       label: amendment.numero,
-      weight: 1 + weightOf(children),
-      children,
+      weight: 1,
+      children: [],
       amendmentId: amendment.id
+    })
+  }
+  for (const [parentId, children] of childrenByParent) {
+    const parent = amendmentNodes.get(parentId)
+    if (parent) parent.children = children.map((child) => amendmentNodes.get(child.id)!)
+  }
+  // Calcul en post-ordre explicite : une chaîne profonde ne dépend pas de la taille de pile du moteur JS.
+  const pending = tops.map((amendment) => ({ node: amendmentNodes.get(amendment.id)!, visited: false }))
+  while (pending.length > 0) {
+    const entry = pending.pop()!
+    if (entry.visited) entry.node.weight = 1 + weightOf(entry.node.children)
+    else {
+      pending.push({ node: entry.node, visited: true })
+      for (const child of entry.node.children) pending.push({ node: child, visited: false })
     }
   }
+  const amendmentNode = (amendment: Amendment): DandelionNode => amendmentNodes.get(amendment.id)!
 
   const buildDoublonOrLeaves = (parentId: string, items: Amendment[]): DandelionNode[] => {
     if (!items.some((item) => !isBlank(item.discussionIdentique))) return items.map(amendmentNode)

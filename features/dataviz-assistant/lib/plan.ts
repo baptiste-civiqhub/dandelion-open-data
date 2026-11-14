@@ -9,7 +9,9 @@ const actionSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('focus'), id }).strict(),
   z.object({ type: z.literal('compare'), ids: z.tuple([id, id]) }).strict(),
   z.object({ type: z.literal('show-evidence') }).strict(),
-  z.object({ type: z.literal('open-location'), id }).strict()
+  z.object({ type: z.literal('open-location'), id }).strict(),
+  z.object({ type: z.literal('zoom'), direction: z.enum(['in', 'out', 'fit']) }).strict(),
+  z.object({ type: z.literal('reset-view') }).strict()
 ])
 
 const planSchema = z.object({ schemaVersion: z.literal(1), actions: z.array(actionSchema).min(1).max(4) }).strict()

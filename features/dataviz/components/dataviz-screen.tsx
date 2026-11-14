@@ -3,6 +3,9 @@ import { useTranslations } from 'next-intl'
 import { Stage } from '@/components/shared/stage'
 import { Widget, WidgetContent, WidgetDescription, WidgetHeader, WidgetTitle } from '@/components/shared/widget'
 
+import { FlowerDatasetScreen } from '@/features/texte/components/flower-dataset-screen'
+import { isFlowerDatasetId } from '@/features/texte/lib/datasets'
+
 import { DatavizCanvas } from './dataviz-canvas'
 
 /**
@@ -13,6 +16,7 @@ import { DatavizCanvas } from './dataviz-canvas'
  */
 export function DatavizScreen({ datasetId }: { datasetId: string }) {
   const t = useTranslations('dataviz')
+  if (isFlowerDatasetId(datasetId)) return <FlowerDatasetScreen datasetId={datasetId} />
 
   return (
     <Stage

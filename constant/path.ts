@@ -20,7 +20,9 @@ export const SEARCH_PARAMS = {
 export const API_PATHS = {
   HEALTH: '/api/health',
   PFAS_AMENDMENTS: '/api/pfas',
-  PFAS_EVIDENCE: '/api/pfas/evidence'
+  PFAS_EVIDENCE: '/api/pfas/evidence',
+  /** Plan d'actions par fournisseur optionnel (Featherless), serveur uniquement. */
+  DATAVIZ_PLAN: '/api/dataviz/plan'
 } as const
 
 export const ASSET_PATHS = {
