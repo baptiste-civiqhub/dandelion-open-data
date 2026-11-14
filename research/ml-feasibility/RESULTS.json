@@ -1,0 +1,766 @@
+{
+  "etude": "faisabilite_prediction_reecriture_prochaine_etape",
+  "date": "2026-11-14",
+  "cible": "label de l'article à la prochaine version officielle observée : inchange, modifie, supprime",
+  "source": "La Fabrique de la Loi (ODbL), 48 dossiers promulgués 2008 à 2021, select_sample.py graine 20261114",
+  "avertissement": "résultats exploratoires sur une période révolue ; aucune donnée des 16e et 17e législatures ; ne pas afficher comme probabilité produit",
+  "status": "run",
+  "seed": 20261114,
+  "bootstrap_tirages": 1000,
+  "observations_par_split_et_label": {
+    "test": {
+      "autre_REJET": 4,
+      "autre_new": 0,
+      "autre_ÉCHEC": 1,
+      "derniere_etape": 841,
+      "hors_cible_conseil_constitutionnel": 523,
+      "inchange": 2185,
+      "modifie": 1731,
+      "non_apparie": 1155,
+      "supprime": 211
+    },
+    "train": {
+      "autre_REJET": 1,
+      "autre_new": 0,
+      "autre_ÉCHEC": 3,
+      "derniere_etape": 913,
+      "hors_cible_conseil_constitutionnel": 503,
+      "inchange": 2722,
+      "modifie": 2175,
+      "non_apparie": 475,
+      "supprime": 137
+    },
+    "valid": {
+      "autre_REJET": 2,
+      "autre_new": 2,
+      "autre_ÉCHEC": 0,
+      "derniere_etape": 499,
+      "hors_cible_conseil_constitutionnel": 304,
+      "inchange": 697,
+      "modifie": 622,
+      "non_apparie": 837,
+      "supprime": 83
+    }
+  },
+  "dossiers_par_split": {
+    "train": 25,
+    "valid": 8,
+    "test": 15
+  },
+  "observations_etiquetees_par_split": {
+    "train": 5034,
+    "valid": 1402,
+    "test": 4127
+  },
+  "frequence_classes_train": {
+    "inchange": 0.5407,
+    "modifie": 0.4321,
+    "supprime": 0.0272
+  },
+  "frequence_classes_test": {
+    "inchange": 0.5294,
+    "modifie": 0.4194,
+    "supprime": 0.0511
+  },
+  "features": {
+    "base": [
+      "etape_k",
+      "institution_k",
+      "lecture_k",
+      "etape_suivante",
+      "institution_suivante",
+      "lecture_suivante",
+      "statut_k",
+      "type_texte",
+      "modifie_a_k",
+      "ndiff_k",
+      "log_longueur_k",
+      "nb_etapes_article",
+      "position_relative",
+      "log_nb_articles_k",
+      "procedure_acceleree"
+    ],
+    "graphe": [
+      "nb_modifs_passees",
+      "nb_suppressions_passees",
+      "article_insere",
+      "part_modifies_k",
+      "part_crees_k"
+    ],
+    "amendements_reglage_B": [
+      "nb_amdt_deposes",
+      "nb_amdt_gouvernement",
+      "nb_groupes_amdt"
+    ]
+  },
+  "k_alertes": 5,
+  "modeles": {
+    "reference_aucun_changement": {
+      "secondes": 0.0,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.22137525805939337,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            697,
+            0,
+            0
+          ],
+          [
+            622,
+            0,
+            0
+          ],
+          [
+            83,
+            0,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.5028530670470756,
+        "pr_auc_supprime": 0.05920114122681883,
+        "brier": 0.5555694455528285,
+        "ece_changement": 0.043576150082435205,
+        "precision_at_k_k5": 0.5027027027027026,
+        "recall_at_k_k5": 0.3210761350752701,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.23077735530207014,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            2185,
+            0,
+            0
+          ],
+          [
+            1731,
+            0,
+            0
+          ],
+          [
+            211,
+            0,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.4705597286164284,
+        "pr_auc_supprime": 0.051126726435667555,
+        "brier": 0.5420135800518631,
+        "ece_changement": 0.011282811651788127,
+        "precision_at_k_k5": 0.477536231884058,
+        "recall_at_k_k5": 0.24975660391453622,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.5,
+        "alertes": 0,
+        "precision": null,
+        "rappel": 0.0
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.2091,
+          0.2576
+        ],
+        "pr_auc_changement": [
+          0.3702,
+          0.5429
+        ],
+        "pr_auc_supprime": [
+          0.0345,
+          0.0658
+        ],
+        "brier": [
+          0.5093,
+          0.5676
+        ],
+        "precision_at_k_k5": [
+          0.4137,
+          0.563
+        ]
+      },
+      "note": "probabilités = fréquences d'entraînement ; prédiction = classe majoritaire « inchange »"
+    },
+    "regle_publiee": {
+      "secondes": 0.01,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.37537462256175164,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            333,
+            364,
+            0
+          ],
+          [
+            186,
+            436,
+            0
+          ],
+          [
+            18,
+            65,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.620866891730458,
+        "pr_auc_supprime": 0.09206412695641807,
+        "brier": 0.5254510797197147,
+        "ece_changement": 0.08375744471297923,
+        "precision_at_k_k5": 0.5405405405405405,
+        "recall_at_k_k5": 0.3457187461557897,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.4372336215713298,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            1240,
+            945,
+            0
+          ],
+          [
+            333,
+            1398,
+            0
+          ],
+          [
+            36,
+            175,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.6791927584367361,
+        "pr_auc_supprime": 0.09144737394136929,
+        "brier": 0.4704601724952323,
+        "ece_changement": 0.08916222838584607,
+        "precision_at_k_k5": 0.5666666666666667,
+        "recall_at_k_k5": 0.33488927642616034,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.2458,
+        "alertes": 3947,
+        "precision": 0.4849252596909045,
+        "rappel": 0.9855818743563337
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.4193,
+          0.4487
+        ],
+        "pr_auc_changement": [
+          0.6117,
+          0.7394
+        ],
+        "pr_auc_supprime": [
+          0.0606,
+          0.1252
+        ],
+        "brier": [
+          0.4312,
+          0.5005
+        ],
+        "precision_at_k_k5": [
+          0.5004,
+          0.6439
+        ]
+      },
+      "note": "fréquences d'entraînement par type et institution de l'étape suivante et modification à k"
+    },
+    "regression_logistique[base]": {
+      "secondes": 0.07,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.46504478805363764,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            479,
+            218,
+            0
+          ],
+          [
+            152,
+            470,
+            0
+          ],
+          [
+            28,
+            55,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.8091819919370297,
+        "pr_auc_supprime": 0.18096868666672447,
+        "brier": 0.4220054052642424,
+        "ece_changement": 0.042728121170460945,
+        "precision_at_k_k5": 0.7243243243243245,
+        "recall_at_k_k5": 0.3977559659101616,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.48281175996755393,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            1605,
+            579,
+            1
+          ],
+          [
+            417,
+            1313,
+            1
+          ],
+          [
+            91,
+            120,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.8215409673940214,
+        "pr_auc_supprime": 0.11664337044078457,
+        "brier": 0.3915899532433804,
+        "ece_changement": 0.04394747825486015,
+        "precision_at_k_k5": 0.6905797101449275,
+        "recall_at_k_k5": 0.39779180968782407,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.4001,
+        "alertes": 2505,
+        "precision": 0.6574850299401198,
+        "rappel": 0.8480947476828012
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.4588,
+          0.5046
+        ],
+        "pr_auc_changement": [
+          0.743,
+          0.8716
+        ],
+        "pr_auc_supprime": [
+          0.072,
+          0.2031
+        ],
+        "brier": [
+          0.3499,
+          0.4296
+        ],
+        "precision_at_k_k5": [
+          0.6112,
+          0.7817
+        ]
+      }
+    },
+    "gradient_boosting[base]": {
+      "secondes": 1.68,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.4413176857108909,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            481,
+            209,
+            7
+          ],
+          [
+            201,
+            417,
+            4
+          ],
+          [
+            40,
+            43,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.7777161225177714,
+        "pr_auc_supprime": 0.11111804146183614,
+        "brier": 0.5002513422605368,
+        "ece_changement": 0.152112387010111,
+        "precision_at_k_k5": 0.7243243243243243,
+        "recall_at_k_k5": 0.38763599971380647,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.4797600308771201,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            1597,
+            585,
+            3
+          ],
+          [
+            473,
+            1247,
+            11
+          ],
+          [
+            110,
+            98,
+            3
+          ]
+        ],
+        "pr_auc_changement": 0.7897426711515296,
+        "pr_auc_supprime": 0.10539182492078121,
+        "brier": 0.44987906279619916,
+        "ece_changement": 0.11573227653356222,
+        "precision_at_k_k5": 0.6688405797101449,
+        "recall_at_k_k5": 0.3742850963938036,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.1867,
+        "alertes": 2824,
+        "precision": 0.6026912181303116,
+        "rappel": 0.8764160659114315
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.454,
+          0.5047
+        ],
+        "pr_auc_changement": [
+          0.714,
+          0.8329
+        ],
+        "pr_auc_supprime": [
+          0.0717,
+          0.1416
+        ],
+        "brier": [
+          0.4028,
+          0.4939
+        ],
+        "precision_at_k_k5": [
+          0.5878,
+          0.7648
+        ]
+      }
+    },
+    "regression_logistique[base+graphe]": {
+      "secondes": 0.06,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.4575327629156287,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            453,
+            242,
+            2
+          ],
+          [
+            142,
+            480,
+            0
+          ],
+          [
+            27,
+            56,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.7970305340534238,
+        "pr_auc_supprime": 0.1702853159594859,
+        "brier": 0.4296589675256448,
+        "ece_changement": 0.05510406826275973,
+        "precision_at_k_k5": 0.7243243243243244,
+        "recall_at_k_k5": 0.3956726325768282,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.4855299890569102,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            1605,
+            575,
+            5
+          ],
+          [
+            402,
+            1327,
+            2
+          ],
+          [
+            87,
+            124,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.8195441151682055,
+        "pr_auc_supprime": 0.11541282102887315,
+        "brier": 0.3917462461011276,
+        "ece_changement": 0.04716922605640028,
+        "precision_at_k_k5": 0.6905797101449275,
+        "recall_at_k_k5": 0.3981074015214911,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.4225,
+        "alertes": 2449,
+        "precision": 0.6700694160881993,
+        "rappel": 0.845005149330587
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.4609,
+          0.5077
+        ],
+        "pr_auc_changement": [
+          0.7407,
+          0.8717
+        ],
+        "pr_auc_supprime": [
+          0.0744,
+          0.1898
+        ],
+        "brier": [
+          0.35,
+          0.4292
+        ],
+        "precision_at_k_k5": [
+          0.615,
+          0.78
+        ]
+      }
+    },
+    "gradient_boosting[base+graphe]": {
+      "secondes": 1.81,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.46577234437510207,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            480,
+            215,
+            2
+          ],
+          [
+            164,
+            453,
+            5
+          ],
+          [
+            29,
+            53,
+            1
+          ]
+        ],
+        "pr_auc_changement": 0.7794747213612002,
+        "pr_auc_supprime": 0.11768330919219173,
+        "brier": 0.5022174603362171,
+        "ece_changement": 0.1405037122701951,
+        "precision_at_k_k5": 0.7189189189189189,
+        "recall_at_k_k5": 0.40230810252929167,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.48191914948902365,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            1618,
+            564,
+            3
+          ],
+          [
+            447,
+            1274,
+            10
+          ],
+          [
+            120,
+            90,
+            1
+          ]
+        ],
+        "pr_auc_changement": 0.7976152386870168,
+        "pr_auc_supprime": 0.10018911029624436,
+        "brier": 0.44594645797440563,
+        "ece_changement": 0.12171320585122228,
+        "precision_at_k_k5": 0.6688405797101449,
+        "recall_at_k_k5": 0.3706808134475667,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.2088,
+        "alertes": 2694,
+        "precision": 0.6143281365998515,
+        "rappel": 0.8522142121524202
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.4648,
+          0.4924
+        ],
+        "pr_auc_changement": [
+          0.718,
+          0.8398
+        ],
+        "pr_auc_supprime": [
+          0.0681,
+          0.1371
+        ],
+        "brier": [
+          0.4032,
+          0.4864
+        ],
+        "precision_at_k_k5": [
+          0.5893,
+          0.7667
+        ]
+      }
+    },
+    "tabicl[base+graphe]": {
+      "secondes": 64.06,
+      "validation": {
+        "n": 1402,
+        "macro_f1": 0.4760943248635235,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            506,
+            191,
+            0
+          ],
+          [
+            156,
+            466,
+            0
+          ],
+          [
+            28,
+            55,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.8201994481281807,
+        "pr_auc_supprime": 0.15568758538701874,
+        "brier": 0.4117572648647389,
+        "ece_changement": 0.025777154956836672,
+        "precision_at_k_k5": 0.7405405405405406,
+        "recall_at_k_k5": 0.4062656660865284,
+        "groupes_k5": 37
+      },
+      "test": {
+        "n": 4127,
+        "macro_f1": 0.4992061506107976,
+        "confusion_lignes_vrai_colonnes_predit": [
+          [
+            1682,
+            503,
+            0
+          ],
+          [
+            394,
+            1337,
+            0
+          ],
+          [
+            100,
+            111,
+            0
+          ]
+        ],
+        "pr_auc_changement": 0.8329201039656511,
+        "pr_auc_supprime": 0.12022131518453037,
+        "brier": 0.37731528260717967,
+        "ece_changement": 0.0374417256284979,
+        "precision_at_k_k5": 0.6905797101449276,
+        "recall_at_k_k5": 0.403673290777714,
+        "groupes_k5": 92
+      },
+      "alerte_test": {
+        "seuil_choisi_sur_validation": 0.34950000047683716,
+        "alertes": 2658,
+        "precision": 0.6437170805116629,
+        "rappel": 0.8810504634397528
+      },
+      "ic95_test_par_dossiers": {
+        "macro_f1": [
+          0.4807,
+          0.5145
+        ],
+        "pr_auc_changement": [
+          0.7663,
+          0.8682
+        ],
+        "pr_auc_supprime": [
+          0.0757,
+          0.1788
+        ],
+        "brier": [
+          0.3396,
+          0.4114
+        ],
+        "precision_at_k_k5": [
+          0.6172,
+          0.7781
+        ]
+      },
+      "version_paquet": "2.2.0",
+      "checkpoint": "tabicl-classifier-v2-20260212.ckpt",
+      "n_estimators": 8,
+      "device": "cpu",
+      "torch": "2.15.0",
+      "secondes_fit": 0.35,
+      "contexte_entrainement_lignes": 3000,
+      "colonnes": 38
+    }
+  },
+  "reglage_B_amendements_deposes_test": {
+    "observations": 3417,
+    "dossiers": 15,
+    "part_changement": 0.4562,
+    "regle_au_moins_un_amendement": {
+      "pr_auc_changement": 0.7426250769185415,
+      "precision_at_k_k5": 0.6510288065843621,
+      "recall_at_k_k5": 0.35828371148678645,
+      "alerte": {
+        "alertes": 1509,
+        "precision": 0.7786613651424784,
+        "rappel": 0.7536882617062219
+      }
+    },
+    "historique_seul[gradient_boosting[base+graphe]]": {
+      "pr_auc_changement": 0.7932476007161012,
+      "precision_at_k_k5": 0.665843621399177,
+      "recall_at_k_k5": 0.39347904026623587
+    },
+    "amendements_puis_historique": {
+      "pr_auc_changement": 0.8143621985395287,
+      "precision_at_k_k5": 0.7028806584362141,
+      "recall_at_k_k5": 0.43284304216959896
+    }
+  },
+  "materiel": {
+    "machine": "arm64",
+    "systeme": "macOS-15.7.3-arm64-arm-64bit",
+    "ram_octets": 17179869184
+  },
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scikit_learn": "1.9.1"
+  },
+  "pic_memoire_octets": 2287386624,
+  "duree_totale_secondes": 112.5,
+  "cout": "poste local (CPU et GPU intégré), aucun GPU payant, aucun crédit Hémicycle ni Featherless consommé",
+  "gnn": {
+    "status": "not_run",
+    "motif": "variables de graphe simples sans gain (macro-F1 +0,003) et 25 dossiers d'entraînement : coût non justifié"
+  },
+  "simulation_openfisca": {
+    "status": "not_run",
+    "motif": "étude documentaire seulement ; aucune réforme codée"
+  },
+  "commande": "voir research/ml-feasibility/README.md"
+}
