@@ -1,15 +1,15 @@
 ---
-description: i18n next-intl — interface en anglais, catalogues en/fr, useTranslations, locale sans préfixe d'URL
-globs: i18n/**/*.ts,i18n/messages/**/*.json,features/**/*.tsx,app/**/*.tsx,components/**/*.tsx
-alwaysApply: false
+description: i18n next-intl — interface en anglais, catalogues en/fr, useTranslations, bouton de langue sans préfixe d'URL
+alwaysApply: true
 ---
 
 # i18n (next-intl 4)
 
-- **L'interface est en anglais**, même si les échanges avec l'agent sont en français. `en` est la locale par défaut et la détection de langue est désactivée (`i18n/routing.ts`).
+- **L'interface est en anglais**, même si les échanges avec l'agent sont en français. `en` est la locale par défaut.
 - Aucune chaîne utilisateur en dur : `const t = useTranslations('namespace')` (composants serveur ou client) ou `await getTranslations({ locale, namespace })` (metadata, fonctions async serveur). Les composants du design system ne traduisent pas : ils reçoivent des libellés déjà traduits en props.
 - Catalogues : `i18n/messages/en.json` (**référence**, rédigé en premier) et `fr.json` (maintenu). Toute clé s'ajoute **dans les deux** : `i18n/messages/messages.test.ts` vérifie la parité.
 - Un namespace par feature (`deputies`, `votes`…) : c'est l'unité qu'on fusionne dans les catalogues de la référence au portage.
-- Messages d'erreur des schémas Zod = clés i18n.
-- Configuration : `i18n/routing.ts` (`locales: ['en', 'fr']`, `defaultLocale: 'en'`, `localeDetection: false`, `localePrefix: 'never'`), `i18n/request.ts`, `i18n/navigation.ts` (wrappers `Link`, `redirect`, `useRouter`, `usePathname`).
+- Messages d'erreur des schémas Zod = clés i18n. Les `Error(...)` de `lib/` et `services/` (messages développeur) et le contenu open data restent hors catalogues.
+- Configuration : `i18n/routing.ts` (`locales: ['en', 'fr']`, `defaultLocale: 'en'`, `localeDetection: true`, `localePrefix: 'never'`), `i18n/request.ts`, `i18n/navigation.ts` (wrappers `Link`, `redirect`, `useRouter`, `usePathname`).
+- Bouton de langue : même URL. `localeDetection` reste actif pour lire le cookie `NEXT_LOCALE`. Le middleware force `accept-language` à `en`, donc un navigateur français arrive en anglais tant que le visiteur n'a pas choisi. Bascule : `router.replace(pathname, { locale })` depuis `@/i18n/navigation`. Libellés dans le namespace `localeSwitch`.
 - Pages et layouts : `setRequestLocale(locale)` après `await params` pour garder le rendu statique.

@@ -11,5 +11,10 @@
     "title": "Page not found",
     "description": "This page does not exist or has moved.",
     "backHome": "Back to home"
+  },
+  "localeSwitch": {
+    "label": "Language",
+    "en": "EN",
+    "fr": "FR"
   }
 }
