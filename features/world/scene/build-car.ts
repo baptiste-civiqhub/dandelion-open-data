@@ -1,4 +1,6 @@
-import type { BufferGeometry, Group, Shape } from 'three'
+import type { BufferGeometry, Group, Mesh, Shape } from 'three'
+
+import { renderDandelionSvg } from '@/lib/brand/dandelion-svg'
 
 import type { VehicleState } from '../lib/vehicle'
 import { addMesh, canvasTexture, lambert, type WorldKit } from './world-kit'
@@ -86,6 +88,86 @@ function rearWingShape(kit: WorldKit): Shape {
 }
 
 const quad = (a: number, b: number, c: number, t: number) => (1 - t) * (1 - t) * a + 2 * (1 - t) * t * b + t * t * c
+const cubic = (a: number, b: number, c: number, d: number, t: number) =>
+  (1 - t) ** 3 * a + 3 * (1 - t) ** 2 * t * b + 3 * (1 - t) * t * t * c + t ** 3 * d
+
+/** Zone du toit couverte par l'autocollant de l'équipe : partie plate entre pare-brise et lunette. */
+const ROOF_DECAL = { front: 0.22, rear: -0.88, halfWidth: 0.66 }
+
+/** Inscriptions de l'autocollant (noms propres et date : décor, comme le fronton « SÉNAT »). */
+const ROOF_LINES = [
+  { text: 'Dandelion', weight: 800, size: 136, y: 410, color: 'foreground' },
+  { text: 'Hackathon Swanbase', weight: 700, size: 80, y: 548, color: 'foreground' },
+  { text: '14/11/2026', weight: 600, size: 72, y: 638, color: 'foreground' },
+  { text: 'Hemicycle · Fatherless', weight: 600, size: 66, y: 790, color: 'muted-foreground' }
+] as const
+
+/**
+ * Autocollant du toit : picto Dandelion (renderDandelionSvg, jamais redessiné), nom, hackathon, date et partenaires.
+ * Bande courbe qui épouse la ligne de toit ; lisible depuis la caméra de poursuite (haut du texte vers l'avant).
+ */
+function roofDecal(kit: WorldKit): Mesh {
+  const { THREE } = kit
+  const profile: [number, number][] = []
+  for (let i = 0; i <= 24; i++)
+    profile.push([quad(0.42, 0.05, -0.35, i / 24), quad(1.86, CABIN.yMax, CABIN.yMax, i / 24)])
+  for (let i = 1; i <= 48; i++)
+    profile.push([cubic(-0.35, -1.1, -1.75, CABIN.sMin, i / 48), cubic(CABIN.yMax, CABIN.yMax, 1.55, 0.95, i / 48)])
+  const strip = profile.filter(([s]) => s <= ROOF_DECAL.front && s >= ROOF_DECAL.rear)
+  const { front, rear, halfWidth: hw } = ROOF_DECAL
+  const position: number[] = []
+  const uv: number[] = []
+  const index: number[] = []
+  strip.forEach(([s, y], i) => {
+    for (const x of [-hw, hw]) {
+      position.push(x, y + CABIN.bevel + 0.006, -s)
+      uv.push((x + hw) / (2 * hw), (s - rear) / (front - rear))
+    }
+    if (i > 0) index.push(2 * i - 2, 2 * i, 2 * i - 1, 2 * i - 1, 2 * i, 2 * i + 1)
+  })
+  const geometry = new THREE.BufferGeometry()
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(position, 3))
+  geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2))
+  geometry.setIndex(index)
+  geometry.computeVertexNormals()
+
+  const cw = 1024
+  const ch = Math.round((cw * (front - rear)) / (2 * hw))
+  const texture = canvasTexture(kit, cw, ch, (c) => {
+    c.textAlign = 'center'
+    c.textBaseline = 'middle'
+    for (const line of ROOF_LINES) {
+      c.fillStyle = kit.color(line.color)
+      c.font = `${line.weight} ${line.size}px ${kit.fontFamily}`
+      c.fillText(line.text, cw / 2, line.y)
+    }
+    c.fillStyle = kit.color('muted-foreground')
+    c.fillRect(cw / 2 - 180, 712, 360, 4)
+  })
+  const canvas = texture.image as HTMLCanvasElement
+  try {
+    const logo = new Image()
+    logo.onload = () => {
+      canvas.getContext('2d')?.drawImage(logo, cw / 2 - 150, 20, 300, 300)
+      texture.needsUpdate = true
+    }
+    logo.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(renderDandelionSvg({ ink: kit.color('brand') }))
+  } catch {
+    // Couleur de marque illisible (tokens non régénérés) : l'autocollant garde ses inscriptions, sans picto.
+  }
+  const decal = new THREE.Mesh(
+    geometry,
+    new THREE.MeshLambertMaterial({
+      map: texture,
+      transparent: true,
+      depthWrite: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -2
+    })
+  )
+  decal.receiveShadow = true
+  return decal
+}
 
 /**
  * Flancs de la caisse : portières en dégradé bleu, blanc, rouge, vitres, jours de portières, jonc chromé et poignées.
@@ -209,6 +291,7 @@ export function buildCar(kit: WorldKit): CarRig {
   cabin.castShadow = true
   cabin.receiveShadow = true
   body.add(cabin)
+  body.add(roofDecal(kit))
 
   addMesh(kit, sideExtrusion(kit, hoodShape(kit), 0.55, 0.1), white, 0, 0, 0, true, body)
   for (const x of [-0.36, -0.18, 0, 0.18, 0.36]) {
