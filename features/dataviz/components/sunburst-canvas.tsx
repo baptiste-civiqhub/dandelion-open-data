@@ -14,13 +14,14 @@ type SunburstCanvasProps = {
   tree: SunburstTree | null
   sortColorVariable: SunburstSceneOptions['sortColorVariable']
   text: SunburstSceneOptions['text']
+  opening?: SunburstSceneOptions['opening']
 }
 
-export function SunburstCanvas({ label, tree, sortColorVariable, text }: SunburstCanvasProps) {
+export function SunburstCanvas({ label, tree, sortColorVariable, text, opening }: SunburstCanvasProps) {
   const { view, hover } = useSunburstStores()
   const scene = useMemo(
-    () => createSunburstScene({ tree, view, hover, sortColorVariable, text }),
-    [tree, view, hover, sortColorVariable, text]
+    () => createSunburstScene({ tree, view, hover, sortColorVariable, text, opening }),
+    [tree, view, hover, sortColorVariable, text, opening]
   )
 
   return <StageCanvas scene={scene} label={label} />
