@@ -15,14 +15,17 @@ type WorldCanvasProps = {
   onReady: WorldSceneOptions['onReady']
   onZoneFocus: WorldSceneOptions['onZoneFocus']
   onEnterZone: WorldSceneOptions['onEnterZone']
+  /** Facultatifs, stables aussi : voir `WorldSceneOptions`. */
+  landing?: WorldSceneOptions['landing']
+  onExitFrames?: WorldSceneOptions['onExitFrames']
 }
 
 /** Canvas du monde navigable : héberge la scène et lui passe les zones et les rappels de `WorldScreen`. */
-export function WorldCanvas({ zones, onReady, onZoneFocus, onEnterZone }: WorldCanvasProps) {
+export function WorldCanvas({ zones, onReady, onZoneFocus, onEnterZone, landing, onExitFrames }: WorldCanvasProps) {
   const t = useTranslations('world')
   const scene = useMemo(
-    () => createWorldScene({ zones, onReady, onZoneFocus, onEnterZone }),
-    [zones, onReady, onZoneFocus, onEnterZone]
+    () => createWorldScene({ zones, onReady, onZoneFocus, onEnterZone, landing, onExitFrames }),
+    [zones, onReady, onZoneFocus, onEnterZone, landing, onExitFrames]
   )
 
   return <StageCanvas scene={scene} label={t('canvasLabel')} />

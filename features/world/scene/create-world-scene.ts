@@ -16,7 +16,21 @@ import {
   zoomOrbit,
   zoomOrbitBySteps
 } from '../lib/camera-rig'
-import { diveFade, diveFlowerScale, diveProgress, diveTarget, easeInOutCubic, lerpVec, type Vec3 } from '../lib/dive'
+import {
+  centeredLanding,
+  DIVE_MAX_SCALE,
+  diveFade,
+  diveFlowerScale,
+  diveHeading,
+  diveLanding,
+  divePose,
+  diveProgress,
+  easeInOutCubic,
+  EXIT_WINDOW_FEATHER_PX,
+  type ScreenCircle,
+  type Vec3,
+  type Viewport
+} from '../lib/dive'
 import { GARDEN } from '../lib/garden-layout'
 import { createRandom } from '../lib/seeded-random'
 import {
@@ -56,7 +70,38 @@ export type WorldSceneOptions = {
    * navigue vers `/area/{slug}`. Avec `reducedMotion`, appeler sans transition.
    */
   onEnterZone: (slug: string) => void
+  /**
+   * Facultatif. Cercle d'écran (px CSS, repère du canvas) où la tête de la fleur se pose à la fin de la plongée,
+   * recalculé à chaque image depuis la taille du canvas. `WorldScreen` y passe le disque du sunburst de la page de zone
+   * (`landingOnSunburst`) : la fleur devient la dataviz. Absent : cercle centré (`centeredLanding`).
+   */
+  landing?: (viewport: Viewport) => ScreenCircle
+  /**
+   * Facultatif. Fin de la plongée, juste avant `onEnterZone` : les dernières images du monde, copiées hors du canvas
+   * WebGL. `frame` est exactement l'image affichée (jardin voilé, disque de la fleur resté net) ; `scenery` est la
+   * même vue sans voile, en basse définition, pour un fond flouté. Jamais appelé avec `reducedMotion`.
+   */
+  onExitFrames?: (frames: WorldExitFrames) => void
 }
+
+export type WorldExitFrames = { slug: string; frame: HTMLCanvasElement; scenery: HTMLCanvasElement }
+
+/** Définition de `scenery` relativement au canvas : une image destinée à être floutée. */
+const SCENERY_SCALE = 0.25
+
+/** Voile plein écran, sauf un disque net (fondu sur `feather`) : coordonnées en pixels du tampon, origine en bas. */
+const VEIL_VERTEX = 'void main() { gl_Position = vec4(position.xy, 0.0, 1.0); }'
+const VEIL_FRAGMENT = `
+uniform vec3 color;
+uniform float opacity;
+uniform vec2 center;
+uniform float radius;
+uniform float feather;
+void main() {
+  float d = distance(gl_FragCoord.xy, center);
+  gl_FragColor = vec4(color, opacity * smoothstep(radius, radius + feather, d));
+  #include <colorspace_fragment>
+}`
 
 const KEY_TO_INPUT: Record<string, keyof VehicleInput> = {
   ArrowUp: 'up',
@@ -193,7 +238,16 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
     const input: VehicleInput = { up: false, down: false, left: false, right: false, boost: false, brake: false }
     let focused: ZoneVisual | null = null
     let focusedSlug: string | null = null
-    let dive: { visual: ZoneVisual; from: { position: Vec3; look: Vec3 }; elapsed: number } | null = null
+    let dive: {
+      visual: ZoneVisual
+      from: { position: Vec3; look: Vec3 }
+      head: Vec3
+      heading: { x: number; z: number }
+      sway: { x: number; z: number }
+      elapsed: number
+    } | null = null
+    let exit: 'none' | 'pending' | 'done' = 'none'
+    let viewport: Viewport = { width: size.width, height: size.height }
     let entered = false
     let ready = false
     let clock = 0
@@ -210,21 +264,28 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
     let introCap = 1
     let introSkipped = false
     const ray = new THREE.Raycaster()
-    const fade = new THREE.Mesh(
-      new THREE.PlaneGeometry(4, 4),
-      new THREE.MeshBasicMaterial({
-        color: color('background'),
+    const veilUniforms = {
+      color: { value: new THREE.Color(color('background')) },
+      opacity: { value: 0 },
+      center: { value: new THREE.Vector2() },
+      radius: { value: 0 },
+      feather: { value: 0 }
+    }
+    const veil = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      new THREE.ShaderMaterial({
+        uniforms: veilUniforms,
+        vertexShader: VEIL_VERTEX,
+        fragmentShader: VEIL_FRAGMENT,
         transparent: true,
-        opacity: 0,
         depthTest: false,
-        depthWrite: false,
-        fog: false
+        depthWrite: false
       })
     )
-    fade.position.z = -1.1
-    fade.renderOrder = 999
-    fade.visible = false
-    camera.add(fade)
+    veil.frustumCulled = false
+    veil.renderOrder = 999
+    veil.visible = false
+    scene.add(veil)
 
     const startDive = (visual: ZoneVisual) => {
       if (entered) return
@@ -233,8 +294,17 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
         options.onEnterZone(visual.zone.slug)
         return
       }
-      dive = { visual, from: { position: { ...camera.position }, look: { ...camLook } }, elapsed: 0 }
-      fade.visible = true
+      const from = { position: { ...camera.position }, look: { ...camLook } }
+      const head = visual.head.getWorldPosition(new THREE.Vector3())
+      dive = {
+        visual,
+        from,
+        head: { x: head.x, y: head.y, z: head.z },
+        heading: diveHeading(from, { x: -Math.sin(camYaw), z: -Math.cos(camYaw) }),
+        sway: { x: visual.head.rotation.x, z: visual.head.rotation.z },
+        elapsed: 0
+      }
+      veil.visible = true
     }
     const onKeyDown = (event: KeyboardEvent) => {
       if (isTyping(event.target) || overlayOpen() || event.metaKey || event.ctrlKey || event.altKey || dive || entered)
@@ -421,19 +491,29 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
         dive.elapsed += dt * 1000
         const t = diveProgress(dive.elapsed)
         const e = easeInOutCubic(t)
-        const to = diveTarget(dive.visual.zone, dive.visual.headY, dive.visual.headRadius)
-        const p = lerpVec(dive.from.position, to.position, e)
-        const l = lerpVec(dive.from.look, to.look, e)
-        camera.position.set(p.x, p.y, p.z)
-        camLook.set(l.x, l.y, l.z)
+        const target = (options.landing ?? centeredLanding)(viewport)
+        const to = diveLanding({
+          head: dive.head,
+          radius: dive.visual.headRadius * DIVE_MAX_SCALE,
+          heading: dive.heading,
+          target,
+          viewport,
+          fovY: camera.fov
+        })
+        const pose = divePose(dive.from, to, dive.head, e)
+        camera.up.set(pose.up.x, pose.up.y, pose.up.z)
+        camera.position.set(pose.position.x, pose.position.y, pose.position.z)
+        camLook.set(pose.look.x, pose.look.y, pose.look.z)
         camera.lookAt(camLook)
         dive.visual.head.scale.setScalar(diveFlowerScale(t))
-        ;(fade.material as InstanceType<typeof THREE.MeshBasicMaterial>).opacity = diveFade(t)
-        if (t >= 1) {
-          const slug = dive.visual.zone.slug
-          dive = null
-          options.onEnterZone(slug)
-        }
+        dive.visual.head.rotation.x = dive.sway.x * (1 - e)
+        dive.visual.head.rotation.z = dive.sway.z * (1 - e)
+        const ratio = renderer.getPixelRatio()
+        veilUniforms.opacity.value = diveFade(t)
+        veilUniforms.center.value.set(target.cx * ratio, (viewport.height - target.cy) * ratio)
+        veilUniforms.radius.value = target.r * ratio
+        veilUniforms.feather.value = EXIT_WINDOW_FEATHER_PX * ratio
+        if (t >= 1 && exit === 'none') exit = 'pending'
       }
       for (const v of visuals) {
         const on = v === focused
@@ -453,6 +533,30 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
       if (sky) sky.position.copy(camera.position)
     }
 
+    // Copie le tampon WebGL juste après un rendu, dans la même tâche : il est encore lisible sans preserveDrawingBuffer.
+    const copyCanvas = (scale: number) => {
+      const copy = document.createElement('canvas')
+      copy.width = Math.max(1, Math.round(canvas.width * scale))
+      copy.height = Math.max(1, Math.round(canvas.height * scale))
+      copy.getContext('2d')?.drawImage(canvas, 0, 0, copy.width, copy.height)
+      return copy
+    }
+    /** Dernière image de la plongée : copies pour la page suivante, puis navigation. Le canvas reste figé dessus. */
+    const leave = () => {
+      exit = 'done'
+      if (!dive) return
+      const slug = dive.visual.zone.slug
+      if (options.onExitFrames) {
+        veil.visible = false
+        renderer.render(scene, camera)
+        const scenery = copyCanvas(SCENERY_SCALE)
+        veil.visible = true
+        renderer.render(scene, camera)
+        options.onExitFrames({ slug, frame: copyCanvas(1), scenery })
+      } else renderer.render(scene, camera)
+      options.onEnterZone(slug)
+    }
+
     rig.setKind(kind)
     rig.pose(state, 0)
     placeCamera(0, true)
@@ -460,6 +564,7 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
     garden.update(0, 0, playerView, camLook, camera.quaternion)
 
     const resize = (next: StageSize) => {
+      viewport = { width: next.width, height: next.height }
       renderer.setPixelRatio(next.pixelRatio)
       renderer.setSize(next.width, next.height, false)
       camera.aspect = next.width / Math.max(1, next.height)
@@ -471,7 +576,12 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
       frame: ({ delta }) => {
         const dt = Math.min(delta / 1000, 0.05)
         clock += dt
+        if (exit === 'done') return
         animate(dt)
+        if (exit === 'pending') {
+          leave()
+          return
+        }
         renderer.render(scene, camera)
         if (!ready) {
           ready = true

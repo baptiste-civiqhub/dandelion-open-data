@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CornerDownLeft } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -11,8 +11,11 @@ import { Widget } from '@/components/shared/widget'
 import { PUBLIC_PATHS } from '@/constant/path'
 import { useRouter } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
+import { useStageTransitionStore } from '@/store/stage-transition'
 
+import { landingOnSunburst } from '../lib/dive'
 import { worldZonesFromAreas, type WorldZone } from '../lib/world-zones'
+import type { WorldExitFrames } from '../scene/create-world-scene'
 import { WorldCanvas } from './world-canvas'
 import { WorldControlsHint } from './world-controls-hint'
 
@@ -21,7 +24,8 @@ const NO_ZONES: readonly WorldZone[] = []
 /**
  * Landing : le monde 3D occupe tout le Stage, sans colonne latérale. Le titre de marque centré s'affiche tant que
  * le monde ne dessine rien, puis ne reste que pour les lecteurs d'écran. Quand le personnage est dans une zone, un
- * bandeau en bas invite à presser Entrée ; la scène navigue ensuite vers la page de la zone.
+ * bandeau en bas invite à presser Entrée ; la scène navigue ensuite vers la page de la zone. La plongée pose la fleur sur
+ * le disque du sunburst de cette page (`landingOnSunburst`) et lui laisse ses dernières images (rideau, fond flouté).
  */
 export function WorldScreen() {
   const t = useTranslations('home')
@@ -36,10 +40,28 @@ export function WorldScreen() {
 
   const onReady = useCallback(() => setReady(true), [])
   const onEnterZone = useCallback((slug: string) => router.push(PUBLIC_PATHS.AREA_DETAIL(slug)), [router])
+  const depart = useStageTransitionStore((state) => state.depart)
+  const onExitFrames = useCallback(
+    ({ slug, frame, scenery }: WorldExitFrames) => depart({ path: PUBLIC_PATHS.AREA_DETAIL(slug), frame, scenery }),
+    [depart]
+  )
+  // Page de la zone préchargée dès qu'on y entre : la plongée finie, elle s'affiche sans écran de chargement.
+  useEffect(() => {
+    if (focusedSlug) router.prefetch(PUBLIC_PATHS.AREA_DETAIL(focusedSlug))
+  }, [focusedSlug, router])
 
   return (
     <Stage
-      canvas={<WorldCanvas zones={zones} onReady={onReady} onZoneFocus={setFocusedSlug} onEnterZone={onEnterZone} />}
+      canvas={
+        <WorldCanvas
+          zones={zones}
+          onReady={onReady}
+          onZoneFocus={setFocusedSlug}
+          onEnterZone={onEnterZone}
+          landing={landingOnSunburst}
+          onExitFrames={onExitFrames}
+        />
+      }
       centerAlign={ready ? 'end' : 'center'}
     >
       <BrandLockup
