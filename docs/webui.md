@@ -20,12 +20,12 @@ Références : [`design-system/README.md`](../design-system/README.md) (règles)
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-| Calque   | Composant                                                | Rôle                                                                                                 |
-| -------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Calque   | Composant                                                | Rôle                                                                                                         |
+| -------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Header   | `SiteHeader` → `FloatingHeader`                          | seul élément rémanent : marque animée, navigation, recherche, langue. Ne se démonte jamais entre deux pages. |
-| Colonnes | `Stage` (`left`, `children`, `right`)                    | grille 12 colonnes : 3 · 6 · 3 dès `lg`, empilées en dessous. Une colonne absente n'est pas rendue.  |
-| Widgets  | `Widget` (+ `Header`, `Title`, `Description`, `Content`) | panneaux flottants, même matière que le header (`floatingSurface`).                                  |
-| Fond     | `StageCanvas` + une scène de feature                     | canvas plein écran, toujours derrière ; reçoit le pointeur partout où il n'y a pas de widget.        |
+| Colonnes | `Stage` (`left`, `children`, `right`)                    | grille 12 colonnes : 3 · 6 · 3 dès `lg`, empilées en dessous. Une colonne absente n'est pas rendue.          |
+| Widgets  | `Widget` (+ `Header`, `Title`, `Description`, `Content`) | panneaux flottants, même matière que le header (`floatingSurface`).                                          |
+| Fond     | `StageCanvas` + une scène de feature                     | canvas plein écran, toujours derrière ; reçoit le pointeur partout où il n'y a pas de widget.                |
 
 Le pointeur traverse l'overlay (`pointer-events-none`) et n'est capté que par les enfants directs des colonnes (`*:pointer-events-auto`) : le canvas reste navigable entre les widgets.
 
@@ -103,12 +103,13 @@ export function ElectionsScreen() {
 }
 ```
 
-| Prop de `Stage` | Contenu                                                                |
-| --------------- | ---------------------------------------------------------------------- |
-| `canvas`        | un composant client de la feature qui rend un `StageCanvas`            |
-| `left`, `right` | un ou plusieurs `Widget` (empilés, la colonne défile si elle déborde)  |
-| `children`      | colonne centrale ; vide sur une dataviz pour laisser voir le graphique |
-| `centerAlign`   | `start` (défaut) · `center` · `end` : alignement vertical du centre    |
+| Prop de `Stage` | Contenu                                                                             |
+| --------------- | ----------------------------------------------------------------------------------- |
+| `canvas`        | un composant client de la feature qui rend un `StageCanvas`                         |
+| `backdrop`      | fond sous le canvas à la place du blanc plein (`StageBackdrop`) ; absent : inchangé |
+| `left`, `right` | un ou plusieurs `Widget` (empilés, la colonne défile si elle déborde)               |
+| `children`      | colonne centrale ; vide sur une dataviz pour laisser voir le graphique              |
+| `centerAlign`   | `start` (défaut) · `center` · `end` : alignement vertical du centre                 |
 
 Règles : un widget porte un titre (`WidgetTitle` + `aria-labelledby`), affiche les quatre états d'un composant de données (chargement `Skeleton`, vide, erreur, rempli) et ne contient aucun texte en dur. Un même widget utilisé sur deux écrans est promu dans `components/shared/` (« deux occurrences = un composant »).
 
