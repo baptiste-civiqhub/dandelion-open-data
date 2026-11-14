@@ -15,6 +15,11 @@
     "description": "This page does not exist or has moved.",
     "backHome": "Back to home"
   },
+  "localeSwitch": {
+    "label": "Language",
+    "en": "EN",
+    "fr": "FR"
+  },
   "shell": {
     "brandName": "Dandelion",
     "homeLink": "Dandelion, back to the map",
