@@ -15,45 +15,153 @@
     "description": "This page does not exist or has moved.",
     "backHome": "Back to home"
   },
+  "localeSwitch": {
+    "label": "Language",
+    "en": "EN",
+    "fr": "FR"
+  },
   "shell": {
     "brandName": "Dandelion",
     "homeLink": "Dandelion, back to the map",
     "nav": {
       "label": "Main",
-      "about": "Atlas",
-      "datasets": "Area"
+      "atlas": "Atlas",
+      "areas": "Area"
+    },
+    "overlay": {
+      "close": "Close"
     },
     "search": {
-      "label": "Search datasets",
-      "placeholder": "Search datasets…"
+      "label": "Search areas",
+      "placeholder": "Search areas…"
     }
   },
   "world": {
-    "canvasLabel": "Explorable map of the datasets"
+    "canvasLabel": "Explorable map of the areas",
+    "enterHint": "Press Enter to open",
+    "controls": {
+      "drive": "<kbd>Arrows</kbd> or <kbd>WASD</kbd> to drive",
+      "vehicle": "<kbd>V</kbd> car or horse",
+      "open": "<kbd>Enter</kbd> open the area"
+    }
   },
   "about": {
     "metaTitle": "About",
     "title": "About Dandelion",
     "intro": "Dandelion turns public open data into a space you can explore.",
-    "howItWorks": "Travel across the map, enter a zone, and the data behind it unfolds as an interactive visualisation. Every dataset is also listed under Area."
+    "howItWorks": "Travel across the map, enter an area, and the data behind it unfolds as an interactive visualisation. Every area is also listed under Area."
   },
-  "datasets": {
-    "metaTitle": "Datasets",
-    "title": "Datasets",
-    "description": "Every dataset you can explore on the map.",
-    "empty": "No dataset is available yet.",
-    "noMatch": "No dataset matches “{query}”."
+  "atlas": {
+    "title": "Atlas",
+    "description": "Every area of the map, seen from above. Pick one to open its visualisation.",
+    "mapLabel": "Map of the areas",
+    "zoneLabel": "{name}, {count, plural, =0 {no text yet} one {# text} other {# texts}}",
+    "summary": "{total, plural, one {# area} other {# areas}} · {withData} with data",
+    "empty": "No area is available yet.",
+    "error": "The atlas could not be loaded."
+  },
+  "areas": {
+    "metaTitle": "Areas",
+    "title": "Areas",
+    "description": "Search the areas and filter them by theme.",
+    "search": {
+      "label": "Search areas",
+      "placeholder": "Search by name or theme…"
+    },
+    "filters": {
+      "toggle": "Filters",
+      "active": "{count, plural, one {# active filter} other {# active filters}}",
+      "listLabel": "Filter by tag",
+      "clear": "Clear filters",
+      "error": "The filters could not be loaded."
+    },
+    "results": "{count, plural, =0 {No area} one {# area} other {# areas}}",
+    "empty": "No area is available yet.",
+    "noMatch": "No area matches these filters.",
+    "error": "The areas could not be loaded.",
+    "card": {
+      "texts": "{count, plural, =0 {No text yet} one {# text} other {# texts}}"
+    }
   },
   "dataviz": {
-    "metaTitle": "{datasetId}",
-    "canvasLabel": "Visualisation of the {datasetId} dataset",
-    "dataset": {
-      "eyebrow": "Dataset",
-      "notConnected": "The data source for this dataset is not connected yet."
+    "metaTitle": "Area {areaId}",
+    "canvasLabel": "Amendments of {name} as a dandelion: articles in the inner ring, then alineas, amendments and sub-amendments, coloured by outcome. The same figures are listed in the side panels.",
+    "area": {
+      "eyebrow": "Area",
+      "tags": "Tags",
+      "articles": "Articles and their number of amendments",
+      "stats": "{articles, plural, one {# article} other {# articles}} · {amendments, plural, =0 {no amendment} one {# amendment} other {# amendments}}",
+      "withoutArticle": "Outside the articles",
+      "noText": "This area has no text yet.",
+      "contentError": "The articles and amendments could not be loaded.",
+      "notFoundTitle": "Area not found",
+      "notFound": "No area matches this address.",
+      "errorTitle": "Area unavailable",
+      "error": "This area could not be loaded.",
+      "backToAreas": "Browse all areas"
+    },
+    "sunburst": {
+      "whole": "Whole article",
+      "other": "Other locations",
+      "alinea": "Al. {numero}",
+      "before": "Before {article}",
+      "after": "After {article}",
+      "count": "{count, plural, =0 {no amendment} one {# amendment} other {# amendments}}",
+      "noAmendment": "No amendment filed",
+      "up": "Click to go up"
     },
     "view": {
-      "title": "View",
-      "description": "Filters and legend will appear here."
+      "position": "Position",
+      "up": "Up",
+      "rings": "{count} rings",
+      "fewerRings": "Fewer rings",
+      "moreRings": "More rings",
+      "filterActive": "Filter active",
+      "noMatch": "No amendment matches",
+      "clear": "Clear",
+      "loadError": "This text could not be loaded.",
+      "retry": "Retry"
+    },
+    "texte": {
+      "title": "Dataset and text",
+      "stage": "Stage: {stage}",
+      "source": "Source: {source}",
+      "license": "Licence: {license}",
+      "imported": "Imported on {date}",
+      "texts": "Texts in this area"
+    },
+    "legend": {
+      "title": "Outcomes",
+      "scopeText": "Whole text",
+      "scopeNode": "In {name}",
+      "preview": "Preview",
+      "hint": "Untick an outcome to dim its amendments.",
+      "error": "The outcomes could not be loaded."
+    },
+    "repartition": {
+      "title": "Breakdown",
+      "filtered": "with the active filter",
+      "empty": "Nothing to break down here.",
+      "segment": "{label}: {count} ({percent})"
+    },
+    "fiche": {
+      "title": "Details",
+      "preview": "Preview",
+      "amendment": "Amendment {numero}",
+      "outcome": "Outcome",
+      "location": "Location",
+      "author": "Author",
+      "group": "Group",
+      "dispositif": "Operative text",
+      "expose": "Summary statement",
+      "official": "Official text",
+      "open": "Open in the dandelion",
+      "clearSelection": "Clear selection",
+      "detailError": "The details of this amendment could not be loaded.",
+      "articles": "{count, plural, one {# article} other {# articles}}",
+      "alineas": "{count, plural, one {# alinea} other {# alineas}}",
+      "subAmendments": "{count, plural, one {# sub-amendment} other {# sub-amendments}}",
+      "hint": "Hover a sector for a preview, click to pin it."
     }
   }
 }

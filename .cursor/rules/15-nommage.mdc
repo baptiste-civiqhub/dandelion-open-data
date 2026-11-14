@@ -1,0 +1,17 @@
+---
+description: Nommage des fichiers, composants, types, variables, clés i18n et clés de requête
+alwaysApply: true
+---
+
+# Nommage
+
+Au code nouveau seulement. Ne pas renommer l'existant au passage (`queryKeyEnum.ts` reste).
+
+- Fichiers et dossiers : kebab-case.
+- Composants React : PascalCase, export nommé, un composant par fichier.
+- Variables, fonctions, paramètres, champs de domaine : camelCase (`fullName`).
+- Types, interfaces, enums : PascalCase. Membres d'enum et constantes de module : `SCREAMING_SNAKE` (`QueryKeysEnum.GET_HEALTH`, `PUBLIC_PATHS.HOME`).
+- Booléens : préfixe `is` ou `has` (`isProduction`).
+- snake_case réservé aux colonnes SQL, et seulement dans `apis/*/request.ts` (mapping vers camelCase) et aux noms de migrations.
+- Clés i18n : camelCase. Clés de requête : `GET_<RESSOURCE>` dans `QueryKeysEnum`.
+- Pas d'abréviation (`dep`, `btn`, `msg`). Variables d'environnement via `ENVS` (`configs/env.ts`).

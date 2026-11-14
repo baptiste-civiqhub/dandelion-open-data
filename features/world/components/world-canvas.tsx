@@ -4,18 +4,25 @@ import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { StageCanvas } from '@/components/shared/stage-canvas'
-import { PUBLIC_PATHS } from '@/constant/path'
-import { useRouter } from '@/i18n/navigation'
 
-import { createWorldScene } from '../scene/create-world-scene'
+import type { WorldZone } from '../lib/world-zones'
+import { createWorldScene, type WorldSceneOptions } from '../scene/create-world-scene'
 
-/** Canvas du monde navigable : relie la scène WebGL au routeur (entrée dans une zone → page de dataviz). */
-export function WorldCanvas() {
+type WorldCanvasProps = {
+  /** Référence stable : une nouvelle liste recrée la scène. */
+  zones: readonly WorldZone[]
+  /** Rappels stables (`useCallback`) pour la même raison. */
+  onReady: WorldSceneOptions['onReady']
+  onZoneFocus: WorldSceneOptions['onZoneFocus']
+  onEnterZone: WorldSceneOptions['onEnterZone']
+}
+
+/** Canvas du monde navigable : héberge la scène et lui passe les zones et les rappels de `WorldScreen`. */
+export function WorldCanvas({ zones, onReady, onZoneFocus, onEnterZone }: WorldCanvasProps) {
   const t = useTranslations('world')
-  const router = useRouter()
   const scene = useMemo(
-    () => createWorldScene({ onEnterZone: (datasetId) => router.push(PUBLIC_PATHS.DATASET_DETAIL(datasetId)) }),
-    [router]
+    () => createWorldScene({ zones, onReady, onZoneFocus, onEnterZone }),
+    [zones, onReady, onZoneFocus, onEnterZone]
   )
 
   return <StageCanvas scene={scene} label={t('canvasLabel')} />

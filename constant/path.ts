@@ -3,10 +3,10 @@ export const PUBLIC_PATHS = {
   /** Landing : monde WebGL navigable (features/world). */
   HOME: '/',
   ABOUT: '/about',
-  /** Catalogue des jeux de données (recherche via SEARCH_PARAMS.QUERY). */
-  DATASETS: '/datasets',
-  /** Page de dataviz d'un jeu de données (features/dataviz). */
-  DATASET_DETAIL: (datasetId: string) => `/datasets/${encodeURIComponent(datasetId)}`
+  /** Catalogue des zones (recherche via SEARCH_PARAMS.QUERY). Aussi ouvert en fenêtre par le menu « Area ». */
+  AREAS: '/area',
+  /** Page de dataviz d'une zone (features/dataviz). `areaId` : le slug de la zone, ou son identifiant. */
+  AREA_DETAIL: (areaId: string) => `/area/${encodeURIComponent(areaId)}`
 } as const
 
 /** Paramètres d'URL partagés entre pages (la barre de recherche du header écrit `?q=` sur le catalogue). */
