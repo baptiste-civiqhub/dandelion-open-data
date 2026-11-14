@@ -13,6 +13,13 @@
     "backHome": "Back to home"
   },
   "pfasExperiment": {
+    "views": {
+      "label": "Choose graph view",
+      "native": "View by article",
+      "cosmograph": "Force layout",
+      "nativeDescription": "Fixed layout by article. The same amendments remain available in the list and comparison.",
+      "cosmographDescription": "Links attract nodes in an animated layout. Position does not represent political affinity."
+    },
     "graph": {
       "title": "Explore amendment connections",
       "intro": "Select a node to read its proposal and prepare a comparison.",
@@ -128,7 +135,7 @@
     },
     "export": {
       "button": "Export Markdown note",
-      "local": "Generated in your browser. Nothing is sent.",
+      "local": "Note generated in your browser, without sending its contents.",
       "preview": "Exported note"
     },
     "note": {

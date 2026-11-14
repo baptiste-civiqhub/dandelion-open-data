@@ -6,6 +6,7 @@ import { useMemo, useState, type ComponentType } from 'react'
 
 import type { PfasAmendment } from '@/apis/pfas-amendments/types'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { buildAmendmentGraph } from '../lib/graph'
 import { buildHierarchy } from '../lib/hierarchy'
 import type { GraphCanvasProps } from './graph-canvas-types'
@@ -20,6 +21,7 @@ type Props = {
   onFocus: (id: string | null) => void
   onToggleSelect: (id: string) => void
   Canvas?: ComponentType<GraphCanvasProps>
+  animated?: boolean
 }
 
 export function AmendmentGraph({
@@ -28,7 +30,8 @@ export function AmendmentGraph({
   selectedIds,
   onFocus,
   onToggleSelect,
-  Canvas = NativeGraphCanvas
+  Canvas = NativeGraphCanvas,
+  animated = false
 }: Props) {
   const t = useTranslations('pfasExperiment.graph')
   const [subdivision, setSubdivision] = useState('')
@@ -89,7 +92,7 @@ export function AmendmentGraph({
       <div className='grid min-w-0 gap-4 lg:grid-cols-4'>
         <div className='min-w-0 lg:col-span-3'>
           <Canvas
-            key={subdivision}
+            key={animated ? 'cosmograph' : subdivision}
             graph={graph}
             focusedId={focusedId}
             selectedIds={selectedIds}
@@ -106,7 +109,7 @@ export function AmendmentGraph({
               {t('amendmentLegend')}
             </span>
             <span className='flex items-center gap-2'>
-              <span className='border-chart-3 w-6 border-t-2 border-dashed' />
+              <span className={cn('border-chart-3 w-6 border-t-2', !animated && 'border-dashed')} />
               {t('parentLegend')}
             </span>
             <span aria-live='polite'>

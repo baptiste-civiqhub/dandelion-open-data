@@ -13,6 +13,13 @@
     "backHome": "Retour à l'accueil"
   },
   "pfasExperiment": {
+    "views": {
+      "label": "Choisir la vue du graphe",
+      "native": "Vue par article",
+      "cosmograph": "Vue par forces",
+      "nativeDescription": "Disposition fixe par article. Les mêmes amendements restent accessibles dans la liste et la comparaison.",
+      "cosmographDescription": "Les liens attirent les nœuds dans une disposition animée. La position n’exprime aucune affinité politique."
+    },
     "graph": {
       "title": "Explorer les liens entre amendements",
       "intro": "Choisissez un nœud pour lire sa proposition et préparer une comparaison.",
@@ -128,7 +135,7 @@
     },
     "export": {
       "button": "Exporter une note Markdown",
-      "local": "Générée dans votre navigateur. Rien n'est envoyé.",
+      "local": "Note générée dans votre navigateur, sans envoi de son contenu.",
       "preview": "Note exportée"
     },
     "note": {

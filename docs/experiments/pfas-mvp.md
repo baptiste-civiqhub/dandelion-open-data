@@ -2,6 +2,8 @@
 
 Route locale : `/experiments/pfas` (prototype de branche, isolé ; la page d'accueil n'est pas modifiée).
 
+Variante Cosmograph : `/experiments/pfas/cosmograph`. Les boutons « Vue par article » et « Vue par forces » passent d’un moteur à l’autre ; la sélection est propre à chaque visite. Voir [la comparaison des moteurs et les mesures](pfas-graph-comparison.md).
+
 L'interface expérimentale est en français, conformément à la demande du 14 novembre. Elle réutilise la stack et le design system de l'équipe. Le graphe initial est un rendu React/SVG sans dépendance supplémentaire ; il n'exécute pas Séléné, dont le package publié 0.0.1 reste une ébauche.
 
 ## Problème utilisateur

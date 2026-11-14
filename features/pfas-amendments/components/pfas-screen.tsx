@@ -2,7 +2,7 @@
 
 import { ArrowLeft } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ComponentType } from 'react'
 
 import { useGetPfasSnapshot } from '@/apis/pfas-amendments'
 import { Button } from '@/components/ui/button'
@@ -15,11 +15,14 @@ import { AmendmentComparison } from './amendment-comparison'
 import { AmendmentDetail } from './amendment-detail'
 import { AmendmentGraph } from './amendment-graph'
 import { AmendmentTree } from './amendment-tree'
+import type { GraphCanvasProps } from './graph-canvas-types'
 import { SnapshotNotice } from './snapshot-notice'
 
 const INITIAL_SUBDIVISION = 'Article 1er'
 
-export function PfasScreen() {
+type PfasScreenProps = { Canvas?: ComponentType<GraphCanvasProps>; engine?: 'native' | 'cosmograph' }
+
+export function PfasScreen({ Canvas, engine = 'native' }: PfasScreenProps) {
   const t = useTranslations('pfasExperiment')
   const { data, isPending, isError, refetch } = useGetPfasSnapshot()
   const [focusedId, setFocusedId] = useState<string | null>(null)
@@ -50,6 +53,20 @@ export function PfasScreen() {
           <p className='text-foreground-secondary text-xs font-medium tracking-wide uppercase'>{t('header.eyebrow')}</p>
           <h1 className='text-2xl font-semibold'>{t('header.title')}</h1>
           <p className='text-foreground-secondary max-w-3xl text-sm'>{t('header.intro')}</p>
+          <nav aria-label={t('views.label')} className='mt-2 flex flex-wrap gap-2'>
+            {(['native', 'cosmograph'] as const).map((view) => (
+              <Button key={view} asChild variant={view === engine ? 'default' : 'outline'} size='sm'>
+                <Link
+                  href={view === 'native' ? PUBLIC_PATHS.PFAS_EXPERIMENT : PUBLIC_PATHS.PFAS_COSMOGRAPH}
+                  prefetch={false}
+                  aria-current={view === engine ? 'page' : undefined}
+                >
+                  {t(`views.${view}`)}
+                </Link>
+              </Button>
+            ))}
+          </nav>
+          <p className='text-muted-foreground text-xs'>{t(`views.${engine}Description`)}</p>
         </header>
 
         {isPending && (
@@ -75,6 +92,8 @@ export function PfasScreen() {
           <>
             <SnapshotNotice provenance={data.provenance} rows={data.counts.rows} />
             <AmendmentGraph
+              Canvas={Canvas}
+              animated={engine === 'cosmograph'}
               amendments={amendments}
               focusedId={focusedId}
               selectedIds={selectedIds}
