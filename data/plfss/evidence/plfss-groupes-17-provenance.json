@@ -1,0 +1,24 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "organes",
+    "filtres": [
+      {
+        "colonne": "code_type",
+        "op": "eq",
+        "valeur": "GP"
+      },
+      {
+        "colonne": "legislature",
+        "op": "eq",
+        "valeur": "17"
+      }
+    ],
+    "limite": 100
+  },
+  "retrievedAtUtc": "2026-11-14T11:45:28.367100+00:00",
+  "sha256": "c271f511c3e64a0d1d24eecddb56714f968a62e361c161ddafb0ebc843376e84",
+  "bytes": 4828,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}

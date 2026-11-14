@@ -254,5 +254,63 @@
         }
       }
     }
+  },
+  "datavizAssistant": {
+    "title": "Assistant de la visualisation",
+    "badge": "Guide déterministe",
+    "description": "Posez une question en français : le guide sélectionne les vrais amendements dans le graphe et ouvre les sources.",
+    "engine": "Règles locales en français, sans modèle de langage. Données : instantané importé (Sénat et Hémicycle), aucun appel d’API à chaque question.",
+    "inputLabel": "Votre question",
+    "inputHint": "600 caractères au plus. Exemple : « Compare les amendements 26 et 27 ».",
+    "submit": "Demander",
+    "examplesLabel": "Exemples de questions (illustrations, pas des demandes réelles d’utilisateurs)",
+    "examples": {
+      "compare": "Compare les amendements 26 et 27",
+      "parent": "Quel est le parent du sous-amendement 32 ?",
+      "evidence": "Affiche les sources et le parcours de la loi"
+    },
+    "responseLabel": "Réponse du guide",
+    "question": "Question : « {question} »",
+    "actionsLabel": "Actions appliquées au graphe",
+    "actions": {
+      "focus": "Sélection remplacée par l’amendement {number}, fiche ouverte.",
+      "compare": "Sélection remplacée par {first} et {second}, focus sur {first}.",
+      "showEvidence": "Parcours documentaire ouvert (« Sources et croisements » plus bas)."
+    },
+    "answers": {
+      "focus": "Amendement {number} ({nature}), {subdivision}.",
+      "compare": "Amendements {first} et {second} sélectionnés pour comparaison.",
+      "parent": "L’amendement {child} est enregistré comme sous-amendement de l’amendement {parent}.",
+      "evidence": "Le parcours documentaire et ses sources s’affichent dans « Trois questions pour vérifier »."
+    },
+    "record": {
+      "outcome": "Sort enregistré :",
+      "noUrl": "Aucune URL officielle dans l’instantané."
+    },
+    "parentEvidence": "Indice enregistré : « {evidence} ». Méthode : {method}",
+    "parentSource": "Page officielle de la relation",
+    "caveats": {
+      "compare": "Ce sont deux propositions distinctes déposées sur le même texte, pas des versions successives de la loi. Une différence de mots n’établit aucun effet juridique, économique ou environnemental.",
+      "focus": "Le sort affiché est celui enregistré dans l’instantané ; il ne décrit pas le droit en vigueur.",
+      "parent": "Relation documentée dans les données (export du Sénat), pas déduite d’une ressemblance de texte.",
+      "evidence": "Les croisements relient des documents ; ils ne prouvent pas qu’un amendement a causé le texte de la loi ni ne décrivent la loi consolidée actuelle."
+    },
+    "goToComparison": "Aller à la comparaison",
+    "goToDetail": "Aller à la fiche",
+    "abstain": {
+      "title": "Le guide ne répond pas à cette question",
+      "empty": "La question est vide.",
+      "too-long": "La question dépasse 600 caractères.",
+      "out-of-scope": "Effets économiques ou environnementaux, droit en vigueur, prédictions et intentions sortent du périmètre : l’instantané ne contient pas ces informations.",
+      "unsupported": "Question non reconnue. Le guide sait comparer deux amendements, montrer un amendement, trouver le parent d’un sous-amendement et ouvrir les sources.",
+      "missing": "Aucun amendement portant exactement le numéro {numbers} dans l’instantané.",
+      "ambiguous": "Plusieurs enregistrements portent le numéro {numbers} : le guide ne choisit pas à votre place.",
+      "parent-mismatch": "La relation de parenté enregistrée pour {numbers} est absente ou contradictoire : aucun parent n’est affirmé.",
+      "no-parent": "Aucune relation de parenté n’est enregistrée pour l’amendement {numbers}.",
+      "too-many": "Plusieurs numéros détectés ({numbers}). Précisez : deux numéros pour comparer, un seul pour montrer ou chercher un parent.",
+      "too-few": "Indiquez deux numéros d’amendements distincts pour comparer, ou un numéro pour montrer ou chercher un parent.",
+      "invalid-plan": "Le plan d’actions a été refusé par la validation : rien n’a été appliqué.",
+      "suggest": "Essayez un exemple ci-dessus."
+    }
   }
 }

@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "question": "Quel vote a avancé la date prévue du congé supplémentaire de naissance ?",
+  "questionKind": "editorial-example",
+  "scope": "PLFSS 2026, nouvelle lecture, séance du 5 décembre 2025 : un vote historique, pas une réponse sur vos droits actuels.",
+  "retrievedAtUtc": "2026-11-14T11:45:39.792484+00:00",
+  "provider": "Hémicycle API",
+  "upstreamPublisher": "Assemblée nationale",
+  "licence": "Licence Ouverte (Etalab)",
+  "licenceUrl": "https://data.assemblee-nationale.fr/licence-ouverte-open-licence",
+  "sources": [
+    {
+      "id": "scrutin-official",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4662"
+    },
+    {
+      "id": "amendment-official",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/amendements/2141/AN/346"
+    },
+    {
+      "id": "hemicycle-api",
+      "url": "https://api.hemicycle.ai/v1/jeux/interroger"
+    }
+  ],
+  "scrutin": {
+    "uid": "VTANR5L17V4662",
+    "numero": 4662,
+    "titre": "l'amendement n° 346 de M. Dussausaye et les amendements identiques suivants à l'article 42 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+    "date_scrutin": "2025-12-05",
+    "sort_libelle": "l'Assemblée nationale a adopté",
+    "nombre_votants": 216,
+    "suffrages_exprimes": 209,
+    "nb_pour": 132,
+    "nb_contre": 77,
+    "nb_abstentions": 7,
+    "nb_non_votants": 1
+  },
+  "amendment": {
+    "uid": "AMANR5L17PO838901B2141P0D1N000346",
+    "numero": "346",
+    "organe_examen": "AN",
+    "ref_texte_legislatif": "PRJLANR5L17B2141",
+    "division_titre": "Article 42",
+    "dispositif": "À l’alinéa 127, substituer à la date :   « 1 er  janvier 2027 »,  la date :   « 1 er  janvier 2026 ».",
+    "expose_sommaire": "Le présent amendement vise à réintroduire la version initiale de l’article 42 afin que le congé supplémentaire de naissance entre en vigueur au 1er janvier 2026 et non au 1er janvier 2027.",
+    "sort_en_seance": "Adopté",
+    "date_sort": "2025-12-06T00:52:31+01:00"
+  },
+  "document": {
+    "uid": "PRJLANR5L17B2141",
+    "dossier_ref": "DLR5L17N52922",
+    "legislature": "17",
+    "denomination_structurelle": "Projet de loi",
+    "provenance": "Texte Déposé",
+    "titre_principal": "projet de loi de financement de la sécurité sociale de financement de la sécurité sociale pour 2026",
+    "titre_principal_court": "Projet de loi de financement de la sécurité sociale pour 2026",
+    "date_creation": "2025-11-26T00:00:00.000+01:00",
+    "date_depot": "2025-11-26T00:00:00.000+01:00",
+    "date_publication": "2025-12-09T00:00:00.000+01:00",
+    "classe_code": "PRJLOI",
+    "classe_libelle": "Projet de loi",
+    "type_code": "PRJL",
+    "type_libelle": "Projet de loi",
+    "sous_type_code": "FINSSOC",
+    "sous_type_libelle": "de financement de la sécurité sociale",
+    "num_notice": "2141",
+    "auteur_ref": "PO838901",
+    "auteur_type": "organe",
+    "auteur_qualite": null
+  },
+  "groups": [
+    {
+      "id": "PO840056",
+      "label": "Non inscrit",
+      "abbreviation": "NI",
+      "counts": {
+        "pour": 0,
+        "contre": 2,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 2,
+      "supportShareAmongParticipants": 0.0
+    },
+    {
+      "id": "PO845401",
+      "label": "Rassemblement National",
+      "abbreviation": "RN",
+      "counts": {
+        "pour": 60,
+        "contre": 0,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 60,
+      "supportShareAmongParticipants": 1.0
+    },
+    {
+      "id": "PO845407",
+      "label": "Ensemble pour la République",
+      "abbreviation": "EPR",
+      "counts": {
+        "pour": 1,
+        "contre": 31,
+        "abstention": 0,
+        "nonVotant": 1
+      },
+      "votingParticipants": 32,
+      "supportShareAmongParticipants": 0.03125
+    },
+    {
+      "id": "PO845413",
+      "label": "La France insoumise - Nouveau Front Populaire",
+      "abbreviation": "LFI-NFP",
+      "counts": {
+        "pour": 27,
+        "contre": 0,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 27,
+      "supportShareAmongParticipants": 1.0
+    },
+    {
+      "id": "PO845419",
+      "label": "Socialistes et apparentés",
+      "abbreviation": "SOC",
+      "counts": {
+        "pour": 28,
+        "contre": 4,
+        "abstention": 6,
+        "nonVotant": 0
+      },
+      "votingParticipants": 38,
+      "supportShareAmongParticipants": 0.7368421052631579
+    },
+    {
+      "id": "PO845425",
+      "label": "Droite Républicaine",
+      "abbreviation": "DR",
+      "counts": {
+        "pour": 0,
+        "contre": 7,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 7,
+      "supportShareAmongParticipants": 0.0
+    },
+    {
+      "id": "PO845439",
+      "label": "Écologiste et Social",
+      "abbreviation": "ECOS",
+      "counts": {
+        "pour": 10,
+        "contre": 0,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 10,
+      "supportShareAmongParticipants": 1.0
+    },
+    {
+      "id": "PO845454",
+      "label": "Les Démocrates",
+      "abbreviation": "DEM",
+      "counts": {
+        "pour": 0,
+        "contre": 20,
+        "abstention": 1,
+        "nonVotant": 0
+      },
+      "votingParticipants": 21,
+      "supportShareAmongParticipants": 0.0
+    },
+    {
+      "id": "PO845470",
+      "label": "Horizons & Indépendants",
+      "abbreviation": "HOR",
+      "counts": {
+        "pour": 0,
+        "contre": 10,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 10,
+      "supportShareAmongParticipants": 0.0
+    },
+    {
+      "id": "PO845485",
+      "label": "Libertés, Indépendants, Outre-mer et Territoires",
+      "abbreviation": "LIOT",
+      "counts": {
+        "pour": 1,
+        "contre": 3,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 4,
+      "supportShareAmongParticipants": 0.25
+    },
+    {
+      "id": "PO845514",
+      "label": "Gauche Démocrate et Républicaine",
+      "abbreviation": "GDR",
+      "counts": {
+        "pour": 3,
+        "contre": 0,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 3,
+      "supportShareAmongParticipants": 1.0
+    },
+    {
+      "id": "PO872880",
+      "label": "Union des droites pour la République",
+      "abbreviation": "UDR",
+      "counts": {
+        "pour": 2,
+        "contre": 0,
+        "abstention": 0,
+        "nonVotant": 0
+      },
+      "votingParticipants": 2,
+      "supportShareAmongParticipants": 1.0
+    }
+  ],
+  "joins": [
+    {
+      "from": "votes.scrutin_ref",
+      "to": "scrutins.uid",
+      "method": "exact-foreign-key",
+      "matchedRows": 217
+    },
+    {
+      "from": "votes.groupe_ref",
+      "to": "organes.uid",
+      "method": "exact-foreign-key-with-date-check",
+      "matchedRows": 217
+    },
+    {
+      "from": "amendements.ref_texte_legislatif",
+      "to": "documents.uid",
+      "method": "exact-foreign-key",
+      "matchedRows": 1
+    },
+    {
+      "from": "VTANR5L17V4662",
+      "to": "AMANR5L17PO838901B2141P0D1N000346",
+      "method": "official-page-link-and-composite-key",
+      "evidence": "Page officielle du scrutin → /dyn/17/amendements/2141/AN/346 ; texte + organe AN + numéro 346, séance identique. Le seul numéro 346 donne deux résultats.",
+      "sourceIds": [
+        "scrutin-official",
+        "amendment-official"
+      ]
+    }
+  ],
+  "limitations": [
+    "Une source primaire (Assemblée nationale), distribuée par Hémicycle : ce ne sont pas deux observations indépendantes.",
+    "217 lignes nominatives : 216 participants au vote et 1 non-votant explicite. Ce jeu ne décrit pas les 577 sièges ni tous les absents.",
+    "Pourcentage par groupe : pour / (pour + contre + abstentions). Afficher les effectifs avec les pourcentages. Ne pas confondre avec un pourcentage de tous les membres du groupe.",
+    "La fiche du scrutin est datée du 5 décembre ; le sort de l’amendement est horodaté le 6 décembre après minuit. Conserver ces deux horodatages.",
+    "Le vote porte aussi sur des amendements identiques ; il ne prouve pas une attribution exclusive de la mesure au premier signataire.",
+    "Les corrections de vote annoncées après le scrutin ne sont pas réintégrées au résultat officiel.",
+    "Le passage du projet à la loi promulguée puis aux décrets et au droit actuel demande des vérifications supplémentaires."
+  ],
+  "archives": [
+    {
+      "file": "plfss-scrutin-4662.json",
+      "sha256": "589944ac1e8c35ce84acb5557522752121eafa2f966d1176990f1c0ee64b9497",
+      "query": {
+        "jeu": "scrutins",
+        "filtres": [
+          {
+            "colonne": "uid",
+            "op": "eq",
+            "valeur": "VTANR5L17V4662"
+          }
+        ],
+        "limite": 5
+      }
+    },
+    {
+      "file": "plfss-votes-4662-p1.json",
+      "sha256": "78f790394c6aa1a2dbbca0267589e863d860a2d766297021a4c62380cd3af29e",
+      "query": {
+        "jeu": "votes",
+        "filtres": [
+          {
+            "colonne": "scrutin_ref",
+            "op": "eq",
+            "valeur": "VTANR5L17V4662"
+          }
+        ],
+        "limite": 200
+      }
+    },
+    {
+      "file": "plfss-votes-4662-p2.json",
+      "sha256": "eda9b02caed0de17ae049800262de49e80dbc960d992cab95dcd94e5c95b8b0e",
+      "query": {
+        "jeu": "votes",
+        "filtres": [
+          {
+            "colonne": "scrutin_ref",
+            "op": "eq",
+            "valeur": "VTANR5L17V4662"
+          }
+        ],
+        "limite": 200,
+        "decalage": 200
+      }
+    },
+    {
+      "file": "plfss-amendement-346.json",
+      "sha256": "fbb36e84fe125d26f0aef5e97b77951952f8b0e3097e566757da5dc13ad6dcd9",
+      "query": {
+        "jeu": "amendements",
+        "filtres": [
+          {
+            "colonne": "ref_texte_legislatif",
+            "op": "eq",
+            "valeur": "PRJLANR5L17B2141"
+          },
+          {
+            "colonne": "numero",
+            "op": "eq",
+            "valeur": "346"
+          }
+        ],
+        "limite": 5
+      }
+    },
+    {
+      "file": "plfss-groupes-17.json",
+      "sha256": "c271f511c3e64a0d1d24eecddb56714f968a62e361c161ddafb0ebc843376e84",
+      "query": {
+        "jeu": "organes",
+        "filtres": [
+          {
+            "colonne": "code_type",
+            "op": "eq",
+            "valeur": "GP"
+          },
+          {
+            "colonne": "legislature",
+            "op": "eq",
+            "valeur": "17"
+          }
+        ],
+        "limite": 100
+      }
+    },
+    {
+      "file": "plfss-texte-2141.json",
+      "sha256": "453f72d95fc4f0b2c3588a621019ea6a6e21d20e695937b1757de8027d0a7b4c",
+      "query": {
+        "jeu": "documents",
+        "filtres": [
+          {
+            "colonne": "uid",
+            "op": "eq",
+            "valeur": "PRJLANR5L17B2141"
+          }
+        ],
+        "limite": 5
+      }
+    }
+  ]
+}

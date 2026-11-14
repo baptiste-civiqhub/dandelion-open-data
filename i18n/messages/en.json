@@ -254,5 +254,63 @@
         }
       }
     }
+  },
+  "datavizAssistant": {
+    "title": "Visualisation assistant",
+    "badge": "Deterministic guide",
+    "description": "Ask a question in French: the guide selects the actual amendments in the graph and opens the sources.",
+    "engine": "Local French rules, no language model. Data: imported snapshot (Senate and Hémicycle), no API call per question.",
+    "inputLabel": "Your question",
+    "inputHint": "600 characters max. Example: “Compare les amendements 26 et 27”.",
+    "submit": "Ask",
+    "examplesLabel": "Example questions (illustrations, not real user requests)",
+    "examples": {
+      "compare": "Compare les amendements 26 et 27",
+      "parent": "Quel est le parent du sous-amendement 32 ?",
+      "evidence": "Affiche les sources et le parcours de la loi"
+    },
+    "responseLabel": "Guide response",
+    "question": "Question: “{question}”",
+    "actionsLabel": "Actions applied to the graph",
+    "actions": {
+      "focus": "Selection replaced by amendment {number}, detail opened.",
+      "compare": "Selection replaced by {first} and {second}, focus on {first}.",
+      "showEvidence": "Document trail opened (“Sources et croisements” below)."
+    },
+    "answers": {
+      "focus": "Amendment {number} ({nature}), {subdivision}.",
+      "compare": "Amendments {first} and {second} selected for comparison.",
+      "parent": "Amendment {child} is recorded as a sub-amendment of amendment {parent}.",
+      "evidence": "The document trail and its sources are shown in “Trois questions pour vérifier”."
+    },
+    "record": {
+      "outcome": "Recorded outcome:",
+      "noUrl": "No official URL in the snapshot."
+    },
+    "parentEvidence": "Recorded evidence: “{evidence}”. Method: {method}",
+    "parentSource": "Official page of the relation",
+    "caveats": {
+      "compare": "These are two distinct proposals filed on the same text, not successive versions of the law. A wording difference does not establish any legal, economic or environmental effect.",
+      "focus": "The outcome shown is the one recorded in the snapshot; it does not describe the law in force.",
+      "parent": "Relation documented in the data (Senate export), not inferred from text similarity.",
+      "evidence": "Joins link documents; they do not prove an amendment caused the law text nor describe current consolidated law."
+    },
+    "goToComparison": "Go to comparison",
+    "goToDetail": "Go to detail",
+    "abstain": {
+      "title": "The guide does not answer this question",
+      "empty": "The question is empty.",
+      "too-long": "The question exceeds 600 characters.",
+      "out-of-scope": "Economic or environmental effects, law in force, predictions and intentions are out of scope: the snapshot does not contain this information.",
+      "unsupported": "Question not recognised. The guide can compare two amendments, show one amendment, find a sub-amendment's parent and open the sources.",
+      "missing": "No amendment with exactly number {numbers} in the snapshot.",
+      "ambiguous": "Several records have number {numbers}: the guide does not choose for you.",
+      "parent-mismatch": "The recorded parent relation for {numbers} is missing or contradictory: no parent is asserted.",
+      "no-parent": "No parent relation is recorded for amendment {numbers}.",
+      "too-many": "Several numbers detected ({numbers}). Please clarify: two numbers to compare, one to show or find a parent.",
+      "too-few": "Give two distinct amendment numbers to compare, or one number to show or find a parent.",
+      "invalid-plan": "The action plan was rejected by validation: nothing was applied.",
+      "suggest": "Try an example above."
+    }
   }
 }

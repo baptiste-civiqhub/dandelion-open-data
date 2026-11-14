@@ -1,0 +1,48 @@
+{
+  "jeu": "scrutins",
+  "source": {
+    "nom": "Assemblée nationale",
+    "url": "https://data.assemblee-nationale.fr",
+    "licence": "Licence Ouverte (Etalab)",
+    "licence_url": "https://data.assemblee-nationale.fr/licence-ouverte-open-licence"
+  },
+  "sources_amont": [],
+  "consulte_le": "2026-11-14T11:44:45.428Z",
+  "derniere_ingestion_hemicycle": "2026-11-14T05:18:46.877471+00:00",
+  "colonne_mise_a_jour": null,
+  "nombre": 1,
+  "lignes": [
+    {
+      "uid": "VTANR5L17V4662",
+      "numero": 4662,
+      "organe_ref": "PO838901",
+      "legislature": "17",
+      "session_ref": "SCR5A2026O1",
+      "seance_ref": "RUANR5L17S2026IDS30028",
+      "date_scrutin": "2025-12-05",
+      "quantieme_jour_seance": 3,
+      "code_type_vote": "SPO",
+      "libelle_type_vote": "scrutin public ordinaire",
+      "type_majorite": "Majorité absolue des suffrages exprimés",
+      "sort_code": "adopté",
+      "sort_libelle": "l'Assemblée nationale a adopté",
+      "titre": "l'amendement n° 346 de M. Dussausaye et les amendements identiques suivants à l'article 42 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+      "demandeur": "Présidente du groupe \"Rassemblement National\"\rPrésidente du groupe \"La France insoumise - Nouveau Front Populaire\"",
+      "objet_libelle": "l'amendement n° 346 de M. Dussausaye et les amendements identiques suivants à l'article 42 du projet de loi de financement de la sécurité sociale pour 2026 (nouvelle lecture).",
+      "mode_publication_votes": "DecompteNominatif",
+      "nombre_votants": 216,
+      "suffrages_exprimes": 209,
+      "nbr_suffrages_requis": 105,
+      "annonce": "l'Assemblée nationale a adopté",
+      "nb_non_votants": 1,
+      "nb_pour": 132,
+      "nb_contre": 77,
+      "nb_abstentions": 7,
+      "nb_non_votants_volontaires": 0,
+      "lieu_vote": "Hémicycle"
+    }
+  ],
+  "tronque": false,
+  "decalage_suivant": null,
+  "pagination": null
+}

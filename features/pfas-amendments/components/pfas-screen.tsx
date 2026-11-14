@@ -4,6 +4,9 @@ import { ArrowLeft } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useMemo, useState, type ComponentType } from 'react'
 
+import { PfasAssistant } from '@/features/dataviz-assistant/components/pfas-assistant'
+import type { DatavizAssistantAdapter } from '@/features/dataviz-assistant/lib/adapter'
+
 import { useGetPfasSnapshot } from '@/apis/pfas-amendments'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -15,6 +18,7 @@ import { AmendmentComparison } from './amendment-comparison'
 import { AmendmentDetail } from './amendment-detail'
 import { AmendmentGraph } from './amendment-graph'
 import { AmendmentTree } from './amendment-tree'
+import { focusHeading } from './evidence-focus'
 import { EvidenceJourney } from './evidence-journey'
 import type { GraphCanvasProps } from './graph-canvas-types'
 import { SnapshotNotice } from './snapshot-notice'
@@ -28,6 +32,7 @@ export function PfasScreen({ Canvas, engine = 'native' }: PfasScreenProps) {
   const { data, isPending, isError, refetch } = useGetPfasSnapshot()
   const [focusedId, setFocusedId] = useState<string | null>(null)
   const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [trailRequest, setTrailRequest] = useState(0)
 
   const amendments = useMemo(() => data?.amendments ?? [], [data])
   const groups = useMemo(() => buildHierarchy(amendments), [amendments])
@@ -39,6 +44,21 @@ export function PfasScreen({ Canvas, engine = 'native' }: PfasScreenProps) {
     setSelectedIds((current) =>
       current.includes(id) ? current.filter((value) => value !== id) : current.length < 2 ? [...current, id] : current
     )
+
+  const assistantAdapter: DatavizAssistantAdapter = {
+    focusEntity: (id) => {
+      setSelectedIds([id])
+      setFocusedId(id)
+    },
+    compareEntities: (ids) => {
+      setSelectedIds([...ids])
+      setFocusedId(ids[0])
+    },
+    showEvidence: () => {
+      setTrailRequest((value) => value + 1)
+      requestAnimationFrame(() => focusHeading('evidence-title'))
+    }
+  }
 
   return (
     <main lang='fr' className='bg-background min-h-dvh px-4 py-8 sm:px-6'>
@@ -91,8 +111,10 @@ export function PfasScreen({ Canvas, engine = 'native' }: PfasScreenProps) {
 
         {data && (
           <>
+            <PfasAssistant amendments={amendments} adapter={assistantAdapter} />
             <EvidenceJourney
               amendments={amendments}
+              trailRequest={trailRequest}
               onApply={(ids, focus) => {
                 setSelectedIds(ids)
                 setFocusedId(focus)

@@ -23,13 +23,21 @@ const QUESTIONS: QuestionKey[] = ['wording', 'parent', 'trail']
 type EvidenceJourneyProps = {
   amendments: PfasAmendment[]
   onApply: (selectedIds: string[], focusedId: string) => void
+  /** Incrémenté par un hôte (assistant) pour ouvrir la question C et les sources. */
+  trailRequest?: number
 }
 
-export function EvidenceJourney({ amendments, onApply }: EvidenceJourneyProps) {
+export function EvidenceJourney({ amendments, onApply, trailRequest = 0 }: EvidenceJourneyProps) {
   const t = useTranslations('pfasExperiment.evidence')
   const [active, setActive] = useState<QuestionKey | null>(null)
   const [contextRequested, setContextRequested] = useState(false)
   const [sourcesOpen, setSourcesOpen] = useState(false)
+  const [seenTrailRequest, setSeenTrailRequest] = useState(trailRequest)
+  if (trailRequest !== seenTrailRequest) {
+    setSeenTrailRequest(trailRequest)
+    setActive('trail')
+    setContextRequested(true)
+  }
   const amendmentIds = useMemo(() => amendments.map((amendment) => amendment.id), [amendments])
   const context = useGetPfasEvidenceContext(amendmentIds, contextRequested)
   const presets = useMemo(

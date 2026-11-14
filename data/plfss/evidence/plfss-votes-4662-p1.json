@@ -1,0 +1,2019 @@
+{
+  "jeu": "votes",
+  "source": {
+    "nom": "Assemblée nationale",
+    "url": "https://data.assemblee-nationale.fr",
+    "licence": "Licence Ouverte (Etalab)",
+    "licence_url": "https://data.assemblee-nationale.fr/licence-ouverte-open-licence"
+  },
+  "sources_amont": [],
+  "consulte_le": "2026-11-14T11:45:00.725Z",
+  "derniere_ingestion_hemicycle": "2026-11-14T05:18:46.877471+00:00",
+  "colonne_mise_a_jour": null,
+  "nombre": 200,
+  "lignes": [
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA870009",
+      "mandat_ref": "PM874936",
+      "groupe_ref": "PO845425",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "084",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842255",
+      "mandat_ref": "PM843770",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "066",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842195",
+      "mandat_ref": "PM843707",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "458",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842183",
+      "mandat_ref": "PM874930",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "318",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842155",
+      "mandat_ref": "PM843674",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "616",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842147",
+      "mandat_ref": "PM874934",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "325",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842125",
+      "mandat_ref": "PM843641",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "230",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842097",
+      "mandat_ref": "PM843623",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "002",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842085",
+      "mandat_ref": "PM843617",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "081",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842073",
+      "mandat_ref": "PM843611",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "027",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842029",
+      "mandat_ref": "PM843575",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "607",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842013",
+      "mandat_ref": "PM843563",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "541",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA842001",
+      "mandat_ref": "PM843554",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "110",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841981",
+      "mandat_ref": "PM843533",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "041",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841955",
+      "mandat_ref": "PM843506",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "089",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841947",
+      "mandat_ref": "PM843503",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "559",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841927",
+      "mandat_ref": "PM858575",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "294",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841919",
+      "mandat_ref": "PM843479",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "420",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841873",
+      "mandat_ref": "PM843434",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "122",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841853",
+      "mandat_ref": "PM843413",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "430",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841813",
+      "mandat_ref": "PM843377",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "461",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841769",
+      "mandat_ref": "PM843323",
+      "groupe_ref": "PO872880",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "096",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841761",
+      "mandat_ref": "PM843320",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "128",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841737",
+      "mandat_ref": "PM843290",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "016",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841717",
+      "mandat_ref": "PM843278",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "564",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841681",
+      "mandat_ref": "PM843245",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "457",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841665",
+      "mandat_ref": "PM843227",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "487",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841645",
+      "mandat_ref": "PM843200",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "086",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841633",
+      "mandat_ref": "PM843182",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "551",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841621",
+      "mandat_ref": "PM843173",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "143",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841613",
+      "mandat_ref": "PM843170",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "144",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841587",
+      "mandat_ref": "PM843149",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "013",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841487",
+      "mandat_ref": "PM843062",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "137",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841463",
+      "mandat_ref": "PM843047",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "568",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841451",
+      "mandat_ref": "PM843035",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "005",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841439",
+      "mandat_ref": "PM843023",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "149",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841431",
+      "mandat_ref": "PM843017",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "243",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841367",
+      "mandat_ref": "PM842954",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "488",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841327",
+      "mandat_ref": "PM842915",
+      "groupe_ref": "PO845419",
+      "position": "abstention",
+      "par_delegation": "false",
+      "num_place": "460",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841215",
+      "mandat_ref": "PM842801",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "597",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841199",
+      "mandat_ref": "PM842792",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "139",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841151",
+      "mandat_ref": "PM874938",
+      "groupe_ref": "PO845425",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "304",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841107",
+      "mandat_ref": "PM842717",
+      "groupe_ref": "PO845419",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "474",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841091",
+      "mandat_ref": "PM842705",
+      "groupe_ref": "PO845419",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "473",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA841075",
+      "mandat_ref": "PM842690",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "018",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840967",
+      "mandat_ref": "PM842579",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "154",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840955",
+      "mandat_ref": "PM842573",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "444",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840869",
+      "mandat_ref": "PM842522",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "047",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840857",
+      "mandat_ref": "PM842516",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "119",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840837",
+      "mandat_ref": "PM842495",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "111",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840829",
+      "mandat_ref": "PM842492",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "567",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840817",
+      "mandat_ref": "PM842483",
+      "groupe_ref": "PO845485",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "393",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840781",
+      "mandat_ref": "PM842459",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "085",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840765",
+      "mandat_ref": "PM842447",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "445",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840757",
+      "mandat_ref": "PM842444",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "157",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840673",
+      "mandat_ref": "PM842339",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "472",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840665",
+      "mandat_ref": "PM842336",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "471",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840171",
+      "mandat_ref": "PM840360",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "419",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA840143",
+      "mandat_ref": "PM840336",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "130",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA826635",
+      "mandat_ref": "PM843473",
+      "groupe_ref": "PO845419",
+      "position": "abstention",
+      "par_delegation": "false",
+      "num_place": "425",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA822617",
+      "mandat_ref": "PM840264",
+      "groupe_ref": "PO845419",
+      "position": "abstention",
+      "par_delegation": "true",
+      "num_place": "485",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA805166",
+      "mandat_ref": "PM849145",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "358",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA796090",
+      "mandat_ref": "PM840372",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "528",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA796070",
+      "mandat_ref": "PM843746",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "638",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA796062",
+      "mandat_ref": "PM843668",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "633",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA796018",
+      "mandat_ref": "PM843425",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "502",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795998",
+      "mandat_ref": "PM843737",
+      "groupe_ref": "PO845514",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "578",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795982",
+      "mandat_ref": "PM840432",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "558",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795966",
+      "mandat_ref": "PM843530",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "076",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795962",
+      "mandat_ref": "PM849121",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "323",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795954",
+      "mandat_ref": "PM874940",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "322",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795900",
+      "mandat_ref": "PM843524",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "006",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795884",
+      "mandat_ref": "PM874603",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "270",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795844",
+      "mandat_ref": "PM843515",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "546",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795778",
+      "mandat_ref": "PM843509",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "035",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795762",
+      "mandat_ref": "PM843767",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "437",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795644",
+      "mandat_ref": "PM843560",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "140",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795516",
+      "mandat_ref": "PM843452",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "596",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795482",
+      "mandat_ref": "PM843605",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "642",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795454",
+      "mandat_ref": "PM843821",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "542",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795422",
+      "mandat_ref": "PM843599",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "644",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795410",
+      "mandat_ref": "PM843440",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "152",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795390",
+      "mandat_ref": "PM874935",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "389",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795374",
+      "mandat_ref": "PM843593",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "341",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795350",
+      "mandat_ref": "PM843410",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "213",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795318",
+      "mandat_ref": "PM843689",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "630",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795298",
+      "mandat_ref": "PM843683",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "649",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795278",
+      "mandat_ref": "PM843539",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "219",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795244",
+      "mandat_ref": "PM843749",
+      "groupe_ref": "PO845485",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "456",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795228",
+      "mandat_ref": "PM840447",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "627",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795156",
+      "mandat_ref": "PM843680",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "416",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795136",
+      "mandat_ref": "PM843353",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "637",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795108",
+      "mandat_ref": "PM843338",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "538",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795100",
+      "mandat_ref": "PM843335",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "351",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795076",
+      "mandat_ref": "PM840366",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "508",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA795010",
+      "mandat_ref": "PM840354",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "507",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794954",
+      "mandat_ref": "PM840357",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "001",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794946",
+      "mandat_ref": "PM843311",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "064",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794894",
+      "mandat_ref": "PM840351",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "138",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794854",
+      "mandat_ref": "PM843263",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "550",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794830",
+      "mandat_ref": "PM843209",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "356",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794810",
+      "mandat_ref": "PM843194",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "335",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794802",
+      "mandat_ref": "PM843191",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "364",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794798",
+      "mandat_ref": "PM843188",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "365",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794734",
+      "mandat_ref": "PM843146",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "008",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794702",
+      "mandat_ref": "PM843248",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "340",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794678",
+      "mandat_ref": "PM840312",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "048",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794582",
+      "mandat_ref": "PM840300",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "101",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794562",
+      "mandat_ref": "PM840339",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "094",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794530",
+      "mandat_ref": "PM840327",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "051",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794502",
+      "mandat_ref": "PM840324",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "050",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794486",
+      "mandat_ref": "PM843110",
+      "groupe_ref": "PO845407",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "298",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794434",
+      "mandat_ref": "PM842990",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "009",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794430",
+      "mandat_ref": "PM874937",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "239",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794418",
+      "mandat_ref": "PM840309",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "025",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794354",
+      "mandat_ref": "PM842960",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "100",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794330",
+      "mandat_ref": "PM842945",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "388",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794322",
+      "mandat_ref": "PM842942",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "040",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794270",
+      "mandat_ref": "PM842972",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "452",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794138",
+      "mandat_ref": "PM842909",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "526",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794094",
+      "mandat_ref": "PM840291",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "436",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794082",
+      "mandat_ref": "PM842810",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "611",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA794058",
+      "mandat_ref": "PM842861",
+      "groupe_ref": "PO845425",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "177",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793940",
+      "mandat_ref": "PM842726",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "279",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793852",
+      "mandat_ref": "PM842684",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "145",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793816",
+      "mandat_ref": "PM842657",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "433",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793744",
+      "mandat_ref": "PM842696",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "561",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793736",
+      "mandat_ref": "PM842693",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "636",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793708",
+      "mandat_ref": "PM842525",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "491",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793696",
+      "mandat_ref": "PM842519",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "058",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793672",
+      "mandat_ref": "PM842555",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "031",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793632",
+      "mandat_ref": "PM842627",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "082",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793592",
+      "mandat_ref": "PM842537",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "072",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793532",
+      "mandat_ref": "PM842591",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "650",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793520",
+      "mandat_ref": "PM842582",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "360",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793452",
+      "mandat_ref": "PM842453",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "524",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793398",
+      "mandat_ref": "PM842489",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "240",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793394",
+      "mandat_ref": "PM842486",
+      "groupe_ref": "PO845419",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "453",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793354",
+      "mandat_ref": "PM842462",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "011",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793322",
+      "mandat_ref": "PM840246",
+      "groupe_ref": "PO872880",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "093",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793298",
+      "mandat_ref": "PM842360",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "150",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793290",
+      "mandat_ref": "PM842450",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "146",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793270",
+      "mandat_ref": "PM842441",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "303",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793254",
+      "mandat_ref": "PM842432",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "136",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793246",
+      "mandat_ref": "PM842429",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "062",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793194",
+      "mandat_ref": "PM853806",
+      "groupe_ref": "PO840056",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "401",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793182",
+      "mandat_ref": "PM842387",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "056",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793166",
+      "mandat_ref": "PM840261",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "070",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793158",
+      "mandat_ref": "PM840258",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "075",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793134",
+      "mandat_ref": "PM842375",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "132",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA793102",
+      "mandat_ref": "PM842330",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "153",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA791824",
+      "mandat_ref": "PM840375",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "602",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA774962",
+      "mandat_ref": "PM843731",
+      "groupe_ref": "PO845514",
+      "position": "pour",
+      "par_delegation": "true",
+      "num_place": "576",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA774960",
+      "mandat_ref": "PM840417",
+      "groupe_ref": "PO845419",
+      "position": "abstention",
+      "par_delegation": "true",
+      "num_place": "414",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA774958",
+      "mandat_ref": "PM843389",
+      "groupe_ref": "PO845419",
+      "position": "abstention",
+      "par_delegation": "false",
+      "num_place": "415",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722374",
+      "mandat_ref": "PM843302",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "353",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722366",
+      "mandat_ref": "PM843299",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "277",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722336",
+      "mandat_ref": "PM843203",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "214",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722284",
+      "mandat_ref": "PM843221",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "362",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722162",
+      "mandat_ref": "PM843596",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "354",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722150",
+      "mandat_ref": "PM843590",
+      "groupe_ref": "PO845419",
+      "position": "abstention",
+      "par_delegation": "true",
+      "num_place": "486",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA722000",
+      "mandat_ref": "PM843542",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "293",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721984",
+      "mandat_ref": "PM843536",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "359",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721960",
+      "mandat_ref": "PM840378",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "600",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721908",
+      "mandat_ref": "PM843467",
+      "groupe_ref": "PO845407",
+      "position": "nonVotant",
+      "par_delegation": "false",
+      "num_place": "402",
+      "cause_position_vote": "PSE"
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721852",
+      "mandat_ref": "PM843464",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "264",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721410",
+      "mandat_ref": "PM843350",
+      "groupe_ref": "PO845425",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "174",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721296",
+      "mandat_ref": "PM843698",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "313",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721270",
+      "mandat_ref": "PM840438",
+      "groupe_ref": "PO845514",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "583",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721234",
+      "mandat_ref": "PM843692",
+      "groupe_ref": "PO845454",
+      "position": "abstention",
+      "par_delegation": "false",
+      "num_place": "352",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721210",
+      "mandat_ref": "PM843677",
+      "groupe_ref": "PO845439",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "497",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721202",
+      "mandat_ref": "PM840435",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "549",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721158",
+      "mandat_ref": "PM843806",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "281",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA721024",
+      "mandat_ref": "PM858289",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "255",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720892",
+      "mandat_ref": "PM840420",
+      "groupe_ref": "PO845413",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "623",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720720",
+      "mandat_ref": "PM843254",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "330",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720668",
+      "mandat_ref": "PM840342",
+      "groupe_ref": "PO845401",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "060",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720334",
+      "mandat_ref": "PM842996",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "373",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720256",
+      "mandat_ref": "PM843041",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "371",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720190",
+      "mandat_ref": "PM843074",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "291",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720038",
+      "mandat_ref": "PM842921",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "346",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA720022",
+      "mandat_ref": "PM842957",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "370",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719930",
+      "mandat_ref": "PM842870",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "427",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719914",
+      "mandat_ref": "PM858294",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "350",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719890",
+      "mandat_ref": "PM842855",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "257",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719822",
+      "mandat_ref": "PM842762",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "334",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719756",
+      "mandat_ref": "PM842813",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "280",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719736",
+      "mandat_ref": "PM857026",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "308",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719640",
+      "mandat_ref": "PM842831",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "331",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719412",
+      "mandat_ref": "PM842651",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "269",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719372",
+      "mandat_ref": "PM858347",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "266",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719338",
+      "mandat_ref": "PM842654",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "387",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719118",
+      "mandat_ref": "PM842501",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "290",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719032",
+      "mandat_ref": "PM842393",
+      "groupe_ref": "PO845470",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "241",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA719024",
+      "mandat_ref": "PM842390",
+      "groupe_ref": "PO845454",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "344",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA718674",
+      "mandat_ref": "PM858386",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "301",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA712014",
+      "mandat_ref": "PM858454",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "true",
+      "num_place": "398",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA643184",
+      "mandat_ref": "PM843206",
+      "groupe_ref": "PO845407",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "366",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA643157",
+      "mandat_ref": "PM843728",
+      "groupe_ref": "PO845419",
+      "position": "pour",
+      "par_delegation": "false",
+      "num_place": "429",
+      "cause_position_vote": null
+    },
+    {
+      "scrutin_ref": "VTANR5L17V4662",
+      "acteur_ref": "PA643104",
+      "mandat_ref": "PM872431",
+      "groupe_ref": "PO845425",
+      "position": "contre",
+      "par_delegation": "false",
+      "num_place": "182",
+      "cause_position_vote": null
+    }
+  ],
+  "tronque": false,
+  "decalage_suivant": 200,
+  "pagination": null
+}
