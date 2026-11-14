@@ -166,37 +166,37 @@ erDiagram
 
 ### `amendements`
 
-| Colonne                  | Type                        | Clés           | Rôle ou source                                                                     |
-| ------------------------ | --------------------------- | -------------- | ---------------------------------------------------------------------------------- |
-| `id`                     | uuid                        | PK             | généré                                                                             |
-| `dataset_id`             | uuid                        | FK datasets    | regroupement                                                                       |
-| `texte_id`               | uuid                        | FK textes      | depuis `ref_texte_legislatif`                                                      |
-| `uid`                    | text                        | UK             | `uid`                                                                              |
-| `numero_long`            | text                        |                | `numero_long`                                                                      |
-| `article_id`             | uuid, peut être vide        | FK articles    | article visé, résolu depuis `division_titre`. Vide si introuvable                  |
-| `division_titre`         | text, peut être vide        |                | `division_titre`, gardé tel quel                                                   |
-| `division_avant_apres`   | text                        |                | `A`, `AVANT` ou `APRES` : à l'article, avant, après. `A` par défaut                |
-| `alinea_id`              | uuid, peut être vide        | FK alineas     | depuis `alinea_numero`. Vide : article entier                                      |
-| `amendement_parent_id`   | uuid, peut être vide        | FK amendements | le parent, s'il est chargé : sous-amendement                                       |
-| `amendement_parent`      | text, peut être vide        |                | `amendement_parent`, gardé tel quel                                                |
-| `tri_amendement`         | text, peut être vide        |                | `tri_amendement`                                                                   |
-| `rang`                   | integer, peut être vide     |                | rang calculé depuis `tri_amendement` : ordre de discussion                         |
-| `sort`                   | text                        | FK sorts       | code calculé depuis `sort_en_seance`, `etat`, `sous_etat`. `en_attente` par défaut |
-| `sort_en_seance`         | text, peut être vide        |                | `sort_en_seance`                                                                   |
-| `etat`                   | text, peut être vide        |                | `etat`                                                                             |
-| `sous_etat`              | text, peut être vide        |                | `sous_etat`                                                                        |
-| `dispositif`             | text, peut être vide        |                | `dispositif`                                                                       |
-| `expose_sommaire`        | text, peut être vide        |                | `expose_sommaire`                                                                  |
-| `signataires_affichable` | text, peut être vide        |                | `signataires_affichable`                                                           |
-| `acteur_ref`             | text, peut être vide        |                | `acteur_ref`                                                                       |
-| `type_auteur`            | text, peut être vide        |                | `type_auteur`                                                                      |
-| `groupe_politique_ref`   | text, peut être vide        |                | `groupe_politique_ref`                                                             |
-| `discussion_commune`     | text, peut être vide        |                | `discussion_commune` : regroupe les amendements débattus ensemble                  |
-| `discussion_identique`   | text, peut être vide        |                | `discussion_identique` : regroupe les amendements identiques                       |
-| `date_depot`             | timestamptz, peut être vide |                | `date_depot`                                                                       |
-| `date_sort`              | timestamptz, peut être vide |                | `date_sort`                                                                        |
-| `document_uri`           | text, peut être vide        |                | `document_uri`                                                                     |
-| `tag_list_id`            | uuid                        | UK             | identifiant de sa liste de tags, généré ; repris par `tag_links`                   |
+| Colonne                  | Type                        | Clés           | Rôle ou source                                                                                           |
+| ------------------------ | --------------------------- | -------------- | -------------------------------------------------------------------------------------------------------- |
+| `id`                     | uuid                        | PK             | généré                                                                                                   |
+| `dataset_id`             | uuid                        | FK datasets    | regroupement                                                                                             |
+| `texte_id`               | uuid                        | FK textes      | depuis `ref_texte_legislatif`                                                                            |
+| `uid`                    | text                        | UK             | `uid`                                                                                                    |
+| `numero_long`            | text                        |                | `numero_long`                                                                                            |
+| `article_id`             | uuid, peut être vide        | FK articles    | article visé, résolu depuis `article_designation_courte`, à défaut `division_titre`. Vide si introuvable |
+| `division_titre`         | text, peut être vide        |                | `division_titre`, gardé tel quel                                                                         |
+| `division_avant_apres`   | text                        |                | `A`, `AVANT` ou `APRES` : à l'article, avant, après. Normalisé depuis `A`, `Avant`, `Après`              |
+| `alinea_id`              | uuid, peut être vide        | FK alineas     | depuis `alinea_numero`. Vide : article entier                                                            |
+| `amendement_parent_id`   | uuid, peut être vide        | FK amendements | le parent, s'il est chargé : sous-amendement                                                             |
+| `amendement_parent`      | text, peut être vide        |                | `amendement_parent`, gardé tel quel                                                                      |
+| `tri_amendement`         | text, peut être vide        |                | `tri_amendement`                                                                                         |
+| `rang`                   | integer, peut être vide     |                | rang calculé : par organe d'examen, puis `tri_amendement`                                                |
+| `sort`                   | text                        | FK sorts       | code calculé depuis `sort_en_seance`, `etat`, `sous_etat`. `en_attente` par défaut                       |
+| `sort_en_seance`         | text, peut être vide        |                | `sort_en_seance`                                                                                         |
+| `etat`                   | text, peut être vide        |                | `etat`                                                                                                   |
+| `sous_etat`              | text, peut être vide        |                | `sous_etat`                                                                                              |
+| `dispositif`             | text, peut être vide        |                | `dispositif`                                                                                             |
+| `expose_sommaire`        | text, peut être vide        |                | `expose_sommaire`                                                                                        |
+| `signataires_affichable` | text, peut être vide        |                | `signataires_affichable`                                                                                 |
+| `acteur_ref`             | text, peut être vide        |                | `acteur_ref`                                                                                             |
+| `type_auteur`            | text, peut être vide        |                | `type_auteur`                                                                                            |
+| `groupe_politique_ref`   | text, peut être vide        |                | `groupe_politique_ref`                                                                                   |
+| `discussion_commune`     | text, peut être vide        |                | `discussion_commune` : regroupe les amendements débattus ensemble                                        |
+| `discussion_identique`   | text, peut être vide        |                | `discussion_identique` : regroupe les amendements identiques                                             |
+| `date_depot`             | timestamptz, peut être vide |                | `date_depot`                                                                                             |
+| `date_sort`              | timestamptz, peut être vide |                | `date_sort`                                                                                              |
+| `document_uri`           | text, peut être vide        |                | `document_uri`                                                                                           |
+| `tag_list_id`            | uuid                        | UK             | identifiant de sa liste de tags, généré ; repris par `tag_links`                                         |
 
 Contrainte `amendements_pas_son_propre_parent` : un amendement ne peut pas être son propre parent.
 
@@ -271,4 +271,4 @@ Contenu livré par la migration :
 
 ## Provenance des noms de colonnes
 
-Les noms repris d'Hémicycle viennent de la documentation des jeux `amendements` et `articles_textes`, pas d'une réponse de l'API. Le script d'import doit les confronter à une réponse réelle avant de s'y fier.
+Les noms repris d'Hémicycle ont été vérifiés sur les réponses réelles stockées dans le schéma `raw` : toutes les colonnes copiées existent dans les jeux `amendements` et `articles_textes`. Deux règles du dictionnaire ont été ajustées d'après ces données, la résolution de l'article visé et la normalisation de `division_avant_apres` ; le détail est dans [`import.md`](import.md).
