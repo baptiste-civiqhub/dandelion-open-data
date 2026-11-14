@@ -3,6 +3,7 @@ export const PUBLIC_PATHS = {
   /** Landing : monde WebGL navigable (features/world). */
   HOME: '/',
   ABOUT: '/about',
+  TEXTE: '/texte',
   PFAS_EXPERIMENT: '/experiments/pfas',
   PFAS_COSMOGRAPH: '/experiments/pfas/cosmograph',
   /** Catalogue des jeux de données (recherche via SEARCH_PARAMS.QUERY). */

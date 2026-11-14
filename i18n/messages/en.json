@@ -5,7 +5,15 @@
   },
   "home": {
     "title": "Dandelion",
-    "baseline": "Sowing public data, letting debate bloom."
+    "baseline": "Sowing public data, letting debate bloom.",
+    "eyebrow": "Open Data Hackathon",
+    "subtitle": "Next.js + Supabase starter, ready to deploy on Vercel. Plug in your datasets and build.",
+    "stackTitle": "Stack",
+    "stackDescription": "Next.js 15 · React 19 · strict TypeScript · Tailwind 4 · TanStack Query · next-intl",
+    "dataTitle": "Data",
+    "dataDescription": "Supabase (Postgres + RLS), eu-central-1 region.",
+    "healthLink": "Open the health probe",
+    "texteLink": "View the bill"
   },
   "notFound": {
     "title": "Page not found",
@@ -355,6 +363,35 @@
     "view": {
       "title": "View",
       "description": "Filters and legend will appear here."
+    }
+  },
+  "texte": {
+    "metaTitle": "Bill and amendments",
+    "title": "The bill flower",
+    "loading": "Loading the bill…",
+    "error": "The bill could not be displayed.",
+    "empty": "This bill has no amendments.",
+    "flowerLabel": "Amendment flower",
+    "summary": "{title} · {count} amendments",
+    "reste": "Rest",
+    "unknown": "Unknown",
+    "sansDiscussion": "No joint discussion",
+    "sansDoublon": "No identical discussion",
+    "intentions": {
+      "supprimer": "Delete",
+      "reecrire": "Rewrite",
+      "ajouter": "Add",
+      "modifier": "Modify",
+      "autre": "Other"
+    },
+    "sheet": {
+      "numero": "Number",
+      "author": "Author",
+      "group": "Group",
+      "intention": "Intent",
+      "dispositif": "Device",
+      "sort": "Outcome",
+      "close": "Close"
     }
   }
 }
