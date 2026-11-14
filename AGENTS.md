@@ -4,7 +4,7 @@ Frontend web du hackathon Open Data (samedi 14 novembre 2026). Application **Nex
 
 > **Contrainte n°1 : la portabilité.** Ce repo reproduit **à l'identique** la stack frontend de l'application de référence de l'équipe (mêmes paquets, mêmes versions exactes, mêmes conventions, même arborescence). Tout ce qui est construit ici — modules, hooks, composants, algorithmes — doit pouvoir être transposé tel quel dans cette application après le hackathon. Avant d'écrire du code, lis [`docs/portabilite.md`](docs/portabilite.md). En cas de doute entre « plus rapide » et « portable », choisis portable.
 
-Références : [`docs/stack.md`](docs/stack.md) (versions exactes, catalogue de dépendances autorisées) · [`docs/portabilite.md`](docs/portabilite.md) (contrat de portage) · [`docs/deploiement.md`](docs/deploiement.md) (Vercel + Supabase + MCP) · [`design-system/README.md`](design-system/README.md) (tokens, factorisation des composants) · [`design-system/BRAND.md`](design-system/BRAND.md) (marque) · [`design-system/components.md`](design-system/components.md) (registre des composants).
+Références : [`docs/stack.md`](docs/stack.md) (versions exactes, catalogue de dépendances autorisées) · [`docs/portabilite.md`](docs/portabilite.md) (contrat de portage) · [`docs/deploiement.md`](docs/deploiement.md) (Vercel + Supabase + MCP) · [`design-system/README.md`](design-system/README.md) (tokens, factorisation des composants) · [`design-system/BRAND.md`](design-system/BRAND.md) (marque) · [`design-system/MOTION.md`](design-system/MOTION.md) (mouvement, picto animé) · [`design-system/components.md`](design-system/components.md) (registre des composants) · [`docs/webui.md`](docs/webui.md) (architecture de l'interface : header, Stage, widgets, scènes WebGL).
 
 > **Langue** : les échanges et la documentation peuvent être en français, mais **l'interface est en anglais** (tout texte visible = clé i18n, valeur de référence dans `i18n/messages/en.json`).
 
@@ -43,21 +43,23 @@ Lint, typecheck, tests et build ne demandent aucune variable d'environnement : l
 
 ```
 app/                    # App Router. Tout sous app/[locale]/ (next-intl, sans préfixe d'URL).
-│   ├── [locale]/       #   layout.tsx (racine : html/body, providers), page.tsx, not-found.tsx
+│   ├── [locale]/       #   layout.tsx (racine : html/body, providers), not-found.tsx
+│   │   └── (stage)/    #   layout.tsx (SiteHeader rémanent) · page.tsx (landing WebGL) · about/ · datasets/[datasetId]/ · loading.tsx
 │   ├── api/health/     #   sonde : version + joignabilité Supabase (vérifie un déploiement)
 │   ├── brand/mark.svg/ #   icône du site, générée depuis la géométrie du picto et les tokens
 │   ├── providers.tsx   #   QueryClientProvider (TanStack Query)
 │   └── globals.css     #   Tailwind 4 + import des tokens générés (aucun token déclaré ici)
 apis/<ressource>/       # Couche données par domaine : types.ts / request.ts / queries.ts / mutation.ts / index.ts
 design-system/          # Foundations : tokens/source/brand.json (source) → tokens/generated.* ; motion.css ;
-│                       #   README.md (règles), BRAND.md (marque), components.md (registre)
+│                       #   README.md (règles), BRAND.md (marque), MOTION.md (mouvement), components.md (registre)
 components/
 ├── ui/                 # Primitives shadcn re-thémées (button, card, badge, skeleton, sonner…)
-├── brand/              # DandelionMark, BrandLockup
-└── shared/             # Patterns réutilisables sans métier (à créer au besoin, registrés)
-features/<domaine>/     # Composants riches par domaine produit
+├── brand/              # DandelionMark, DandelionLoader, InteractiveDandelionMark, BrandLockup
+└── shared/             # Patterns sans métier : Stage, StageCanvas, Widget, FloatingHeader, HeaderNav, SearchField…
+features/<domaine>/     # Composants riches par domaine produit (shell, world, dataviz, datasets, about)
 │   ├── components/     #   UI de la feature
 │   ├── hooks/          #   hooks de la feature
+│   ├── scene/          #   fabriques de scène canvas/WebGL (contrat lib/stage/stage-scene.ts)
 │   └── lib/            #   logique PURE (sélecteurs, calculs, algos) + tests co-localisés
 lib/                    # Algorithmes et utilitaires PURS transverses (cn, calculs…) — portés tels quels
 services/
@@ -98,7 +100,7 @@ Toute interface, même prototypée vite (« vibe-codée »), se construit **dans
 - **Familles réservées** : `cta-*` = actions transactionnelles uniquement ; `stance-*` = position individuelle sur 5 niveaux de Likert ; `feedback-*` = états système ; `brand-*` = identité (picto, icône, accents) ; `chart-*` = séries de données.
 - **Couches** : `components/ui` (primitives) → `components/brand` → `components/shared` (patterns sans métier) → `features/<domaine>/components` (métier). Une couche n'importe que les couches inférieures ; un composant DS ne fait ni appel de données ni texte en dur.
 - **Factoriser** : consulter `design-system/components.md` avant de créer ; étendre par variante `cva` plutôt que dupliquer ; **deux occurrences d'une même structure = extraction en composant partagé** dans la même PR ; toute création ou variante est ajoutée au registre.
-- **Marque** : picto via `DandelionMark` / `renderDandelionSvg` uniquement (jamais redessiné), police Inter, WCAG AA, aucune information portée par la seule couleur. Voir [`design-system/BRAND.md`](design-system/BRAND.md).
+- **Marque** : picto via `DandelionMark` / `renderDandelionSvg` uniquement (jamais redessiné), animé uniquement par ses variantes `motion` (`DandelionLoader`, `InteractiveDandelionMark`, cf. [`design-system/MOTION.md`](design-system/MOTION.md)), police Inter, WCAG AA, aucune information portée par la seule couleur. Voir [`design-system/BRAND.md`](design-system/BRAND.md).
 
 ## Supabase
 
