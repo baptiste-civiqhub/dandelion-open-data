@@ -1,0 +1,3 @@
+# Export officiel du Sénat (cp1252, TSV) : conservé octet pour octet pour que son SHA-256 reste vérifiable.
+*.csv binary
+evidence/*.html binary

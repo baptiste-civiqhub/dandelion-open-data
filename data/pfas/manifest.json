@@ -1,0 +1,46 @@
+{
+  "provenance": {
+    "datasetUrl": "https://www.senat.fr/amendements/2023-2024/620/jeu_complet_2023-2024_620.csv",
+    "referencePageUrl": "https://www.senat.fr/amendements/2023-2024/620/accueil.html",
+    "referenceTextUrl": "https://www.senat.fr/leg/ppl23-620.html",
+    "licenceUrl": "https://data.senat.fr/licence/",
+    "publisher": "Sénat",
+    "text": "Proposition de loi n° 620 (2023-2024) visant à protéger la population des risques liés aux substances perfluoroalkylées et polyfluoroalkylées",
+    "retrievedAtUtc": "2026-11-13T21:43:06.239210+00:00",
+    "bytes": 62948,
+    "sha256": "08ed07be1de3dd53b1888484e5b209ba2a39ff43f0ade88f23a9c25128e49337",
+    "encoding": "cp1252",
+    "format": "TSV (tabulations) malgré l'extension .csv, première ligne « sep= », en-têtes avec espaces finaux",
+    "parserVersion": "1.0.0",
+    "importScript": "scripts/import-pfas.py"
+  },
+  "counts": {
+    "rows": 32,
+    "bySubdivision": {
+      "Article 1er": 17,
+      "Article 1er bis": 4,
+      "Article 1er ter": 2,
+      "Article 2": 3,
+      "Article 2 bis": 2,
+      "Article 3": 1,
+      "art. add. après Article 1er": 2,
+      "art. add. après Article 2": 1
+    },
+    "byOutcome": {
+      "Adopté": 7,
+      "Irrecevable art. 40 C": 1,
+      "Rejeté": 18,
+      "Retiré": 6
+    },
+    "byNature": {
+      "Amt": 31,
+      "S/Amt": 1
+    }
+  },
+  "files": {
+    "original": "data/pfas/jeu_complet_2023-2024_620.csv",
+    "curatedRelations": "data/pfas/curated-relations.json",
+    "snapshot": "data/pfas/amendments.json"
+  },
+  "curatedRelations": 1
+}

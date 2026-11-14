@@ -29,3 +29,6 @@ design-system/tokens/palette.generated.md
 # Contexte agents (Markdown libre)
 .claude/
 .cursor/
+
+# Archives publiques conservées octet pour octet (empreinte de provenance)
+data/pfas/evidence/
