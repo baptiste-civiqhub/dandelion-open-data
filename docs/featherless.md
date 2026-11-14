@@ -6,6 +6,8 @@
 **Project:** Dandelion — an interactive explorer for parliamentary texts and amendments  
 **Scope:** Repository implementations and recorded local experiments. This report is not a fresh audit of the deployed application.
 
+> **Branch scope:** the chat assistant described here belongs to integration `cdb9802`; its route is absent from `feat/landing-intro`. The landing branch does include the article-classification pipeline. The controlled vocabulary contains 50 labels, excluding the Other fallback; this corrects the earlier report’s count of 49.
+
 ## 1. Executive summary
 
 We integrated Featherless into two complementary parts of Dandelion:
@@ -15,12 +17,12 @@ We integrated Featherless into two complementary parts of Dandelion:
 
 The intended benefit is to help people find and inspect relevant legislative evidence through natural language and thematic navigation. We have technical evidence of feasibility, but have not yet measured time saved or comprehension gains with users.
 
-| Workstream | Implemented | Evidence available | Remaining validation |
-| --- | --- | --- | --- |
-| Featherless chat integration | Server-side completion client and application route | Connectivity smoke test and three real application calls | Broader evaluation and deployed configuration |
-| Visualization action contract | Strict schemas, identifier validation and host adapters | Code and automated test coverage | Live-model coverage of every action and host |
-| Article classification | Controlled vocabulary, classifier client and Supabase persistence | Team pipeline code and tests | End-to-end run evidence and human-reviewed label quality |
-| Demo and partner attribution | Official Featherless logo and documented API role | Existing pitch materials | Keep claims aligned with the final demonstrated build |
+| Workstream                    | Implemented                                                       | Evidence available                                       | Remaining validation                                     |
+| ----------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| Featherless chat integration  | Server-side completion client and application route               | Connectivity smoke test and three real application calls | Broader evaluation and deployed configuration            |
+| Visualization action contract | Strict schemas, identifier validation and host adapters           | Code and automated test coverage                         | Live-model coverage of every action and host             |
+| Article classification        | Controlled vocabulary, classifier client and Supabase persistence | Team pipeline code and tests                             | End-to-end run evidence and human-reviewed label quality |
+| Demo and partner attribution  | Official Featherless logo and documented API role                 | Existing pitch materials                                 | Keep claims aligned with the final demonstrated build    |
 
 ## 2. The product use case
 
@@ -85,10 +87,7 @@ An actual plan returned during the PFAS test was:
   "actions": [
     {
       "type": "compare",
-      "ids": [
-        "senat-2023-2024-620-amdt-26",
-        "senat-2023-2024-620-amdt-27"
-      ]
+      "ids": ["senat-2023-2024-620-amdt-26", "senat-2023-2024-620-amdt-27"]
     }
   ]
 }
@@ -103,7 +102,7 @@ The contract carries no executable JavaScript, SQL, DOM selectors or arbitrary n
 The prompt requests an explicit abstention for unsupported predictions, opinions, economic effects or questions about applicable law:
 
 ```json
-{"schemaVersion": 1, "abstain": true}
+{ "schemaVersion": 1, "abstain": true }
 ```
 
 The server distinguishes valid plans, abstentions, invalid responses, timeouts and provider errors. Without a configured key, it returns `mode: "unconfigured"`. Manual navigation and the separate deterministic guide remain available.
@@ -112,11 +111,11 @@ The server distinguishes valid plans, abstentions, invalid responses, timeouts a
 
 All observations below were recorded locally on **14 November 2026** using `zai-org/GLM-5.3-Flash`.
 
-| User question | Observed result | Local elapsed time |
-| --- | --- | ---: |
-| “Compare les amendements 26 et 27” | Valid comparison plan; both records and Senate source URLs returned | 5.179 s |
-| “Montre le sous-amendement 32” | Valid focus plan for amendment 32; record and source URL returned | 16.567 s |
-| “Quel sera le nombre de cancers évités par cette loi ?” | Explicit abstention | 2.407 s |
+| User question                                           | Observed result                                                     | Local elapsed time |
+| ------------------------------------------------------- | ------------------------------------------------------------------- | -----------------: |
+| “Compare les amendements 26 et 27”                      | Valid comparison plan; both records and Senate source URLs returned |            5.179 s |
+| “Montre le sous-amendement 32”                          | Valid focus plan for amendment 32; record and source URL returned   |           16.567 s |
+| “Quel sera le nombre de cancers évités par cette loi ?” | Explicit abstention                                                 |            2.407 s |
 
 A separate minimal connectivity smoke test also succeeded in 2.439 seconds. Its provider usage record reported 31 prompt tokens and 50 completion tokens. That call only checked connectivity and a short response; it was not an application-plan validation test.
 
@@ -133,7 +132,7 @@ It uses **`https://api.featherless.ai/v1/classifier`**, with **`featherless-ai/g
 ### Processing flow
 
 1. Read legislative articles from Supabase, including designation, title and operative text (`dispositif`).
-2. Evaluate a controlled vocabulary of **49 thematic labels across 10 categories**: institutions, budget, ecology, economy, health, knowledge/education, security, social issues, work and agriculture.
+2. Evaluate a controlled vocabulary of **50 thematic labels across 10 categories**: institutions, budget, ecology, economy, health, knowledge/education, security, social issues, work and agriculture.
 3. For each label, supply an explicit positive rule and a negative criterion through the classifier’s `noul` question format.
 4. Keep recognized labels with finite scores between 0 and 1 and at least 0.5. Reject unknown labels and malformed scores.
 5. Assign an “Other” fallback with no confidence value if no label is retained.
@@ -161,9 +160,9 @@ The assistant sends the user’s question and bounded excerpts from registered p
 
 The inspected assistant integration keeps its credential server-side; the recorded local configuration used an ignored environment file. No credential is included in this document. The last archived deployment checkpoint explicitly stated that the assistant key had not been deployed to Vercel; current deployment status requires a separate check.
 
-| Component | Configuration |
-| --- | --- |
-| Assistant | `FEATHERLESS_API_KEY`, `FEATHERLESS_API_BASE`, `FEATHERLESS_MODEL` |
+| Component          | Configuration                                                                                                                               |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Assistant          | `FEATHERLESS_API_KEY`, `FEATHERLESS_API_BASE`, `FEATHERLESS_MODEL`                                                                          |
 | Classification job | `FEATHERLESS_API_KEY_1` and optionally `_2`; unnumbered key accepted as the first key; `FEATHERLESS_MODEL`; server-side Supabase credential |
 
 Both components use the environment name `FEATHERLESS_MODEL` for different model roles. Keep their execution environments separate or explicitly configure the appropriate model for each process.
@@ -181,13 +180,13 @@ Provider retention policies and organization-wide compliance have not been audit
 
 ## 7. What to validate next
 
-| Priority | Next step | Evidence to collect |
-| --- | --- | --- |
-| 1 | Evaluate representative French questions, including ambiguous and unsupported requests | Correct entity selection, valid-plan rate, appropriate abstention and false-answer rate |
-| 2 | Review classified articles against human labels | Per-topic precision/recall, missed themes, disagreement and fallback frequency |
-| 3 | Verify the deployed configuration and dataset coverage | Real end-to-end calls from the final interface, source integrity and failure behavior |
-| 4 | Measure performance over repeated requests | Latency distributions, timeout/error rates, token usage and cost |
-| 5 | Test with intended users | Task completion, time to find evidence and understanding of amendment status |
+| Priority | Next step                                                                              | Evidence to collect                                                                     |
+| -------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| 1        | Evaluate representative French questions, including ambiguous and unsupported requests | Correct entity selection, valid-plan rate, appropriate abstention and false-answer rate |
+| 2        | Review classified articles against human labels                                        | Per-topic precision/recall, missed themes, disagreement and fallback frequency          |
+| 3        | Verify the deployed configuration and dataset coverage                                 | Real end-to-end calls from the final interface, source integrity and failure behavior   |
+| 4        | Measure performance over repeated requests                                             | Latency distributions, timeout/error rates, token usage and cost                        |
+| 5        | Test with intended users                                                               | Task completion, time to find evidence and understanding of amendment status            |
 
 Expansion to additional visualization hosts should preserve the same validation contract and make each host’s supported actions explicit.
 

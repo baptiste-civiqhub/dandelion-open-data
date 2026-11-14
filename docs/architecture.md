@@ -4,6 +4,8 @@ Documented snapshot: **`cdb9802`**, 14 November 2026. [Back to README](../README
 
 These diagrams describe the implemented architecture. A component appearing in the diagram does not establish that its external service was exercised in the final deployment.
 
+> **Branch scope:** these are reference diagrams for integration `cdb9802`, not a claim that every component is present on `feat/landing-intro`. In particular, the landing checkout does not contain the PFAS assistant route or the archived PFAS pages. See the [documentation index](README.md) for the branch mapping.
+
 ## System architecture
 
 ```mermaid
