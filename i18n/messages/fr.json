@@ -335,21 +335,27 @@
     "nav": {
       "label": "Principale",
       "about": "Atlas",
-      "datasets": "Données"
+      "datasets": "Données",
+      "atlas": "Atlas",
+      "areas": "Données"
     },
     "search": {
-      "label": "Rechercher un jeu de données",
-      "placeholder": "Rechercher un jeu de données…"
+      "label": "Rechercher une zone",
+      "placeholder": "Rechercher une zone…"
+    },
+    "overlay": {
+      "close": "Fermer"
     }
   },
   "world": {
-    "canvasLabel": "Carte explorable des jeux de données"
+    "canvasLabel": "Carte explorable des zones",
+    "enterHint": "Entrée pour ouvrir"
   },
   "about": {
     "metaTitle": "À propos",
     "title": "À propos de Dandelion",
     "intro": "Dandelion transforme la donnée publique ouverte en un espace à explorer.",
-    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Tous les jeux de données sont aussi listés dans Données."
+    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Toutes les zones sont aussi listées dans Area."
   },
   "datasets": {
     "metaTitle": "Jeux de données",
@@ -359,8 +365,8 @@
     "noMatch": "Aucun jeu de données ne correspond à « {query} »."
   },
   "dataviz": {
-    "metaTitle": "{datasetId}",
-    "canvasLabel": "Visualisation du jeu de données {datasetId}",
+    "metaTitle": "Zone {areaId}",
+    "canvasLabel": "Amendements de {name} : un point par amendement, empilés par article et colorés par sort",
     "dataset": {
       "eyebrow": "Jeu de données",
       "notConnected": "La source de données de ce jeu n’est pas encore connectée."
@@ -368,6 +374,26 @@
     "view": {
       "title": "Vue",
       "description": "Les filtres et la légende apparaîtront ici."
+    },
+    "area": {
+      "eyebrow": "Zone",
+      "tags": "Tags",
+      "articles": "Articles et leur nombre d’amendements",
+      "stats": "{articles, plural, one {# article} other {# articles}} · {amendments, plural, =0 {aucun amendement} one {# amendement} other {# amendements}}",
+      "withoutArticle": "Hors des articles",
+      "noText": "Aucun texte chargé dans cette zone. Les zones de démonstration ne contiennent pas de données législatives.",
+      "contentError": "Les articles et les amendements n’ont pas pu être chargés.",
+      "notFoundTitle": "Zone introuvable",
+      "notFound": "Aucune zone ne correspond à cette adresse.",
+      "errorTitle": "Zone indisponible",
+      "error": "Cette zone n’a pas pu être chargée.",
+      "backToAreas": "Parcourir toutes les zones"
+    },
+    "outcomes": {
+      "title": "Sorts",
+      "description": "Ce qu’est devenu chaque amendement.",
+      "empty": "Aucun amendement à compter pour l’instant.",
+      "error": "Les sorts n’ont pas pu être chargés."
     }
   },
   "texte": {
@@ -555,6 +581,68 @@
         "name": "Polices municipales : projet de loi n° 2464",
         "summary": "{count} amendements (instantané Hémicycle de l’équipe). Liens individuels et certains textes absents de la source."
       }
+    },
+    "live": {
+      "eyebrow": "Corpus de l’API Hémicycle / équipe",
+      "provenance": "Import de l’équipe daté du {date}. Lecture via son API Supabase.",
+      "lazyText": "Les textes sont chargés à l’ouverture d’une fiche ou d’une comparaison.",
+      "structureNote": "Branches : article, amendement et parent déclaré. Couleurs : sort enregistré, selon la légende. Aucun classement par effet supposé.",
+      "focusExample": "Montre {numero}",
+      "compareExample": "Compare {a} et {b}"
     }
+  },
+  "atlas": {
+    "title": "Atlas",
+    "description": "Toutes les zones de la carte, vues de dessus. Choisissez-en une pour ouvrir sa visualisation.",
+    "mapLabel": "Carte des zones",
+    "zoneLabel": "{name}, {count, plural, =0 {aucun texte pour l’instant} one {# texte} other {# textes}}",
+    "summary": "{total, plural, one {# zone} other {# zones}} · {withData} avec des données",
+    "empty": "Aucune zone disponible pour l’instant.",
+    "error": "L’atlas n’a pas pu être chargé."
+  },
+  "areas": {
+    "metaTitle": "Zones",
+    "title": "Zones",
+    "description": "Recherchez les zones et filtrez-les par thème.",
+    "search": {
+      "label": "Rechercher une zone",
+      "placeholder": "Rechercher par nom ou par thème…"
+    },
+    "filters": {
+      "toggle": "Filtres",
+      "active": "{count, plural, one {# filtre actif} other {# filtres actifs}}",
+      "listLabel": "Filtrer par tag",
+      "clear": "Effacer les filtres",
+      "error": "Les filtres n’ont pas pu être chargés."
+    },
+    "results": "{count, plural, =0 {Aucune zone} one {# zone} other {# zones}}",
+    "empty": "Aucune zone disponible pour l’instant.",
+    "noMatch": "Aucune zone ne correspond à ces filtres.",
+    "error": "Les zones n’ont pas pu être chargées.",
+    "card": {
+      "texts": "{count, plural, =0 {Aucun texte pour l’instant} one {# texte} other {# textes}}"
+    },
+    "archived": "Explorer aussi les corpus archivés PFAS et polices municipales",
+    "demo": "Zone de démonstration"
+  },
+  "liveArea": {
+    "texte": "Texte du corpus",
+    "stageNote": "Le corpus peut réunir plusieurs étapes (commission et séance). La vue ne constitue pas une chronologie ; les rangs ne sont pas comparables entre étapes. Les alinéas ne sont pas détaillés dans cette vue.",
+    "detail": "Fiche de l’amendement",
+    "comparison": "Comparaison des textes",
+    "loading": "Chargement des textes depuis l’API…",
+    "error": "Lecture impossible. Aucun texte de remplacement n’est affiché.",
+    "retry": "Réessayer",
+    "missingComparison": "Au moins un texte manque : aucune différence n’est calculée.",
+    "largeComparison": "Ces textes dépassent la limite de comparaison ; lecture côte à côte uniquement.",
+    "lexicalNote": "Les passages soulignés diffèrent. Cette comparaison lexicale ne prouve ni un effet juridique ni une filiation entre les amendements.",
+    "amendment": "Amendement {numero}",
+    "missingText": "Texte non fourni par l’API.",
+    "missingSource": "Lien officiel absent de l’enregistrement.",
+    "source": "Consulter la source officielle",
+    "expose": "Exposé sommaire",
+    "selectCompare": "Ajouter à la comparaison",
+    "chooseSecond": "Ouvrez un second amendement et ajoutez-le à la comparaison.",
+    "clear": "Fermer les fiches et vider la comparaison"
   }
 }

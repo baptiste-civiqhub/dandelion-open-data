@@ -32,7 +32,7 @@ const firstSeen = (items: Amendment[], keyOf: (amendment: Amendment) => string):
   return keys
 }
 
-export const buildTree = (snapshot: TexteSnapshot): DandelionNode => {
+export const buildTree = (snapshot: TexteSnapshot, { groupOperations = true } = {}): DandelionNode => {
   const root: DandelionNode = {
     id: `texte:${snapshot.id}`,
     kind: 'texte',
@@ -123,6 +123,10 @@ export const buildTree = (snapshot: TexteSnapshot): DandelionNode => {
   root.children = articles.map((article) => {
     const inArticle = tops.filter((item) => item.article === article)
     const id = `article:${article}`
+    if (!groupOperations) {
+      const children = buildDiscussionOrNext(id, inArticle)
+      return { id, kind: 'article' as const, label: article, weight: weightOf(children), children }
+    }
     const intentions = firstSeen(inArticle, (item) => classifyIntention(item.dispositif))
     const children = intentions.map((intention) => {
       const group = inArticle.filter((item) => classifyIntention(item.dispositif) === intention)

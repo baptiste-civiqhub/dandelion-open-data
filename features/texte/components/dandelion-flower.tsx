@@ -19,6 +19,7 @@ const INTENTION_FILL: Record<Intention, string> = {
 }
 
 type DandelionFlowerProps = {
+  fillByAmendment?: Record<string, string>
   nodes: LayoutNode[]
   width: number
   height: number
@@ -69,6 +70,7 @@ const stemPath = (parent: LayoutNode, child: LayoutNode) => {
 
 export function DandelionFlower({
   nodes,
+  fillByAmendment,
   width,
   height,
   focusId,
@@ -91,6 +93,7 @@ export function DandelionFlower({
   const fillFor = (node: LayoutNode): string => {
     let current: LayoutNode | undefined = node
     while (current) {
+      if (current.amendmentId && fillByAmendment?.[current.amendmentId]) return fillByAmendment[current.amendmentId]
       if (current.kind === 'intention' && isIntention(current.label)) return INTENTION_FILL[current.label]
       current = current.parentId ? byId.get(current.parentId) : undefined
     }

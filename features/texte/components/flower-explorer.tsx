@@ -3,7 +3,7 @@
 import { Minus, Plus, Scan } from 'lucide-react'
 import { useReducedMotion } from 'motion/react'
 import { useTranslations } from 'next-intl'
-import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 
 import type { PfasSnapshot } from '@/apis/pfas-amendments/types'
 import { Badge } from '@/components/ui/badge'
@@ -19,7 +19,7 @@ import { EvidenceJourney } from '@/features/pfas-amendments/components/evidence-
 import { buildTree } from '@/features/texte/lib/build-tree'
 import { FOCUS_SHARE, MAX_VISIBLE } from '@/features/texte/lib/constants'
 import { cutTree } from '@/features/texte/lib/cut-tree'
-import { datasetGaps, type FlowerDataset } from '@/features/texte/lib/datasets'
+import { datasetGaps, isFlowerDatasetId, type FlowerDataset } from '@/features/texte/lib/datasets'
 import { layoutRadial } from '@/features/texte/lib/layout-radial'
 import {
   buildOverviewTour,
@@ -42,10 +42,30 @@ import { useNodeLabel } from './use-node-label'
 const PFAS_ARTICLE_NODE = 'article:Article 1er'
 const SEARCH_LIMIT = 8
 
-type FlowerExplorerProps = { dataset: FlowerDataset; pfas: PfasSnapshot | null }
+export type ExplorerRecords = {
+  openId: string | null
+  selectedIds: string[]
+  close: () => void
+  compare: (id: string) => void
+}
+type FlowerExplorerProps = {
+  dataset: FlowerDataset
+  pfas: PfasSnapshot | null
+  renderRecords?: (state: ExplorerRecords) => ReactNode
+  headerExtra?: ReactNode
+  rightExtra?: ReactNode
+  fillByAmendment?: Record<string, string>
+}
 
 /** Fleur radiale de l'équipe dans le Stage, pilotée par boutons, clavier, recherche, guide et parcours. */
-export function FlowerExplorer({ dataset, pfas }: FlowerExplorerProps) {
+export function FlowerExplorer({
+  dataset,
+  pfas,
+  renderRecords,
+  headerExtra,
+  rightExtra,
+  fillByAmendment
+}: FlowerExplorerProps) {
   const t = useTranslations('flower')
   const nodeLabel = useNodeLabel()
   const reducedMotion = useReducedMotion() ?? false
@@ -71,7 +91,7 @@ export function FlowerExplorer({ dataset, pfas }: FlowerExplorerProps) {
   }, [])
 
   const { amendments } = dataset.snapshot
-  const tree = useMemo(() => buildTree(dataset.snapshot), [dataset])
+  const tree = useMemo(() => buildTree(dataset.snapshot, { groupOperations: !dataset.detailsOnDemand }), [dataset])
   const index = useMemo(() => indexTree(tree), [tree])
   const gaps = useMemo(() => datasetGaps(dataset), [dataset])
   const focusId = view.focusId ?? hoveredId
@@ -220,55 +240,66 @@ export function FlowerExplorer({ dataset, pfas }: FlowerExplorerProps) {
           date: dataset.provenance.retrievedAtUtc?.slice(0, 10) ?? '—',
           hash: dataset.provenance.sha256?.slice(0, 12) ?? '—'
         })
-      : t('provenance.hemicycle')
+      : dataset.detailsOnDemand
+        ? t('live.provenance', { date: dataset.provenance.retrievedAtUtc?.slice(0, 10) ?? '—' })
+        : t('provenance.hemicycle')
 
   const left = (
     <div className='pointer-events-auto flex flex-col gap-4 lg:max-h-full lg:overflow-y-auto'>
       <Widget aria-labelledby='flower-dataset-title' data-testid='flower-dataset'>
         <WidgetHeader>
           <p className='text-muted-foreground text-xs font-medium tracking-wide uppercase'>
-            {t(`datasets.${dataset.id}.eyebrow`)}
+            {dataset.detailsOnDemand ? t('live.eyebrow') : t(`datasets.${dataset.id}.eyebrow`)}
           </p>
           <h1 id='flower-dataset-title' className='text-lg font-semibold tracking-tight'>
-            {t(`datasets.${dataset.id}.name`)}
+            {dataset.detailsOnDemand ? dataset.snapshot.titre : t(`datasets.${dataset.id}.name`)}
           </h1>
           <WidgetDescription lang='fr'>{dataset.snapshot.titre}</WidgetDescription>
         </WidgetHeader>
         <WidgetContent>
+          {headerExtra}
           <p data-testid='flower-counts'>
             {t('counts', { visible: layout.length, total: tree.weight, budget: MAX_VISIBLE })}
           </p>
           <p className='text-muted-foreground'>{provenanceLine}</p>
           <p className='text-muted-foreground'>
             {t('provenance.publisher', { publisher: dataset.provenance.publisher })}{' '}
-            <a
-              href={dataset.provenance.sourceUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary underline'
-            >
-              {t('provenance.source')}
-            </a>{' '}
-            ·{' '}
-            <a
-              href={
-                dataset.provenance.licence.startsWith('http')
-                  ? dataset.provenance.licence
-                  : dataset.provenance.sourceUrl
-              }
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-primary underline'
-            >
-              {dataset.provenance.licence.startsWith('http') ? t('provenance.licence') : dataset.provenance.licence}
-            </a>
+            {dataset.provenance.sourceUrl ? (
+              <a
+                href={dataset.provenance.sourceUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-primary underline'
+              >
+                {t('provenance.source')}
+              </a>
+            ) : null}
+            {' · '}
+            {dataset.provenance.licence.startsWith('http') ? (
+              <a
+                href={dataset.provenance.licence}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-primary underline'
+              >
+                {t('provenance.licence')}
+              </a>
+            ) : (
+              dataset.provenance.licence
+            )}
           </p>
           <div className='bg-muted flex flex-col gap-1 rounded-md p-2' data-testid='flower-gaps'>
             <p className='font-medium'>{t('gaps.title')}</p>
-            <p>{t('gaps.text', { count: gaps.missingText, total: gaps.total })}</p>
+            <p>
+              {dataset.detailsOnDemand
+                ? t('live.lazyText')
+                : t('gaps.text', { count: gaps.missingText, total: gaps.total })}
+            </p>
             <p>{t('gaps.url', { count: gaps.missingUrl, total: gaps.total })}</p>
           </div>
-          <p className='text-muted-foreground text-xs'>{t('lexicalNote')}</p>
+          <p className='text-muted-foreground text-xs'>
+            {dataset.detailsOnDemand ? t('live.structureNote') : t('lexicalNote')}
+          </p>
         </WidgetContent>
       </Widget>
       <Widget aria-labelledby='flower-nav-title' data-testid='flower-nav'>
@@ -375,25 +406,48 @@ export function FlowerExplorer({ dataset, pfas }: FlowerExplorerProps) {
           adapter={userAdapter}
           registry={registry}
           sourceUrls={dataset.sourceUrls}
-          examples={[t('guide.examples.focus'), t('guide.examples.compare'), t('guide.examples.global')]}
+          examples={
+            dataset.detailsOnDemand
+              ? [
+                  ...(amendments[0] ? [t('live.focusExample', { numero: amendments[0].numero })] : []),
+                  ...(amendments[1]
+                    ? [t('live.compareExample', { a: amendments[0].numero, b: amendments[1].numero })]
+                    : []),
+                  t('guide.examples.global')
+                ]
+              : [t('guide.examples.focus'), t('guide.examples.compare'), t('guide.examples.global')]
+          }
         />
       )}
       <FlowerTour steps={steps} state={tour} reducedMotion={reducedMotion} onEvent={dispatch} />
-      {open ? (
+      {renderRecords?.({
+        openId,
+        selectedIds,
+        close: () => {
+          setOpenId(null)
+          setSelectedIds([])
+        },
+        compare: (id) => {
+          setSelectedIds((current) => [...new Set([...current, id])].slice(-2))
+          setReadingMode(true)
+        }
+      })}
+      {!renderRecords && open ? (
         <AmendmentCard
           amendment={open}
           sourceUrl={dataset.sourceUrls[open.id] ?? null}
           onClose={() => setOpenId(null)}
         />
       ) : null}
-      {comparedTeam.map((amendment) => (
-        <AmendmentCard
-          key={amendment.id}
-          amendment={amendment}
-          sourceUrl={dataset.sourceUrls[amendment.id] ?? null}
-          onClose={() => setSelectedIds([])}
-        />
-      ))}
+      {!renderRecords &&
+        comparedTeam.map((amendment) => (
+          <AmendmentCard
+            key={amendment.id}
+            amendment={amendment}
+            sourceUrl={dataset.sourceUrls[amendment.id] ?? null}
+            onClose={() => setSelectedIds([])}
+          />
+        ))}
       {pfas ? (
         <>
           <AmendmentComparison amendments={comparedPfas} provenance={pfas.provenance} />
@@ -408,7 +462,10 @@ export function FlowerExplorer({ dataset, pfas }: FlowerExplorerProps) {
           />
         </>
       ) : null}
-      <FlowerProviderPanel datasetId={dataset.id} adapter={userAdapter} registry={registry} />
+      {rightExtra}
+      {isFlowerDatasetId(dataset.id) ? (
+        <FlowerProviderPanel datasetId={dataset.id} adapter={userAdapter} registry={registry} />
+      ) : null}
     </div>
   )
 
@@ -427,6 +484,7 @@ export function FlowerExplorer({ dataset, pfas }: FlowerExplorerProps) {
       >
         {size.width > 0 ? (
           <DandelionFlower
+            fillByAmendment={fillByAmendment}
             nodes={layout}
             width={size.width}
             height={size.height}

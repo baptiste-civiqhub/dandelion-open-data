@@ -33,15 +33,15 @@ Le pointeur traverse l'overlay (`pointer-events-none`) et n'est capté que par l
 
 Toutes les pages de l'interface vivent dans le route group **`app/[locale]/(stage)/`**. Son `layout.tsx` monte `SiteHeader` une fois : naviguer entre ces pages ne recrée pas le header (le picto interactif garde son état, pas de clignotement). Le layout racine `app/[locale]/layout.tsx` n'est pas modifié.
 
-| URL                     | Fichier                                 | Écran (feature)                        | Canvas                      | Colonnes                               |
-| ----------------------- | --------------------------------------- | -------------------------------------- | --------------------------- | -------------------------------------- |
-| `/`                     | `(stage)/page.tsx`                      | `features/world` · `WorldScreen`       | monde WebGL (`WorldCanvas`) | **aucune** (landing sans widget)       |
-| `/about`                | `(stage)/about/page.tsx`                | `features/about` · `AboutScreen`       | —                           | centre : un widget de texte            |
-| `/datasets?q=…`         | `(stage)/datasets/page.tsx`             | `features/datasets` · `DatasetsScreen` | —                           | centre : catalogue + recherche         |
-| `/datasets/[datasetId]` | `(stage)/datasets/[datasetId]/page.tsx` | `features/dataviz` · `DatavizScreen`   | graphique (`DatavizCanvas`) | gauche : jeu de données · droite : vue |
-| (attente)               | `(stage)/loading.tsx`                   | —                                      | —                           | centre : `DandelionLoader`             |
+| URL              | Fichier                          | Écran (feature)                      | Canvas                      | Colonnes                            |
+| ---------------- | -------------------------------- | ------------------------------------ | --------------------------- | ----------------------------------- |
+| `/`              | `(stage)/page.tsx`               | `features/world` · `WorldScreen`     | monde WebGL (`WorldCanvas`) | **aucune** (landing sans widget)    |
+| `/about`         | `(stage)/about/page.tsx`         | `features/about` · `AboutScreen`     | —                           | centre : un widget de texte         |
+| `/area?q=…`      | `(stage)/area/page.tsx`          | `features/areas` · `AreasScreen`     | —                           | centre : catalogue, recherche, tags |
+| `/area/[areaId]` | `(stage)/area/[areaId]/page.tsx` | `features/dataviz` · `DatavizScreen` | graphique (`DatavizCanvas`) | gauche : zone · droite : sorts      |
+| (attente)        | `(stage)/loading.tsx`            | —                                    | —                           | centre : `DandelionLoader`          |
 
-Chemins : `PUBLIC_PATHS` (`constant/path.ts`), dont `PUBLIC_PATHS.DATASET_DETAIL(id)`. Paramètre de recherche : `SEARCH_PARAMS.QUERY` (`q`). Jamais d'URL en dur.
+Chemins : `PUBLIC_PATHS` (`constant/path.ts`), dont `PUBLIC_PATHS.AREA_DETAIL(areaId)` (`areaId` = slug du jeu `datasets`, ou son UUID). Les menus « Atlas » et « Area » ouvrent une `OverlayWindow` (`features/shell/components/site-menus.tsx`). Monde 3D de la landing : [`docs/dandelion/monde-3d.md`](dandelion/monde-3d.md). Paramètre de recherche : `SEARCH_PARAMS.QUERY` (`q`). Jamais d'URL en dur.
 
 ## 3. Header
 
