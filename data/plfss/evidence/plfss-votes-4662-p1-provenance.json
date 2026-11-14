@@ -1,0 +1,19 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "votes",
+    "filtres": [
+      {
+        "colonne": "scrutin_ref",
+        "op": "eq",
+        "valeur": "VTANR5L17V4662"
+      }
+    ],
+    "limite": 200
+  },
+  "retrievedAtUtc": "2026-11-14T11:45:00.946678+00:00",
+  "sha256": "78f790394c6aa1a2dbbca0267589e863d860a2d766297021a4c62380cd3af29e",
+  "bytes": 54067,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}

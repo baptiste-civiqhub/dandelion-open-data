@@ -1,0 +1,41 @@
+{
+  "jeu": "documents",
+  "source": {
+    "nom": "Assemblée nationale",
+    "url": "https://data.assemblee-nationale.fr",
+    "licence": "Licence Ouverte (Etalab)",
+    "licence_url": "https://data.assemblee-nationale.fr/licence-ouverte-open-licence"
+  },
+  "sources_amont": [],
+  "consulte_le": "2026-11-14T11:45:39.738Z",
+  "derniere_ingestion_hemicycle": "2026-11-14T05:18:46.877471+00:00",
+  "colonne_mise_a_jour": null,
+  "nombre": 1,
+  "lignes": [
+    {
+      "uid": "PRJLANR5L17B2141",
+      "dossier_ref": "DLR5L17N52922",
+      "legislature": "17",
+      "denomination_structurelle": "Projet de loi",
+      "provenance": "Texte Déposé",
+      "titre_principal": "projet de loi de financement de la sécurité sociale de financement de la sécurité sociale pour 2026",
+      "titre_principal_court": "Projet de loi de financement de la sécurité sociale pour 2026",
+      "date_creation": "2025-11-26T00:00:00.000+01:00",
+      "date_depot": "2025-11-26T00:00:00.000+01:00",
+      "date_publication": "2025-12-09T00:00:00.000+01:00",
+      "classe_code": "PRJLOI",
+      "classe_libelle": "Projet de loi",
+      "type_code": "PRJL",
+      "type_libelle": "Projet de loi",
+      "sous_type_code": "FINSSOC",
+      "sous_type_libelle": "de financement de la sécurité sociale",
+      "num_notice": "2141",
+      "auteur_ref": "PO838901",
+      "auteur_type": "organe",
+      "auteur_qualite": null
+    }
+  ],
+  "tronque": false,
+  "decalage_suivant": null,
+  "pagination": null
+}

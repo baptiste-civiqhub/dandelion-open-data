@@ -1,0 +1,19 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "documents",
+    "filtres": [
+      {
+        "colonne": "uid",
+        "op": "eq",
+        "valeur": "PRJLANR5L17B2141"
+      }
+    ],
+    "limite": 5
+  },
+  "retrievedAtUtc": "2026-11-14T11:45:39.792484+00:00",
+  "sha256": "453f72d95fc4f0b2c3588a621019ea6a6e21d20e695937b1757de8027d0a7b4c",
+  "bytes": 1492,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}

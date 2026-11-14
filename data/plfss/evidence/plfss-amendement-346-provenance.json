@@ -1,0 +1,24 @@
+{
+  "url": "https://api.hemicycle.ai/v1/jeux/interroger",
+  "method": "POST",
+  "query": {
+    "jeu": "amendements",
+    "filtres": [
+      {
+        "colonne": "ref_texte_legislatif",
+        "op": "eq",
+        "valeur": "PRJLANR5L17B2141"
+      },
+      {
+        "colonne": "numero",
+        "op": "eq",
+        "valeur": "346"
+      }
+    ],
+    "limite": 5
+  },
+  "retrievedAtUtc": "2026-11-14T11:45:28.202614+00:00",
+  "sha256": "fbb36e84fe125d26f0aef5e97b77951952f8b0e3097e566757da5dc13ad6dcd9",
+  "bytes": 8733,
+  "transformation": "Champs de compte et crédits exclus ; lignes publiques conservées."
+}
