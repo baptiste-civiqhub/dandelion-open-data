@@ -1,0 +1,38 @@
+{
+  "jeu": "senat_textes",
+  "source": {
+    "nom": "Sénat, portail data.senat.fr",
+    "url": "https://data.senat.fr",
+    "licence": "Licence du portail data.senat.fr",
+    "licence_url": "https://data.senat.fr/licence/"
+  },
+  "sources_amont": [],
+  "consulte_le": "2026-11-14T11:20:11.333Z",
+  "derniere_ingestion_hemicycle": "2026-11-14T05:18:46.877471+00:00",
+  "colonne_mise_a_jour": "maj_le",
+  "nombre": 1,
+  "lignes": [
+    {
+      "id": "106132",
+      "numero": "620",
+      "session": "2023-2024",
+      "session_annee": 2023,
+      "type_texte": "seance",
+      "nature": "Proposition de loi",
+      "lecture": "1ère lecture",
+      "intitule": "Substances per- et polyfluoroalkylées",
+      "intitule_long": "visant à protéger la population des risques liés aux substances perfluoroalkylées et polyfluoroalkylées",
+      "date_depot": "2024-05-22",
+      "date_adoption": "2024-05-30T07:36:12+00:00",
+      "numero_adopte": "140",
+      "etat": "Le Sénat a adopté",
+      "dossier_signet": "ppl23-514",
+      "delai_limite": "2024-05-27T10:00:00+00:00",
+      "delai_libelle": null,
+      "maj_le": "2026-09-30T15:00:05.236263+00:00"
+    }
+  ],
+  "tronque": false,
+  "decalage_suivant": null,
+  "pagination": null
+}

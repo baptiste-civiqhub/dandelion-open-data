@@ -15,6 +15,7 @@ import { AmendmentComparison } from './amendment-comparison'
 import { AmendmentDetail } from './amendment-detail'
 import { AmendmentGraph } from './amendment-graph'
 import { AmendmentTree } from './amendment-tree'
+import { EvidenceJourney } from './evidence-journey'
 import type { GraphCanvasProps } from './graph-canvas-types'
 import { SnapshotNotice } from './snapshot-notice'
 
@@ -90,6 +91,13 @@ export function PfasScreen({ Canvas, engine = 'native' }: PfasScreenProps) {
 
         {data && (
           <>
+            <EvidenceJourney
+              amendments={amendments}
+              onApply={(ids, focus) => {
+                setSelectedIds(ids)
+                setFocusedId(focus)
+              }}
+            />
             <SnapshotNotice provenance={data.provenance} rows={data.counts.rows} />
             <AmendmentGraph
               Canvas={Canvas}
