@@ -39,6 +39,7 @@ Conséquence : modifier **l'amplitude** d'un mouvement = `DANDELION_MOTION_PARAM
 | `animate-dandelion-bloom`             | cycle 1 800 ms, `cubic-bezier(0.45, 0, 0.55, 1)`, infini        | loader : respiration d'un pétale (posé par `DandelionMark motion='loading'`) |
 | `dandelion-stagger`                   | `(--dm-order − 5) × 360 ms`                                     | décale chaque pétale d'1/5 de cycle (sens horaire)                           |
 | `animate-dandelion-breathe`           | 2 400 ms, opacité 1 → 0,4 → 1                                   | repli du loader en mouvement réduit                                          |
+| `stage-crossfade`                     | transition `opacity` 800 ms, `cubic-bezier(0.33, 1, 0.68, 1)`   | rideau entre deux pages du Stage (`StageCurtain`)                            |
 | `dandelion-follow`                    | transition `translate` 700 ms, `cubic-bezier(0.22, 1, 0.36, 1)` | survol : suivi doux du pointeur                                              |
 | `DANDELION_MOTION_PARAMS.bloomDrift`  | 2,4 u. (viewBox 100)                                            | sortie d'un pétale au pic du loader                                          |
 | `DANDELION_MOTION_PARAMS.hoverLean`   | 1,2 u.                                                          | déport du picto entier vers le pointeur                                      |

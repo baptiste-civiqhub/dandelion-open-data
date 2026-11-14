@@ -47,6 +47,8 @@ type WorldSceneOptions = {
   onReady: () => void // première image dessinée : le titre de marque s'efface
   onZoneFocus: (slug: string | null) => void // entrée ou sortie d'une zone : le bandeau s'affiche ou part
   onEnterZone: (slug: string) => void // Entrée pressée et transition finie : navigation vers /area/{slug}
+  landing?: (viewport: { width: number; height: number }) => { cx: number; cy: number; r: number } // facultatif : cercle d'écran où la fleur se pose
+  onExitFrames?: (frames: { slug: string; frame: HTMLCanvasElement; scenery: HTMLCanvasElement }) => void // facultatif : dernières images, juste avant onEnterZone
 }
 
 type WorldZone = {
@@ -86,6 +88,16 @@ La page `/area/{slug}` s'affiche alors avec son propre canvas. Pour que le passa
 
 - la fin du zoom doit montrer un fond proche de celui de la page de zone (`--color-background`) ;
 - si Valentin veut un fondu commun aux deux pages, il passe par un composant React partagé (`components/shared/`), pas par le canvas, et le signale dans la PR.
+
+### Continuité monde → page de zone (en place)
+
+1. **Alignement.** `WorldScreen` passe `landing={landingOnSunburst}` : le disque du sunburst de la page de zone (`diskLayout`, même viewport). La plongée (`features/world/lib/dive.ts`) calcule une pose finale à la verticale (`diveLanding`) qui projette la tête de la fleur, à son échelle finale, exactement sur ce disque : centre sur `(cx, cy)`, contour sur `r1`. La caméra y passe par-dessus la fleur (`divePose`, arc dans le plan vertical du regard, sans rotation de l'image). Testé par projection (`dive.test.ts`).
+2. **Voile.** Pendant la seconde moitié de la plongée, un voile `--color-background` (shader plein écran) monte à `EXIT_VEIL_OPACITY` (0,7) partout sauf dans le disque, qui reste net (fondu de 40 px).
+3. **Rideau.** À la fin, la scène copie deux images (`onExitFrames`) : `frame`, l'image affichée, et `scenery`, la même vue sans voile en basse définition. `WorldScreen` les confie à `store/stage-transition.ts` avant de naviguer. `StageTransitionCurtain` (monté dans `app/[locale]/(stage)/layout.tsx`) tient `frame` au-dessus de la page, ce qui masque l'écran de chargement, puis s'efface en 800 ms quand la page de zone a ses données (`useStageArrival`), au plus tard après 1,6 s.
+4. **Arrivée.** La page de zone pose `StageBackdrop` (prop `backdrop` du `Stage`) : `scenery` floutée sous le même voile à 70 %. Ses anneaux s'ouvrent depuis le centre (`opening='bloom'`, 900 ms) pendant que la fleur du rideau se dissout. Accès direct, Atlas, menu Area : fond de repli (dégradé ciel → pelouse voilé) et ouverture habituelle depuis midi.
+5. **Mouvement réduit.** Pas de plongée ni d'images : navigation immédiate, fond de repli statique, anneaux affichés d'un coup.
+
+La page de zone est préchargée (`router.prefetch`) dès que le joueur entre dans la zone.
 
 ## 5. Fusion avec `develop`
 

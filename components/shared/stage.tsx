@@ -28,6 +28,8 @@ const columnVariants = cva(
 type StageProps = {
   /** Calque de fond plein écran, toujours présent derrière l'interface : un `StageCanvas` de feature. */
   canvas?: ReactNode
+  /** Fond posé sous le canvas, à la place du fond plein `bg-background` (ex. `StageBackdrop`). Absent : inchangé. */
+  backdrop?: ReactNode
   /** Widgets flottants de la colonne gauche (3/12). Absent : aucune colonne rendue. */
   left?: ReactNode
   /** Widgets flottants de la colonne droite (3/12). Absent : aucune colonne rendue. */
@@ -45,9 +47,14 @@ type StageProps = {
  * (gauche, centre extensible, droite).
  * Le haut de la grille réserve la place du header flottant (`pt-24` = top-4 + h-14 + respiration).
  */
-export function Stage({ canvas, left, right, children, centerAlign, className }: StageProps) {
+export function Stage({ canvas, backdrop, left, right, children, centerAlign, className }: StageProps) {
   return (
     <div data-slot='stage' className={cn('bg-background relative isolate h-dvh overflow-hidden', className)}>
+      {backdrop ? (
+        <div data-slot='stage-backdrop-layer' className='absolute inset-0 -z-20'>
+          {backdrop}
+        </div>
+      ) : null}
       {canvas ? (
         <div data-slot='stage-canvas-layer' className='absolute inset-0 -z-10'>
           {canvas}

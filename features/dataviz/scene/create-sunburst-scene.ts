@@ -25,12 +25,20 @@ export type SunburstSceneOptions = {
   sortColorVariable: (sort: string) => string
   /** Textes déjà traduits dessinés au centre du disque. */
   text: { count: (count: number) => string; noAmendment: string; up: string }
+  /**
+   * Entrée des anneaux. `sweep` (défaut) : ils se déploient depuis midi, dans le sens horaire. `bloom` : ils
+   * s'ouvrent depuis le centre en se dépliant, quand la page succède à la plongée du monde sur la fleur.
+   */
+  opening?: 'sweep' | 'bloom'
 }
 
 /** Réglages du mouvement (§ 8). Durées en ms, amplitudes en px. */
 const MOTION = {
   zoomMs: 520,
   revealMs: 750,
+  bloomMs: 900,
+  /** Rotation des anneaux au début du bloom, résorbée à l'ouverture, en radians. */
+  bloomTwist: 0.35,
   revealRingStagger: 0.12,
   enterTau: 40,
   leaveTau: 75,
@@ -76,6 +84,7 @@ export function createSunburstScene(options: SunburstSceneOptions): StageSceneFa
     const fontFamily = getComputedStyle(document.body).fontFamily || 'sans-serif'
 
     const { tree, view, hover, text } = options
+    const bloom = options.opening === 'bloom'
     const count = tree?.nodes.length ?? 0
     const lift = new Float32Array(count)
     const emph = new Float32Array(count).fill(1)
@@ -275,14 +284,16 @@ export function createSunburstScene(options: SunburstSceneOptions): StageSceneFa
         if (ringF <= 0) continue
         const ringAlpha = Math.min(1, ringF, ringsAnimated + 1 - ringF)
         if (ringAlpha <= 0) continue
-        const revealLimit =
-          Math.min(
-            1,
-            Math.max(0, (reveal - (ringF - 1) * MOTION.revealRingStagger) / (1 - MOTION.revealRingStagger * 2))
-          ) * TAU
-        if (revealLimit <= 0) continue
-        const inner = Math.max(r0, r0 + (ringF - 1) * ringWidth) + 1
-        const outer = Math.max(inner, r0 + ringF * ringWidth) - 1
+        const ringReveal = Math.min(
+          1,
+          Math.max(0, (reveal - (ringF - 1) * MOTION.revealRingStagger) / (1 - MOTION.revealRingStagger * 2))
+        )
+        if (ringReveal <= 0) continue
+        const revealLimit = bloom ? TAU : ringReveal * TAU
+        const opened = bloom ? 1 - Math.pow(1 - ringReveal, 3) : 1
+        const twist = (1 - opened) * MOTION.bloomTwist
+        const inner = r0 + (Math.max(r0, r0 + (ringF - 1) * ringWidth) + 1 - r0) * opened
+        const outer = r0 + (Math.max(inner, r0 + ringF * ringWidth) - 1 - r0) * opened
         const midRadius = (inner + outer) / 2
 
         let lo = 0
@@ -300,6 +311,8 @@ export function createSunburstScene(options: SunburstSceneOptions): StageSceneFa
           let a1 = Math.min(TAU, ((node.x1 - win.x0) / span) * TAU)
           a1 = Math.min(a1, revealLimit)
           if (a1 - a0 < 0.0004) continue
+          a0 -= twist
+          a1 -= twist
 
           const inPath = hovered ? pathNodes.has(node) : false
           const underHovered = hovered && node.depth > hovered.depth && node.x0 >= hovered.x0 && node.x1 <= hovered.x1
@@ -325,7 +338,8 @@ export function createSunburstScene(options: SunburstSceneOptions): StageSceneFa
           const ox = Math.sin(mid) * offset
           const oy = -Math.cos(mid) * offset
 
-          ctx.globalAlpha = ringAlpha * emph[i] * filterAlpha[i] * (node.amendement ? 1 : 0.95)
+          ctx.globalAlpha =
+            ringAlpha * emph[i] * filterAlpha[i] * (node.amendement ? 1 : 0.95) * (bloom ? ringReveal : 1)
           ctx.fillStyle = node.amendement ? colorOfSort(node.amendement.sort) : colors.muted
           sector(cx + ox, cy + oy, inner, outer, a0, a1)
           ctx.fill()
@@ -441,7 +455,7 @@ export function createSunburstScene(options: SunburstSceneOptions): StageSceneFa
         clock += dtMs / 1000
         let moving = false
         if (reveal < 1) {
-          reveal = Math.min(1, reveal + dtMs / MOTION.revealMs)
+          reveal = Math.min(1, reveal + dtMs / (bloom ? MOTION.bloomMs : MOTION.revealMs))
           moving = true
         }
         if (tween) {
