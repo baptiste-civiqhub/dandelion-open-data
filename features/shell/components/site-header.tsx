@@ -1,12 +1,13 @@
 import { useTranslations } from 'next-intl'
 
 import { InteractiveDandelionMark } from '@/components/brand/interactive-dandelion-mark'
-import { FloatingHeader, FloatingHeaderSection } from '@/components/shared/floating-header'
+import { FloatingHeaderSection } from '@/components/shared/floating-header'
 import { SearchField } from '@/components/shared/search-field'
 import { PUBLIC_PATHS } from '@/constant/path'
 import { LocaleSwitch } from '@/features/locale/components/locale-switch'
 import { Link } from '@/i18n/navigation'
 
+import { LandingHeaderFrame } from './landing-header-frame'
 import { SiteMenus } from './site-menus'
 
 /**
@@ -19,7 +20,7 @@ export function SiteHeader() {
   const t = useTranslations('shell')
 
   return (
-    <FloatingHeader>
+    <LandingHeaderFrame>
       <FloatingHeaderSection>
         <Link
           href={PUBLIC_PATHS.HOME}
@@ -40,6 +41,6 @@ export function SiteHeader() {
         />
         <LocaleSwitch />
       </FloatingHeaderSection>
-    </FloatingHeader>
+    </LandingHeaderFrame>
   )
 }

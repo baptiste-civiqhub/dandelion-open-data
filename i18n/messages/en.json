@@ -8,7 +8,8 @@
   },
   "home": {
     "title": "Dandelion",
-    "baseline": "Sowing public data, letting debate bloom."
+    "baseline": "Sowing public data, letting debate bloom.",
+    "continueHint": "Press any key to continue"
   },
   "notFound": {
     "title": "Page not found",
@@ -54,8 +55,9 @@
   },
   "atlas": {
     "title": "Atlas",
-    "description": "Every area of the map, seen from above. Pick one to open its visualisation.",
-    "mapLabel": "Map of the areas",
+    "description": "The garden from above. Each area sits where its flower stands. Pick one to open it.",
+    "mapLabel": "Garden seen from above",
+    "youAreHere": "You are here",
     "zoneLabel": "{name}, {count, plural, =0 {no text yet} one {# text} other {# texts}}",
     "summary": "{total, plural, one {# area} other {# areas}} · {withData} with data",
     "empty": "No area is available yet.",

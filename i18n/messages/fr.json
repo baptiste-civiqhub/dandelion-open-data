@@ -8,7 +8,8 @@
   },
   "home": {
     "title": "Dandelion",
-    "baseline": "Semer la donnée publique, faire éclore le débat."
+    "baseline": "Semer la donnée publique, faire éclore le débat.",
+    "continueHint": "Appuyez sur une touche pour continuer"
   },
   "notFound": {
     "title": "Page introuvable",
@@ -54,8 +55,9 @@
   },
   "atlas": {
     "title": "Atlas",
-    "description": "Toutes les zones de la carte, vues de dessus. Choisissez-en une pour ouvrir sa visualisation.",
-    "mapLabel": "Carte des zones",
+    "description": "Le jardin vu de dessus. Chaque zone est à la place de sa fleur. Choisissez-en une pour l’ouvrir.",
+    "mapLabel": "Jardin vu de dessus",
+    "youAreHere": "Vous êtes ici",
     "zoneLabel": "{name}, {count, plural, =0 {aucun texte pour l’instant} one {# texte} other {# textes}}",
     "summary": "{total, plural, one {# zone} other {# zones}} · {withData} avec des données",
     "empty": "Aucune zone disponible pour l’instant.",
