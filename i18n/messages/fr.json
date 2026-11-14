@@ -20,40 +20,80 @@
     "homeLink": "Dandelion, retour à la carte",
     "nav": {
       "label": "Principale",
-      "about": "Atlas",
-      "datasets": "Area"
+      "atlas": "Atlas",
+      "areas": "Area"
+    },
+    "overlay": {
+      "close": "Fermer"
     },
     "search": {
-      "label": "Rechercher un jeu de données",
-      "placeholder": "Rechercher un jeu de données…"
+      "label": "Rechercher une zone",
+      "placeholder": "Rechercher une zone…"
     }
   },
   "world": {
-    "canvasLabel": "Carte explorable des jeux de données"
+    "canvasLabel": "Carte explorable des zones"
   },
   "about": {
     "metaTitle": "À propos",
     "title": "À propos de Dandelion",
     "intro": "Dandelion transforme la donnée publique ouverte en un espace à explorer.",
-    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Tous les jeux de données sont aussi listés dans Area."
+    "howItWorks": "Parcourez la carte, entrez dans une zone, et la donnée qu’elle contient se déploie en visualisation interactive. Toutes les zones sont aussi listées dans Area."
   },
-  "datasets": {
-    "metaTitle": "Jeux de données",
-    "title": "Jeux de données",
-    "description": "Tous les jeux de données à explorer sur la carte.",
-    "empty": "Aucun jeu de données disponible pour l’instant.",
-    "noMatch": "Aucun jeu de données ne correspond à « {query} »."
+  "atlas": {
+    "title": "Atlas",
+    "description": "Toutes les zones de la carte, vues de dessus. Choisissez-en une pour ouvrir sa visualisation.",
+    "mapLabel": "Carte des zones",
+    "zoneLabel": "{name}, {count, plural, =0 {aucun texte pour l’instant} one {# texte} other {# textes}}",
+    "summary": "{total, plural, one {# zone} other {# zones}} · {withData} avec des données",
+    "empty": "Aucune zone disponible pour l’instant.",
+    "error": "L’atlas n’a pas pu être chargé."
+  },
+  "areas": {
+    "metaTitle": "Zones",
+    "title": "Zones",
+    "description": "Recherchez les zones et filtrez-les par thème.",
+    "search": {
+      "label": "Rechercher une zone",
+      "placeholder": "Rechercher par nom ou par thème…"
+    },
+    "filters": {
+      "toggle": "Filtres",
+      "active": "{count, plural, one {# filtre actif} other {# filtres actifs}}",
+      "listLabel": "Filtrer par tag",
+      "clear": "Effacer les filtres",
+      "error": "Les filtres n’ont pas pu être chargés."
+    },
+    "results": "{count, plural, =0 {Aucune zone} one {# zone} other {# zones}}",
+    "empty": "Aucune zone disponible pour l’instant.",
+    "noMatch": "Aucune zone ne correspond à ces filtres.",
+    "error": "Les zones n’ont pas pu être chargées.",
+    "card": {
+      "texts": "{count, plural, =0 {Aucun texte pour l’instant} one {# texte} other {# textes}}"
+    }
   },
   "dataviz": {
-    "metaTitle": "{datasetId}",
-    "canvasLabel": "Visualisation du jeu de données {datasetId}",
-    "dataset": {
-      "eyebrow": "Jeu de données",
-      "notConnected": "La source de données de ce jeu n’est pas encore connectée."
+    "metaTitle": "Zone {areaId}",
+    "canvasLabel": "Amendements de {name} : un point par amendement, empilés par article et colorés par sort",
+    "area": {
+      "eyebrow": "Zone",
+      "tags": "Tags",
+      "articles": "Articles et leur nombre d’amendements",
+      "stats": "{articles, plural, one {# article} other {# articles}} · {amendments, plural, =0 {aucun amendement} one {# amendement} other {# amendements}}",
+      "withoutArticle": "Hors des articles",
+      "noText": "Cette zone n’a pas encore de texte.",
+      "contentError": "Les articles et les amendements n’ont pas pu être chargés.",
+      "notFoundTitle": "Zone introuvable",
+      "notFound": "Aucune zone ne correspond à cette adresse.",
+      "errorTitle": "Zone indisponible",
+      "error": "Cette zone n’a pas pu être chargée.",
+      "backToAreas": "Parcourir toutes les zones"
     },
-    "view": {
-      "title": "Vue",
-      "description": "Les filtres et la légende apparaîtront ici."
+    "outcomes": {
+      "title": "Sorts",
+      "description": "Ce qu’est devenu chaque amendement.",
+      "empty": "Aucun amendement à compter pour l’instant.",
+      "error": "Les sorts n’ont pas pu être chargés."
     }
   }
 }

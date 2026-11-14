@@ -2,10 +2,10 @@ import type { StageSceneFactory } from '@/lib/stage/stage-scene'
 
 export type WorldSceneOptions = {
   /**
-   * Pont entre le monde et l'application : le véhicule est entré dans la zone d'un jeu de données.
-   * `WorldCanvas` y branche la navigation vers `PUBLIC_PATHS.DATASET_DETAIL(datasetId)`.
+   * Pont entre le monde et l'application : le véhicule est entré dans une zone. `areaId` est le slug de la zone
+   * (`apis/areas`). `WorldCanvas` y branche la navigation vers `PUBLIC_PATHS.AREA_DETAIL(areaId)`.
    */
-  onEnterZone: (datasetId: string) => void
+  onEnterZone: (areaId: string) => void
 }
 
 /**
