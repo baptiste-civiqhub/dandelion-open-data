@@ -21,7 +21,7 @@ Le monde est la porte d'entrée sensible ; l'atlas et le catalogue sont la porte
 | Fenêtre et page Area : recherche, filtres par tags | `features/areas/`, route `/area`             | fait                                                                            |
 | Page de zone `/area/{slug}`                        | `features/dataviz/`, route `/area/[areaId]`  | fait, graphique provisoire en points                                            |
 | Données des zones                                  | `apis/areas` (`useGetAreas`)                 | fait, lit `datasets`, `textes`, `tag_links`                                     |
-| Landing `/`                                        | `features/world/components/world-screen.tsx` | fait : monde 3D, titre en `sr-only` après `onReady`                             |
+| Landing `/`                                        | `features/world/components/world-screen.tsx` | fait : monde 3D, rideau de marque puis jardin au premier geste                  |
 | Scène du monde                                     | `features/world/scene/create-world-scene.ts` | fait : jardin du Luxembourg, un pissenlit par zone, plongée vers `/area/{slug}` |
 | Positions 3D des zones                             | `features/world/lib/world-zones.ts`          | fait et testé                                                                   |
 
@@ -44,7 +44,7 @@ Tout le travail 3D vit dans **`features/world/`**. Le point d'entrée est `creat
 ```ts
 type WorldSceneOptions = {
   zones: readonly WorldZone[] // à poser au sol ; liste vide pendant le chargement
-  onReady: () => void // première image dessinée : le titre de marque s'efface
+  onReady: () => void // première image dessinée : le voile peut laisser deviner le jardin
   onZoneFocus: (slug: string | null) => void // entrée ou sortie d'une zone : le bandeau s'affiche ou part
   onEnterZone: (slug: string) => void // Entrée pressée et transition finie : navigation vers /area/{slug}
 }

@@ -36,6 +36,9 @@ Conséquence : modifier **l'amplitude** d'un mouvement = `DANDELION_MOTION_PARAM
 | Token / utilitaire                    | Valeur                                                          | Usage                                                                        |
 | ------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `animate-fade-up`                     | 600 ms, `cubic-bezier(0.22, 1, 0.36, 1)`                        | entrée d'un bloc (`motion-safe:animate-fade-up`)                             |
+| `landing-veil`                        | transition `opacity`, 700 ms, `cubic-bezier(0.22, 1, 0.36, 1)`  | fondu du champ blanc et de la marque (`motion-safe:landing-veil`)            |
+| `animate-landing-header`              | 700 ms, même courbe, `both`                                     | le header descend depuis le hors-écran quand le rideau se lève               |
+| `landing-header-parked` / `-rest`     | `translate` `calc(-100% - 3rem)` / `0`                          | header hors écran pendant le rideau, puis à sa place sans rejouer l'entrée   |
 | `animate-dandelion-bloom`             | cycle 1 800 ms, `cubic-bezier(0.45, 0, 0.55, 1)`, infini        | loader : respiration d'un pétale (posé par `DandelionMark motion='loading'`) |
 | `dandelion-stagger`                   | `(--dm-order − 5) × 360 ms`                                     | décale chaque pétale d'1/5 de cycle (sens horaire)                           |
 | `animate-dandelion-breathe`           | 2 400 ms, opacité 1 → 0,4 → 1                                   | repli du loader en mouvement réduit                                          |
