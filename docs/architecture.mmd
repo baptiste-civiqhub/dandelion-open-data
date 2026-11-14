@@ -1,0 +1,69 @@
+flowchart TB
+  subgraph publicSources["Public parliamentary sources"]
+    OFFICIAL["Senate and National Assembly documents"]
+    HMC["Hemicycle data API"]
+  end
+
+  subgraph ingestion["Operator workflows - separate from browsing"]
+    IMPORT["Extraction scripts and import functions"]
+    RAW[("Supabase raw staging")]
+    NORMALIZE["Normalize legislative entities"]
+    TAGGER["Article classification job"]
+  end
+
+  subgraph storage["Data stores"]
+    DB[("Supabase PostgreSQL - normalized tables and tag provenance")]
+    ARCHIVE[("Registered public snapshots and evidence manifests")]
+  end
+
+  subgraph externalModels["Featherless - external inference"]
+    CLASSIFY["Classifier endpoint - thematic labels"]
+    CHAT["Chat completions - action planning"]
+  end
+
+  subgraph appServer["Next.js server - Vercel or local"]
+    LOAD["Registered snapshot loaders and evidence routes"]
+    PLAN["POST /api/dataviz/plan - bounded candidate retrieval"]
+    VALIDATE["Strict plan schema and identifier validation"]
+  end
+
+  subgraph browser["Browser - French by default"]
+    QUERY["Typed API layer and TanStack Query"]
+    DISCOVERY["3D world - Atlas - area catalogue"]
+    LIVE["Live area - guided flower or detailed Sunburst"]
+    SNAP["Archived flower and PFAS comparison"]
+    GRAPH["Cosmograph experiment"]
+    ASSIST["Question control and host action adapter"]
+    EVIDENCE["Record details - outcomes - official links"]
+    OBS["Observed filing activity by article"]
+  end
+
+  OFFICIAL -->|"source data redistributed"| HMC
+  HMC --> IMPORT
+  IMPORT --> RAW
+  RAW --> NORMALIZE
+  NORMALIZE --> DB
+  HMC -->|"verified archived exports"| ARCHIVE
+  OFFICIAL -->|"public records and provenance"| ARCHIVE
+  DB -->|"article content"| TAGGER
+  TAGGER -->|"classification request"| CLASSIFY
+  CLASSIFY -->|"topic scores"| TAGGER
+  TAGGER -->|"derived tags with model provenance"| DB
+  DB -->|"REST reads under RLS"| QUERY
+  QUERY --> DISCOVERY
+  QUERY -->|"summaries then details"| LIVE
+  QUERY -->|"loaded amendment records"| OBS
+  DISCOVERY -->|"select an area"| LIVE
+  ARCHIVE --> LOAD
+  LOAD --> SNAP
+  LOAD --> GRAPH
+  ARCHIVE -->|"supported snapshot context"| PLAN
+  ASSIST -->|"question and dataset ID"| PLAN
+  PLAN -->|"bounded prompt - server credential"| CHAT
+  CHAT -->|"JSON plan or abstention"| VALIDATE
+  VALIDATE -->|"typed result and record facts"| ASSIST
+  ASSIST -->|"validated supported actions"| SNAP
+  SNAP --> EVIDENCE
+  GRAPH --> EVIDENCE
+  LIVE --> EVIDENCE
+  EVIDENCE -->|"open source"| OFFICIAL
