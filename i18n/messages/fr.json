@@ -42,6 +42,7 @@
     "controls": {
       "drive": "<kbd>Flèches</kbd> ou <kbd>ZQSD</kbd> pour conduire",
       "vehicle": "<kbd>V</kbd> voiture ou cheval",
+      "look": "<kbd>Glisser</kbd> tourner, <kbd>Molette</kbd> zoomer",
       "open": "<kbd>Entrée</kbd> ouvrir la zone"
     }
   },
