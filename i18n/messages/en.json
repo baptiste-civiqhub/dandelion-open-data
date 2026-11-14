@@ -80,7 +80,7 @@
   },
   "dataviz": {
     "metaTitle": "Area {areaId}",
-    "canvasLabel": "Amendments of {name}: one dot per amendment, stacked by article and coloured by outcome",
+    "canvasLabel": "Amendments of {name} as a dandelion: articles in the inner ring, then alineas, amendments and sub-amendments, coloured by outcome. The same figures are listed in the side panels.",
     "area": {
       "eyebrow": "Area",
       "tags": "Tags",
@@ -95,11 +95,68 @@
       "error": "This area could not be loaded.",
       "backToAreas": "Browse all areas"
     },
-    "outcomes": {
+    "sunburst": {
+      "whole": "Whole article",
+      "other": "Other locations",
+      "alinea": "Al. {numero}",
+      "before": "Before {article}",
+      "after": "After {article}",
+      "count": "{count, plural, =0 {no amendment} one {# amendment} other {# amendments}}",
+      "noAmendment": "No amendment filed",
+      "up": "Click to go up"
+    },
+    "view": {
+      "position": "Position",
+      "up": "Up",
+      "rings": "{count} rings",
+      "fewerRings": "Fewer rings",
+      "moreRings": "More rings",
+      "filterActive": "Filter active",
+      "noMatch": "No amendment matches",
+      "clear": "Clear",
+      "loadError": "This text could not be loaded.",
+      "retry": "Retry"
+    },
+    "texte": {
+      "title": "Dataset and text",
+      "stage": "Stage: {stage}",
+      "source": "Source: {source}",
+      "license": "Licence: {license}",
+      "imported": "Imported on {date}",
+      "texts": "Texts in this area"
+    },
+    "legend": {
       "title": "Outcomes",
-      "description": "What happened to each amendment.",
-      "empty": "No amendment to count yet.",
+      "scopeText": "Whole text",
+      "scopeNode": "In {name}",
+      "preview": "Preview",
+      "hint": "Untick an outcome to dim its amendments.",
       "error": "The outcomes could not be loaded."
+    },
+    "repartition": {
+      "title": "Breakdown",
+      "filtered": "with the active filter",
+      "empty": "Nothing to break down here.",
+      "segment": "{label}: {count} ({percent})"
+    },
+    "fiche": {
+      "title": "Details",
+      "preview": "Preview",
+      "amendment": "Amendment {numero}",
+      "outcome": "Outcome",
+      "location": "Location",
+      "author": "Author",
+      "group": "Group",
+      "dispositif": "Operative text",
+      "expose": "Summary statement",
+      "official": "Official text",
+      "open": "Open in the dandelion",
+      "clearSelection": "Clear selection",
+      "detailError": "The details of this amendment could not be loaded.",
+      "articles": "{count, plural, one {# article} other {# articles}}",
+      "alineas": "{count, plural, one {# alinea} other {# alineas}}",
+      "subAmendments": "{count, plural, one {# sub-amendment} other {# sub-amendments}}",
+      "hint": "Hover a sector for a preview, click to pin it."
     }
   }
 }

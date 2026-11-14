@@ -80,7 +80,7 @@
   },
   "dataviz": {
     "metaTitle": "Zone {areaId}",
-    "canvasLabel": "Amendements de {name} : un point par amendement, empilés par article et colorés par sort",
+    "canvasLabel": "Amendements de {name} en pissenlit : les articles dans l'anneau intérieur, puis les alinéas, les amendements et les sous-amendements, colorés par sort. Les mêmes chiffres figurent dans les panneaux latéraux.",
     "area": {
       "eyebrow": "Zone",
       "tags": "Tags",
@@ -95,11 +95,68 @@
       "error": "Cette zone n’a pas pu être chargée.",
       "backToAreas": "Parcourir toutes les zones"
     },
-    "outcomes": {
+    "sunburst": {
+      "whole": "Article entier",
+      "other": "Autres emplacements",
+      "alinea": "Al. {numero}",
+      "before": "Avant {article}",
+      "after": "Après {article}",
+      "count": "{count, plural, =0 {aucun amendement} one {# amendement} other {# amendements}}",
+      "noAmendment": "Aucun amendement déposé",
+      "up": "Cliquer pour remonter"
+    },
+    "view": {
+      "position": "Position",
+      "up": "Remonter",
+      "rings": "{count} anneaux",
+      "fewerRings": "Moins d'anneaux",
+      "moreRings": "Plus d'anneaux",
+      "filterActive": "Filtre actif",
+      "noMatch": "Aucun amendement ne correspond",
+      "clear": "Effacer",
+      "loadError": "Ce texte n'a pas pu être chargé.",
+      "retry": "Réessayer"
+    },
+    "texte": {
+      "title": "Jeu et texte",
+      "stage": "Étape : {stage}",
+      "source": "Source : {source}",
+      "license": "Licence : {license}",
+      "imported": "Importé le {date}",
+      "texts": "Textes de la zone"
+    },
+    "legend": {
       "title": "Sorts",
-      "description": "Ce qu’est devenu chaque amendement.",
-      "empty": "Aucun amendement à compter pour l’instant.",
-      "error": "Les sorts n’ont pas pu être chargés."
+      "scopeText": "Texte entier",
+      "scopeNode": "Dans {name}",
+      "preview": "Aperçu",
+      "hint": "Décochez un sort pour atténuer ses amendements.",
+      "error": "Les sorts n'ont pas pu être chargés."
+    },
+    "repartition": {
+      "title": "Répartition",
+      "filtered": "avec le filtre actif",
+      "empty": "Rien à répartir ici.",
+      "segment": "{label} : {count} ({percent})"
+    },
+    "fiche": {
+      "title": "Fiche",
+      "preview": "Aperçu",
+      "amendment": "Amendement {numero}",
+      "outcome": "Sort",
+      "location": "Emplacement",
+      "author": "Auteur",
+      "group": "Groupe",
+      "dispositif": "Dispositif",
+      "expose": "Exposé sommaire",
+      "official": "Texte officiel",
+      "open": "Ouvrir dans le pissenlit",
+      "clearSelection": "Lever la sélection",
+      "detailError": "La fiche de cet amendement n'a pas pu être chargée.",
+      "articles": "{count, plural, one {# article} other {# articles}}",
+      "alineas": "{count, plural, one {# alinéa} other {# alinéas}}",
+      "subAmendments": "{count, plural, one {# sous-amendement} other {# sous-amendements}}",
+      "hint": "Survolez un secteur pour un aperçu, cliquez pour l'épingler."
     }
   }
 }

@@ -33,13 +33,13 @@ Le pointeur traverse l'overlay (`pointer-events-none`) et n'est capté que par l
 
 Toutes les pages de l'interface vivent dans le route group **`app/[locale]/(stage)/`**. Son `layout.tsx` monte `SiteHeader` une fois : naviguer entre ces pages ne recrée pas le header (le picto interactif garde son état, pas de clignotement). Le layout racine `app/[locale]/layout.tsx` n'est pas modifié.
 
-| URL              | Fichier                          | Écran (feature)                      | Canvas                      | Colonnes                            |
-| ---------------- | -------------------------------- | ------------------------------------ | --------------------------- | ----------------------------------- |
-| `/`              | `(stage)/page.tsx`               | `features/world` · `WorldScreen`     | monde WebGL (`WorldCanvas`) | **aucune** (landing sans widget)    |
-| `/about`         | `(stage)/about/page.tsx`         | `features/about` · `AboutScreen`     | —                           | centre : un widget de texte         |
-| `/area?q=…`      | `(stage)/area/page.tsx`          | `features/areas` · `AreasScreen`     | —                           | centre : catalogue, recherche, tags |
-| `/area/[areaId]` | `(stage)/area/[areaId]/page.tsx` | `features/dataviz` · `DatavizScreen` | graphique (`DatavizCanvas`) | gauche : zone · droite : sorts      |
-| (attente)        | `(stage)/loading.tsx`            | —                                    | —                           | centre : `DandelionLoader`          |
+| URL              | Fichier                          | Écran (feature)                      | Canvas                       | Colonnes                                            |
+| ---------------- | -------------------------------- | ------------------------------------ | ---------------------------- | --------------------------------------------------- |
+| `/`              | `(stage)/page.tsx`               | `features/world` · `WorldScreen`     | monde WebGL (`WorldCanvas`)  | **aucune** (landing sans widget)                    |
+| `/about`         | `(stage)/about/page.tsx`         | `features/about` · `AboutScreen`     | —                            | centre : un widget de texte                         |
+| `/area?q=…`      | `(stage)/area/page.tsx`          | `features/areas` · `AreasScreen`     | —                            | centre : catalogue, recherche, tags                 |
+| `/area/[areaId]` | `(stage)/area/[areaId]/page.tsx` | `features/dataviz` · `DatavizScreen` | pissenlit (`SunburstCanvas`) | gauche : texte, sorts · droite : fiche, répartition |
+| (attente)        | `(stage)/loading.tsx`            | —                                    | —                            | centre : `DandelionLoader`                          |
 
 Chemins : `PUBLIC_PATHS` (`constant/path.ts`), dont `PUBLIC_PATHS.AREA_DETAIL(areaId)` (`areaId` = slug du jeu `datasets`, ou son UUID). Les menus « Atlas » et « Area » ouvrent une `OverlayWindow` (`features/shell/components/site-menus.tsx`). Monde 3D de la landing : [`docs/dandelion/monde-3d.md`](dandelion/monde-3d.md). Paramètre de recherche : `SEARCH_PARAMS.QUERY` (`q`). Jamais d'URL en dur.
 
@@ -146,7 +146,7 @@ Règles :
 - **accessibilité** : `label` traduit sur le canvas, et l'information essentielle disponible dans les widgets (le canvas n'est pas lisible par un lecteur d'écran) ;
 - **pas de DOM créé par la scène** : un HUD ou une infobulle est un composant React posé dans le `Stage`.
 
-État actuel : `createWorldScene` dessine le monde 3D de la landing (jardin du Luxembourg, three.js chargé à la demande) ; `createDatavizScene` reste un **socle** (contexte WebGL2 + viewport, rien n'est dessiné). Le monde de la landing est détaillé dans [`features/world/README.md`](../features/world/README.md).
+État actuel : `createWorldScene` dessine le monde 3D de la landing (jardin du Luxembourg, three.js chargé à la demande) ; `createSunburstScene` (`features/dataviz/scene/`) dessine le texte de loi en pissenlit (sunburst, canvas 2D) sur la page de zone, avec ses widgets reliés par deux stores (vue épinglée dans l'URL, survol éphémère). Le monde de la landing est détaillé dans [`features/world/README.md`](../features/world/README.md).
 
 ## 6. Pages de dataviz : où brancher les données
 
