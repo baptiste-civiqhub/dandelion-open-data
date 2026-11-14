@@ -9,7 +9,7 @@ Références : [`design-system/README.md`](../design-system/README.md) (règles)
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ ╭──────────────────────────────────────────────────────────────────────╮ │  FloatingHeader (fixed, z-50)
-│ │ ✳ Dandelion   Atlas  Area                           ( ⌕ Search… )    │ │  ← monté une fois par le layout
+│ │ ✳ Dandelion   Atlas  Area                    ( ⌕ Search… )  EN FR   │ │  ← monté une fois par le layout
 │ ╰──────────────────────────────────────────────────────────────────────╯ │
 │ ┌──────────┐                                             ┌──────────┐    │  Stage overlay (grille 3 · 6 · 3)
 │ │ Widget   │               colonne centrale              │ Widget   │    │  ← pointer-events: none,
@@ -22,7 +22,7 @@ Références : [`design-system/README.md`](../design-system/README.md) (règles)
 
 | Calque   | Composant                                                | Rôle                                                                                                 |
 | -------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Header   | `SiteHeader` → `FloatingHeader`                          | seul élément rémanent : marque animée, navigation, recherche. Ne se démonte jamais entre deux pages. |
+| Header   | `SiteHeader` → `FloatingHeader`                          | seul élément rémanent : marque animée, navigation, recherche, langue. Ne se démonte jamais entre deux pages. |
 | Colonnes | `Stage` (`left`, `children`, `right`)                    | grille 12 colonnes : 3 · 6 · 3 dès `lg`, empilées en dessous. Une colonne absente n'est pas rendue.  |
 | Widgets  | `Widget` (+ `Header`, `Title`, `Description`, `Content`) | panneaux flottants, même matière que le header (`floatingSurface`).                                  |
 | Fond     | `StageCanvas` + une scène de feature                     | canvas plein écran, toujours derrière ; reçoit le pointeur partout où il n'y a pas de widget.        |
@@ -64,12 +64,14 @@ Chemins : `PUBLIC_PATHS` (`constant/path.ts`), dont `PUBLIC_PATHS.AREA_DETAIL(ar
     {' '}
     {/* droite : prend et cède l'espace restant */}
     <SearchField action={PUBLIC_PATHS.DATASETS} label={t('search.label')} placeholder={t('search.placeholder')} />
+    <LocaleSwitch />
   </FloatingHeaderSection>
 </FloatingHeader>
 ```
 
 - **Lien actif** : `isActivePath` (`lib/navigation/is-active-path.ts`, testé) — actif sur la page et ses sous-pages ; fond `secondary` + `aria-current='page'`.
-- **Recherche** : formulaire GET (`next/form`) vers le catalogue, navigation client et prefetch, fonctionne sans JavaScript.
+- **Recherche** : formulaire GET (`next/form`) vers le catalogue, navigation client et prefetch, fonctionne sans JavaScript. Elle cède sa largeur (`max-w-64` dès `sm`) pour laisser le sélecteur de langue au bord droit.
+- **Langue** : `LocaleSwitch` en dernier dans la section `end`.
 - **Ajouter une entrée** : chemin dans `PUBLIC_PATHS`, clé `shell.nav.<entrée>` en en + fr, un `<HeaderNavLink>`.
 - **Ajouter un bouton d'action** : `<Button variant='ghost' size='icon'>` (ou `secondary`) dans la section `end`, avant ou après la recherche ; jamais la variante `default` (bleu `cta` réservé aux actions transactionnelles).
 - **Contrainte de hauteur** : header `top-4` + `h-14`, réservés par le `pt-24` du `Stage`. L'un ne change pas sans l'autre.
