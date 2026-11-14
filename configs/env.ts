@@ -9,7 +9,11 @@ export const SUPABASE_PROJECT_URL = 'https://mloaychfjhajdjfktcjp.supabase.co'
 export const ENVS = createEnv({
   server: {
     // Secret key (sb_secret_...): bypasses RLS, server only (services/supabase/admin.ts).
-    SUPABASE_SECRET_KEY: z.string().min(1).optional()
+    SUPABASE_SECRET_KEY: z.string().min(1).optional(),
+    // Optional Featherless provider for /api/dataviz/plan. Server only; without a key the deterministic guide is used.
+    FEATHERLESS_API_KEY: z.string().min(1).optional(),
+    FEATHERLESS_API_BASE: z.string().url().default('https://api.featherless.ai/v1'),
+    FEATHERLESS_MODEL: z.string().min(1).default('zai-org/GLM-5.2')
   },
   client: {
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().default(SUPABASE_PROJECT_URL),
@@ -20,6 +24,9 @@ export const ENVS = createEnv({
   },
   runtimeEnv: {
     SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
+    FEATHERLESS_API_KEY: process.env.FEATHERLESS_API_KEY,
+    FEATHERLESS_API_BASE: process.env.FEATHERLESS_API_BASE,
+    FEATHERLESS_MODEL: process.env.FEATHERLESS_MODEL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     // On Vercel, NEXT_PUBLIC_VERCEL_ENV (development | preview | production) is exposed automatically.

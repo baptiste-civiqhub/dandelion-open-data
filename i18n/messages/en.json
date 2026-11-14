@@ -5,7 +5,20 @@
   },
   "home": {
     "title": "Dandelion",
-    "baseline": "Sowing public data, letting debate bloom."
+    "baseline": "Sowing public data, letting debate bloom.",
+    "eyebrow": "Open Data Hackathon",
+    "subtitle": "Next.js + Supabase starter, ready to deploy on Vercel. Plug in your datasets and build.",
+    "stackTitle": "Stack",
+    "stackDescription": "Next.js 15 · React 19 · strict TypeScript · Tailwind 4 · TanStack Query · next-intl",
+    "dataTitle": "Data",
+    "dataDescription": "Supabase (Postgres + RLS), eu-central-1 region.",
+    "healthLink": "Open the health probe",
+    "texteLink": "View the bill",
+    "catalog": {
+      "title": "Explore the datasets",
+      "description": "Two distinct corpora, each in the radial flower.",
+      "worldPlaceholder": "The 3D world in the background is a placeholder: it holds no data yet."
+    }
   },
   "notFound": {
     "title": "Page not found",
@@ -311,6 +324,237 @@
       "too-few": "Give two distinct amendment numbers to compare, or one number to show or find a parent.",
       "invalid-plan": "The action plan was rejected by validation: nothing was applied.",
       "suggest": "Try an example above."
+    }
+  },
+  "common": {
+    "loading": "Loading…"
+  },
+  "shell": {
+    "brandName": "Dandelion",
+    "homeLink": "Dandelion, back to the map",
+    "nav": {
+      "label": "Main",
+      "about": "Atlas",
+      "datasets": "Area"
+    },
+    "search": {
+      "label": "Search datasets",
+      "placeholder": "Search datasets…"
+    }
+  },
+  "world": {
+    "canvasLabel": "Explorable map of the datasets"
+  },
+  "about": {
+    "metaTitle": "About",
+    "title": "About Dandelion",
+    "intro": "Dandelion turns public open data into a space you can explore.",
+    "howItWorks": "Travel across the map, enter a zone, and the data behind it unfolds as an interactive visualisation. Every dataset is also listed under Area."
+  },
+  "datasets": {
+    "metaTitle": "Datasets",
+    "title": "Datasets",
+    "description": "Every dataset you can explore on the map.",
+    "empty": "No dataset is available yet.",
+    "noMatch": "No dataset matches “{query}”."
+  },
+  "dataviz": {
+    "metaTitle": "{datasetId}",
+    "canvasLabel": "Visualisation of the {datasetId} dataset",
+    "dataset": {
+      "eyebrow": "Dataset",
+      "notConnected": "The data source for this dataset is not connected yet."
+    },
+    "view": {
+      "title": "View",
+      "description": "Filters and legend will appear here."
+    }
+  },
+  "texte": {
+    "metaTitle": "Bill and amendments",
+    "title": "The bill flower",
+    "loading": "Loading the bill…",
+    "error": "The bill could not be displayed.",
+    "empty": "This bill has no amendments.",
+    "flowerLabel": "Amendment flower",
+    "summary": "{title} · {count} amendments",
+    "reste": "Rest",
+    "unknown": "Unknown",
+    "sansDiscussion": "No joint discussion",
+    "sansDoublon": "No identical discussion",
+    "intentions": {
+      "supprimer": "Delete",
+      "reecrire": "Rewrite",
+      "ajouter": "Add",
+      "modifier": "Modify",
+      "autre": "Other"
+    },
+    "sheet": {
+      "numero": "Number",
+      "author": "Author",
+      "group": "Group",
+      "intention": "Operation (lexical classification)",
+      "dispositif": "Device",
+      "sort": "Outcome",
+      "close": "Close",
+      "source": "Official link",
+      "openSource": "Open the official page",
+      "noSource": "Missing from the source (no link invented)",
+      "missingText": "Text missing from the source"
+    },
+    "nodeAmendment": "Amendment {label}"
+  },
+  "flower": {
+    "loading": "Loading the flower…",
+    "error": "The dataset could not be loaded.",
+    "counts": "{visible} elements displayed for {total} amendments (budget: at most {budget} elements)",
+    "lexicalNote": "The “Delete”, “Rewrite”, “Add”, “Modify” sectors classify the operation from the first words of the provision (lexical classification). This is not a political intention.",
+    "provenance": {
+      "hemicycle": "Hémicycle snapshot recorded by the team in the repository: not a live import.",
+      "senat": "Dated public Senate export retrieved on {date} (SHA-256 {hash}…): not current law.",
+      "publisher": "Source: {publisher}.",
+      "source": "source page",
+      "licence": "licence"
+    },
+    "gaps": {
+      "title": "Missing data (shown, never filled in)",
+      "text": "{count, plural, =0 {No amendment} one {# amendment} other {# amendments}} of {total} without provision text.",
+      "url": "{count, plural, =0 {No amendment} one {# amendment} other {# amendments}} of {total} without an individual official link."
+    },
+    "nav": {
+      "title": "Navigation",
+      "keyboard": "Keyboard: Tab through sectors, Enter to open, + / − to zoom, 0 to fit, Escape to go up.",
+      "breadcrumb": "Breadcrumb",
+      "global": "Global view",
+      "zoomGroup": "Zoom",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "fit": "Fit view",
+      "zoomInShort": "Zoom",
+      "zoomOutShort": "Unzoom",
+      "fitShort": "Fit",
+      "scale": "Scale {scale}%",
+      "search": "Find an amendment by number",
+      "searchPlaceholder": "e.g. 26 or CL36",
+      "noResult": "No amendment has this number.",
+      "result": "No. {numero} · {article}"
+    },
+    "guide": {
+      "title": "Flower guide",
+      "badge": "Deterministic, no model",
+      "description": "Recognises exact numbers and a few view commands. No answer is generated: facts come from the records.",
+      "inputLabel": "Your question",
+      "submit": "Apply",
+      "examples": {
+        "focus": "Montre l’amendement CL36",
+        "compare": "Compare CL36 et CL37",
+        "global": "Vue globale"
+      },
+      "intent": {
+        "focus": "Amendment highlighted in the flower.",
+        "compare": "Two amendments shown side by side.",
+        "zoom": "Zoom applied.",
+        "reset": "Back to the global view."
+      },
+      "record": "No. {numero} · {article} · outcome: {sort}.",
+      "noSource": "No official link in the source.",
+      "invalidPlan": "Plan refused: an identifier is not registered in this view.",
+      "abstain": {
+        "empty": "Ask a question.",
+        "too-long": "Question too long (600 characters max).",
+        "out-of-scope": "Out of scope: the flower measures no effects, current law, predictions or political intentions.",
+        "unsupported": "I cannot handle this question. Try an exact number.",
+        "missing": "No amendment has exactly this number.",
+        "ambiguous": "Several amendments share this number: please clarify.",
+        "too-many": "Too many numbers: a comparison covers two amendments.",
+        "too-few": "A comparison needs two numbers."
+      }
+    },
+    "provider": {
+      "title": "Plan provider (optional)",
+      "badge": "Featherless · server",
+      "description": "Sends the question to the server, which calls a model only if a key is configured. The plan is revalidated here; displayed facts come from the records.",
+      "inputLabel": "Question for the provider",
+      "submit": "Request a plan",
+      "pending": "Requesting…",
+      "unconfigured": "Provider not configured (no key on this server): use the deterministic guide and manual controls.",
+      "rejected": "Request refused (empty or too long question, or unknown dataset).",
+      "clientRefused": "Plan refused by this view: identifier or action not allowed.",
+      "network": "The server did not answer. Manual controls remain available.",
+      "abstain": "Model {model} abstains.",
+      "applied": "Plan from model {model} applied ({count} validated actions).",
+      "record": "No. {numero} · {article} · outcome: {outcome}",
+      "noSource": "(no official link in the source)",
+      "error": {
+        "timeout": "The provider did not answer in time.",
+        "provider-error": "The provider returned an error.",
+        "invalid-response": "Model response rejected: invalid JSON or identifier outside the list."
+      }
+    },
+    "tour": {
+      "title": "Guided tour",
+      "description": "Only starts on request. Any manipulation pauses it.",
+      "reducedMotion": "Reduced motion: the tour only advances with “Next step”.",
+      "start": "Start the tour",
+      "restart": "Restart",
+      "pause": "Pause",
+      "resume": "Resume",
+      "next": "Next step",
+      "stop": "Stop",
+      "progress": "Step {current} of {total}",
+      "status": {
+        "idle": "Stopped",
+        "playing": "Playing",
+        "paused": "Paused",
+        "done": "Finished"
+      },
+      "steps": {
+        "overview": {
+          "title": "Overview",
+          "caption": "The whole text: each sector groups amendments, sized by their count."
+        },
+        "article": {
+          "title": "Article 1",
+          "caption": "The most amended article: amendments 26 and 27 are here."
+        },
+        "pair": {
+          "title": "Amendments 26 and 27",
+          "caption": "Two neighbouring proposals on exceptions (construction textiles, fluoropolymers)."
+        },
+        "comparison": {
+          "title": "Comparison",
+          "caption": "Exact lexical difference and recorded outcome of each: both withdrawn."
+        },
+        "sources": {
+          "title": "Sources",
+          "caption": "Official Senate pages and document trail to check."
+        },
+        "global": {
+          "title": "Back to the global view",
+          "caption": "The comparison stays displayed for your note."
+        },
+        "heaviest": {
+          "title": "Most amended article",
+          "caption": "The branch with the most amendments."
+        },
+        "zoom": {
+          "title": "Zoom",
+          "caption": "Enlarging the selected branch."
+        }
+      }
+    },
+    "datasets": {
+      "open": "Open the flower",
+      "pfas-senat-620": {
+        "eyebrow": "PFAS example · Senate 2023-2024",
+        "name": "PFAS: Senate text 620",
+        "summary": "{count} amendments (dated public Senate export), with comparison and official sources."
+      },
+      "police-municipale-an-2464": {
+        "eyebrow": "Team corpus · National Assembly",
+        "name": "Municipal police: bill no. 2464",
+        "summary": "{count} amendments (team Hémicycle snapshot). Individual links and some texts are missing from the source."
+      }
     }
   }
 }

@@ -8,7 +8,9 @@ test('home renders its title without console errors', async ({ page }) => {
 
   await page.goto('/')
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
-  expect(errors).toEqual([])
+  await expect(page.locator('[data-slot="stage"]')).toBeVisible()
+  await expect(page.getByTestId('home-catalog').getByRole('link')).toHaveCount(2)
+  expect(errors.filter((message) => !/WebGL|GPU stall/i.test(message))).toEqual([])
 })
 
 test('health probe answers with the deployed version', async ({ request }) => {

@@ -24,14 +24,16 @@ Cinq chevrons inscrits dans un cercle, comme une aigrette de pissenlit vue de de
 
 **Déclinaisons**
 
-| Usage                  | Rendu                                                                                                                                  | Implémentation                                          |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| Interface (fond clair) | picto `foreground` (#141414)                                                                                                           | `<DandelionMark />` (`text-foreground`)                 |
-| Sur surface de marque  | picto blanc                                                                                                                            | `<DandelionMark className='text-brand-foreground' />`   |
-| Icône d'app / favicon  | picto blanc sur carré arrondi, dégradé vertical `brand-gradient-from` (#F96B61) → `brand-gradient-to` (#FAD870), picto à 66 % du cadre | route `/brand/mark.svg` (`app/brand/mark.svg/route.ts`) |
-| Lockup                 | picto + nom + baseline, centrés                                                                                                        | `<BrandLockup />` (`components/brand/brand-lockup.tsx`) |
+| Usage                  | Rendu                                                                                                                                  | Implémentation                                                                               |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Interface (fond clair) | picto `foreground` (#141414)                                                                                                           | `<DandelionMark />` (`text-foreground`)                                                      |
+| Sur surface de marque  | picto blanc                                                                                                                            | `<DandelionMark className='text-brand-foreground' />`                                        |
+| Icône d'app / favicon  | picto blanc sur carré arrondi, dégradé vertical `brand-gradient-from` (#F96B61) → `brand-gradient-to` (#FAD870), picto à 66 % du cadre | route `/brand/mark.svg` (`app/brand/mark.svg/route.ts`)                                      |
+| Lockup                 | picto + nom + baseline, centrés                                                                                                        | `<BrandLockup />` (`components/brand/brand-lockup.tsx`)                                      |
+| Chargement             | vague « Bloom » : les pétales respirent l'un après l'autre, sens horaire                                                               | `<DandelionLoader />` ([`MOTION.md`](MOTION.md) § 4)                                         |
+| Picto héros interactif | survol « Lean » : le picto se penche vers la souris, les pétales qui lui font face s'entrouvrent                                       | `<InteractiveDandelionMark />`, `<BrandLockup interactive />` ([`MOTION.md`](MOTION.md) § 5) |
 
-**Interdits** : recolorer avec une couleur hors tokens, déformer, pivoter, régulariser les tailles des chevrons, ajouter contour, ombre ou effet, placer le picto blanc sur fond clair (ou noir sur fond sombre), recréer le picto à la main : toujours passer par `DandelionMark` ou `renderDandelionSvg`.
+**Interdits** : recolorer avec une couleur hors tokens, déformer, pivoter, régulariser les tailles des chevrons, ajouter contour, ombre ou effet, placer le picto blanc sur fond clair (ou noir sur fond sombre), recréer le picto à la main : toujours passer par `DandelionMark` ou `renderDandelionSvg`. **En mouvement**, seuls l'opacité et des translations le long de l'axe de chaque pétale sont permises (ni rotation, ni échelle, ni changement de couleur), uniquement via les variantes `motion` : voir [`MOTION.md`](MOTION.md).
 
 **Zone de protection** : un espace vide d'au moins ¼ du diamètre du picto autour de lui. Taille minimale : 16 px (favicon), 24 px dans l'interface.
 

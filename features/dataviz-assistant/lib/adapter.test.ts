@@ -70,3 +70,47 @@ describe('applyPlan', () => {
     expect(adapter.focusEntity).not.toHaveBeenCalled()
   })
 })
+
+describe('applyPlan view actions', () => {
+  const registry = createRegistry(['a'])
+  const base = { focusEntity: vi.fn(), compareEntities: vi.fn(), showEvidence: vi.fn() }
+
+  it('applies bounded zoom and reset-view when the host supports them', () => {
+    const zoom = vi.fn()
+    const resetView = vi.fn()
+    const result = applyPlan(
+      { schemaVersion: 1, actions: [{ type: 'zoom', direction: 'in' }, { type: 'reset-view' }] },
+      { ...base, zoom, resetView },
+      registry
+    )
+    expect(result.ok).toBe(true)
+    expect(zoom).toHaveBeenCalledWith('in')
+    expect(resetView).toHaveBeenCalledOnce()
+  })
+
+  it('refuses the whole plan when the host lacks zoom, before any action runs', () => {
+    const focusEntity = vi.fn()
+    const result = applyPlan(
+      {
+        schemaVersion: 1,
+        actions: [
+          { type: 'focus', id: 'a' },
+          { type: 'zoom', direction: 'in' }
+        ]
+      },
+      { ...base, focusEntity },
+      registry
+    )
+    expect(result).toEqual({ ok: false, errors: ['host does not support zoom'] })
+    expect(focusEntity).not.toHaveBeenCalled()
+  })
+
+  it('rejects unbounded zoom values', () => {
+    const result = applyPlan(
+      { schemaVersion: 1, actions: [{ type: 'zoom', direction: 9 }] },
+      { ...base, zoom: vi.fn() },
+      registry
+    )
+    expect(result.ok).toBe(false)
+  })
+})
