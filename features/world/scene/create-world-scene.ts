@@ -50,14 +50,14 @@ import type { WorldKit } from './world-kit'
 
 /**
  * Contrat entre le monde 3D et l'application (features/world/README.md). Le monde ne connaît ni le routeur, ni les
- * URL, ni le DOM de l'interface : il reçoit des zones et rend trois événements. `WorldScreen` fait le reste.
+ * URL, ni le DOM de l'interface : il reçoit des zones et rend des événements. `WorldScreen` fait le reste.
  */
 export type WorldSceneOptions = {
   /** Zones à poser au sol, positions comprises (`worldZonesFromAreas`). Liste vide pendant le chargement. */
   zones: readonly WorldZone[]
   /**
-   * Le monde dessine sa première image : l'interface retire alors le titre de marque centré (il reste pour les
-   * lecteurs d'écran). Appelé une fois. Jamais appelé si WebGL est indisponible : la landing garde son titre.
+   * Le monde dessine sa première image. L'interface peut alors laisser deviner le jardin sous le voile de marque.
+   * Appelé une fois. Jamais appelé si WebGL est indisponible : la landing garde son titre.
    */
   onReady: () => void
   /**
@@ -82,6 +82,11 @@ export type WorldSceneOptions = {
    * même vue sans voile, en basse définition, pour un fond flouté. Jamais appelé avec `reducedMotion`.
    */
   onExitFrames?: (frames: WorldExitFrames) => void
+  /**
+   * Position du joueur, pour la vue de dessus de l'atlas. Pas à chaque image : seulement quand il a bougé
+   * ou tourné assez pour que le marqueur change. Absent : le monde n'a rien à signaler.
+   */
+  onPose?: (pose: { x: number; z: number; heading: number }) => void
 }
 
 export type WorldExitFrames = { slug: string; frame: HTMLCanvasElement; scenery: HTMLCanvasElement }
@@ -234,6 +239,15 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
     const sky = scene.children.find((o) => o.userData.followCamera)
 
     const state = createVehicleState(GARDEN.start.x, GARDEN.start.z, GARDEN.start.heading)
+    let sentPose = { x: Number.NaN, z: Number.NaN, heading: Number.NaN }
+    const publishPose = () => {
+      if (!options.onPose) return
+      const moved = Math.hypot(state.x - sentPose.x, state.z - sentPose.z)
+      const turned = Math.abs(angleDiff(state.heading, sentPose.heading))
+      if (moved < 0.45 && turned < 0.1) return
+      sentPose = { x: state.x, z: state.z, heading: state.heading }
+      options.onPose(sentPose)
+    }
     let kind: VehicleKind = 'car'
     const input: VehicleInput = { up: false, down: false, left: false, right: false, boost: false, brake: false }
     let focused: ZoneVisual | null = null
@@ -531,6 +545,7 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
       sun.position.set(camLook.x + 36, 46, camLook.z + 24)
       sun.target.position.copy(camLook)
       if (sky) sky.position.copy(camera.position)
+      publishPose()
     }
 
     // Copie le tampon WebGL juste après un rendu, dans la même tâche : il est encore lisible sans preserveDrawingBuffer.
@@ -562,6 +577,7 @@ export function createWorldScene(options: WorldSceneOptions): StageSceneFactory 
     placeCamera(0, true)
     applyIntro(0)
     garden.update(0, 0, playerView, camLook, camera.quaternion)
+    publishPose()
 
     const resize = (next: StageSize) => {
       viewport = { width: next.width, height: next.height }
