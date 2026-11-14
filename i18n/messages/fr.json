@@ -11,7 +11,37 @@
     "stackDescription": "Next.js 15 · React 19 · TypeScript strict · Tailwind 4 · TanStack Query · next-intl",
     "dataTitle": "Données",
     "dataDescription": "Supabase (Postgres + RLS), région eu-central-1.",
-    "healthLink": "Voir la sonde de santé"
+    "healthLink": "Voir la sonde de santé",
+    "texteLink": "Voir le texte"
+  },
+  "texte": {
+    "metaTitle": "Texte et amendements",
+    "title": "La fleur du texte",
+    "loading": "Chargement du texte…",
+    "error": "Le texte n'a pas pu être affiché.",
+    "empty": "Ce texte ne contient pas d'amendement.",
+    "flowerLabel": "Fleur des amendements",
+    "summary": "{title} · {count} amendements",
+    "reste": "Reste",
+    "unknown": "Inconnu",
+    "sansDiscussion": "Sans discussion commune",
+    "sansDoublon": "Sans discussion identique",
+    "intentions": {
+      "supprimer": "Supprimer",
+      "reecrire": "Réécrire",
+      "ajouter": "Ajouter",
+      "modifier": "Modifier",
+      "autre": "Autre"
+    },
+    "sheet": {
+      "numero": "Numéro",
+      "author": "Auteur",
+      "group": "Groupe",
+      "intention": "Intention",
+      "dispositif": "Dispositif",
+      "sort": "Sort",
+      "close": "Fermer"
+    }
   },
   "status": {
     "label": "Supabase",

@@ -2,7 +2,8 @@ import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardAction, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { API_PATHS } from '@/constant/path'
+import { API_PATHS, PUBLIC_PATHS } from '@/constant/path'
+import { Link } from '@/i18n/navigation'
 
 import { SupabaseStatus } from './supabase-status'
 
@@ -35,7 +36,10 @@ export function HomeScreen() {
         </Card>
       </section>
 
-      <div>
+      <div className='flex flex-wrap gap-3'>
+        <Button asChild variant='outline'>
+          <Link href={PUBLIC_PATHS.TEXTE}>{t('texteLink')}</Link>
+        </Button>
         <Button asChild variant='outline'>
           <a href={API_PATHS.HEALTH}>{t('healthLink')}</a>
         </Button>
