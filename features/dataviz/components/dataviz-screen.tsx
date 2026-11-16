@@ -10,14 +10,19 @@ import type { AreaTexte } from '@/apis/areas/types'
 import { useGetArticlesByTexte } from '@/apis/articles'
 import { useGetSorts } from '@/apis/sorts'
 import { Stage } from '@/components/shared/stage'
+import { StageBackdrop } from '@/components/shared/stage-backdrop'
 import { Widget } from '@/components/shared/widget'
 import { Button } from '@/components/ui/button'
+import { PUBLIC_PATHS } from '@/constant/path'
+import { useStageArrival } from '@/hooks/use-stage-arrival'
 import { isNormalizedApiError } from '@/types/api-error'
 
 import { createHoverStore, createViewStore, SunburstStoresContext, useViewUrlSync } from '../hooks/use-sunburst-store'
 import { chartCssVariable, chartTokenForSort } from '../lib/sort-colors'
 import { buildSunburstTree, type SunburstLabels } from '../lib/sunburst-tree'
 import { DEFAULT_VIEW, parseView, VIEW_PARAMS } from '../lib/view-url'
+import { AnalysisWidget } from './analysis-widget'
+import { ComparisonWidget } from './comparison-widget'
 import { FicheWidget } from './fiche-widget'
 import { RepartitionWidget } from './repartition-widget'
 import { SortLegendWidget } from './sort-legend-widget'
@@ -99,6 +104,11 @@ export function DatavizScreen({ areaId }: { areaId: string }) {
       : 'ready'
   const contentError = articlesQuery.isError || amendementsQuery.isError || sortsQuery.isError
   const legendStatus = contentError ? 'error' : tree ? 'ready' : 'pending'
+  // Arrivée depuis le monde 3D : fond flouté du jardin quitté, anneaux ouverts depuis la fleur (sinon fond de repli).
+  const arrival = useStageArrival(
+    PUBLIC_PATHS.AREA_DETAIL(areaId),
+    !!tree || contentError || (areaStatus !== 'pending' && !texte)
+  )
   const retryContent = () => {
     if (articlesQuery.isError) void articlesQuery.refetch()
     if (amendementsQuery.isError) void amendementsQuery.refetch()
@@ -108,12 +118,14 @@ export function DatavizScreen({ areaId }: { areaId: string }) {
   return (
     <SunburstStoresContext.Provider value={stores}>
       <Stage
+        backdrop={<StageBackdrop scenery={arrival.scenery} />}
         canvas={
           <SunburstCanvas
             label={t('canvasLabel', { name: texteTitle || areaId })}
             tree={tree}
             sortColorVariable={sortColorVariable}
             text={sceneText}
+            opening={arrival.isArriving ? 'bloom' : 'sweep'}
           />
         }
         left={
@@ -133,6 +145,8 @@ export function DatavizScreen({ areaId }: { areaId: string }) {
             <>
               <FicheWidget sortsByCode={sortsByCode} />
               <RepartitionWidget sorts={sorts ?? []} />
+              <AnalysisWidget />
+              <ComparisonWidget amendements={amendements ?? []} />
             </>
           ) : undefined
         }

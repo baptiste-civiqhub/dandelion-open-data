@@ -74,6 +74,13 @@
   will-change: translate;
 }
 
+/* Crossfade between two pages of the Stage: the curtain holding the last frame of the page that left fades out over
+   the page that arrives (StageCurtain). Length = STAGE_TRANSITION.revealMs (store/stage-transition.ts); the sunburst
+   bloom (900 ms) outlasts it slightly, so the rings keep opening as the flower dissolves. */
+@utility stage-crossfade {
+  transition: opacity 800ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 /* Landing curtain: the white field and the mark fade together. The header uses animate-landing-header instead,
    so the drop only plays when that class is added. Reduced motion skips both (`motion-safe:`). */
 @utility landing-veil {

@@ -11,9 +11,12 @@ import { Widget } from '@/components/shared/widget'
 import { PUBLIC_PATHS } from '@/constant/path'
 import { useRouter } from '@/i18n/navigation'
 import { useLandingIntroStore } from '@/store/landing-intro'
+import { useStageTransitionStore } from '@/store/stage-transition'
 import { useWorldPoseStore, type WorldPose } from '@/store/world-pose'
 
+import { landingOnSunburst } from '../lib/dive'
 import { worldZonesFromAreas, type WorldZone } from '../lib/world-zones'
+import type { WorldExitFrames } from '../scene/create-world-scene'
 import { LandingIntro } from './landing-intro'
 import { WorldCanvas } from './world-canvas'
 import { WorldControlsHint } from './world-controls-hint'
@@ -23,7 +26,8 @@ const NO_ZONES: readonly WorldZone[] = []
 /**
  * Landing : le monde 3D occupe tout le Stage, sans colonne latérale. Un rideau de marque le couvre d'abord
  * (opaque, puis voile), jusqu'au premier geste. Quand le personnage est dans une zone, un bandeau en bas
- * invite à presser Entrée ; la scène navigue ensuite vers la page de la zone.
+ * invite à presser Entrée ; la scène navigue ensuite vers la page de la zone. La plongée pose la fleur sur le disque
+ * du sunburst de cette page (`landingOnSunburst`) et lui laisse ses dernières images (rideau, fond flouté).
  * Si WebGL ne démarre pas, le titre de marque reste au centre une fois le rideau levé.
  */
 export function WorldScreen() {
@@ -49,6 +53,15 @@ export function WorldScreen() {
 
   const onReady = useCallback(() => setReady(true), [])
   const onEnterZone = useCallback((slug: string) => router.push(PUBLIC_PATHS.AREA_DETAIL(slug)), [router])
+  const depart = useStageTransitionStore((state) => state.depart)
+  const onExitFrames = useCallback(
+    ({ slug, frame, scenery }: WorldExitFrames) => depart({ path: PUBLIC_PATHS.AREA_DETAIL(slug), frame, scenery }),
+    [depart]
+  )
+  // Page de la zone préchargée dès qu'on y entre : la plongée finie, elle s'affiche sans écran de chargement.
+  useEffect(() => {
+    if (focusedSlug) router.prefetch(PUBLIC_PATHS.AREA_DETAIL(focusedSlug))
+  }, [focusedSlug, router])
 
   return (
     <>
@@ -60,6 +73,8 @@ export function WorldScreen() {
             onZoneFocus={setFocusedSlug}
             onEnterZone={onEnterZone}
             onPose={onPose}
+            landing={landingOnSunburst}
+            onExitFrames={onExitFrames}
           />
         }
         centerAlign={showGarden ? 'end' : 'center'}
