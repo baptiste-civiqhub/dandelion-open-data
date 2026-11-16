@@ -29,3 +29,9 @@ design-system/tokens/palette.generated.md
 # Contexte agents (Markdown libre)
 .claude/
 .cursor/
+
+# Deck : assets générés par pitch/scripts/build-assets.mjs et les scripts de capture
+pitch/assets/tokens.css
+pitch/assets/brand/
+pitch/assets/captures/
+pitch/*.pdf

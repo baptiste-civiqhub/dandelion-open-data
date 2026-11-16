@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dandelion · Hackathon Open Data</title>
+    <link rel="icon" href="assets/brand/app-icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/tokens.css" />
+    <link rel="stylesheet" href="assets/deck.css" />
+  </head>
+  <body>
+    <main class="deck" aria-live="polite">
+      <!-- 1 · Titre -->
+      <section class="slide slide--title" aria-label="Titre">
+        <div class="title-copy">
+          <img class="app-icon" src="assets/brand/app-icon.svg" alt="" />
+          <h1 class="wordmark">Dandelion</h1>
+          <p class="promise">Voir, explorer et comprendre la fabrique de la loi.</p>
+          <p class="baseline">Semer la donnée publique, faire éclore le débat.</p>
+        </div>
+        <div class="bloom" aria-hidden="true">
+          <img src="assets/captures/sunburst-plffg.png" alt="" />
+        </div>
+      </section>
+
+      <!-- 2 · Problème -->
+      <section class="slide" aria-label="Le problème">
+        <p class="eyebrow">Le problème</p>
+        <h2>Des milliers d’amendements, aucune vue d’ensemble.</h2>
+        <div class="split">
+          <p class="lead">
+            Chaque année, des milliers d’amendements réécrivent les lois qui nous touchent : budget, logement, santé.
+            Les données sont ouvertes, mais on les lit en listes et en tableaux, sans structure ni fil conducteur.
+          </p>
+          <div class="stat-card">
+            <p class="stat-number">217</p>
+            <p class="stat-label">amendements pour un seul texte de 10 articles</p>
+            <p class="stat-source">Projet de loi de finances de fin de gestion pour 2026</p>
+            <div class="wall" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · Solution -->
+      <section class="slide" aria-label="La solution">
+        <p class="eyebrow">La solution</p>
+        <h2>Dandelion rend un texte de loi lisible d’un coup d’œil.</h2>
+        <p class="lead">Un framework de visualisation fondé sur la recherche en design et en dataviz.</p>
+        <ol class="pillars">
+          <li>
+            <span class="pillar-index">01</span>
+            <strong>Voir</strong>
+            <span>Le texte entier, sa structure et le sort de chaque amendement sur une seule vue.</span>
+          </li>
+          <li>
+            <span class="pillar-index">02</span>
+            <strong>Explorer</strong>
+            <span>Du texte à l’article, de l’alinéa à l’amendement, d’un simple zoom.</span>
+          </li>
+          <li>
+            <span class="pillar-index">03</span>
+            <strong>Comprendre</strong>
+            <span>Une lecture en clair par IA, adaptée à chacun, à la demande.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 4 · Le jardin -->
+      <section class="slide" aria-label="L’entrée ludique">
+        <div class="media-left">
+          <div class="shots">
+            <figure class="shot shot--main">
+              <img
+                src="assets/captures/jardin.png"
+                alt="Vue aérienne du jardin du Luxembourg en 3D, palais du Sénat à droite"
+              />
+            </figure>
+            <figure class="shot shot--inset">
+              <img
+                src="assets/captures/pissenlit.png"
+                alt="La deux-chevaux devant le pissenlit d’une zone thématique"
+              />
+            </figure>
+          </div>
+          <div>
+            <p class="eyebrow">L’entrée</p>
+            <h2>On entre au Parlement par son jardin.</h2>
+            <p class="lead">
+              Le jardin du Luxembourg en 3D, au pied du palais du Sénat : on sait d’emblée où l’on est. Chaque thème est
+              un pissenlit ; on conduit de fleur en fleur, puis on plonge dans celle qui intrigue.
+            </p>
+            <p class="note">Plutôt qu’un portail austère, une exploration qui commence par le jeu.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · Le sunburst -->
+      <section class="slide" aria-label="Le pissenlit">
+        <div class="media-right">
+          <div>
+            <p class="eyebrow">La visualisation</p>
+            <h2>Un texte de loi, un pissenlit.</h2>
+            <p class="lead">
+              Retenu après notre état de l’art des visualisations arborescentes, le sunburst montre d’un seul regard la
+              structure, le volume et l’issue. On zoome, on survole, on filtre par sort, on partage la vue par un lien.
+            </p>
+            <ul class="legend">
+              <li><strong>Centre → bord</strong> texte, articles, alinéas, amendements</li>
+              <li><strong>Angle</strong> nombre d’amendements</li>
+              <li><strong>Couleur</strong> sort : adopté, rejeté, retiré…</li>
+            </ul>
+          </div>
+          <div class="shots">
+            <figure class="shot shot--main shot--sunburst">
+              <img
+                src="assets/captures/sunburst-plffg.png"
+                alt="Sunburst du projet de loi de finances de fin de gestion pour 2026"
+              />
+            </figure>
+            <figure class="shot shot--inset shot--zoom">
+              <img src="assets/captures/zoom-article.png" alt="Zoom sur l’article 5 et fiche d’un amendement" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · Les données -->
+      <section class="slide" aria-label="Les données">
+        <p class="eyebrow">Les données</p>
+        <h2>Des API Hémicycle à une base unifiée.</h2>
+        <p class="lead">
+          Notre pipeline extrait les API Hémicycle de l’Assemblée nationale et factorise textes, articles, alinéas,
+          amendements et sorts dans une architecture unifiée de huit tables. L’interface la transforme en pissenlit
+          didactique et interactif.
+        </p>
+        <ol class="pipeline">
+          <li><strong>Hémicycle</strong><span>API open data de l’Assemblée nationale</span></li>
+          <li><strong>Pipeline</strong><span>Extraction, factorisation, étiquetage thématique</span></li>
+          <li><strong>Supabase</strong><span>8 tables, lecture publique protégée par RLS</span></li>
+          <li><strong>Interface</strong><span>Sunburst didactique, ergonomique, interactif</span></li>
+        </ol>
+        <ul class="tables" aria-label="Les huit tables">
+          <li>datasets</li>
+          <li>textes</li>
+          <li>articles</li>
+          <li>alineas</li>
+          <li>amendements</li>
+          <li>sorts</li>
+          <li>tags</li>
+          <li>tag_links</li>
+        </ul>
+      </section>
+
+      <!-- 7 · L’IA -->
+      <section class="slide" aria-label="L’IA au service de la pédagogie">
+        <div class="media-right">
+          <div>
+            <p class="eyebrow">L’IA</p>
+            <h2>L’IA au service de la pédagogie.</h2>
+            <p class="lead">
+              Un clic sur un amendement : des modèles de langue servis par Featherless en proposent une lecture en clair
+              et le comparent à un amendement voisin. C’est une aide à la lecture, jamais une source officielle : le
+              texte de l’Assemblée fait foi.
+            </p>
+            <p class="badge">Aide à la lecture · pas une source officielle</p>
+          </div>
+          <figure class="shot shot--column">
+            <img
+              src="assets/captures/ia-widgets.png"
+              alt="Widgets Lecture par IA et Comparer, à côté de la fiche d’un amendement"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- 8 · Démo -->
+      <section class="slide" aria-label="Ce qui marche aujourd’hui">
+        <p class="eyebrow">Démo</p>
+        <h2>Ce qui marche aujourd’hui.</h2>
+        <ul class="figures">
+          <li><strong>5</strong><span>zones thématiques</span></li>
+          <li><strong>24</strong><span>textes de loi</span></li>
+          <li><strong>1 308</strong><span>amendements</span></li>
+          <li><strong>8</strong><span>sorts en langage clair</span></li>
+        </ul>
+        <ol class="gestures">
+          <li>
+            <img src="assets/captures/pissenlit.png" alt="" />
+            <p><span>1</span>Conduire jusqu’à un pissenlit</p>
+          </li>
+          <li>
+            <img src="assets/captures/sunburst-plffg.png" alt="" />
+            <p><span>2</span>Plonger dans le texte</p>
+          </li>
+          <li>
+            <img src="assets/captures/zoom-article.png" alt="" />
+            <p><span>3</span>Cliquer un amendement</p>
+          </li>
+        </ol>
+        <p class="note">Données réelles de l’Assemblée nationale, importées le 14 novembre 2026.</p>
+      </section>
+
+      <!-- 9 · Impact -->
+      <section class="slide" aria-label="Impact et suite">
+        <p class="eyebrow">Impact</p>
+        <h2>Pour qui, et la suite.</h2>
+        <ul class="personas">
+          <li><strong>Citoyens</strong><span>Voir ce qui change dans les lois qui les concernent.</span></li>
+          <li><strong>Journalistes</strong><span>Repérer en un regard où se joue la bataille.</span></li>
+          <li>
+            <strong>Collaborateurs parlementaires</strong><span>Suivre un texte et ses amendements sans tableur.</span>
+          </li>
+          <li><strong>Enseignants</strong><span>Montrer la fabrique de la loi en classe.</span></li>
+        </ul>
+        <div class="next">
+          <p class="eyebrow">Ensuite</p>
+          <ul>
+            <li>Le Sénat et la navette entre les deux chambres</li>
+            <li>Plus de textes, importés au fil des débats</li>
+            <li>Le framework ouvert à d’autres données publiques</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 10 · Clôture -->
+      <section class="slide slide--closing" aria-label="Clôture">
+        <img class="app-icon" src="assets/brand/app-icon.svg" alt="" />
+        <p class="vision">Faire de chaque loi un objet que l’on voit, que l’on explore et que l’on comprend.</p>
+        <dl class="closing-meta">
+          <div>
+            <dt>Démo</dt>
+            <dd class="todo">[ lien de démo à compléter ]</dd>
+          </div>
+          <div>
+            <dt>Équipe</dt>
+            <dd class="todo">[ noms et rôles à compléter ]</dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <nav class="controls" aria-label="Navigation du deck">
+      <button type="button" data-go="prev" aria-label="Diapositive précédente">←</button>
+      <span class="counter" aria-live="polite"></span>
+      <button type="button" data-go="next" aria-label="Diapositive suivante">→</button>
+      <button type="button" data-go="fullscreen" aria-label="Plein écran">⤢</button>
+    </nav>
+
+    <script src="assets/deck.js"></script>
+  </body>
+</html>
